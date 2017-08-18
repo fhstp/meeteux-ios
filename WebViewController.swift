@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController, WKScriptMessageHandler {
     
     @IBOutlet var containerView: UIView!
     var webView: WKWebView?
@@ -27,7 +27,7 @@ class WebViewController: UIViewController {
                     // File Error
                     print ("File reading error")
                     return
-            }
+                }
             
             let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
             let baseUrl = URL(fileURLWithPath: filePath)
@@ -46,7 +46,34 @@ class WebViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.webView = WKWebView()
+        
+        let contentController = WKUserContentController()
+        
+        let userScript = WKUserScript(
+            source: "redHeader()",
+            injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
+            forMainFrameOnly: true
+        )
+        
+        contentController.addUserScript(userScript)
+        contentController.add(
+            self,
+            name: "callbackHandler"
+        )
+        
+        let config = WKWebViewConfiguration()
+        config.userContentController = contentController
+        
+        self.webView = WKWebView(
+            frame: self.containerView.bounds,
+            configuration: config
+        )
         self.view = self.webView
+    }
+    
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if(message.name == "callbackHandler") {
+            print("JavaScript is sending a message \(message.body)")
+        }
     }
 }
