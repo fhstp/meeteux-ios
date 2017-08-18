@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Start View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="R4d-2m-bSj">
             <objects>
-                <viewController id="qsb-Xk-7Vu" customClass="StartViewController" customModule="lunamire" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qsb-Xk-7Vu" customClass="WebViewController" customModule="lunamire" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w9c-27-mHJ"/>
                         <viewControllerLayoutGuide type="bottom" id="FMq-lb-a0d"/>
@@ -20,13 +20,6 @@
                     <view key="view" contentMode="scaleToFill" id="O5E-1Z-HN9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aE4-Xj-wj7">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="bPE-Hf-cby">
@@ -34,15 +27,17 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Ly-Ic-GQv">
                                 <rect key="frame" x="287" y="-9" width="107" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Unity"/>
                                 <connections>
-                                    <action selector="link:" destination="qsb-Xk-7Vu" eventType="touchUpInside" id="fr6-f6-ku5"/>
                                     <segue destination="C8v-Za-6Mr" kind="show" id="VBG-2d-n12"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="containerView" destination="O5E-1Z-HN9" id="DAs-pv-FB5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eTO-v2-jkr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
