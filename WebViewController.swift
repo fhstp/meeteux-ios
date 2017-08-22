@@ -84,15 +84,10 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             let baseUrl = URL(fileURLWithPath: filePath)
             self.webView!.loadHTMLString(contents as String, baseURL: baseUrl)
             
-            
         }
         catch {
             print ("File HTML error")
         }
-        
-        // TODO Webview not fully loaded at this time
-        let exec2 = "sayHello()"
-        webView.evaluateJavaScript(exec2, completionHandler: nil)
         
         
         // initialize BeaconManager
@@ -101,7 +96,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         switch KTKBeaconManager.locationAuthorizationStatus() {
         case .notDetermined:
             beaconManager.requestLocationAlwaysAuthorization()
-            print("start beacon")
+            print("access ok")
         case .denied, .restricted:
             // No access to Location Service
             print("access denied")
@@ -161,13 +156,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
        */
         print(message.body)
         
-        
-        let device = UIDevice()
-        let deviceValue = device.value(forKey: message.body as! String)
-        let mystring = String(describing: deviceValue)
-        
-        
-        let exec = "set_headline(\"\(mystring)\")"
+        let exec = "set_headline(\"You are here ... really\")"
         webView.evaluateJavaScript(exec, completionHandler: nil)
     }
 }
@@ -179,7 +168,6 @@ extension WebViewController: KTKBeaconManagerDelegate{
             // e.g. after calling beaconManager.requestLocationAlwaysAuthorization()
             // we can start region monitoring from here
             if KTKBeaconManager.isMonitoringAvailable() {
-                print("start scan")
                 startScanning()
             }
             
@@ -225,52 +213,21 @@ extension WebViewController: KTKBeaconManagerDelegate{
         // Go through beacons, check if it is our and reliable --> push into empty beaconList
         beacons.forEach { beacon in
             if(isOurBeaconReliable(myBeacon: beacon)){
-                // if(beaconList.count == 0){
                 beaconList.append(beacon)
-                /* }else{
-                 for(index, listBeacon) in beaconList.enumerated(){
-                 if(beacon.minor == listBeacon.minor){
-                 beaconList[index] = (beacon)
-                 }else{
-                 beaconList.append(beacon)
-                 }
-                 }
-                 }*/
             }
         }
         
-        /* print("-------")
-         
-         print(beaconList)*/
-        
         if beaconList.count>0{
-            //updateDistance(beacons[0].proximity)
-            
-            //beaconList = beacons;
-            
-           // tableView.reloadData()
-            
-            
-            
             let myBeacon = beaconList[0]
-            
             
             let beacon1 = exhibits.index(where: { (exhibit) -> Bool in
                 if(exhibit["ble-minor"] as! Int == myBeacon.minor as! Int){
-                    //print("same")
-                    //print(exhibit)
                     updateExhibit(myBeacon.proximity, exhibit: exhibit)
                     return true
                 }
                 return false
             })
-            
-            // let beacon1 = keyOfBeacon(major: beaconArray[0].major as! Int)
-            // print("beacon \(String(describing: beacon1))")
-            
-        }/*else{
-         updateDistance(.unknown)
-         }*/
+        }
     }
     
     
@@ -293,8 +250,13 @@ extension WebViewController: KTKBeaconManagerDelegate{
     func updateExhibit(_ distance: CLProximity, exhibit: [String:Any]){
         
         let locationName = exhibit["location-name"]
-       // statusLabel.text = "Your are \(locationName!)"
+        
         print("Your are \(locationName!)")
+        
+        //send to WebView
+        let exec2 = "update_location(\"\(locationName!)\")"
+        webView.evaluateJavaScript(exec2, completionHandler: nil)
+        
         UIView.animate(withDuration: 0.8){
             switch distance{
             case .far:
