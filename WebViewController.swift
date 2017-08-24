@@ -222,7 +222,23 @@ extension WebViewController: KTKBeaconManagerDelegate{
             
             let beacon1 = exhibits.index(where: { (exhibit) -> Bool in
                 if(exhibit["ble-minor"] as! Int == myBeacon.minor as! Int){
-                    updateExhibit(myBeacon.proximity, exhibit: exhibit)
+                    
+                    // send major, minor to webview
+                    let dict = [
+                        "major": myBeacon.major,
+                        "minor": myBeacon.minor
+                    ]
+                    let jsonData = try! JSONSerialization.data(withJSONObject: dict, options: [])
+                    let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
+                    
+                    // Send the location update to the page
+                    self.webView.evaluateJavaScript("update_location(\(jsonString))") { result, error in
+                        guard error == nil else {
+                            print(error!)
+                            return
+                        }
+                    }
+
                     return true
                 }
                 return false
