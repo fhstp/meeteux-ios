@@ -220,6 +220,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
         if beaconList.count>0{
             let myBeacon = beaconList[0]
             
+            // TODO: check on our own beacon only possible by checking on a specific range of major, minor
             let beacon1 = exhibits.index(where: { (exhibit) -> Bool in
                 if(exhibit["ble-minor"] as! Int == myBeacon.minor as! Int){
                     
