@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Lunemire</string>
+	<string>MEETeUX</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
@@ -21,7 +21,7 @@
 		<string>AppIcon76x76~ipad.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.ttmg.${PRODUCT_NAME}</string>
+	<string>at.ac.fhstp.${PRODUCT_NAME}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -66,8 +66,15 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 	<key>Unity_LoadingActivityIndicatorStyle</key>
 	<integer>-1</integer>
+	<key>UnityCloudProjectID</key>
+	<string></string>
+	<key>UnityCrashSubmissionURL</key>
+	<string>https://a:b@perf-events.cloud.unity3d.com/symbolicate</string>
 </dict>
 </plist>

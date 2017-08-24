@@ -1,4 +1,4 @@
-// The MIT License (MIT)
+﻿// The MIT License (MIT)
 //
 // Copyright(c) Unity Technologies, Microsoft Corporation
 //
@@ -42,15 +42,13 @@ public:
 	static std::string Utf16ToUtf8(const Il2CppChar* utf16String, int maximumSize);
 	static std::string Utf16ToUtf8(const UTF16String& utf16String);
 	static UTF16String Utf8ToUtf16(const char* utf8String);
-	static UTF16String Utf8ToUtf16 (const char* utf8String, size_t length);
+	static UTF16String Utf8ToUtf16(const char* utf8String, size_t length);
+	static UTF16String Utf8ToUtf16(const std::string& utf8String);
 	static char* StringDuplicate (const char *strSource);
 	static Il2CppChar* StringDuplicate (const Il2CppChar* strSource, size_t length);
 	static bool EndsWith(const std::string& string, const std::string& suffix);
-	static Il2CppChar Utf16ToLower(Il2CppChar c);
-	static bool CaseSensitiveEquals(Il2CppString* left, const char* right);
-	static bool CaseSensitiveEquals(const char* left, const char* right);
-	static bool CaseInsensitiveEquals(Il2CppString* left, const char* right);
-	static bool CaseInsensitiveEquals(const char* left, const char* right);
+    static Il2CppChar* GetChars(Il2CppString* str);
+    static int32_t GetLength(Il2CppString* str);
 
 #if IL2CPP_TARGET_WINDOWS
 	static inline std::string NativeStringToUtf8(const Il2CppNativeString& nativeStr)
@@ -58,10 +56,19 @@ public:
 		IL2CPP_ASSERT(nativeStr.length() < static_cast<size_t>(std::numeric_limits<int>::max()));
 		return Utf16ToUtf8(nativeStr.c_str(), static_cast<int>(nativeStr.length()));
 	}
+	static inline Il2CppNativeString Utf8ToNativeString(const std::string str)
+	{
+		IL2CPP_ASSERT(str.length() < static_cast<size_t>(std::numeric_limits<int>::max()));
+		return Utf8ToUtf16(str.c_str(), str.length());
+	}
 #else
 	static inline std::string NativeStringToUtf8(Il2CppNativeString nativeStr)
 	{
 		return nativeStr;
+	}
+	static inline Il2CppNativeString Utf8ToNativeString(const std::string str)
+	{
+		return str;
 	}
 #endif
 
@@ -83,22 +90,6 @@ public:
 
 		return length;
 	}
-
-	struct CaseSensitiveComparer
-	{
-		bool operator()(const std::string& left, const std::string& right) const;
-		bool operator()(const std::string& left, const char* right) const;
-		bool operator()(const char* left, const std::string& right) const;
-		bool operator()(const char* left, const char* right) const;
-	};
-
-	struct CaseInsensitiveComparer
-	{
-		bool operator()(const std::string& left, const std::string& right) const;
-		bool operator()(const std::string& left, const char* right) const;
-		bool operator()(const char* left, const std::string& right) const;
-		bool operator()(const char* left, const char* right) const;
-	};
 
 	// Taken from github.com/Microsoft/referencesource/blob/master/mscorlib/system/string.cs
 	template <typename CharType>
@@ -148,7 +139,7 @@ public:
 
 		return hash1 + (hash2 * 1566083941);
 	}
-	
+
 	template <typename StringType>
 	struct StringHasher
 	{
@@ -159,8 +150,35 @@ public:
 			return Hash(value.c_str(), value.length());
 		}
 	};
+
+	template <typename CharType>
+	struct StringHasher<const CharType*>
+	{
+		size_t operator()(const CharType* value) const
+		{
+			return Hash(value);
+		}
+	};
 };
 
 
 } /* utils */
 } /* il2cpp */
+
+// Assumes str is not NULL
+#if defined(_MSC_VER)
+#define DECLARE_IL2CPP_STRING_AS_STRING_VIEW_OF_NATIVE_CHARS(variableName, str) \
+	il2cpp::utils::StringView<Il2CppNativeChar> variableName(reinterpret_cast<Il2CppString*>(str)->chars, reinterpret_cast<Il2CppString*>(str)->length);
+#define DECLARE_NATIVE_C_STRING_AS_STRING_VIEW_OF_IL2CPP_CHARS(variableName, str) \
+	il2cpp::utils::StringView<Il2CppChar> variableName(str, wcslen(str));
+#define DECLARE_NATIVE_STRING_AS_STRING_VIEW_OF_IL2CPP_CHARS(variableName, str) \
+	il2cpp::utils::StringView<Il2CppChar> variableName(str);
+#else
+#define DECLARE_IL2CPP_STRING_AS_STRING_VIEW_OF_NATIVE_CHARS(variableName, str) \
+	Il2CppNativeString variableName##_native_string_storage = il2cpp::utils::StringUtils::Utf16ToUtf8(reinterpret_cast<Il2CppString*>(str)->chars, reinterpret_cast<Il2CppString*>(str)->length); \
+	il2cpp::utils::StringView<Il2CppNativeChar> variableName(variableName##_native_string_storage.c_str(), variableName##_native_string_storage.length());
+#define DECLARE_NATIVE_C_STRING_AS_STRING_VIEW_OF_IL2CPP_CHARS(variableName, str) \
+	UTF16String variableName##_utf16String = il2cpp::utils::StringUtils::Utf8ToUtf16(str); \
+	il2cpp::utils::StringView<Il2CppChar> variableName(variableName##_utf16String);
+#define DECLARE_NATIVE_STRING_AS_STRING_VIEW_OF_IL2CPP_CHARS DECLARE_NATIVE_C_STRING_AS_STRING_VIEW_OF_IL2CPP_CHARS
+#endif

@@ -78,7 +78,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
                     // File Error
                     print ("File reading error")
                     return
-                }
+            }
             
             let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
             let baseUrl = URL(fileURLWithPath: filePath)
@@ -122,19 +122,19 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         let contentController = WKUserContentController()
         let config = WKWebViewConfiguration()
         /*
-        let userScript = WKUserScript(
-            source: "redHeader()",
-            injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
-            forMainFrameOnly: true
-        )
-        
-        contentController.addUserScript(userScript)
-        */
+         let userScript = WKUserScript(
+         source: "redHeader()",
+         injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
+         forMainFrameOnly: true
+         )
+         
+         contentController.addUserScript(userScript)
+         */
         contentController.add(
             self,
             name: "observe"
         )
- 
+        
         
         config.userContentController = contentController
         
@@ -149,11 +149,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Received event \(message.body)")
         
-     /*
-        if(message.name == "callbackHandler") {
-            print("JavaScript is sending a message \(message.body)")
-        }
-       */
+        /*
+         if(message.name == "callbackHandler") {
+         print("JavaScript is sending a message \(message.body)")
+         }
+         */
         print(message.body)
         
         let exec = "set_headline(\"You are here ... really\")"
@@ -239,7 +239,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                             return
                         }
                     }
-
+                    
                     return true
                 }
                 return false
