@@ -20,53 +20,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     
     var beaconManager: KTKBeaconManager!
     var beaconList:[CLBeacon] = []
-    
-    //TODO want to be a Lookuptable
-    var exhibits: [[String:Any]] = [
-        [
-            "ID" : "CFra",
-            "location-type" : "onExhibit",
-            "ble-major" : 10,
-            "ble-minor" : 100,
-            "location-name" : "Kerstin on"
-        ],
-        [
-            "ID" : "eGQg",
-            "location-type" : "atExhibit",
-            "ble-major" : 10,
-            "ble-minor" : 101,
-            "location-name" : "Kerstin at"
-        ],
-        [
-            "ID" : "IfGo",
-            "location-type" : "atExhibit",
-            "ble-major" : 10,
-            "ble-minor" : 1002,
-            "location-name" : "Stud Assi at"
-        ],
-        [
-            "ID" : "FT45",
-            "location-type" : "atExhibit",
-            "ble-major" : 10,
-            "ble-minor" : 1000,
-            "location-name" : "Flo at"
-        ],
-        [
-            "ID" : "D7Oj",
-            "location-type" : "atExhibit",
-            "ble-major" : 10,
-            "ble-minor" : 1001,
-            "location-name" : "Drucker at"
-        ],
-        [
-            "ID" : "7N9p",
-            "location-type" : "atExhibit",
-            "ble-major" : 10,
-            "ble-minor" : 10,
-            "location-name" : "Door office 1"
-        ]
-    ]
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -121,15 +75,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         
         let contentController = WKUserContentController()
         let config = WKWebViewConfiguration()
-        /*
-         let userScript = WKUserScript(
-         source: "redHeader()",
-         injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
-         forMainFrameOnly: true
-         )
-         
-         contentController.addUserScript(userScript)
-         */
+
         contentController.add(
             self,
             name: "observe"
@@ -158,6 +104,10 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         
         let exec = "set_headline(\"You are here ... really\")"
         webView.evaluateJavaScript(exec, completionHandler: nil)
+    }
+    
+    func getDeviceInformation(){
+        
     }
 }
 
@@ -220,75 +170,43 @@ extension WebViewController: KTKBeaconManagerDelegate{
         if beaconList.count>0{
             let myBeacon = beaconList[0]
             
-            // TODO: check on our own beacon only possible by checking on a specific range of major, minor
-            let beacon1 = exhibits.index(where: { (exhibit) -> Bool in
-                if(exhibit["ble-minor"] as! Int == myBeacon.minor as! Int){
+            // send major, minor to webview
+            let dict = [
+                "major": myBeacon.major,
+                "minor": myBeacon.minor
+            ]
+            
+            
+            let jsonString = getJSONString(myDict: dict)
                     
-                    // send major, minor to webview
-                    let dict = [
-                        "major": myBeacon.major,
-                        "minor": myBeacon.minor
-                    ]
-                    let jsonData = try! JSONSerialization.data(withJSONObject: dict, options: [])
-                    let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
-                    
-                    // Send the location update to the page
-                    self.webView.evaluateJavaScript("update_location(\(jsonString))") { result, error in
-                        guard error == nil else {
-                            print(error!)
-                            return
-                        }
-                    }
-                    
-                    return true
+            // Send the location update to the page
+            self.webView.evaluateJavaScript("update_location(\(jsonString))") { result, error in
+                guard error == nil else {
+                    print(error!)
+                    return
                 }
-                return false
-            })
+            }
         }
     }
     
     
     // Check if Beacon is reliable (rssi < 0) and if it is in our range compared to exhibits (later LUT)
     func isOurBeaconReliable(myBeacon: CLBeacon) -> Bool{
-        
         var beaconResult:Bool = false
         
         if(myBeacon.rssi < 0){
-            exhibits.forEach{exhibit in
-                if(exhibit["ble-minor"] as! Int == myBeacon.minor as! Int){
-                    beaconResult = true
-                }
-            }
+            beaconResult = true
         }
         
         return beaconResult
     }
     
-    func updateExhibit(_ distance: CLProximity, exhibit: [String:Any]){
-        
-        let locationName = exhibit["location-name"]
-        
-        print("Your are \(locationName!)")
-        
-        //send to WebView
-        let exec2 = "update_location(\"\(locationName!)\")"
-        webView.evaluateJavaScript(exec2, completionHandler: nil)
-        
-        UIView.animate(withDuration: 0.8){
-            switch distance{
-            case .far:
-                self.view.backgroundColor = UIColor.blue
-                
-            case .near:
-                self.view.backgroundColor = UIColor.orange
-                
-            case .immediate:
-                self.view.backgroundColor = UIColor.red
-                
-            default:
-                self.view.backgroundColor = UIColor.gray
-            }
-        }
-    }
     
+    // generate a JSON String from a Dictionary
+    func getJSONString(myDict: Any) -> String{
+        let jsonData = try! JSONSerialization.data(withJSONObject: myDict, options: [])
+        let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
+        
+        return jsonString
+    }
 }
