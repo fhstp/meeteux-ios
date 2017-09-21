@@ -46,7 +46,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         
         // initialize BeaconManager
         beaconManager = KTKBeaconManager(delegate: self)
-        
+        print("bluetooth ready")
         switch KTKBeaconManager.locationAuthorizationStatus() {
         case .notDetermined:
             beaconManager.requestLocationAlwaysAuthorization()
@@ -113,11 +113,14 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
 
 extension WebViewController: KTKBeaconManagerDelegate{
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
+        print("didChangeLocationAuthorizationStatus")
         if status == .authorizedAlways{
+            print("authorizedAlways")
             // When status changes to CLAuthorizationStatus.authorizedAlways
             // e.g. after calling beaconManager.requestLocationAlwaysAuthorization()
             // we can start region monitoring from here
             if KTKBeaconManager.isMonitoringAvailable() {
+                print("start scanning")
                 startScanning()
             }
             

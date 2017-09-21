@@ -24,11 +24,11 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1E0D4F28AA29C724F8C66600 /* LaunchScreen-iPhonePortrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 28264C3D90308F994684FC79 /* LaunchScreen-iPhonePortrait.png */; };
 		1EC74538AF91B6968E7F923D /* Il2CppCompilerCalculateTypeValues_7Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD9842028080A6D85804801A /* Il2CppCompilerCalculateTypeValues_7Table.cpp */; };
-		22247F201F4FF84500E83417 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 22247F1F1F4FF84500E83417 /* main.js */; };
+		226DD4E11F58440100729EFA /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 226DD4D51F58440100729EFA /* index.html */; };
 		229E207F1F4F093D007D0CCA /* MyAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 229E207E1F4F093D007D0CCA /* MyAppController.mm */; };
 		229E20821F4F0972007D0CCA /* CoolUnitySceneViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 229E20811F4F0972007D0CCA /* CoolUnitySceneViewController.mm */; };
 		229E20871F4F09B1007D0CCA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229E20861F4F09B1007D0CCA /* WebViewController.swift */; };
-		229E208B1F4F0C61007D0CCA /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 229E208A1F4F0C61007D0CCA /* index.html */; };
+		22AF5D241F690E6100D2DD98 /* main.js in Resources */ = {isa = PBXBuildFile; fileRef = 22AF5D231F690E6100D2DD98 /* main.js */; };
 		22BD462B1F4F12B000660DE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22BD462A1F4F12B000660DE3 /* Main.storyboard */; };
 		22D84C10BB8B2E4B0EB8E374 /* Bulk_mscorlib_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57B64917BCB9CE7134D220CC /* Bulk_mscorlib_1.cpp */; };
 		247C4E16A8109D438E8F6326 /* Il2CppCompilerCalculateTypeValues_12Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C6847AE8247836AB8C1201D /* Il2CppCompilerCalculateTypeValues_12Table.cpp */; };
@@ -48,7 +48,7 @@
 		4EB543B4AD5CAE9C6DC9B60B /* Bulk_Generics_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 417D4F13A9EB015478983162 /* Bulk_Generics_1.cpp */; };
 		5623C57617FDCB0800090B9E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		5623C57717FDCB0800090B9E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830B5C100E5ED4C100C7819F /* UIKit.framework */; };
-		5623C57D17FDCB0900090B9E = {isa = PBXBuildFile; fileRef = 5623C57B17FDCB0900090B9E /* InfoPlist.strings */; };
+		5623C57D17FDCB0900090B9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5623C57B17FDCB0900090B9E /* InfoPlist.strings */; };
 		5623C57F17FDCB0900090B9E /* Unity_iPhone_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5623C57E17FDCB0900090B9E /* Unity_iPhone_Tests.m */; };
 		5682F4B20F3B34FF007A219C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5682F4B10F3B34FF007A219C /* MediaPlayer.framework */; };
 		5692F3DD0FA9D8E500EBA2F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5692F3DC0FA9D8E500EBA2F1 /* CoreLocation.framework */; };
@@ -197,13 +197,13 @@
 		1B424B76A374BB7EBC637A1D /* Bulk_UnityEngine_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_UnityEngine_0.cpp; path = Classes/Native/Bulk_UnityEngine_0.cpp; sourceTree = SOURCE_ROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* meeteux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meeteux.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		22247F1F1F4FF84500E83417 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = www/main.js; sourceTree = "<group>"; };
+		226DD4D51F58440100729EFA /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = www/index.html; sourceTree = "<group>"; };
 		229E207E1F4F093D007D0CCA /* MyAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyAppController.mm; sourceTree = "<group>"; };
 		229E20801F4F095B007D0CCA /* CoolUnitySceneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoolUnitySceneViewController.h; sourceTree = "<group>"; };
 		229E20811F4F0972007D0CCA /* CoolUnitySceneViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CoolUnitySceneViewController.mm; sourceTree = "<group>"; };
 		229E20861F4F09B1007D0CCA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		229E20881F4F09C5007D0CCA /* Unity-iPhone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unity-iPhone-Bridging-Header.h"; sourceTree = "<group>"; };
-		229E208A1F4F0C61007D0CCA /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = www/index.html; sourceTree = "<group>"; };
+		22AF5D231F690E6100D2DD98 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = main.js; path = www/main.js; sourceTree = "<group>"; };
 		22BD462A1F4F12B000660DE3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		26A04DD4AC586D4ED7672B2B /* UnityICallRegistration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = UnityICallRegistration.cpp; path = Classes/Native/UnityICallRegistration.cpp; sourceTree = SOURCE_ROOT; };
 		28264C3D90308F994684FC79 /* LaunchScreen-iPhonePortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchScreen-iPhonePortrait.png"; sourceTree = SOURCE_ROOT; };
@@ -471,8 +471,8 @@
 		229E20891F4F0C3A007D0CCA /* www */ = {
 			isa = PBXGroup;
 			children = (
-				22247F1F1F4FF84500E83417 /* main.js */,
-				229E208A1F4F0C61007D0CCA /* index.html */,
+				22AF5D231F690E6100D2DD98 /* main.js */,
+				226DD4D51F58440100729EFA /* index.html */,
 			);
 			name = www;
 			sourceTree = "<group>";
@@ -799,14 +799,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Unity-iPhone" */;
 			buildPhases = (
-				82805A1BCACD67F8F588F78D /* ShellScript */,
+				82805A1BCACD67F8F588F78D /* [CP] Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				83D0C1FD0E6C8D7700EBCE5D /* CopyFiles */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				033966F41B18B03000ECD701 /* ShellScript */,
-				1ED796B06F5C267D2DCC43A9 /* ShellScript */,
-				7F6D2CC5154744D5330426FD /* ShellScript */,
+				1ED796B06F5C267D2DCC43A9 /* [CP] Embed Pods Frameworks */,
+				7F6D2CC5154744D5330426FD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -821,12 +821,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5623C58517FDCB0900090B9E /* Build configuration list for PBXNativeTarget "Unity-iPhone Tests" */;
 			buildPhases = (
-				47EA2BA8DCB803355582465D /* ShellScript */,
+				47EA2BA8DCB803355582465D /* [CP] Check Pods Manifest.lock */,
 				5623C56F17FDCB0800090B9E /* Sources */,
 				5623C57017FDCB0800090B9E /* Frameworks */,
 				5623C57117FDCB0800090B9E /* Resources */,
-				4E678A0534D4FDFFD9738A81 /* ShellScript */,
-				8659B8808845135AD615387B /* ShellScript */,
+				4E678A0534D4FDFFD9738A81 /* [CP] Embed Pods Frameworks */,
+				8659B8808845135AD615387B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -873,7 +873,7 @@
 				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
-			productRefGroup = 19C28FACFE9D520D11CA2CBB;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -892,12 +892,12 @@
 				56C56C9817D6015200616839 /* Images.xcassets in Resources */,
 				EBA74DD4B9C652A16456B45C /* LaunchScreen-iPhone.xib in Resources */,
 				1E0D4F28AA29C724F8C66600 /* LaunchScreen-iPhonePortrait.png in Resources */,
+				22AF5D241F690E6100D2DD98 /* main.js in Resources */,
+				226DD4E11F58440100729EFA /* index.html in Resources */,
 				06DF4B39AF66CB8DC4C68802 /* LaunchScreen-iPhoneLandscape.png in Resources */,
-				229E208B1F4F0C61007D0CCA /* index.html in Resources */,
 				22BD462B1F4F12B000660DE3 /* Main.storyboard in Resources */,
 				1626477EBDB1E67240C93BA1 /* LaunchScreen-iPad.xib in Resources */,
 				CADB4C03BFAC1B5D7C6C0C19 /* LaunchScreen-iPad.png in Resources */,
-				22247F201F4FF84500E83417 /* main.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,7 +905,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5623C57D17FDCB0900090B9E,
+				5623C57D17FDCB0900090B9E /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -925,7 +925,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PROJECT_DIR/MapFileParser.sh\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 		};
-		1ED796B06F5C267D2DCC43A9 /* ShellScript */ = {
+		1ED796B06F5C267D2DCC43A9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -943,7 +943,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone-frameworks.sh\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
-		47EA2BA8DCB803355582465D /* ShellScript */ = {
+		47EA2BA8DCB803355582465D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -961,7 +961,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
-		4E678A0534D4FDFFD9738A81 /* ShellScript */ = {
+		4E678A0534D4FDFFD9738A81 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -976,7 +976,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone Tests/Pods-Unity-iPhone Tests-frameworks.sh\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
-		7F6D2CC5154744D5330426FD /* ShellScript */ = {
+		7F6D2CC5154744D5330426FD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -991,7 +991,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone-resources.sh\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
-		82805A1BCACD67F8F588F78D /* ShellScript */ = {
+		82805A1BCACD67F8F588F78D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1009,7 +1009,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
-		8659B8808845135AD615387B /* ShellScript */ = {
+		8659B8808845135AD615387B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1179,10 +1179,13 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E7585FBAFF7AB143848D917;
+			baseConfigurationReference = 5E7585FBAFF7AB143848D917 /* Pods-Unity-iPhone.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7 arm64";
+				ARCHS = (
+					armv7,
+					arm64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1254,10 +1257,13 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 44210692ADF0045576F0ECA3;
+			baseConfigurationReference = 44210692ADF0045576F0ECA3 /* Pods-Unity-iPhone.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7 arm64";
+				ARCHS = (
+					armv7,
+					arm64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1325,11 +1331,14 @@
 		};
 		5623C58317FDCB0900090B9E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FF8D9B63CD70E8F91073B99;
+			baseConfigurationReference = 4FF8D9B63CD70E8F91073B99 /* Pods-Unity-iPhone Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7 arm64";
+				ARCHS = (
+					armv7,
+					arm64,
+				);
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/$(PRODUCT_NAME).app/$(PRODUCT_NAME)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1375,11 +1384,14 @@
 		};
 		5623C58417FDCB0900090B9E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2D82EE5A18180ACC8587B57;
+			baseConfigurationReference = A2D82EE5A18180ACC8587B57 /* Pods-Unity-iPhone Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7 arm64";
+				ARCHS = (
+					armv7,
+					arm64,
+				);
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/$(PRODUCT_NAME).app/$(PRODUCT_NAME)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1450,10 +1462,13 @@
 		};
 		56E860811D6757FF00A1AB2B /* ReleaseForRunning */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 543BB190A212E5BA328D2C86;
+			baseConfigurationReference = 543BB190A212E5BA328D2C86 /* Pods-Unity-iPhone.releaseforrunning.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7 arm64";
+				ARCHS = (
+					armv7,
+					arm64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1522,11 +1537,14 @@
 		};
 		56E860821D6757FF00A1AB2B /* ReleaseForRunning */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6C5BA48C401214BA38B7B36;
+			baseConfigurationReference = E6C5BA48C401214BA38B7B36 /* Pods-Unity-iPhone Tests.releaseforrunning.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7 arm64";
+				ARCHS = (
+					armv7,
+					arm64,
+				);
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/$(PRODUCT_NAME).app/$(PRODUCT_NAME)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1591,10 +1609,13 @@
 		};
 		56E860841D67581C00A1AB2B /* ReleaseForProfiling */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE6B4F706BB61B031A19EACD;
+			baseConfigurationReference = BE6B4F706BB61B031A19EACD /* Pods-Unity-iPhone.releaseforprofiling.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7 arm64";
+				ARCHS = (
+					armv7,
+					arm64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
@@ -1662,11 +1683,14 @@
 		};
 		56E860851D67581C00A1AB2B /* ReleaseForProfiling */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C63A6E221247791FF8236582;
+			baseConfigurationReference = C63A6E221247791FF8236582 /* Pods-Unity-iPhone Tests.releaseforprofiling.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "armv7 arm64";
+				ARCHS = (
+					armv7,
+					arm64,
+				);
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/$(PRODUCT_NAME).app/$(PRODUCT_NAME)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
