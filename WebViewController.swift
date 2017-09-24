@@ -42,26 +42,6 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         catch {
             print ("File HTML error")
         }
-        
-        
-        // initialize BeaconManager
-        beaconManager = KTKBeaconManager(delegate: self)
-        print("bluetooth ready")
-        switch KTKBeaconManager.locationAuthorizationStatus() {
-        case .notDetermined:
-            beaconManager.requestLocationAlwaysAuthorization()
-            print("access ok")
-        case .denied, .restricted:
-            // No access to Location Service
-            print("access denied")
-        case .authorizedWhenInUse:
-            // For most iBeacon-based app this type of
-            // permission is not adequate
-            print("access only when in use")
-        case .authorizedAlways:
-            print("tbd")
-        }
-        
     }
     
     
@@ -81,6 +61,16 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             name: "observe"
         )
         
+        contentController.add(
+            self,
+            name: "getDeviceInfos"
+        )
+        
+        contentController.add(
+            self,
+            name: "registerOD"
+        )
+        
         
         config.userContentController = contentController
         
@@ -92,22 +82,79 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         self.view = self.webView
     }
     
+    // web to native calls
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("Received event \(message.body)")
+        print("Received event \(message.name) \(message.body)")
         
-        /*
-         if(message.name == "callbackHandler") {
-         print("JavaScript is sending a message \(message.body)")
-         }
-         */
-        print(message.body)
-        
-        let exec = "set_headline(\"You are here ... really\")"
-        webView.evaluateJavaScript(exec, completionHandler: nil)
+        switch "\(message.name)" {
+        case "getDeviceInfos":
+            getDeviceInformation()
+        case "registerOD":
+            // TODO start beacon Scan
+            print("registerOD")
+            startBeaconScanning()
+        default:
+            let exec = "set_headline(\"You are here ... really\")"
+            webView.evaluateJavaScript(exec, completionHandler: nil)
+        }
     }
     
     func getDeviceInformation(){
+        let mydevice = UIDevice.current
+        print("UDID: \(mydevice.identifierForVendor?.uuidString) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
         
+        let dict = [
+            "deviceaddress": mydevice.identifierForVendor?.uuidString,
+            "systemname": mydevice.systemName,
+            "systemversion": mydevice.systemVersion,
+            "model": mydevice.model
+        ]
+        
+        sendDictToWeb(myDict: dict, functionCall: "send_device_infos")
+        
+        // for all possbile device attributes and actions: https://developer.apple.com/documentation/uikit/uidevice
+    }
+    
+    // sends dictionary to webview
+    func sendDictToWeb(myDict: Any, functionCall: String){
+        let jsonString = getJSONString(myDict: myDict)
+        
+        // Send the location update to the page
+        self.webView.evaluateJavaScript("\(functionCall)(\(jsonString))") { result, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+        }
+    }
+    
+    // generate a JSON String from a Dictionary
+    func getJSONString(myDict: Any) -> String{
+        let jsonData = try! JSONSerialization.data(withJSONObject: myDict, options: [])
+        let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
+        
+        return jsonString
+    }
+    
+    func startBeaconScanning(){
+        // initialize BeaconManager
+        beaconManager = KTKBeaconManager(delegate: self)
+        print("bluetooth ready")
+        
+        switch KTKBeaconManager.locationAuthorizationStatus() {
+        case .notDetermined:
+            beaconManager.requestLocationAlwaysAuthorization()
+            print("access ok")
+        case .denied, .restricted:
+            // No access to Location Service
+            print("access denied")
+        case .authorizedWhenInUse:
+            // For most iBeacon-based app this type of
+            // permission is not adequate
+            print("access only when in use")
+        case .authorizedAlways:
+            print("tbd")
+        }
     }
 }
 
@@ -179,7 +226,8 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 "minor": myBeacon.minor
             ]
             
-            
+            sendDictToWeb(myDict: dict, functionCall: "update_location")
+      /*
             let jsonString = getJSONString(myDict: dict)
                     
             // Send the location update to the page
@@ -188,7 +236,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                     print(error!)
                     return
                 }
-            }
+            }*/
         }
     }
     
@@ -202,14 +250,5 @@ extension WebViewController: KTKBeaconManagerDelegate{
         }
         
         return beaconResult
-    }
-    
-    
-    // generate a JSON String from a Dictionary
-    func getJSONString(myDict: Any) -> String{
-        let jsonData = try! JSONSerialization.data(withJSONObject: myDict, options: [])
-        let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
-        
-        return jsonString
     }
 }
