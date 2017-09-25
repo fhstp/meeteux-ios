@@ -24,7 +24,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
         // Adding webView content
         do {
             guard let filePath = Bundle.main.path(forResource: "index", ofType: "html")
@@ -37,7 +37,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
             let baseUrl = URL(fileURLWithPath: filePath)
             self.webView!.loadHTMLString(contents as String, baseURL: baseUrl)
-            
+           
         }
         catch {
             print ("File HTML error")

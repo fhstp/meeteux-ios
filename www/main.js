@@ -10,21 +10,33 @@ socket.on('registerODResult', function (data) {
     console.log('registerODResult');
     console.log(data);
 
-    registrationSuccess.show();
-    window.webkit.messageHandlers.registerOD.postMessage("success");
-
-    // get lookuptable back and store as exhibits in local storage
-    var lookuptable = {'exhibits' : data};
+    // get lookuptable back and store as locations in local storage
+    var lookuptable = {'locations' : data.locations};
     localStorage.setItem('lookuptable', JSON.stringify(lookuptable));
+
+    // TODO getSuccess back and write current user into localStorage
+    registrationSuccess.show();
+    outputRegistration.append(JSON.stringify(data));
+
+    // set currentOD in localStorage
+    localStorage.setItem('currentOD', JSON.stringify(data.user));
+
+    if(!web){
+      window.webkit.messageHandlers.registerOD.postMessage("success");
+    }
 });
 
 socket.on('registerLocationResult', function (data) {
     console.log('registerLocationResult');
     console.log(data);
 
-    // TODO: save currentlocaction in localStorage - only possible at this point, if I know the exhibit ID
-    /*localStorage.setItem('currentExhibit', JSON.stringify(myexhibit));
-    locationHeading.text(myexhibit.description);*/
+    outputLocation.append(" "+JSON.stringify(data));
+
+    // save currentlocaction in localStorage
+    localStorage.setItem('currentLocation', JSON.stringify(data));
+
+    var myexhibit = get_exhibit_by_id(data);
+    locationHeading.text(myexhibit.description);
 });
 
 // UI elements
@@ -33,6 +45,8 @@ var locationHeading =$("#location");
 var registerOdNative = $("#registerODnative");
 var userNameInput = $("#username");
 var registrationSuccess = $("#registrationSuccess");
+var outputRegistration = $("#outputRegistration");
+var outputLocation = $("#outputLocation");
 
 //
 
@@ -47,12 +61,9 @@ registerOdNative.click(function(){
 // sets new location
 function update_location(beacon){
   var myexhibit = get_exhibit_by_id(beacon['minor']);
+  var currentOD =  JSON.parse(localStorage.getItem('currentOD'));
 
-  socket.emit('registerLocation', {user: 1, location: myexhibit.id});
-
-  // TODO set in god response
-  localStorage.setItem('currentExhibit', JSON.stringify(myexhibit));
-  locationHeading.text(myexhibit.description);
+  socket.emit('registerLocation', {user: currentOD.id, location: myexhibit.id});
 }
 
 // call from native
@@ -80,9 +91,9 @@ function register_od(deviceinfos){
 
 function get_exhibit_by_id(exhibitId){
   var lookuptable =  JSON.parse(localStorage.getItem('lookuptable'));
-  for(var i=0 ; i < lookuptable.exhibits.length ; i++){
-      if (lookuptable.exhibits[i]['id'] == exhibitId){
-          myexhibit = lookuptable.exhibits[i];
+  for(var i=0 ; i < lookuptable.locations.length ; i++){
+      if (lookuptable.locations[i]['id'] == exhibitId){
+          myexhibit = lookuptable.locations[i];
       }
   }
   return myexhibit;
@@ -152,7 +163,7 @@ function call_native(){
 }
 
 
-if(!safari && !chrome){
+if(!web){
   setTimeout(call_native, 1000);
 }
 

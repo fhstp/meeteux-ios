@@ -34,6 +34,7 @@ extern "C" void VuforiaRenderEvent(int marker);
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.navigationController = [storyboard instantiateInitialViewController];
     [_rootView addSubview:self.navigationController.view];
+     
 }
 
 - (void)shouldAttachRenderDelegate
