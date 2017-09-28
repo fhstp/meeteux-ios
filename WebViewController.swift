@@ -104,10 +104,10 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         print("UDID: \(mydevice.identifierForVendor?.uuidString) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
         
         let dict = [
-            "deviceaddress": mydevice.identifierForVendor?.uuidString,
-            "systemname": mydevice.systemName,
-            "systemversion": mydevice.systemVersion,
-            "model": mydevice.model
+            "deviceAddress": mydevice.identifierForVendor?.uuidString,
+            "deviceOS": mydevice.systemName,
+            "deviceVersion": mydevice.systemVersion,
+            "deviceModel": mydevice.model
         ]
         
         sendDictToWeb(myDict: dict, functionCall: "send_device_infos")
