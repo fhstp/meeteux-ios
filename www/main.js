@@ -30,7 +30,7 @@ socket.on('registerLocationResult', function (data) {
     console.log('registerLocationResult');
     console.log(data);
 
-    outputLocation.append(" "+JSON.stringify(data));
+    outputLocation.append(" "+ JSON.stringify(data));
 
     // save currentlocaction in localStorage
     localStorage.setItem('currentLocation', JSON.stringify(data));
