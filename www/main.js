@@ -1,9 +1,28 @@
+// Check if web browser or native web view
+var userAgent = window.navigator.userAgent.toLowerCase(),
+    safari = /safari/.test( userAgent ),
+    //ios = /iphone|ipod|ipad/.test( userAgent ),
+    chrome = /chrome/.test( userAgent ),
+    android = /android/.test( userAgent );
+
+console.log(userAgent);
+
+var web = false;
+
+//TODO: check for android native view
+if(safari || chrome){
+  if(!android){
+    console.log("you are in web browser");
+    web = true;
+  }
+}
+
 /****************
 *
 * set up socket connection
 *
 *****************/
-var socket = io('http://god.meeteux.fhstp.ac.at/');
+var socket = io('http://god.meeteux.fhstp.ac.at:3000/');
 
 socket.on('registerODResult', function (data) {
     console.log('registerODResult');
@@ -21,7 +40,11 @@ socket.on('registerODResult', function (data) {
     localStorage.setItem('currentOD', JSON.stringify(data.user));
 
     if(!web){
-      window.webkit.messageHandlers.registerOD.postMessage("success");
+      if(android){
+          MEETeUXAndroidAppRoot.registerOD("success");
+      }else{
+          window.webkit.messageHandlers.registerOD.postMessage("success");
+      }
     }
 });
 
@@ -51,7 +74,11 @@ var outputLocation = $("#outputLocation");
 
 // Click-Events
 registerOdNative.click(function(){
-  window.webkit.messageHandlers.getDeviceInfos.postMessage("get");
+  if(android){
+      MEETeUXAndroidAppRoot.getDeviceInfos();
+  }else{
+      window.webkit.messageHandlers.getDeviceInfos.postMessage("get");
+  }
 });
 
 // call from native
@@ -61,7 +88,7 @@ registerOdNative.click(function(){
 function update_location(beacon){
   var myexhibit = get_exhibit_by_id(beacon['minor']);
   var currentOD =  JSON.parse(localStorage.getItem('currentOD'));
-  if(myexhibit){
+  if(myexhibit.id){
     socket.emit('registerLocation', {user: currentOD.id, location: myexhibit.id});
   }
 }
@@ -109,18 +136,7 @@ function get_exhibit_by_id(exhibitId){
 *
 *****************/
 
-// Check if web browser or native web view
-var userAgent = window.navigator.userAgent.toLowerCase(),
-    safari = /safari/.test( userAgent ),
-    //ios = /iphone|ipod|ipad/.test( userAgent ),
-    chrome = /chrome/.test( userAgent );
-var web = false;
 
-//TODO: check for android native view
-if(safari || chrome){
-  console.log("you are in web browser");
-  web = true;
-}
 var webdevtools = $("#webdevtools");
 var registerODButton = $("#registerOD");
 var sendBeaconInfoButton = $("#sendBeaconInfo");

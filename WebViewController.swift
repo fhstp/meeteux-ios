@@ -213,9 +213,23 @@ extension WebViewController: KTKBeaconManagerDelegate{
         // Go through beacons, check if it is our and reliable --> push into empty beaconList
         beacons.forEach { beacon in
             if(isOurBeaconReliable(myBeacon: beacon)){
-                beaconList.append(beacon)
+                
+                // get number of digits --> == 3 immediate (on), == 2 near (at)
+                let digits = String(describing: beacon.major).count
+                //print("\(beacon.major) = Digits of Major: \(digits)")
+                
+                if(digits == 3 && beacon.proximity == .immediate){
+                    //print("immediate")
+                    beaconList.append(beacon)
+                }else if(digits == 2 && (beacon.proximity == .near || beacon.proximity == .immediate)){
+                    //print("near")
+                    beaconList.append(beacon)
+                }
             }
         }
+        
+        // sort beacon list
+        beaconList.sorted(by: { $0.rssi > $1.rssi })
         
         if beaconList.count>0{
             let myBeacon = beaconList[0]
@@ -227,17 +241,8 @@ extension WebViewController: KTKBeaconManagerDelegate{
             ]
             
             sendDictToWeb(myDict: dict, functionCall: "update_location")
-      /*
-            let jsonString = getJSONString(myDict: dict)
-                    
-            // Send the location update to the page
-            self.webView.evaluateJavaScript("update_location(\(jsonString))") { result, error in
-                guard error == nil else {
-                    print(error!)
-                    return
-                }
-            }*/
         }
+
     }
     
     
