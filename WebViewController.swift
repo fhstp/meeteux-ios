@@ -27,7 +27,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
 
         // Adding webView content
         do {
-            guard let filePath = Bundle.main.path(forResource: "index", ofType: "html")
+            guard let filePath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "www")
                 else {
                     // File Error
                     print ("File reading error")
