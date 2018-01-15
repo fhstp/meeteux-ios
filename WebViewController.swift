@@ -11,7 +11,8 @@ import WebKit
 import CoreLocation
 import KontaktSDK
 import Darwin
-
+import AudioToolbox
+import AVFoundation
 
 class WebViewController: UIViewController, WKScriptMessageHandler {
     
@@ -56,6 +57,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         let contentController = WKUserContentController()
         let config = WKWebViewConfiguration()
 
+        // Define messages that are accepted by the webview
         contentController.add(
             self,
             name: "observe"
@@ -71,6 +73,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             name: "registerOD"
         )
         
+        contentController.add(
+            self,
+            name: "triggerSignal"
+        )
+        
         
         config.userContentController = contentController
         
@@ -82,7 +89,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         self.view = self.webView
     }
     
-    // web to native calls
+    //- MARK: Web to native calls
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Received event \(message.name) \(message.body)")
         
@@ -90,15 +97,18 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         case "getDeviceInfos":
             getDeviceInformation()
         case "registerOD":
-            // TODO start beacon Scan
-            print("registerOD")
+            // start beacon Scan
             startBeaconScanning()
+        case "triggerSignal":
+            triggerSignal();
         default:
             let exec = "set_headline(\"You are here ... really\")"
             webView.evaluateJavaScript(exec, completionHandler: nil)
         }
     }
     
+    
+    //- MARK: Helper Functions
     func getDeviceInformation(){
         let mydevice = UIDevice.current
         print("UDID: \(mydevice.identifierForVendor?.uuidString) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
@@ -155,6 +165,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         case .authorizedAlways:
             print("tbd")
         }
+    }
+    
+    func triggerSignal(){
+        let systemSoundID: SystemSoundID = 1306 // tock
+        AudioServicesPlayAlertSound(systemSoundID)
     }
 }
 
