@@ -111,7 +111,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     //- MARK: Helper Functions
     func getDeviceInformation(){
         let mydevice = UIDevice.current
-        print("UDID: \(mydevice.identifierForVendor?.uuidString) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
+        print("UDID: \(String(describing: mydevice.identifierForVendor?.uuidString)) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
         
         let dict = [
             "deviceAddress": mydevice.identifierForVendor?.uuidString,
@@ -206,7 +206,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
         // region is successfully initiated
     }
     
-    func beaconManager(_ manager: KTKBeaconManager, monitoringDidFailFor region: KTKBeaconRegion?, withError error: NSError?) {
+    func beaconManager(_ manager: KTKBeaconManager, monitoringDidFailFor region: KTKBeaconRegion?, withError error: Error?) {
         // Handle monitoring failing to start for your region
     }
     
@@ -243,10 +243,8 @@ extension WebViewController: KTKBeaconManagerDelegate{
             }
         }
         
-        // sort beacon list
-        beaconList.sorted(by: { $0.rssi > $1.rssi })
-        
-        if beaconList.count>0{
+        // sort beacon list and send first item to Webview
+        if beaconList.sorted(by: { $0.rssi > $1.rssi }).count>0{
             let myBeacon = beaconList[0]
             
             // send major, minor to webview
