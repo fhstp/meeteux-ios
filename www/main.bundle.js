@@ -58,15 +58,19 @@ WindowRef = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CHANGE_LOCATION; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CHANGE_CONNECTED_EXHIBIT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return CHANGE_LOCATION_STATUS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return CHANGE_LOCATION_SOCKET_STATUS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return LocationActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return CHANGE_LOCATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CHANGE_CONNECTED_EXHIBIT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return CHANGE_LOCATION_STATUS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return CHANGE_LOCATION_SOCKET_STATUS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CHANGE_AT_EXHIBIT_PARENT_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return CHANGE_ON_EXHIBIT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return LocationActions; });
 var CHANGE_LOCATION = 'CHANGE_LOCATION';
 var CHANGE_CONNECTED_EXHIBIT = 'CHANGE_CONNECTED_EXHIBIT';
 var CHANGE_LOCATION_STATUS = 'CHANGE_LOCATION_STATUS';
 var CHANGE_LOCATION_SOCKET_STATUS = 'CHANGE_LOCATION_SOCKET_STATUS';
+var CHANGE_AT_EXHIBIT_PARENT_ID = 'CHANGE_AT_EXHIBIT_PARENT_ID';
+var CHANGE_ON_EXHIBIT = 'CHANGE_ON_EXHIBIT';
 var LocationActions = (function () {
     function LocationActions() {
     }
@@ -92,6 +96,18 @@ var LocationActions = (function () {
         return {
             type: CHANGE_CONNECTED_EXHIBIT,
             connectedToExhibit: connected
+        };
+    };
+    LocationActions.prototype.changeAtExhibitParentId = function (locationId) {
+        return {
+            type: CHANGE_AT_EXHIBIT_PARENT_ID,
+            atExhibitParentId: locationId
+        };
+    };
+    LocationActions.prototype.changeOnExhibit = function (isOnExhibit) {
+        return {
+            type: CHANGE_ON_EXHIBIT,
+            onExhibit: isOnExhibit
         };
     };
     return LocationActions;
@@ -228,6 +244,7 @@ module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\n  <span>MEETeUX
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_native_communication_service__ = __webpack_require__("../../../../../src/app/services/native-communication.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__ = __webpack_require__("../../../../../src/app/actions/UserActions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__ = __webpack_require__("../../../../../src/app/actions/LocationActions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -243,16 +260,20 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
+
 var AppComponent = (function () {
-    function AppComponent(nativeCommunicationService, appStore, userActions) {
+    function AppComponent(nativeCommunicationService, appStore, userActions, locationActions) {
         this.nativeCommunicationService = nativeCommunicationService;
         this.appStore = appStore;
         this.userActions = userActions;
+        this.locationActions = locationActions;
         this.title = 'app';
     }
     AppComponent.prototype.ngOnInit = function () {
-        localStorage.setItem('atExhibitParent', JSON.stringify(0));
-        localStorage.setItem('onExhibit', JSON.stringify(false));
+        // localStorage.setItem('atExhibitParent', JSON.stringify(0));
+        // localStorage.setItem('onExhibit', JSON.stringify(false));
+        this.appStore.dispatch(this.locationActions.changeAtExhibitParentId(0));
+        this.appStore.dispatch(this.locationActions.changeOnExhibit(false));
         this.requestCheckedPlatform();
     };
     AppComponent.prototype.requestCheckedPlatform = function () {
@@ -270,10 +291,10 @@ AppComponent = __decorate([
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _a || Object, Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["d" /* UserActions */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _a || Object, Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["d" /* UserActions */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["g" /* LocationActions */]) === "function" && _c || Object])
 ], AppComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -422,7 +443,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_11__services_exhibit_service__["a" /* ExhibitService */],
             __WEBPACK_IMPORTED_MODULE_20__services_location_service__["a" /* LocationService */],
             { provide: 'AppStore', useValue: appStore },
-            __WEBPACK_IMPORTED_MODULE_23__actions_LocationActions__["e" /* LocationActions */],
+            __WEBPACK_IMPORTED_MODULE_23__actions_LocationActions__["g" /* LocationActions */],
             __WEBPACK_IMPORTED_MODULE_24__actions_UserActions__["d" /* UserActions */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_13__app_component__["a" /* AppComponent */]]
@@ -545,6 +566,7 @@ module.exports = "<h1>\n  Willkommen bei {{locationName}}\n</h1>\n\n\n<div *ngIf
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_native_communication_service__ = __webpack_require__("../../../../../src/app/services/native-communication.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_TimerObservable__ = __webpack_require__("../../../../rxjs/_esm5/observable/TimerObservable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__ = __webpack_require__("../../../../../src/app/actions/LocationActions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -563,14 +585,16 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
+
 var ContentTableAtComponent = (function () {
-    function ContentTableAtComponent(godService, router, locationService, nativeCommunicationService, appStore) {
+    function ContentTableAtComponent(godService, router, locationService, nativeCommunicationService, appStore, locationActions) {
         var _this = this;
         this.godService = godService;
         this.router = router;
         this.locationService = locationService;
         this.nativeCommunicationService = nativeCommunicationService;
         this.appStore = appStore;
+        this.locationActions = locationActions;
         this._unsubscribe = this.appStore.subscribe(function () {
             var state = _this.appStore.getState();
             _this.updateLocationStatus(state.locationStatus);
@@ -615,7 +639,8 @@ var ContentTableAtComponent = (function () {
     // saves ID of current exhibit in localstorage
     ContentTableAtComponent.prototype.startOnTableSearch = function () {
         this.joinGame = false;
-        localStorage.setItem('atExhibitParent', JSON.stringify(this.locationId));
+        this.appStore.dispatch(this.locationActions.changeAtExhibitParentId(this.locationId));
+        // localStorage.setItem('atExhibitParent', JSON.stringify(this.locationId));
     };
     return ContentTableAtComponent;
 }());
@@ -626,10 +651,10 @@ ContentTableAtComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/content-table-at/content-table-at.component.css")]
     }),
     __param(4, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_god_service__["a" /* GodService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _d || Object, Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_god_service__["a" /* GodService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _d || Object, Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["g" /* LocationActions */]) === "function" && _e || Object])
 ], ContentTableAtComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=content-table-at.component.js.map
 
 /***/ }),
@@ -668,6 +693,7 @@ module.exports = "<div class=\"wrapper\">\n    <h1>\n      Willkommen bei {{loca
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_god_service__ = __webpack_require__("../../../../../src/app/services/god.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_location_service__ = __webpack_require__("../../../../../src/app/services/location.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_exhibit_service__ = __webpack_require__("../../../../../src/app/services/exhibit.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actions_LocationActions__ = __webpack_require__("../../../../../src/app/actions/LocationActions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -684,13 +710,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
+
 var ContentTableOnComponent = (function () {
-    function ContentTableOnComponent(godService, exhibitService, locationService, appStore) {
+    function ContentTableOnComponent(godService, exhibitService, locationService, appStore, locationActions) {
         var _this = this;
         this.godService = godService;
         this.exhibitService = exhibitService;
         this.locationService = locationService;
         this.appStore = appStore;
+        this.locationActions = locationActions;
         this._unsubscribe = this.appStore.subscribe(function () {
             var state = _this.appStore.getState();
             _this.connectionSuccess = state.connectedToExhibit;
@@ -704,7 +732,8 @@ var ContentTableOnComponent = (function () {
         var url = 'http://' + parentLocation.ipAddress + ':8100';
         this.exhibitService.establishExhibitConnection(url);
         this.exhibitService.connectOD();
-        localStorage.setItem('onExhibit', JSON.stringify(true));
+        //localStorage.setItem('onExhibit', JSON.stringify(true));
+        this.appStore.dispatch(this.locationActions.changeOnExhibit(false));
     };
     ContentTableOnComponent.prototype.ngOnDestroy = function () {
         this.disconnectFromExhibit();
@@ -712,8 +741,10 @@ var ContentTableOnComponent = (function () {
     };
     ContentTableOnComponent.prototype.disconnectFromExhibit = function () {
         this.exhibitService.disconnect();
-        localStorage.setItem('atExhibitParent', JSON.stringify(0));
-        localStorage.setItem('onExhibit', JSON.stringify(false));
+        this.appStore.dispatch(this.locationActions.changeAtExhibitParentId(0));
+        this.appStore.dispatch(this.locationActions.changeOnExhibit(false));
+        //localStorage.setItem('atExhibitParent', JSON.stringify(0));
+        //localStorage.setItem('onExhibit', JSON.stringify(false));
     };
     return ContentTableOnComponent;
 }());
@@ -724,10 +755,10 @@ ContentTableOnComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/content-table-on/content-table-on.component.css")]
     }),
     __param(3, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_god_service__["a" /* GodService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_exhibit_service__["a" /* ExhibitService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_exhibit_service__["a" /* ExhibitService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */]) === "function" && _c || Object, Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_god_service__["a" /* GodService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_exhibit_service__["a" /* ExhibitService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_exhibit_service__["a" /* ExhibitService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */]) === "function" && _c || Object, Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__actions_LocationActions__["g" /* LocationActions */]) === "function" && _d || Object])
 ], ContentTableOnComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=content-table-on.component.js.map
 
 /***/ }),
@@ -824,9 +855,7 @@ var MainViewComponent = (function () {
     MainViewComponent.prototype.ngOnInit = function () {
         var state = this.appStore.getState();
         this.user = state.user;
-        // TODO: Change to appStore
         this.locationService.lookuptable = state.lookupTable;
-        //this.locationService.lookuptable = JSON.parse(localStorage.getItem('lookuptable'));
         this.isWeb = this.nativeCommunicationService.isWeb;
     };
     return MainViewComponent;
@@ -932,19 +961,25 @@ var initialState = {
     locationStatus: undefined,
     locationSocketStatus: undefined,
     connectedToExhibit: false,
-    platform: undefined
+    platform: undefined,
+    atExhibitParentId: undefined,
+    onExhibit: undefined
 };
 function rootReducer(state, action) {
     if (state === void 0) { state = initialState; }
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["b" /* CHANGE_LOCATION */]:
+        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["c" /* CHANGE_LOCATION */]:
             return __assign({}, state, { currentLocation: action.locationId });
-        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["a" /* CHANGE_CONNECTED_EXHIBIT */]:
+        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["b" /* CHANGE_CONNECTED_EXHIBIT */]:
             return __assign({}, state, { connectedToExhibit: action.connectedToExhibit });
-        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["d" /* CHANGE_LOCATION_STATUS */]:
+        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["e" /* CHANGE_LOCATION_STATUS */]:
             return __assign({}, state, { locationStatus: action.locationStatus });
-        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["c" /* CHANGE_LOCATION_SOCKET_STATUS */]:
+        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["d" /* CHANGE_LOCATION_SOCKET_STATUS */]:
             return __assign({}, state, { locationSocketStatus: action.locationSocketStatus });
+        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["a" /* CHANGE_AT_EXHIBIT_PARENT_ID */]:
+            return __assign({}, state, { atExhibitParentId: action.atExhibitParentId });
+        case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["f" /* CHANGE_ON_EXHIBIT */]:
+            return __assign({}, state, { onExhibit: action.onExhibit });
         case __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["c" /* CHANGE_USER */]:
             return __assign({}, state, { user: action.user });
         case __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["b" /* CHANGE_PLATFORM */]:
@@ -1183,7 +1218,7 @@ var ExhibitService = (function () {
 ExhibitService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(5, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__exhibit_socket_service__["a" /* ExhibitSocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__exhibit_socket_service__["a" /* ExhibitSocketService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__god_service__["a" /* GodService */]) === "function" && _e || Object, Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["e" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["e" /* LocationActions */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__actions_UserActions__["d" /* UserActions */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__exhibit_socket_service__["a" /* ExhibitSocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__exhibit_socket_service__["a" /* ExhibitSocketService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__god_service__["a" /* GodService */]) === "function" && _e || Object, Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["g" /* LocationActions */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__actions_UserActions__["d" /* UserActions */]) === "function" && _g || Object])
 ], ExhibitService);
 
 var _a, _b, _c, _d, _e, _f, _g;
@@ -1223,7 +1258,7 @@ var GodSocketService = (function (_super) {
     __extends(GodSocketService, _super);
     function GodSocketService() {
         // super({ url: 'http://god.meeteux.fhstp.ac.at:3000', options: {} });
-        return _super.call(this, { url: 'http://god.meeteux.fhstp.ac.at:3000', options: {} }) || this;
+        return _super.call(this, { url: 'https://god.meeteux.fhstp.ac.at', options: { secure: true } }) || this;
     }
     return GodSocketService;
 }(__WEBPACK_IMPORTED_MODULE_1_ngx_socket_io__["a" /* Socket */]));
@@ -1284,12 +1319,9 @@ var GodService = (function () {
         var _this = this;
         this.socket.emit('registerOD', data);
         this.socket.on('registerODResult', function (result) {
-            // console.log(result.user);
             console.log(result);
-            //TODO: store lookuptable in store
             _this.appStore.dispatch(_this.userActions.changeUser(result.user));
             _this.appStore.dispatch(_this.userActions.changeLookupTable(result.locations));
-            //localStorage.setItem('lookuptable', JSON.stringify(result.locations));
             _this.locationService.lookuptable = result.locations;
             var state = _this.appStore.getState();
             var platform = state.platform;
@@ -1372,7 +1404,7 @@ var GodService = (function () {
 GodService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(4, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__god_socket_service__["a" /* GodSocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__god_socket_service__["a" /* GodSocketService */]) === "function" && _d || Object, Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__actions_LocationActions__["e" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__actions_LocationActions__["e" /* LocationActions */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["d" /* UserActions */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__god_socket_service__["a" /* GodSocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__god_socket_service__["a" /* GodSocketService */]) === "function" && _d || Object, Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__actions_LocationActions__["g" /* LocationActions */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["d" /* UserActions */]) === "function" && _f || Object])
 ], GodService);
 
 var _a, _b, _c, _d, _e, _f;
@@ -1387,6 +1419,7 @@ var _a, _b, _c, _d, _e, _f;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocationService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__ = __webpack_require__("../../../../../src/app/actions/UserActions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1396,10 +1429,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 var LocationService = (function () {
-    function LocationService() {
+    function LocationService(appStore, userActions) {
+        this.appStore = appStore;
+        this.userActions = userActions;
         this.locationChanged = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["a" /* Subject */]();
     }
     LocationService.prototype.findLocation = function (id) {
@@ -1453,9 +1492,11 @@ var LocationService = (function () {
 }());
 LocationService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __metadata("design:paramtypes", [])
+    __param(0, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
+    __metadata("design:paramtypes", [Object, typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["d" /* UserActions */]) === "function" && _a || Object])
 ], LocationService);
 
+var _a;
 //# sourceMappingURL=location.service.js.map
 
 /***/ }),
@@ -1507,7 +1548,6 @@ var NativeCommunicationService = (function () {
         var _this = this;
         var minor = result.minor;
         var location = this.locationService.findLocation(minor);
-        console.log(location);
         if (!location) {
             console.log('this is not a valid location');
             return;
@@ -1518,9 +1558,13 @@ var NativeCommunicationService = (function () {
                 console.log('this is not a valid location - type 2');
                 return;
             }
-            var exhibitParent = JSON.parse(localStorage.getItem('atExhibitParent'));
-            var onExhibit = JSON.parse(localStorage.getItem('onExhibit'));
-            if ((location.locationTypeId !== 2 && !onExhibit) || (location.locationTypeId === 2 && exhibitParent === location.parentId)) {
+            var state = this.appStore.getState();
+            // const exhibitParent = JSON.parse(localStorage.getItem('atExhibitParent'));
+            // const onExhibit = JSON.parse(localStorage.getItem('onExhibit'));
+            var exhibitParentId = state.atExhibitParent;
+            var onExhibit = state.onExhibit;
+            console.log('new valid location found - check and registerLocation at GoD');
+            if ((location.locationTypeId !== 2 && !onExhibit) || (location.locationTypeId === 2 && exhibitParentId === location.parentId)) {
                 if (location.locationTypeId === 2) {
                     this.godService.checkLocationStatus(location.id, function (res) {
                         if (res === 'FREE') {
@@ -1571,7 +1615,7 @@ var NativeCommunicationService = (function () {
 NativeCommunicationService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__god_service__["a" /* GodService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */]) === "function" && _b || Object, Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["e" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["e" /* LocationActions */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__god_service__["a" /* GodService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */]) === "function" && _b || Object, Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["g" /* LocationActions */]) === "function" && _c || Object])
 ], NativeCommunicationService);
 
 var _a, _b, _c;
