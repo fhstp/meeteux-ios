@@ -78,6 +78,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             name: "triggerSignal"
         )
         
+        contentController.add(
+            self,
+            name: "print"
+        )
+        
         
         config.userContentController = contentController
         
@@ -91,7 +96,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     
     //- MARK: Web to native calls
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("Received event \(message.name) \(message.body)")
+        //print("Received event \(message.name) \(message.body)")
         
         switch "\(message.name)" {
         case "getDeviceInfos":
@@ -100,10 +105,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             // start beacon Scan
             startBeaconScanning()
         case "triggerSignal":
-            triggerSignal();
+            triggerSignal()
+        case "print":
+            print(message.body)
         default:
-            let exec = "set_headline(\"You are here ... really\")"
-            webView.evaluateJavaScript(exec, completionHandler: nil)
+            print(message.body)
         }
     }
     
@@ -128,6 +134,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     // sends dictionary to webview
     func sendDictToWeb(myDict: Any, functionCall: String){
         let jsonString = getJSONString(myDict: myDict)
+        print(jsonString)
         
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)(\(jsonString))") { result, error in
