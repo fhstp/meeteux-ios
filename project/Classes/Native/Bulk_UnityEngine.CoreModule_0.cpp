@@ -906,6 +906,7 @@ extern String_t* _stringLiteral604301846;
 extern const uint32_t Mesh_RecalculateBounds_m39931642_MetadataUsageId;
 extern String_t* _stringLiteral1193542476;
 extern const uint32_t Mesh_RecalculateNormals_m467587154_MetadataUsageId;
+extern const uint32_t MonoBehaviour_print_m330341231_MetadataUsageId;
 extern RuntimeClass* PlayerEditorConnectionEvents_t3411787513_il2cpp_TypeInfo_var;
 extern RuntimeClass* List_1_t128053199_il2cpp_TypeInfo_var;
 extern const RuntimeMethod* List_1__ctor_m1628857705_RuntimeMethod_var;
@@ -1024,6 +1025,8 @@ extern const uint32_t RectTransform_GetLocalCorners_m823861473_MetadataUsageId;
 extern String_t* _stringLiteral13390833;
 extern const uint32_t RectTransform_GetWorldCorners_m3553547973_MetadataUsageId;
 extern RuntimeClass* Vector2_t2156229523_il2cpp_TypeInfo_var;
+extern const uint32_t RectTransform_set_offsetMin_m1512629941_MetadataUsageId;
+extern const uint32_t RectTransform_set_offsetMax_m2526664592_MetadataUsageId;
 extern const uint32_t RectTransform_GetParentSize_m3947930162_MetadataUsageId;
 extern RuntimeClass* NullReferenceException_t1023182353_il2cpp_TypeInfo_var;
 extern String_t* _stringLiteral3307613667;
@@ -14869,6 +14872,8 @@ extern "C"  Coroutine_t3829159415 * MonoBehaviour_StartCoroutine_Auto_Internal_m
 extern "C"  void MonoBehaviour_StopCoroutineViaEnumerator_Auto_m3883784228 (MonoBehaviour_t3962482529 * __this, RuntimeObject* ___routine0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // System.Void UnityEngine.MonoBehaviour::StopCoroutine_Auto(UnityEngine.Coroutine)
 extern "C"  void MonoBehaviour_StopCoroutine_Auto_m820288890 (MonoBehaviour_t3962482529 * __this, Coroutine_t3829159415 * ___routine0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// System.Void UnityEngine.Debug::Log(System.Object)
+extern "C"  void Debug_Log_m4051431634 (RuntimeObject * __this /* static, unused */, RuntimeObject * ___message0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // System.Void UnityEngine.NativeClassAttribute::set_QualifiedNativeName(System.String)
 extern "C"  void NativeClassAttribute_set_QualifiedNativeName_m817439736 (NativeClassAttribute_t2601352714 * __this, String_t* ___value0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // System.Void UnityEngine.Networking.PlayerConnection.PlayerEditorConnectionEvents::.ctor()
@@ -15189,6 +15194,24 @@ extern "C"  void RectTransform_GetLocalCorners_m823861473 (RectTransform_t370465
 extern "C"  Transform_t3600365921 * Component_get_transform_m3162698980 (Component_t1923634451 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // UnityEngine.Vector3 UnityEngine.Transform::TransformPoint(UnityEngine.Vector3)
 extern "C"  Vector3_t3722313464  Transform_TransformPoint_m226827784 (Transform_t3600365921 * __this, Vector3_t3722313464  ___position0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// UnityEngine.Vector2 UnityEngine.RectTransform::get_anchoredPosition()
+extern "C"  Vector2_t2156229523  RectTransform_get_anchoredPosition_m1813443094 (RectTransform_t3704657025 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// UnityEngine.Vector2 UnityEngine.RectTransform::get_sizeDelta()
+extern "C"  Vector2_t2156229523  RectTransform_get_sizeDelta_m2183112744 (RectTransform_t3704657025 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// UnityEngine.Vector2 UnityEngine.RectTransform::get_pivot()
+extern "C"  Vector2_t2156229523  RectTransform_get_pivot_m3425744470 (RectTransform_t3704657025 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// UnityEngine.Vector2 UnityEngine.Vector2::Scale(UnityEngine.Vector2,UnityEngine.Vector2)
+extern "C"  Vector2_t2156229523  Vector2_Scale_m165605769 (RuntimeObject * __this /* static, unused */, Vector2_t2156229523  ___a0, Vector2_t2156229523  ___b1, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// UnityEngine.Vector2 UnityEngine.Vector2::op_Subtraction(UnityEngine.Vector2,UnityEngine.Vector2)
+extern "C"  Vector2_t2156229523  Vector2_op_Subtraction_m73004381 (RuntimeObject * __this /* static, unused */, Vector2_t2156229523  ___a0, Vector2_t2156229523  ___b1, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
+extern "C"  void RectTransform_set_sizeDelta_m3462269772 (RectTransform_t3704657025 * __this, Vector2_t2156229523  ___value0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// UnityEngine.Vector2 UnityEngine.Vector2::get_one()
+extern "C"  Vector2_t2156229523  Vector2_get_one_m738793577 (RuntimeObject * __this /* static, unused */, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// UnityEngine.Vector2 UnityEngine.Vector2::op_Addition(UnityEngine.Vector2,UnityEngine.Vector2)
+extern "C"  Vector2_t2156229523  Vector2_op_Addition_m800700293 (RuntimeObject * __this /* static, unused */, Vector2_t2156229523  ___a0, Vector2_t2156229523  ___b1, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
+// System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
+extern "C"  void RectTransform_set_anchoredPosition_m4126691837 (RectTransform_t3704657025 * __this, Vector2_t2156229523  ___value0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // UnityEngine.Vector2 UnityEngine.RectTransform::get_anchorMin()
 extern "C"  Vector2_t2156229523  RectTransform_get_anchorMin_m2928307238 (RectTransform_t3704657025 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // System.Void UnityEngine.Vector2::set_Item(System.Int32,System.Single)
@@ -15199,18 +15222,8 @@ extern "C"  void RectTransform_set_anchorMin_m4230103102 (RectTransform_t3704657
 extern "C"  Vector2_t2156229523  RectTransform_get_anchorMax_m2495270048 (RectTransform_t3704657025 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // System.Void UnityEngine.RectTransform::set_anchorMax(UnityEngine.Vector2)
 extern "C"  void RectTransform_set_anchorMax_m2998668828 (RectTransform_t3704657025 * __this, Vector2_t2156229523  ___value0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
-// UnityEngine.Vector2 UnityEngine.RectTransform::get_sizeDelta()
-extern "C"  Vector2_t2156229523  RectTransform_get_sizeDelta_m2183112744 (RectTransform_t3704657025 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
-// System.Void UnityEngine.RectTransform::set_sizeDelta(UnityEngine.Vector2)
-extern "C"  void RectTransform_set_sizeDelta_m3462269772 (RectTransform_t3704657025 * __this, Vector2_t2156229523  ___value0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
-// UnityEngine.Vector2 UnityEngine.RectTransform::get_anchoredPosition()
-extern "C"  Vector2_t2156229523  RectTransform_get_anchoredPosition_m1813443094 (RectTransform_t3704657025 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
-// UnityEngine.Vector2 UnityEngine.RectTransform::get_pivot()
-extern "C"  Vector2_t2156229523  RectTransform_get_pivot_m3425744470 (RectTransform_t3704657025 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // System.Single UnityEngine.Vector2::get_Item(System.Int32)
 extern "C"  float Vector2_get_Item_m3559215723 (Vector2_t2156229523 * __this, int32_t ___index0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
-// System.Void UnityEngine.RectTransform::set_anchoredPosition(UnityEngine.Vector2)
-extern "C"  void RectTransform_set_anchoredPosition_m4126691837 (RectTransform_t3704657025 * __this, Vector2_t2156229523  ___value0, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // UnityEngine.Vector2 UnityEngine.RectTransform::GetParentSize()
 extern "C"  Vector2_t2156229523  RectTransform_GetParentSize_m3947930162 (RectTransform_t3704657025 * __this, const RuntimeMethod* method) IL2CPP_METHOD_ATTR;
 // UnityEngine.Transform UnityEngine.Transform::get_parent()
@@ -30613,6 +30626,22 @@ extern "C"  void MonoBehaviour_StopAllCoroutines_m3328507247 (MonoBehaviour_t396
 	_il2cpp_icall_func = (MonoBehaviour_StopAllCoroutines_m3328507247_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.MonoBehaviour::StopAllCoroutines()");
 	_il2cpp_icall_func(__this);
 }
+// System.Void UnityEngine.MonoBehaviour::print(System.Object)
+extern "C"  void MonoBehaviour_print_m330341231 (RuntimeObject * __this /* static, unused */, RuntimeObject * ___message0, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_method (MonoBehaviour_print_m330341231_MetadataUsageId);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		RuntimeObject * L_0 = ___message0;
+		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
+		Debug_Log_m4051431634(NULL /*static, unused*/, L_0, /*hidden argument*/NULL);
+		return;
+	}
+}
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
@@ -35760,6 +35789,78 @@ IL_0057:
 
 IL_005e:
 	{
+		return;
+	}
+}
+// System.Void UnityEngine.RectTransform::set_offsetMin(UnityEngine.Vector2)
+extern "C"  void RectTransform_set_offsetMin_m1512629941 (RectTransform_t3704657025 * __this, Vector2_t2156229523  ___value0, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_method (RectTransform_set_offsetMin_m1512629941_MetadataUsageId);
+		s_Il2CppMethodInitialized = true;
+	}
+	Vector2_t2156229523  V_0;
+	memset(&V_0, 0, sizeof(V_0));
+	{
+		Vector2_t2156229523  L_0 = ___value0;
+		Vector2_t2156229523  L_1 = RectTransform_get_anchoredPosition_m1813443094(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_2 = RectTransform_get_sizeDelta_m2183112744(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_3 = RectTransform_get_pivot_m3425744470(__this, /*hidden argument*/NULL);
+		IL2CPP_RUNTIME_CLASS_INIT(Vector2_t2156229523_il2cpp_TypeInfo_var);
+		Vector2_t2156229523  L_4 = Vector2_Scale_m165605769(NULL /*static, unused*/, L_2, L_3, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_5 = Vector2_op_Subtraction_m73004381(NULL /*static, unused*/, L_1, L_4, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_6 = Vector2_op_Subtraction_m73004381(NULL /*static, unused*/, L_0, L_5, /*hidden argument*/NULL);
+		V_0 = L_6;
+		Vector2_t2156229523  L_7 = RectTransform_get_sizeDelta_m2183112744(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_8 = V_0;
+		Vector2_t2156229523  L_9 = Vector2_op_Subtraction_m73004381(NULL /*static, unused*/, L_7, L_8, /*hidden argument*/NULL);
+		RectTransform_set_sizeDelta_m3462269772(__this, L_9, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_10 = RectTransform_get_anchoredPosition_m1813443094(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_11 = V_0;
+		Vector2_t2156229523  L_12 = Vector2_get_one_m738793577(NULL /*static, unused*/, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_13 = RectTransform_get_pivot_m3425744470(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_14 = Vector2_op_Subtraction_m73004381(NULL /*static, unused*/, L_12, L_13, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_15 = Vector2_Scale_m165605769(NULL /*static, unused*/, L_11, L_14, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_16 = Vector2_op_Addition_m800700293(NULL /*static, unused*/, L_10, L_15, /*hidden argument*/NULL);
+		RectTransform_set_anchoredPosition_m4126691837(__this, L_16, /*hidden argument*/NULL);
+		return;
+	}
+}
+// System.Void UnityEngine.RectTransform::set_offsetMax(UnityEngine.Vector2)
+extern "C"  void RectTransform_set_offsetMax_m2526664592 (RectTransform_t3704657025 * __this, Vector2_t2156229523  ___value0, const RuntimeMethod* method)
+{
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_method (RectTransform_set_offsetMax_m2526664592_MetadataUsageId);
+		s_Il2CppMethodInitialized = true;
+	}
+	Vector2_t2156229523  V_0;
+	memset(&V_0, 0, sizeof(V_0));
+	{
+		Vector2_t2156229523  L_0 = ___value0;
+		Vector2_t2156229523  L_1 = RectTransform_get_anchoredPosition_m1813443094(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_2 = RectTransform_get_sizeDelta_m2183112744(__this, /*hidden argument*/NULL);
+		IL2CPP_RUNTIME_CLASS_INIT(Vector2_t2156229523_il2cpp_TypeInfo_var);
+		Vector2_t2156229523  L_3 = Vector2_get_one_m738793577(NULL /*static, unused*/, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_4 = RectTransform_get_pivot_m3425744470(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_5 = Vector2_op_Subtraction_m73004381(NULL /*static, unused*/, L_3, L_4, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_6 = Vector2_Scale_m165605769(NULL /*static, unused*/, L_2, L_5, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_7 = Vector2_op_Addition_m800700293(NULL /*static, unused*/, L_1, L_6, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_8 = Vector2_op_Subtraction_m73004381(NULL /*static, unused*/, L_0, L_7, /*hidden argument*/NULL);
+		V_0 = L_8;
+		Vector2_t2156229523  L_9 = RectTransform_get_sizeDelta_m2183112744(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_10 = V_0;
+		Vector2_t2156229523  L_11 = Vector2_op_Addition_m800700293(NULL /*static, unused*/, L_9, L_10, /*hidden argument*/NULL);
+		RectTransform_set_sizeDelta_m3462269772(__this, L_11, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_12 = RectTransform_get_anchoredPosition_m1813443094(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_13 = V_0;
+		Vector2_t2156229523  L_14 = RectTransform_get_pivot_m3425744470(__this, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_15 = Vector2_Scale_m165605769(NULL /*static, unused*/, L_13, L_14, /*hidden argument*/NULL);
+		Vector2_t2156229523  L_16 = Vector2_op_Addition_m800700293(NULL /*static, unused*/, L_12, L_15, /*hidden argument*/NULL);
+		RectTransform_set_anchoredPosition_m4126691837(__this, L_16, /*hidden argument*/NULL);
 		return;
 	}
 }

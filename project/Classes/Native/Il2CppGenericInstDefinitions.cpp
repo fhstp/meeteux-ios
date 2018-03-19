@@ -443,9 +443,14 @@ extern const Il2CppType PlayerConnection_t3081694049_0_0_0;
 extern const Il2CppType GUILayer_t2783472903_0_0_0;
 extern const Il2CppType AxisEventData_t2331243652_0_0_0;
 extern const Il2CppType SpriteRenderer_t3235626157_0_0_0;
-extern const Il2CppType GraphicRaycaster_t2999697109_0_0_0;
 extern const Il2CppType Button_t4055032469_0_0_0;
+extern const Il2CppType RawImage_t3182918964_0_0_0;
+extern const Il2CppType Slider_t3903728902_0_0_0;
+extern const Il2CppType Scrollbar_t1494447233_0_0_0;
+extern const Il2CppType InputField_t3762917431_0_0_0;
+extern const Il2CppType ScrollRect_t4137855814_0_0_0;
 extern const Il2CppType Dropdown_t2274391225_0_0_0;
+extern const Il2CppType GraphicRaycaster_t2999697109_0_0_0;
 extern const Il2CppType CanvasRenderer_t2598313366_0_0_0;
 extern const Il2CppType Corner_t1493259673_0_0_0;
 extern const Il2CppType Axis_t3613393006_0_0_0;
@@ -483,7 +488,6 @@ extern const Il2CppType ScanLine_t269422218_0_0_0;
 extern const Il2CppType CloudRecoContentManager_t2370613772_0_0_0;
 extern const Il2CppType CloudRecoBehaviour_t431762792_0_0_0;
 extern const Il2CppType ParticleSystem_t1800779281_0_0_0;
-extern const Il2CppType RawImage_t3182918964_0_0_0;
 extern const Il2CppType MenuOptions_t1951716431_0_0_0;
 extern const Il2CppType CameraSettings_t3152619780_0_0_0;
 extern const Il2CppType MenuAnimator_t2112910832_0_0_0;
@@ -2036,12 +2040,22 @@ static const RuntimeType* GenInst_AxisEventData_t2331243652_0_0_0_Types[] = { (&
 extern const Il2CppGenericInst GenInst_AxisEventData_t2331243652_0_0_0 = { 1, GenInst_AxisEventData_t2331243652_0_0_0_Types };
 static const RuntimeType* GenInst_SpriteRenderer_t3235626157_0_0_0_Types[] = { (&SpriteRenderer_t3235626157_0_0_0) };
 extern const Il2CppGenericInst GenInst_SpriteRenderer_t3235626157_0_0_0 = { 1, GenInst_SpriteRenderer_t3235626157_0_0_0_Types };
-static const RuntimeType* GenInst_GraphicRaycaster_t2999697109_0_0_0_Types[] = { (&GraphicRaycaster_t2999697109_0_0_0) };
-extern const Il2CppGenericInst GenInst_GraphicRaycaster_t2999697109_0_0_0 = { 1, GenInst_GraphicRaycaster_t2999697109_0_0_0_Types };
 static const RuntimeType* GenInst_Button_t4055032469_0_0_0_Types[] = { (&Button_t4055032469_0_0_0) };
 extern const Il2CppGenericInst GenInst_Button_t4055032469_0_0_0 = { 1, GenInst_Button_t4055032469_0_0_0_Types };
+static const RuntimeType* GenInst_RawImage_t3182918964_0_0_0_Types[] = { (&RawImage_t3182918964_0_0_0) };
+extern const Il2CppGenericInst GenInst_RawImage_t3182918964_0_0_0 = { 1, GenInst_RawImage_t3182918964_0_0_0_Types };
+static const RuntimeType* GenInst_Slider_t3903728902_0_0_0_Types[] = { (&Slider_t3903728902_0_0_0) };
+extern const Il2CppGenericInst GenInst_Slider_t3903728902_0_0_0 = { 1, GenInst_Slider_t3903728902_0_0_0_Types };
+static const RuntimeType* GenInst_Scrollbar_t1494447233_0_0_0_Types[] = { (&Scrollbar_t1494447233_0_0_0) };
+extern const Il2CppGenericInst GenInst_Scrollbar_t1494447233_0_0_0 = { 1, GenInst_Scrollbar_t1494447233_0_0_0_Types };
+static const RuntimeType* GenInst_InputField_t3762917431_0_0_0_Types[] = { (&InputField_t3762917431_0_0_0) };
+extern const Il2CppGenericInst GenInst_InputField_t3762917431_0_0_0 = { 1, GenInst_InputField_t3762917431_0_0_0_Types };
+static const RuntimeType* GenInst_ScrollRect_t4137855814_0_0_0_Types[] = { (&ScrollRect_t4137855814_0_0_0) };
+extern const Il2CppGenericInst GenInst_ScrollRect_t4137855814_0_0_0 = { 1, GenInst_ScrollRect_t4137855814_0_0_0_Types };
 static const RuntimeType* GenInst_Dropdown_t2274391225_0_0_0_Types[] = { (&Dropdown_t2274391225_0_0_0) };
 extern const Il2CppGenericInst GenInst_Dropdown_t2274391225_0_0_0 = { 1, GenInst_Dropdown_t2274391225_0_0_0_Types };
+static const RuntimeType* GenInst_GraphicRaycaster_t2999697109_0_0_0_Types[] = { (&GraphicRaycaster_t2999697109_0_0_0) };
+extern const Il2CppGenericInst GenInst_GraphicRaycaster_t2999697109_0_0_0 = { 1, GenInst_GraphicRaycaster_t2999697109_0_0_0_Types };
 static const RuntimeType* GenInst_CanvasRenderer_t2598313366_0_0_0_Types[] = { (&CanvasRenderer_t2598313366_0_0_0) };
 extern const Il2CppGenericInst GenInst_CanvasRenderer_t2598313366_0_0_0 = { 1, GenInst_CanvasRenderer_t2598313366_0_0_0_Types };
 static const RuntimeType* GenInst_Corner_t1493259673_0_0_0_Types[] = { (&Corner_t1493259673_0_0_0) };
@@ -2116,8 +2130,6 @@ static const RuntimeType* GenInst_CloudRecoBehaviour_t431762792_0_0_0_Types[] = 
 extern const Il2CppGenericInst GenInst_CloudRecoBehaviour_t431762792_0_0_0 = { 1, GenInst_CloudRecoBehaviour_t431762792_0_0_0_Types };
 static const RuntimeType* GenInst_ParticleSystem_t1800779281_0_0_0_Types[] = { (&ParticleSystem_t1800779281_0_0_0) };
 extern const Il2CppGenericInst GenInst_ParticleSystem_t1800779281_0_0_0 = { 1, GenInst_ParticleSystem_t1800779281_0_0_0_Types };
-static const RuntimeType* GenInst_RawImage_t3182918964_0_0_0_Types[] = { (&RawImage_t3182918964_0_0_0) };
-extern const Il2CppGenericInst GenInst_RawImage_t3182918964_0_0_0 = { 1, GenInst_RawImage_t3182918964_0_0_0_Types };
 static const RuntimeType* GenInst_MenuOptions_t1951716431_0_0_0_Types[] = { (&MenuOptions_t1951716431_0_0_0) };
 extern const Il2CppGenericInst GenInst_MenuOptions_t1951716431_0_0_0 = { 1, GenInst_MenuOptions_t1951716431_0_0_0_Types };
 static const RuntimeType* GenInst_CameraSettings_t3152619780_0_0_0_Types[] = { (&CameraSettings_t3152619780_0_0_0) };
@@ -2676,7 +2688,7 @@ static const RuntimeType* GenInst_AugmentationStateMachineBehaviour_GetMethod_m5
 extern const Il2CppGenericInst GenInst_AugmentationStateMachineBehaviour_GetMethod_m586052530_gp_0_0_0_0 = { 1, GenInst_AugmentationStateMachineBehaviour_GetMethod_m586052530_gp_0_0_0_0_Types };
 static const RuntimeType* GenInst_AugmentationStateMachineBehaviour_AddDelegateToCache_m4254555934_gp_0_0_0_0_Types[] = { (&AugmentationStateMachineBehaviour_AddDelegateToCache_m4254555934_gp_0_0_0_0) };
 extern const Il2CppGenericInst GenInst_AugmentationStateMachineBehaviour_AddDelegateToCache_m4254555934_gp_0_0_0_0 = { 1, GenInst_AugmentationStateMachineBehaviour_AddDelegateToCache_m4254555934_gp_0_0_0_0_Types };
-extern const Il2CppGenericInst* const g_Il2CppGenericInstTable[994] = 
+extern const Il2CppGenericInst* const g_Il2CppGenericInstTable[998] = 
 {
 	&GenInst_RuntimeObject_0_0_0,
 	&GenInst_Int32_t2950945753_0_0_0,
@@ -3352,9 +3364,14 @@ extern const Il2CppGenericInst* const g_Il2CppGenericInstTable[994] =
 	&GenInst_GUILayer_t2783472903_0_0_0,
 	&GenInst_AxisEventData_t2331243652_0_0_0,
 	&GenInst_SpriteRenderer_t3235626157_0_0_0,
-	&GenInst_GraphicRaycaster_t2999697109_0_0_0,
 	&GenInst_Button_t4055032469_0_0_0,
+	&GenInst_RawImage_t3182918964_0_0_0,
+	&GenInst_Slider_t3903728902_0_0_0,
+	&GenInst_Scrollbar_t1494447233_0_0_0,
+	&GenInst_InputField_t3762917431_0_0_0,
+	&GenInst_ScrollRect_t4137855814_0_0_0,
 	&GenInst_Dropdown_t2274391225_0_0_0,
+	&GenInst_GraphicRaycaster_t2999697109_0_0_0,
 	&GenInst_CanvasRenderer_t2598313366_0_0_0,
 	&GenInst_Corner_t1493259673_0_0_0,
 	&GenInst_Axis_t3613393006_0_0_0,
@@ -3392,7 +3409,6 @@ extern const Il2CppGenericInst* const g_Il2CppGenericInstTable[994] =
 	&GenInst_CloudRecoContentManager_t2370613772_0_0_0,
 	&GenInst_CloudRecoBehaviour_t431762792_0_0_0,
 	&GenInst_ParticleSystem_t1800779281_0_0_0,
-	&GenInst_RawImage_t3182918964_0_0_0,
 	&GenInst_MenuOptions_t1951716431_0_0_0,
 	&GenInst_CameraSettings_t3152619780_0_0_0,
 	&GenInst_MenuAnimator_t2112910832_0_0_0,

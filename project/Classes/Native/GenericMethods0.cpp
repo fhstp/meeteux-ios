@@ -1037,7 +1037,6 @@ extern const uint32_t Array_InternalArray__IndexOf_TisTrackableIdPair_t422735045
 extern const uint32_t Array_InternalArray__IndexOf_TisProfileData_t3519391925_m1103091781_MetadataUsageId;
 extern const uint32_t Array_LastIndexOf_TisRuntimeObject_m1719321980_MetadataUsageId;
 extern const uint32_t Array_LastIndexOf_TisRuntimeObject_m1677937501_MetadataUsageId;
-extern const uint32_t Array_LastIndexOf_TisRuntimeObject_m2701366436_MetadataUsageId;
 struct Object_t631007953_marshaled_com;
 
 struct TypeU5BU5D_t3940880105;
@@ -17864,84 +17863,107 @@ extern "C"  Action_1_t3252573759 * AugmentationStateMachineBehaviour_GetMethod_T
 	Delegate_t1188392813 * V_2 = NULL;
 	MethodInfo_t * V_3 = NULL;
 	Delegate_t1188392813 * V_4 = NULL;
+	Action_1_t3252573759 * V_5 = NULL;
 	{
+		// Action<T> result = null;
 		V_0 = (Action_1_t3252573759 *)NULL;
+		// if (cachedDelegates.TryGetValue(typeof(T), out delegateByMethodName))
 		IL2CPP_RUNTIME_CLASS_INIT(AugmentationStateMachineBehaviour_t3849818102_il2cpp_TypeInfo_var);
 		Dictionary_2_t3417996176 * L_0 = ((AugmentationStateMachineBehaviour_t3849818102_StaticFields*)il2cpp_codegen_static_fields_for(AugmentationStateMachineBehaviour_t3849818102_il2cpp_TypeInfo_var))->get_cachedDelegates_5();
 		RuntimeTypeHandle_t3027515415  L_1 = { reinterpret_cast<intptr_t> (IL2CPP_RGCTX_TYPE(method->rgctx_data, 0)) };
 		IL2CPP_RUNTIME_CLASS_INIT(Type_t_il2cpp_TypeInfo_var);
 		Type_t * L_2 = Type_GetTypeFromHandle_m1620074514(NULL /*static, unused*/, (RuntimeTypeHandle_t3027515415 )L_1, /*hidden argument*/NULL);
+		// if (cachedDelegates.TryGetValue(typeof(T), out delegateByMethodName))
 		NullCheck((Dictionary_2_t3417996176 *)L_0);
 		bool L_3 = Dictionary_2_TryGetValue_m497768301((Dictionary_2_t3417996176 *)L_0, (Type_t *)L_2, (Dictionary_2_t973649112 **)(&V_1), /*hidden argument*/Dictionary_2_TryGetValue_m497768301_RuntimeMethod_var);
 		if (!L_3)
 		{
-			goto IL_0032;
+			goto IL_0037;
 		}
 	}
 	{
+		// if (delegateByMethodName.TryGetValue(methodName, out del))
 		Dictionary_2_t973649112 * L_4 = V_1;
 		String_t* L_5 = ___methodName1;
+		// if (delegateByMethodName.TryGetValue(methodName, out del))
 		NullCheck((Dictionary_2_t973649112 *)L_4);
 		bool L_6 = Dictionary_2_TryGetValue_m3181164325((Dictionary_2_t973649112 *)L_4, (String_t*)L_5, (Delegate_t1188392813 **)(&V_2), /*hidden argument*/Dictionary_2_TryGetValue_m3181164325_RuntimeMethod_var);
 		if (!L_6)
 		{
-			goto IL_0032;
+			goto IL_0036;
 		}
 	}
 	{
+		// result = del as Action<T>;
 		Delegate_t1188392813 * L_7 = V_2;
 		V_0 = (Action_1_t3252573759 *)((Action_1_t3252573759 *)IsInst((RuntimeObject*)L_7, IL2CPP_RGCTX_DATA(method->rgctx_data, 1)));
 	}
 
-IL_0032:
+IL_0036:
 	{
+	}
+
+IL_0037:
+	{
+		// if (result == null)
 		Action_1_t3252573759 * L_8 = V_0;
 		if (L_8)
 		{
-			goto IL_00fc;
+			goto IL_0111;
 		}
 	}
 	{
+		// MethodInfo methodInfo = UnityEventBase.GetValidMethodInfo(augmentation, methodName, new Type[0]);
 		RuntimeObject * L_9 = ___augmentation0;
 		String_t* L_10 = ___methodName1;
+		// MethodInfo methodInfo = UnityEventBase.GetValidMethodInfo(augmentation, methodName, new Type[0]);
 		MethodInfo_t * L_11 = UnityEventBase_GetValidMethodInfo_m3989987635(NULL /*static, unused*/, (RuntimeObject *)L_9, (String_t*)L_10, (TypeU5BU5D_t3940880105*)((TypeU5BU5D_t3940880105*)SZArrayNew(TypeU5BU5D_t3940880105_il2cpp_TypeInfo_var, (uint32_t)0)), /*hidden argument*/NULL);
 		V_3 = (MethodInfo_t *)L_11;
+		// if (methodInfo == null)
 		MethodInfo_t * L_12 = V_3;
 		if (L_12)
 		{
-			goto IL_007a;
+			goto IL_0082;
 		}
 	}
 	{
+		// UnityEngine.Debug.LogWarning("Method \"" + methodName + "\" could not be found on object of type " + typeof(T).Name);
 		String_t* L_13 = ___methodName1;
 		RuntimeTypeHandle_t3027515415  L_14 = { reinterpret_cast<intptr_t> (IL2CPP_RGCTX_TYPE(method->rgctx_data, 0)) };
 		IL2CPP_RUNTIME_CLASS_INIT(Type_t_il2cpp_TypeInfo_var);
 		Type_t * L_15 = Type_GetTypeFromHandle_m1620074514(NULL /*static, unused*/, (RuntimeTypeHandle_t3027515415 )L_14, /*hidden argument*/NULL);
+		// UnityEngine.Debug.LogWarning("Method \"" + methodName + "\" could not be found on object of type " + typeof(T).Name);
 		NullCheck((MemberInfo_t *)L_15);
 		String_t* L_16 = VirtFuncInvoker0< String_t* >::Invoke(8 /* System.String System.Reflection.MemberInfo::get_Name() */, (MemberInfo_t *)L_15);
 		IL2CPP_RUNTIME_CLASS_INIT(String_t_il2cpp_TypeInfo_var);
 		String_t* L_17 = String_Concat_m2163913788(NULL /*static, unused*/, (String_t*)_stringLiteral1686800860, (String_t*)L_13, (String_t*)_stringLiteral2794527317, (String_t*)L_16, /*hidden argument*/NULL);
+		// UnityEngine.Debug.LogWarning("Method \"" + methodName + "\" could not be found on object of type " + typeof(T).Name);
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
 		Debug_LogWarning_m3752629331(NULL /*static, unused*/, (RuntimeObject *)L_17, /*hidden argument*/NULL);
-		goto IL_00fc;
+		goto IL_0110;
 	}
 
-IL_007a:
+IL_0082:
 	{
+		// var del = Delegate.CreateDelegate(typeof(Action<T>), methodInfo, false);
 		RuntimeTypeHandle_t3027515415  L_18 = { reinterpret_cast<intptr_t> (IL2CPP_RGCTX_TYPE(method->rgctx_data, 3)) };
 		IL2CPP_RUNTIME_CLASS_INIT(Type_t_il2cpp_TypeInfo_var);
 		Type_t * L_19 = Type_GetTypeFromHandle_m1620074514(NULL /*static, unused*/, (RuntimeTypeHandle_t3027515415 )L_18, /*hidden argument*/NULL);
 		MethodInfo_t * L_20 = V_3;
+		// var del = Delegate.CreateDelegate(typeof(Action<T>), methodInfo, false);
 		Delegate_t1188392813 * L_21 = Delegate_CreateDelegate_m1051651521(NULL /*static, unused*/, (Type_t *)L_19, (MethodInfo_t *)L_20, (bool)0, /*hidden argument*/NULL);
 		V_4 = (Delegate_t1188392813 *)L_21;
+		// if (del == null)
 		Delegate_t1188392813 * L_22 = V_4;
 		if (L_22)
 		{
-			goto IL_00e6;
+			goto IL_00f5;
 		}
 	}
 	{
+		// if (methodInfo.ReturnType != typeof(void))
 		MethodInfo_t * L_23 = V_3;
+		// if (methodInfo.ReturnType != typeof(void))
 		NullCheck((MethodInfo_t *)L_23);
 		Type_t * L_24 = VirtFuncInvoker0< Type_t * >::Invoke(31 /* System.Type System.Reflection.MethodInfo::get_ReturnType() */, (MethodInfo_t *)L_23);
 		RuntimeTypeHandle_t3027515415  L_25 = { reinterpret_cast<intptr_t> (Void_t1185182177_0_0_0_var) };
@@ -17949,62 +17971,93 @@ IL_007a:
 		Type_t * L_26 = Type_GetTypeFromHandle_m1620074514(NULL /*static, unused*/, (RuntimeTypeHandle_t3027515415 )L_25, /*hidden argument*/NULL);
 		if ((((RuntimeObject*)(Type_t *)L_24) == ((RuntimeObject*)(Type_t *)L_26)))
 		{
-			goto IL_00be;
+			goto IL_00ca;
 		}
 	}
 	{
+		// UnityEngine.Debug.LogWarning("Method \"" + methodName + "\" must have a return type of void to be used with AugmentationStateMachineBehaviour");
 		String_t* L_27 = ___methodName1;
 		IL2CPP_RUNTIME_CLASS_INIT(String_t_il2cpp_TypeInfo_var);
 		String_t* L_28 = String_Concat_m3755062657(NULL /*static, unused*/, (String_t*)_stringLiteral1686800860, (String_t*)L_27, (String_t*)_stringLiteral1264546222, /*hidden argument*/NULL);
+		// UnityEngine.Debug.LogWarning("Method \"" + methodName + "\" must have a return type of void to be used with AugmentationStateMachineBehaviour");
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
 		Debug_LogWarning_m3752629331(NULL /*static, unused*/, (RuntimeObject *)L_28, /*hidden argument*/NULL);
 	}
 
-IL_00be:
+IL_00ca:
 	{
+		// if (methodInfo.GetGenericArguments().Length > 0)
 		MethodInfo_t * L_29 = V_3;
+		// if (methodInfo.GetGenericArguments().Length > 0)
 		NullCheck((MethodBase_t *)L_29);
 		TypeU5BU5D_t3940880105* L_30 = VirtFuncInvoker0< TypeU5BU5D_t3940880105* >::Invoke(26 /* System.Type[] System.Reflection.MethodBase::GetGenericArguments() */, (MethodBase_t *)L_29);
 		NullCheck(L_30);
 		if ((((int32_t)(((int32_t)((int32_t)(((RuntimeArray *)L_30)->max_length))))) <= ((int32_t)0)))
 		{
-			goto IL_00e1;
+			goto IL_00ef;
 		}
 	}
 	{
+		// UnityEngine.Debug.LogWarning("Method \"" + methodName + "\" must have no arguments to be used with AugmentationStateMachineBehaviour");
 		String_t* L_31 = ___methodName1;
 		IL2CPP_RUNTIME_CLASS_INIT(String_t_il2cpp_TypeInfo_var);
 		String_t* L_32 = String_Concat_m3755062657(NULL /*static, unused*/, (String_t*)_stringLiteral1686800860, (String_t*)L_31, (String_t*)_stringLiteral1930521651, /*hidden argument*/NULL);
+		// UnityEngine.Debug.LogWarning("Method \"" + methodName + "\" must have no arguments to be used with AugmentationStateMachineBehaviour");
 		IL2CPP_RUNTIME_CLASS_INIT(Debug_t3317548046_il2cpp_TypeInfo_var);
 		Debug_LogWarning_m3752629331(NULL /*static, unused*/, (RuntimeObject *)L_32, /*hidden argument*/NULL);
 	}
 
-IL_00e1:
+IL_00ef:
 	{
-		goto IL_00fc;
+		goto IL_010f;
 	}
 
-IL_00e6:
+IL_00f5:
 	{
+		// result = del as Action<T>;
 		Delegate_t1188392813 * L_33 = V_4;
 		V_0 = (Action_1_t3252573759 *)((Action_1_t3252573759 *)IsInst((RuntimeObject*)L_33, IL2CPP_RGCTX_DATA(method->rgctx_data, 1)));
+		// if (result != null)
 		Action_1_t3252573759 * L_34 = V_0;
 		if (!L_34)
 		{
-			goto IL_00fc;
+			goto IL_010e;
 		}
 	}
 	{
+		// AddDelegateToCache<T>(result, methodName);
 		Action_1_t3252573759 * L_35 = V_0;
 		String_t* L_36 = ___methodName1;
+		// AddDelegateToCache<T>(result, methodName);
 		NullCheck((AugmentationStateMachineBehaviour_t3849818102 *)__this);
 		((  void (*) (AugmentationStateMachineBehaviour_t3849818102 *, Action_1_t3252573759 *, String_t*, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4)->methodPointer)((AugmentationStateMachineBehaviour_t3849818102 *)__this, (Action_1_t3252573759 *)L_35, (String_t*)L_36, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 4));
 	}
 
-IL_00fc:
+IL_010e:
 	{
+	}
+
+IL_010f:
+	{
+	}
+
+IL_0110:
+	{
+	}
+
+IL_0111:
+	{
+		// return result;
 		Action_1_t3252573759 * L_37 = V_0;
-		return L_37;
+		V_5 = (Action_1_t3252573759 *)L_37;
+		goto IL_0119;
+	}
+
+IL_0119:
+	{
+		// }
+		Action_1_t3252573759 * L_38 = V_5;
+		return L_38;
 	}
 }
 // System.Array/Swapper System.Array::get_swapper<System.Int32>(T[])
@@ -47741,127 +47794,5 @@ IL_0011:
 		int32_t L_5 = ___startIndex2;
 		int32_t L_6 = ((  int32_t (*) (RuntimeObject * /* static, unused */, ObjectU5BU5D_t2843939325*, RuntimeObject *, int32_t, int32_t, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)(NULL /*static, unused*/, (ObjectU5BU5D_t2843939325*)L_2, (RuntimeObject *)L_3, (int32_t)L_4, (int32_t)((int32_t)il2cpp_codegen_add((int32_t)L_5, (int32_t)1)), /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
 		return L_6;
-	}
-}
-// System.Int32 System.Array::LastIndexOf<System.Object>(T[],T,System.Int32,System.Int32)
-extern "C"  int32_t Array_LastIndexOf_TisRuntimeObject_m2701366436_gshared (RuntimeObject * __this /* static, unused */, ObjectU5BU5D_t2843939325* ___array0, RuntimeObject * ___value1, int32_t ___startIndex2, int32_t ___count3, const RuntimeMethod* method)
-{
-	static bool s_Il2CppMethodInitialized;
-	if (!s_Il2CppMethodInitialized)
-	{
-		il2cpp_codegen_initialize_method (Array_LastIndexOf_TisRuntimeObject_m2701366436_MetadataUsageId);
-		s_Il2CppMethodInitialized = true;
-	}
-	EqualityComparer_1_t1249878500 * V_0 = NULL;
-	int32_t V_1 = 0;
-	{
-		ObjectU5BU5D_t2843939325* L_0 = ___array0;
-		if (L_0)
-		{
-			goto IL_0011;
-		}
-	}
-	{
-		ArgumentNullException_t1615371798 * L_1 = (ArgumentNullException_t1615371798 *)il2cpp_codegen_object_new(ArgumentNullException_t1615371798_il2cpp_TypeInfo_var);
-		ArgumentNullException__ctor_m1170824041(L_1, (String_t*)_stringLiteral4007973390, /*hidden argument*/NULL);
-		IL2CPP_RAISE_MANAGED_EXCEPTION(L_1);
-	}
-
-IL_0011:
-	{
-		int32_t L_2 = ___count3;
-		if ((((int32_t)L_2) < ((int32_t)0)))
-		{
-			goto IL_0043;
-		}
-	}
-	{
-		int32_t L_3 = ___startIndex2;
-		ObjectU5BU5D_t2843939325* L_4 = ___array0;
-		NullCheck((RuntimeArray *)(RuntimeArray *)L_4);
-		int32_t L_5 = Array_GetLowerBound_m2045984623((RuntimeArray *)(RuntimeArray *)L_4, (int32_t)0, /*hidden argument*/NULL);
-		if ((((int32_t)L_3) < ((int32_t)L_5)))
-		{
-			goto IL_0043;
-		}
-	}
-	{
-		int32_t L_6 = ___startIndex2;
-		ObjectU5BU5D_t2843939325* L_7 = ___array0;
-		NullCheck((RuntimeArray *)(RuntimeArray *)L_7);
-		int32_t L_8 = Array_GetUpperBound_m4018715963((RuntimeArray *)(RuntimeArray *)L_7, (int32_t)0, /*hidden argument*/NULL);
-		if ((((int32_t)L_6) > ((int32_t)L_8)))
-		{
-			goto IL_0043;
-		}
-	}
-	{
-		int32_t L_9 = ___startIndex2;
-		int32_t L_10 = ___count3;
-		ObjectU5BU5D_t2843939325* L_11 = ___array0;
-		NullCheck((RuntimeArray *)(RuntimeArray *)L_11);
-		int32_t L_12 = Array_GetLowerBound_m2045984623((RuntimeArray *)(RuntimeArray *)L_11, (int32_t)0, /*hidden argument*/NULL);
-		if ((((int32_t)((int32_t)il2cpp_codegen_add((int32_t)((int32_t)il2cpp_codegen_subtract((int32_t)L_9, (int32_t)L_10)), (int32_t)1))) >= ((int32_t)L_12)))
-		{
-			goto IL_0049;
-		}
-	}
-
-IL_0043:
-	{
-		ArgumentOutOfRangeException_t777629997 * L_13 = (ArgumentOutOfRangeException_t777629997 *)il2cpp_codegen_object_new(ArgumentOutOfRangeException_t777629997_il2cpp_TypeInfo_var);
-		ArgumentOutOfRangeException__ctor_m2047740448(L_13, /*hidden argument*/NULL);
-		IL2CPP_RAISE_MANAGED_EXCEPTION(L_13);
-	}
-
-IL_0049:
-	{
-		IL2CPP_RUNTIME_CLASS_INIT(IL2CPP_RGCTX_DATA(method->rgctx_data, 1));
-		EqualityComparer_1_t1249878500 * L_14 = ((  EqualityComparer_1_t1249878500 * (*) (RuntimeObject * /* static, unused */, const RuntimeMethod*))IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0)->methodPointer)(NULL /*static, unused*/, /*hidden argument*/IL2CPP_RGCTX_METHOD_INFO(method->rgctx_data, 0));
-		V_0 = (EqualityComparer_1_t1249878500 *)L_14;
-		int32_t L_15 = ___startIndex2;
-		V_1 = (int32_t)L_15;
-		goto IL_006f;
-	}
-
-IL_0056:
-	{
-		EqualityComparer_1_t1249878500 * L_16 = V_0;
-		ObjectU5BU5D_t2843939325* L_17 = ___array0;
-		int32_t L_18 = V_1;
-		NullCheck(L_17);
-		int32_t L_19 = L_18;
-		RuntimeObject * L_20 = (L_17)->GetAt(static_cast<il2cpp_array_size_t>(L_19));
-		RuntimeObject * L_21 = ___value1;
-		NullCheck((EqualityComparer_1_t1249878500 *)L_16);
-		bool L_22 = VirtFuncInvoker2< bool, RuntimeObject *, RuntimeObject * >::Invoke(9 /* System.Boolean System.Collections.Generic.EqualityComparer`1<System.Object>::Equals(T,T) */, (EqualityComparer_1_t1249878500 *)L_16, (RuntimeObject *)L_20, (RuntimeObject *)L_21);
-		if (!L_22)
-		{
-			goto IL_006b;
-		}
-	}
-	{
-		int32_t L_23 = V_1;
-		return L_23;
-	}
-
-IL_006b:
-	{
-		int32_t L_24 = V_1;
-		V_1 = (int32_t)((int32_t)il2cpp_codegen_subtract((int32_t)L_24, (int32_t)1));
-	}
-
-IL_006f:
-	{
-		int32_t L_25 = V_1;
-		int32_t L_26 = ___startIndex2;
-		int32_t L_27 = ___count3;
-		if ((((int32_t)L_25) >= ((int32_t)((int32_t)il2cpp_codegen_add((int32_t)((int32_t)il2cpp_codegen_subtract((int32_t)L_26, (int32_t)L_27)), (int32_t)1)))))
-		{
-			goto IL_0056;
-		}
-	}
-	{
-		return (-1);
 	}
 }

@@ -33,6 +33,7 @@
 		221B23232028A5BA003F54CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 221B23222028A5BA003F54CC /* Main.storyboard */; };
 		221B23252028A9E2003F54CC /* www in Resources */ = {isa = PBXBuildFile; fileRef = 221B23242028A9E2003F54CC /* www */; };
 		223F44918EC37C9E7C90C820 /* Il2CppCompilerCalculateTypeValues_1Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55D49F4B98436325B4D559C /* Il2CppCompilerCalculateTypeValues_1Table.cpp */; };
+		2250E133205FB48D00F04E78 /* UnityBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2250E132205FB48D00F04E78 /* UnityBinding.mm */; };
 		26DE4D5693FB4039847405B7 /* Il2CppCompilerCalculateTypeValues_6Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A354FE3A118D7475C158B25 /* Il2CppCompilerCalculateTypeValues_6Table.cpp */; };
 		28194F9ABA49C7CBA66B8ABF /* Bulk_UnityEngine.PhysicsModule_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C248088505BF8C41EEC6E1 /* Bulk_UnityEngine.PhysicsModule_0.cpp */; };
 		2AB14B69A7C4A39108FE915F /* Bulk_Vuforia.UnityExtensions_2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 874B4F75B4CEBB9143C59F69 /* Bulk_Vuforia.UnityExtensions_2.cpp */; };
@@ -168,6 +169,7 @@
 		C8DC437FBAA3AD727699DFF7 /* Il2CppTypeDefinitions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B9147ED9218F75C32C3BCE2 /* Il2CppTypeDefinitions.cpp */; };
 		CAB542AB967ECEF39E2D0B29 /* Bulk_mscorlib_7.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34A44572A8E5E8B21E8419A9 /* Bulk_mscorlib_7.cpp */; };
 		CCE8C2BA135C7EA3000D8035 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCE8C2B9135C7EA3000D8035 /* Security.framework */; };
+		CDFA4FA09D005E3720892844 /* BonjourClientImpl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 728B4FC690E47E77DB4BF36B /* BonjourClientImpl.mm */; };
 		D2884DA584ABE4F03104D850 /* Bulk_mscorlib_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92434E8AB300C8335A36C53D /* Bulk_mscorlib_0.cpp */; };
 		D3264480B6A7B9B02663914C /* Il2CppCompilerCalculateTypeValues_8Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35CE46E4BE0A27749A9CFD8C /* Il2CppCompilerCalculateTypeValues_8Table.cpp */; };
 		D40C46F9BB31D683FC98731E /* Bulk_UnityEngine.GameCenterModule_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1ED48029065B7D824E3125F /* Bulk_UnityEngine.GameCenterModule_0.cpp */; };
@@ -217,6 +219,7 @@
 		009E497DA91C810A33390E7E /* Il2CppCompilerCalculateTypeValues_16Table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Il2CppCompilerCalculateTypeValues_16Table.cpp; path = Classes/Native/Il2CppCompilerCalculateTypeValues_16Table.cpp; sourceTree = SOURCE_ROOT; };
 		02CD49E5AD8CF2FF3C744D35 /* Bulk_Generics_2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_Generics_2.cpp; path = Classes/Native/Bulk_Generics_2.cpp; sourceTree = SOURCE_ROOT; };
 		03F528621B447098000F4FB8 /* Il2CppOptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Il2CppOptions.cpp; sourceTree = "<group>"; };
+		09E441E69AF1ADA4443A293B /* BonjourClientImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BonjourClientImpl.h; path = Libraries/Plugins/iOS/BonjourClientImpl.h; sourceTree = SOURCE_ROOT; };
 		0B3232198D31F270080ECE9B /* Pods-Unity-iPhone.releaseforprofiling.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unity-iPhone.releaseforprofiling.xcconfig"; path = "Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone.releaseforprofiling.xcconfig"; sourceTree = "<group>"; };
 		0DC947F4B826089B906CDE59 /* GenericMethods2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GenericMethods2.cpp; path = Classes/Native/GenericMethods2.cpp; sourceTree = SOURCE_ROOT; };
 		0FDF4F3B8F61A6E35CE75230 /* VuforiaNativeRendererController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = VuforiaNativeRendererController.mm; path = Libraries/VuforiaNativeRendererController.mm; sourceTree = SOURCE_ROOT; };
@@ -233,6 +236,7 @@
 		221B23202028A594003F54CC /* MyAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyAppController.mm; sourceTree = "<group>"; };
 		221B23222028A5BA003F54CC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		221B23242028A9E2003F54CC /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		2250E132205FB48D00F04E78 /* UnityBinding.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UnityBinding.mm; sourceTree = "<group>"; };
 		26C74B7F8B9C8717079218D0 /* Bulk_UnityEngine.InputModule_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_UnityEngine.InputModule_0.cpp; path = Classes/Native/Bulk_UnityEngine.InputModule_0.cpp; sourceTree = SOURCE_ROOT; };
 		2A4C475AB2D17ADF52E59547 /* Il2CppCompilerCalculateTypeValues_22Table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Il2CppCompilerCalculateTypeValues_22Table.cpp; path = Classes/Native/Il2CppCompilerCalculateTypeValues_22Table.cpp; sourceTree = SOURCE_ROOT; };
 		33F943408AEB6128C382A756 /* Il2CppCompilerCalculateTypeValues_5Table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Il2CppCompilerCalculateTypeValues_5Table.cpp; path = Classes/Native/Il2CppCompilerCalculateTypeValues_5Table.cpp; sourceTree = SOURCE_ROOT; };
@@ -284,6 +288,7 @@
 		6FEE452EB1D1D8E280F269B6 /* Il2CppCodeRegistration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Il2CppCodeRegistration.cpp; path = Classes/Native/Il2CppCodeRegistration.cpp; sourceTree = SOURCE_ROOT; };
 		70F44E9FA0780BDA0CDAC494 /* Il2CppCompilerCalculateTypeValuesTable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Il2CppCompilerCalculateTypeValuesTable.cpp; path = Classes/Native/Il2CppCompilerCalculateTypeValuesTable.cpp; sourceTree = SOURCE_ROOT; };
 		713A4FC5A06F9CE95F96E8E5 /* LaunchScreen-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "LaunchScreen-iPad.xib"; sourceTree = SOURCE_ROOT; };
+		728B4FC690E47E77DB4BF36B /* BonjourClientImpl.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = BonjourClientImpl.mm; path = Libraries/Plugins/iOS/BonjourClientImpl.mm; sourceTree = SOURCE_ROOT; };
 		73584F5F9EC15E63C4698D38 /* Bulk_System_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_System_0.cpp; path = Classes/Native/Bulk_System_0.cpp; sourceTree = SOURCE_ROOT; };
 		736648E9A8022F820978FE79 /* Bulk_mscorlib_6.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_mscorlib_6.cpp; path = Classes/Native/Bulk_mscorlib_6.cpp; sourceTree = SOURCE_ROOT; };
 		74A7411FBBFD00D2086E7335 /* IUnityGraphicsMetal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IUnityGraphicsMetal.h; path = Classes/Unity/IUnityGraphicsMetal.h; sourceTree = SOURCE_ROOT; };
@@ -514,6 +519,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1DDC4FF98878BF22510CA126 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				CE2F438986C8B8C2E5B65D9B /* iOS */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
 		221B23192028A4F4003F54CC /* Stuff */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +536,7 @@
 				221B231D2028A579003F54CC /* CoolUnitySceneViewController.mm */,
 				221B231A2028A51C003F54CC /* Unity-iPhone-Bridging-Header.h */,
 				221B23222028A5BA003F54CC /* Main.storyboard */,
+				2250E132205FB48D00F04E78 /* UnityBinding.mm */,
 			);
 			path = Stuff;
 			sourceTree = "<group>";
@@ -812,6 +826,15 @@
 			name = UnityAds;
 			sourceTree = "<group>";
 		};
+		CE2F438986C8B8C2E5B65D9B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				728B4FC690E47E77DB4BF36B /* BonjourClientImpl.mm */,
+				09E441E69AF1ADA4443A293B /* BonjourClientImpl.h */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		D82DCFB50E8000A5005D6AD8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -855,6 +878,7 @@
 				397F426FB8936DD8FBD26491 /* VuforiaRenderDelegate.mm */,
 				98904DE4B3C4EEEA124BECDB /* VuforiaUnityPlayer.h */,
 				0FDF4F3B8F61A6E35CE75230 /* VuforiaNativeRendererController.mm */,
+				1DDC4FF98878BF22510CA126 /* Plugins */,
 			);
 			path = Libraries;
 			sourceTree = SOURCE_ROOT;
@@ -990,7 +1014,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PROJECT_DIR/MapFileParser.sh\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
+			shellScript = "\"$PROJECT_DIR/MapFileParser.sh\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 		};
 		2136AD4A9F05EE13C047E395 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1007,7 +1031,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
 		538ABC8CC59C32D81DF5E2C0 /* [CP] Copy Pods Resources */ = {
@@ -1022,7 +1046,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone-resources.sh\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
 		82952B298BAF738B80427503 /* [CP] Copy Pods Resources */ = {
@@ -1037,7 +1061,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone Tests/Pods-Unity-iPhone Tests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone Tests/Pods-Unity-iPhone Tests-resources.sh\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
 		874A7A88FB58C363D0785B72 /* [CP] Check Pods Manifest.lock */ = {
@@ -1055,7 +1079,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
 		A3DE82E6F97CEC17DB2A1BB9 /* [CP] Embed Pods Frameworks */ = {
@@ -1073,7 +1097,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone-frameworks.sh\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
 		ADB2CD3A49CB0388DCE6958C /* [CP] Embed Pods Frameworks */ = {
@@ -1088,7 +1112,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone Tests/Pods-Unity-iPhone Tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone Tests/Pods-Unity-iPhone Tests-frameworks.sh\"\n\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"\nrm -rf \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Data/Raw/QCAR\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1202,6 +1226,7 @@
 				89AF433980D33DB3429E6C07 /* Il2CppCompilerCalculateTypeValues_10Table.cpp in Sources */,
 				1ADC4A55AB6BA02B1026C8D3 /* Il2CppCompilerCalculateTypeValues_11Table.cpp in Sources */,
 				AF9F49D3A0D9676C39E3812A /* Il2CppCompilerCalculateTypeValues_12Table.cpp in Sources */,
+				2250E133205FB48D00F04E78 /* UnityBinding.mm in Sources */,
 				EBA54D00953B2E4BFD5BD86A /* Il2CppCompilerCalculateTypeValues_13Table.cpp in Sources */,
 				4EB84AB29006B539EB310044 /* Il2CppCompilerCalculateTypeValues_14Table.cpp in Sources */,
 				99C74A6581122AF710A40748 /* Il2CppCompilerCalculateTypeValues_15Table.cpp in Sources */,
@@ -1240,6 +1265,7 @@
 				03C14F67861B37EBD0D6207F /* UnresolvedVirtualCallStubs.cpp in Sources */,
 				7F634AA1937D2981B51DE7E0 /* VuforiaRenderDelegate.mm in Sources */,
 				C0CF4B81BB93D4EF0E7D2021 /* VuforiaNativeRendererController.mm in Sources */,
+				CDFA4FA09D005E3720892844 /* BonjourClientImpl.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1301,6 +1327,13 @@
 				GCC_USE_INDIRECT_FUNCTION_CALLS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"\"$(SRCROOT)\"",
@@ -1329,6 +1362,13 @@
 					"$(OTHER_CFLAGS)",
 				);
 				OTHER_LDFLAGS = (
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
 					"-lc++",
 					"$(inherited)",
 					"-weak_framework",
@@ -1373,6 +1413,13 @@
 				GCC_PREFIX_HEADER = Classes/Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"\"$(SRCROOT)\"",
@@ -1401,6 +1448,13 @@
 					"$(OTHER_CFLAGS)",
 				);
 				OTHER_LDFLAGS = (
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
 					"-lc++",
 					"$(inherited)",
 					"-weak_framework",
@@ -1574,6 +1628,13 @@
 				GCC_PREFIX_HEADER = Classes/Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"\"$(SRCROOT)\"",
@@ -1602,6 +1663,13 @@
 					"$(OTHER_CFLAGS)",
 				);
 				OTHER_LDFLAGS = (
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
 					"-lc++",
 					"$(inherited)",
 					"-weak_framework",
@@ -1716,6 +1784,13 @@
 				GCC_PREFIX_HEADER = Classes/Prefix.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
+					"$(SRCROOT)/Libraries",
 					"$(inherited)",
 					"\"$(SRCROOT)/Classes\"",
 					"\"$(SRCROOT)\"",
@@ -1744,6 +1819,13 @@
 					"$(OTHER_CFLAGS)",
 				);
 				OTHER_LDFLAGS = (
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
+					"-lc++",
 					"-lc++",
 					"$(inherited)",
 					"-weak_framework",

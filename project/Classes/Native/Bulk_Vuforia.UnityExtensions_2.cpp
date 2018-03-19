@@ -1044,7 +1044,7 @@ extern const RuntimeMethod* Dictionary_2_ContainsKey_m2635743497_RuntimeMethod_v
 extern const RuntimeMethod* Dictionary_2_set_Item_m3981249195_RuntimeMethod_var;
 extern const RuntimeMethod* Dictionary_2_get_Item_m3933522882_RuntimeMethod_var;
 extern const RuntimeMethod* List_1_Remove_m3037048099_RuntimeMethod_var;
-extern const RuntimeMethod* List_1_get_Count_m1031335223_RuntimeMethod_var;
+extern const RuntimeMethod* List_1_get_Count_m361000296_RuntimeMethod_var;
 extern const RuntimeMethod* List_1_RemoveAt_m3397721953_RuntimeMethod_var;
 extern const RuntimeMethod* Enumerable_ToList_TisVuMarkTargetResultData_t2153299244_m2963313276_RuntimeMethod_var;
 extern const RuntimeMethod* List_1_Add_m1617642134_RuntimeMethod_var;
@@ -15993,7 +15993,7 @@ extern "C"  RuntimeObject * Dictionary_2_get_Item_m107019914_gshared (Dictionary
 // System.Boolean System.Collections.Generic.List`1<System.Int32>::Remove(!0)
 extern "C"  bool List_1_Remove_m3037048099_gshared (List_1_t128053199 * __this, int32_t p0, const RuntimeMethod* method);
 // System.Int32 System.Collections.Generic.List`1<System.Int32>::get_Count()
-extern "C"  int32_t List_1_get_Count_m1031335223_gshared (List_1_t128053199 * __this, const RuntimeMethod* method);
+extern "C"  int32_t List_1_get_Count_m361000296_gshared (List_1_t128053199 * __this, const RuntimeMethod* method);
 // System.Void System.Collections.Generic.List`1<System.Int32>::RemoveAt(System.Int32)
 extern "C"  void List_1_RemoveAt_m3397721953_gshared (List_1_t128053199 * __this, int32_t p0, const RuntimeMethod* method);
 // System.Collections.Generic.List`1<!!0> System.Linq.Enumerable::ToList<Vuforia.TrackerData/VuMarkTargetResultData>(System.Collections.Generic.IEnumerable`1<!!0>)
@@ -16832,7 +16832,7 @@ extern "C"  RuntimeObject* VuMarkBehaviour_get_VuMarkTarget_m1232437050 (VuMarkB
 // System.Boolean System.Collections.Generic.List`1<System.Int32>::Remove(!0)
 #define List_1_Remove_m3037048099(__this, p0, method) ((  bool (*) (List_1_t128053199 *, int32_t, const RuntimeMethod*))List_1_Remove_m3037048099_gshared)(__this, p0, method)
 // System.Int32 System.Collections.Generic.List`1<System.Int32>::get_Count()
-#define List_1_get_Count_m1031335223(__this, method) ((  int32_t (*) (List_1_t128053199 *, const RuntimeMethod*))List_1_get_Count_m1031335223_gshared)(__this, method)
+#define List_1_get_Count_m361000296(__this, method) ((  int32_t (*) (List_1_t128053199 *, const RuntimeMethod*))List_1_get_Count_m361000296_gshared)(__this, method)
 // System.Void System.Collections.Generic.List`1<System.Int32>::RemoveAt(System.Int32)
 #define List_1_RemoveAt_m3397721953(__this, p0, method) ((  void (*) (List_1_t128053199 *, int32_t, const RuntimeMethod*))List_1_RemoveAt_m3397721953_gshared)(__this, p0, method)
 // System.String System.String::Concat(System.Object[])
@@ -28241,7 +28241,7 @@ IL_00e7:
 		V_16 = L_62;
 		List_1_t128053199 * L_63 = V_16;
 		NullCheck(L_63);
-		int32_t L_64 = List_1_get_Count_m1031335223(L_63, /*hidden argument*/List_1_get_Count_m1031335223_RuntimeMethod_var);
+		int32_t L_64 = List_1_get_Count_m361000296(L_63, /*hidden argument*/List_1_get_Count_m361000296_RuntimeMethod_var);
 		if ((((int32_t)L_64) <= ((int32_t)0)))
 		{
 			goto IL_01b7;
@@ -28251,14 +28251,14 @@ IL_00e7:
 		List_1_t128053199 * L_65 = V_16;
 		List_1_t128053199 * L_66 = V_16;
 		NullCheck(L_66);
-		int32_t L_67 = List_1_get_Count_m1031335223(L_66, /*hidden argument*/List_1_get_Count_m1031335223_RuntimeMethod_var);
+		int32_t L_67 = List_1_get_Count_m361000296(L_66, /*hidden argument*/List_1_get_Count_m361000296_RuntimeMethod_var);
 		NullCheck(L_65);
 		int32_t L_68 = List_1_get_Item_m2253088034(L_65, ((int32_t)il2cpp_codegen_subtract((int32_t)L_67, (int32_t)1)), /*hidden argument*/List_1_get_Item_m2253088034_RuntimeMethod_var);
 		V_17 = L_68;
 		List_1_t128053199 * L_69 = V_16;
 		List_1_t128053199 * L_70 = V_16;
 		NullCheck(L_70);
-		int32_t L_71 = List_1_get_Count_m1031335223(L_70, /*hidden argument*/List_1_get_Count_m1031335223_RuntimeMethod_var);
+		int32_t L_71 = List_1_get_Count_m361000296(L_70, /*hidden argument*/List_1_get_Count_m361000296_RuntimeMethod_var);
 		NullCheck(L_69);
 		List_1_RemoveAt_m3397721953(L_69, ((int32_t)il2cpp_codegen_subtract((int32_t)L_71, (int32_t)1)), /*hidden argument*/List_1_RemoveAt_m3397721953_RuntimeMethod_var);
 		ObjectU5BU5D_t2843939325* L_72 = ((ObjectU5BU5D_t2843939325*)SZArrayNew(ObjectU5BU5D_t2843939325_il2cpp_TypeInfo_var, (uint32_t)4));
