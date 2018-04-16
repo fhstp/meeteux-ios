@@ -14,5 +14,6 @@ target 'Unity-iPhone' do
 
   # Pods for ble-beacon-scan
   pod 'KontaktSDK', '~> 1.3'
+  pod 'SwiftKeychainWrapper', '~> 3.0'
 
 end

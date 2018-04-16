@@ -117,17 +117,42 @@ var LocationActions = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/actions/StatusActions.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CHANGE_ERROR_MESSAGE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return StatusActions; });
+var CHANGE_ERROR_MESSAGE = 'CHANGE_ERROR_MESSAGE';
+var StatusActions = (function () {
+    function StatusActions() {
+    }
+    StatusActions.prototype.changeErrorMessage = function (error) {
+        return {
+            type: CHANGE_ERROR_MESSAGE,
+            error: error
+        };
+    };
+    return StatusActions;
+}());
+
+//# sourceMappingURL=StatusActions.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/actions/UserActions.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return CHANGE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return CHANGE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return CHANGE_PLATFORM; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CHANGE_LOOKUPTABLE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return UserActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return CHANGE_TOKEN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return UserActions; });
 var CHANGE_USER = 'CHANGE_USER';
 var CHANGE_PLATFORM = 'CHANGE_PLATFORM';
 var CHANGE_LOOKUPTABLE = 'CHANGE_LOOKUPTABLE';
+var CHANGE_TOKEN = 'CHANGE_TOKEN';
 var UserActions = (function () {
     function UserActions() {
     }
@@ -147,6 +172,12 @@ var UserActions = (function () {
         return {
             type: CHANGE_LOOKUPTABLE,
             lookupTable: lookupTable
+        };
+    };
+    UserActions.prototype.changeToken = function (token) {
+        return {
+            type: CHANGE_TOKEN,
+            token: token
         };
     };
     return UserActions;
@@ -245,6 +276,8 @@ module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\n  <span>MEETeUX
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__ = __webpack_require__("../../../../../src/app/actions/UserActions.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_LocationActions__ = __webpack_require__("../../../../../src/app/actions/LocationActions.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_utilities_service__ = __webpack_require__("../../../../../src/app/services/utilities.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_native_communication_service__ = __webpack_require__("../../../../../src/app/services/native-communication.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__WindowRef__ = __webpack_require__("../../../../../src/app/WindowRef.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -261,21 +294,56 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
+
+
 var AppComponent = (function () {
-    function AppComponent(appStore, userActions, locationActions, utilitiesService) {
+    function AppComponent(appStore, userActions, locationActions, utilitiesService, winRef, nativeCommunicationService) {
+        var _this = this;
         this.appStore = appStore;
         this.userActions = userActions;
         this.locationActions = locationActions;
         this.utilitiesService = utilitiesService;
+        this.winRef = winRef;
+        this.nativeCommunicationService = nativeCommunicationService;
         this.title = 'app';
+        this._unsubscribe = this.appStore.subscribe(function () {
+            var state = _this.appStore.getState();
+            var token = state.token;
+            if (_this.currentToken !== token && token !== undefined) {
+                _this.utilitiesService.sendToNative(token, 'saveToken');
+            }
+        });
     }
     AppComponent.prototype.ngOnInit = function () {
         this.appStore.dispatch(this.locationActions.changeAtExhibitParentId(0));
         this.appStore.dispatch(this.locationActions.changeOnExhibit(false));
         this.requestCheckedPlatform();
+        this.getTokenForAutoLogin();
+    };
+    AppComponent.prototype.ngOnDestroy = function () {
+        this._unsubscribe();
     };
     AppComponent.prototype.requestCheckedPlatform = function () {
         this.appStore.dispatch(this.userActions.changePlatform(this.utilitiesService.checkPlatform()));
+    };
+    AppComponent.prototype.getTokenForAutoLogin = function () {
+        var state = this.appStore.getState();
+        var platform = state.platform;
+        switch (platform) {
+            case 'IOS':
+                this.winRef.nativeWindow.webkit.messageHandlers.getToken.postMessage('get');
+                break;
+            case 'Android':
+                // TODO: Android Implementation
+                break;
+            default:
+                var data = JSON.parse(localStorage.getItem('token'));
+                // console.log('LOCAL STORAGE: ' + data.token);
+                if (data) {
+                    this.nativeCommunicationService.autoLogin(data);
+                }
+                break;
+        }
     };
     return AppComponent;
 }());
@@ -287,10 +355,10 @@ AppComponent = __decorate([
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(0, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [Object, typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["d" /* UserActions */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__actions_LocationActions__["g" /* LocationActions */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_utilities_service__["a" /* UtilitiesService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [Object, typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["e" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["e" /* UserActions */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__actions_LocationActions__["g" /* LocationActions */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_utilities_service__["a" /* UtilitiesService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_5__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__WindowRef__["a" /* WindowRef */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _e || Object])
 ], AppComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -327,8 +395,9 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__reducers_rootReducer__ = __webpack_require__("../../../../../src/app/reducers/rootReducer.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__actions_LocationActions__ = __webpack_require__("../../../../../src/app/actions/LocationActions.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__actions_UserActions__ = __webpack_require__("../../../../../src/app/actions/UserActions.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_redux_logger__ = __webpack_require__("../../../../redux-logger/dist/redux-logger.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_redux_logger___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_redux_logger__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__actions_StatusActions__ = __webpack_require__("../../../../../src/app/actions/StatusActions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_redux_logger__ = __webpack_require__("../../../../redux-logger/dist/redux-logger.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_redux_logger___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27_redux_logger__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -365,7 +434,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var appStore = Object(__WEBPACK_IMPORTED_MODULE_22_redux__["b" /* createStore */])(__WEBPACK_IMPORTED_MODULE_23__reducers_rootReducer__["a" /* rootReducer */], Object(__WEBPACK_IMPORTED_MODULE_22_redux__["a" /* applyMiddleware */])(__WEBPACK_IMPORTED_MODULE_26_redux_logger___default.a));
+
+var appStore = Object(__WEBPACK_IMPORTED_MODULE_22_redux__["b" /* createStore */])(__WEBPACK_IMPORTED_MODULE_23__reducers_rootReducer__["a" /* rootReducer */], Object(__WEBPACK_IMPORTED_MODULE_22_redux__["a" /* applyMiddleware */])(__WEBPACK_IMPORTED_MODULE_27_redux_logger___default.a));
 var AppModule = (function () {
     function AppModule(winRef, zone, nativeCommunicationService, utilitiesService) {
         var _this = this;
@@ -389,6 +459,10 @@ var AppModule = (function () {
             }
             case 'send_device_infos': {
                 this.nativeCommunicationService.transmitODRegister(value);
+                break;
+            }
+            case 'send_token': {
+                this.nativeCommunicationService.autoLogin(value);
                 break;
             }
             default: {
@@ -435,7 +509,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_21__services_location_service__["a" /* LocationService */],
             { provide: 'AppStore', useValue: appStore },
             __WEBPACK_IMPORTED_MODULE_24__actions_LocationActions__["g" /* LocationActions */],
-            __WEBPACK_IMPORTED_MODULE_25__actions_UserActions__["d" /* UserActions */],
+            __WEBPACK_IMPORTED_MODULE_25__actions_UserActions__["e" /* UserActions */],
+            __WEBPACK_IMPORTED_MODULE_26__actions_StatusActions__["b" /* StatusActions */],
             __WEBPACK_IMPORTED_MODULE_13__services_utilities_service__["a" /* UtilitiesService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_14__app_component__["a" /* AppComponent */]]
@@ -866,7 +941,7 @@ MainViewComponent = __decorate([
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */]) === "function" && _b || Object, Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__actions_UserActions__["d" /* UserActions */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_utilities_service__["a" /* UtilitiesService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_location_service__["a" /* LocationService */]) === "function" && _b || Object, Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__actions_UserActions__["e" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__actions_UserActions__["e" /* UserActions */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_utilities_service__["a" /* UtilitiesService */]) === "function" && _d || Object])
 ], MainViewComponent);
 
 var _a, _b, _c, _d;
@@ -942,6 +1017,7 @@ PageNotFoundComponent = __decorate([
 /* harmony export (immutable) */ __webpack_exports__["a"] = rootReducer;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__ = __webpack_require__("../../../../../src/app/actions/LocationActions.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__ = __webpack_require__("../../../../../src/app/actions/UserActions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_StatusActions__ = __webpack_require__("../../../../../src/app/actions/StatusActions.ts");
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -952,7 +1028,9 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 };
 
 
+
 var initialState = {
+    token: undefined,
     lookupTable: [],
     user: undefined,
     currentLocation: undefined,
@@ -961,7 +1039,8 @@ var initialState = {
     connectedToExhibit: false,
     platform: undefined,
     atExhibitParentId: undefined,
-    onExhibit: undefined
+    onExhibit: undefined,
+    error: undefined
 };
 function rootReducer(state, action) {
     if (state === void 0) { state = initialState; }
@@ -978,12 +1057,16 @@ function rootReducer(state, action) {
             return __assign({}, state, { atExhibitParentId: action.atExhibitParentId });
         case __WEBPACK_IMPORTED_MODULE_0__actions_LocationActions__["f" /* CHANGE_ON_EXHIBIT */]:
             return __assign({}, state, { onExhibit: action.onExhibit });
-        case __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["c" /* CHANGE_USER */]:
+        case __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["d" /* CHANGE_USER */]:
             return __assign({}, state, { user: action.user });
+        case __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["c" /* CHANGE_TOKEN */]:
+            return __assign({}, state, { token: action.token });
         case __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["b" /* CHANGE_PLATFORM */]:
             return __assign({}, state, { platform: action.platform });
         case __WEBPACK_IMPORTED_MODULE_1__actions_UserActions__["a" /* CHANGE_LOOKUPTABLE */]:
             return __assign({}, state, { lookupTable: action.lookupTable });
+        case __WEBPACK_IMPORTED_MODULE_2__actions_StatusActions__["a" /* CHANGE_ERROR_MESSAGE */]:
+            return __assign({}, state, { error: action.error });
         default:
             return state;
     }
@@ -1013,7 +1096,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <mat-card class=\"registerForm\">\n    <h1>Registration</h1>\n    <h2>Please enter a username</h2>\n    <mat-form-field class=\"example-full-width\">\n      <input matInput placeholder=\"Username\" [(ngModel)]=\"name\">\n    </mat-form-field>\n    <br />\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos()\">Register</button>\n  </mat-card>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\n  <mat-card class=\"registerForm\">\n    <h1>Registration</h1>\n    <h2>Please enter a username</h2>\n    <mat-form-field class=\"example-full-width\">\n      <input matInput placeholder=\"Username\" [(ngModel)]=\"name\">\n    </mat-form-field>\n    <br />\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(false)\">Register</button>\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(true)\">Register As Guest</button>\n  </mat-card>\n</div>\n"
 
 /***/ }),
 
@@ -1052,8 +1135,9 @@ var RegisterComponent = (function () {
         this.appStore = appStore;
         this.userActions = userActions;
     }
-    RegisterComponent.prototype.requestDeviceInfos = function () {
+    RegisterComponent.prototype.requestDeviceInfos = function (isGuest) {
         this.nativeCommunicationService.registerName = this.name;
+        this.nativeCommunicationService.registerIsGuest = isGuest;
         var state = this.appStore.getState();
         var platform = state.platform;
         switch (platform) {
@@ -1083,7 +1167,7 @@ RegisterComponent = __decorate([
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(3, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__WindowRef__["a" /* WindowRef */]) === "function" && _c || Object, Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__actions_UserActions__["d" /* UserActions */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__WindowRef__["a" /* WindowRef */]) === "function" && _c || Object, Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__actions_UserActions__["e" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__actions_UserActions__["e" /* UserActions */]) === "function" && _d || Object])
 ], RegisterComponent);
 
 var _a, _b, _c, _d;
@@ -1181,7 +1265,9 @@ var ExhibitService = (function () {
     }
     ExhibitService.prototype.establishExhibitConnection = function (url) {
         var _this = this;
-        this.socket.openNewExhibitConnection(url);
+        var localURL = 'http://localhost:8100/';
+        this.socket.openNewExhibitConnection(localURL);
+        // this.socket.openNewExhibitConnection(url);
         this.socket.connection.on('connected', function () {
             _this.appStore.dispatch(_this.locationActions.changeConnectedExhibit(true));
         });
@@ -1204,6 +1290,7 @@ var ExhibitService = (function () {
     ExhibitService.prototype.startAutoResponder = function () {
         var _this = this;
         this.socket.connection.on('exhibitStatusCheck', function () {
+            console.log('Auto Responder Check');
             var user = _this.appStore.getState().user;
             _this.socket.connection.emit('exhibitStatusCheckResult', user);
         });
@@ -1228,7 +1315,7 @@ var ExhibitService = (function () {
 ExhibitService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(5, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__exhibit_socket_service__["a" /* ExhibitSocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__exhibit_socket_service__["a" /* ExhibitSocketService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__god_service__["a" /* GodService */]) === "function" && _e || Object, Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["g" /* LocationActions */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__actions_UserActions__["d" /* UserActions */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__services_utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_utilities_service__["a" /* UtilitiesService */]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__exhibit_socket_service__["a" /* ExhibitSocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__exhibit_socket_service__["a" /* ExhibitSocketService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__god_service__["a" /* GodService */]) === "function" && _e || Object, Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_LocationActions__["g" /* LocationActions */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__actions_UserActions__["e" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__actions_UserActions__["e" /* UserActions */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__services_utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__services_utilities_service__["a" /* UtilitiesService */]) === "function" && _h || Object])
 ], ExhibitService);
 
 var _a, _b, _c, _d, _e, _f, _g, _h;
@@ -1267,8 +1354,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var GodSocketService = (function (_super) {
     __extends(GodSocketService, _super);
     function GodSocketService() {
-        // super({ url: 'http://god.meeteux.fhstp.ac.at:3000', options: {} });
-        return _super.call(this, { url: 'https://god.meeteux.fhstp.ac.at', options: { secure: true } }) || this;
+        return _super.call(this, { url: 'https://god.meeteux.fhstp.ac.at:3000', options: { secure: true } }) || this;
+        // super({ url: 'https://localhost:3000', options: {secure: true} });
+        // super({ url: 'https://god.meeteux.fhstp.ac.at', options: {secure: true} });
     }
     return GodSocketService;
 }(__WEBPACK_IMPORTED_MODULE_1_ngx_socket_io__["a" /* Socket */]));
@@ -1293,7 +1381,8 @@ GodSocketService = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__god_socket_service__ = __webpack_require__("../../../../../src/app/services/god-socket.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__actions_LocationActions__ = __webpack_require__("../../../../../src/app/actions/LocationActions.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__ = __webpack_require__("../../../../../src/app/actions/UserActions.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utilities_service__ = __webpack_require__("../../../../../src/app/services/utilities.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__actions_StatusActions__ = __webpack_require__("../../../../../src/app/actions/StatusActions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utilities_service__ = __webpack_require__("../../../../../src/app/services/utilities.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1314,16 +1403,18 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
+
 var GodService = (function () {
-    function GodService(router, winRef, locationService, socket, appStore, locationActions, userActions, utilitiesService) {
+    function GodService(router, winRef, locationService, socket, store, locationActions, userActions, statusActions, utilitiesService) {
         var _this = this;
         this.router = router;
         this.winRef = winRef;
         this.locationService = locationService;
         this.socket = socket;
-        this.appStore = appStore;
+        this.store = store;
         this.locationActions = locationActions;
         this.userActions = userActions;
+        this.statusActions = statusActions;
         this.utilitiesService = utilitiesService;
         this.socket.on('news', function (msg) {
             _this.utilitiesService.sendToNative(msg, 'print');
@@ -1334,10 +1425,18 @@ var GodService = (function () {
         this.socket.emit('registerOD', data);
         this.socket.on('registerODResult', function (result) {
             _this.utilitiesService.sendToNative(result, 'print');
-            _this.appStore.dispatch(_this.userActions.changeUser(result.user));
-            _this.appStore.dispatch(_this.userActions.changeLookupTable(result.locations));
-            _this.locationService.lookuptable = result.locations;
-            var state = _this.appStore.getState();
+            var res = result.data;
+            var message = result.message;
+            // this.nativeCommunicationService.sendToNative(result, 'print');
+            if (message.code > 299) {
+                _this.store.dispatch(_this.statusActions.changeErrorMessage(message));
+                return;
+            }
+            _this.store.dispatch(_this.userActions.changeUser(res.user));
+            _this.store.dispatch(_this.userActions.changeLookupTable(res.locations));
+            _this.store.dispatch(_this.userActions.changeToken(res.token));
+            _this.locationService.lookuptable = res.locations;
+            var state = _this.store.getState();
             var platform = state.platform;
             _this.router.navigate(['/mainview']).then(function () {
                 // send success to native & start beacon scan
@@ -1356,19 +1455,56 @@ var GodService = (function () {
             _this.socket.removeAllListeners('registerODResult');
         });
     };
+    GodService.prototype.registerODGuest = function (data) {
+        var _this = this;
+        this.socket.emit('registerODGuest', data);
+        this.socket.on('registerODResult', function (result) {
+            var res = result.data;
+            var message = result.message;
+            // this.nativeCommunicationService.sendToNative(result, 'print');
+            if (message.code > 299) {
+                _this.store.dispatch(_this.statusActions.changeErrorMessage(message));
+                return;
+            }
+            _this.store.dispatch(_this.userActions.changeUser(res.user));
+            _this.store.dispatch(_this.userActions.changeLookupTable(res.locations));
+            _this.store.dispatch(_this.userActions.changeToken(res.token));
+            _this.locationService.lookuptable = res.locations;
+            var state = _this.store.getState();
+            var platform = state.platform;
+            _this.router.navigate(['/mainview']).then(function () {
+                // send success to native & start beacon scan
+                // this.nativeCommunicationService.sendToNative('success', 'registerOD');
+                switch (platform) {
+                    case 'IOS':
+                        _this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage('success');
+                        break;
+                    case 'Android':
+                        _this.winRef.nativeWindow.MEETeUXAndroidAppRoot.registerOD();
+                        break;
+                    default:
+                        break;
+                }
+            });
+            _this.socket.removeAllListeners('registerODResult');
+        });
+    };
     GodService.prototype.registerLocation = function (id) {
         var _this = this;
-        var state = this.appStore.getState();
+        var state = this.store.getState();
         var user = state.user;
         this.socket.emit('registerLocation', { location: id, user: user.id });
-        this.socket.on('registerLocationResult', function (registeredLocation) {
-            if (registeredLocation === 'FAILED') {
+        this.socket.on('registerLocationResult', function (result) {
+            var res = result.data;
+            var message = result.message;
+            if (message.code > 299) {
+                _this.store.dispatch(_this.statusActions.changeErrorMessage(message));
                 _this.utilitiesService.sendToNative('RegisterLocation: FAILED', 'print');
                 return;
             }
-            _this.locationService.updateCurrentLocation(registeredLocation);
+            _this.locationService.updateCurrentLocation(res);
             _this.utilitiesService.sendToNative(_this.locationService.currentLocation, 'print');
-            state = _this.appStore.getState();
+            state = _this.store.getState();
             var platform = state.platform;
             _this.router.navigate([_this.locationService.currentLocation.contentURL]).then(function () {
                 // send success to native & trigger signal
@@ -1377,7 +1513,6 @@ var GodService = (function () {
                         _this.winRef.nativeWindow.webkit.messageHandlers.triggerSignal.postMessage('success');
                         break;
                     case 'Android':
-                        _this.winRef.nativeWindow.MEETeUXAndroidAppRoot.triggerSignal();
                         break;
                     default:
                         break;
@@ -1391,15 +1526,19 @@ var GodService = (function () {
         if (callback === void 0) { callback = null; }
         this.socket.emit('checkLocationStatus', data);
         this.socket.on('checkLocationStatusResult', function (result) {
-            if (result === 'FAILED') {
+            var res = result.data;
+            var message = result.message;
+            if (message.code > 299) {
+                console.log('RegisterLocation: FAILED');
+                _this.store.dispatch(_this.statusActions.changeErrorMessage(message));
                 return;
             }
-            var location = _this.locationService.findLocation(data);
+            var location = _this.locationService.findLocation(res.location);
             if (location.locationTypeId !== 2) {
-                _this.appStore.dispatch(_this.locationActions.changeLocationStatus(result));
+                _this.store.dispatch(_this.locationActions.changeLocationStatus(res.status));
             }
             if (callback != null) {
-                callback(result);
+                callback(res.status);
             }
             _this.socket.removeAllListeners('checkLocationStatusResult');
         });
@@ -1408,9 +1547,37 @@ var GodService = (function () {
         var _this = this;
         this.socket.emit('disconnectedFromExhibit', { parentLocation: parentLocation, location: location });
         this.socket.on('disconnectedFromExhibitResult', function (result) {
+            var res = result.data;
+            var message = result.message;
             _this.utilitiesService.sendToNative('Disconnected from Exhibit-' + parentLocation + ': ' + result, 'print');
-            _this.registerLocation(parentLocation);
+            if (message.code > 299) {
+                _this.store.dispatch(_this.statusActions.changeErrorMessage(message));
+                return;
+            }
+            // console.log('Disconnected from Exhibit-' + res.parent + ': ' + res.location);
+            _this.registerLocation(res.parent);
             _this.socket.removeAllListeners('disconnectedFromExhibitResult');
+        });
+    };
+    GodService.prototype.autoLogin = function (token) {
+        var _this = this;
+        this.socket.emit('autoLoginOD', token);
+        this.socket.on('autoLoginODResult', function (result) {
+            console.log('---------------------- AutoLoginODResult -----------------------------');
+            console.log(result);
+            var data = result.data;
+            var message = result.message;
+            if (message.code > 299) {
+                _this.store.dispatch(_this.statusActions.changeErrorMessage(message));
+                return;
+            }
+            _this.store.dispatch(_this.userActions.changeUser(data.user));
+            _this.store.dispatch(_this.userActions.changeLookupTable(data.locations));
+            _this.store.dispatch(_this.userActions.changeToken(data.token));
+            _this.locationService.lookuptable = data.locations;
+            _this.router.navigate(['/mainview']).then(function () {
+            });
+            _this.socket.removeAllListeners('autoLoginODResult');
         });
     };
     return GodService;
@@ -1418,10 +1585,10 @@ var GodService = (function () {
 GodService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(4, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__god_socket_service__["a" /* GodSocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__god_socket_service__["a" /* GodSocketService */]) === "function" && _d || Object, Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__actions_LocationActions__["g" /* LocationActions */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["d" /* UserActions */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__utilities_service__["a" /* UtilitiesService */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__WindowRef__["a" /* WindowRef */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__location_service__["a" /* LocationService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__god_socket_service__["a" /* GodSocketService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__god_socket_service__["a" /* GodSocketService */]) === "function" && _d || Object, Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__actions_LocationActions__["g" /* LocationActions */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["e" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["e" /* UserActions */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_7__actions_StatusActions__["b" /* StatusActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__actions_StatusActions__["b" /* StatusActions */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_8__utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__utilities_service__["a" /* UtilitiesService */]) === "function" && _h || Object])
 ], GodService);
 
-var _a, _b, _c, _d, _e, _f, _g;
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=god.service.js.map
 
 /***/ }),
@@ -1507,7 +1674,7 @@ var LocationService = (function () {
 LocationService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(0, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [Object, typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["d" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["d" /* UserActions */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [Object, typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["e" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__actions_UserActions__["e" /* UserActions */]) === "function" && _a || Object])
 ], LocationService);
 
 var _a;
@@ -1555,8 +1722,14 @@ var NativeCommunicationService = (function () {
         var deviceOS = result.deviceOS;
         var deviceVersion = result.deviceVersion;
         var deviceModel = result.deviceModel;
-        var data = { identifier: this.registerName, deviceAddress: deviceAddress, deviceOS: deviceOS, deviceVersion: deviceVersion, deviceModel: deviceModel };
-        this.godService.registerOD(data);
+        if (this.registerIsGuest) {
+            var data = { deviceAddress: deviceAddress, deviceOS: deviceOS, deviceVersion: deviceVersion, deviceModel: deviceModel };
+            this.godService.registerODGuest(data);
+        }
+        else {
+            var data = { identifier: this.registerName, deviceAddress: deviceAddress, deviceOS: deviceOS, deviceVersion: deviceVersion, deviceModel: deviceModel };
+            this.godService.registerOD(data);
+        }
     };
     NativeCommunicationService.prototype.transmitLocationRegister = function (result) {
         var _this = this;
@@ -1592,6 +1765,13 @@ var NativeCommunicationService = (function () {
                     this.godService.registerLocation(location.id);
                 }
             }
+        }
+    };
+    NativeCommunicationService.prototype.autoLogin = function (data) {
+        var token = data.token;
+        this.utilitiesService.sendToNative('Autlogin', 'print');
+        if (token) {
+            this.godService.autoLogin(token);
         }
     };
     return NativeCommunicationService;
@@ -1635,7 +1815,18 @@ var UtilitiesService = (function () {
     // handels console.log - sends to native console if iOS || Android
     UtilitiesService.prototype.sendToNative = function (messageBody, messageName) {
         if (this.isWeb) {
-            console.log(messageBody);
+            switch (messageName) {
+                case 'saveToken':
+                    // console.log(messageBody);
+                    localStorage.setItem('token', JSON.stringify({ token: messageBody }));
+                    break;
+                case 'deleteToken':
+                    // localStorage.removeItem('token');
+                    break;
+                default:
+                    console.log(messageBody);
+                    break;
+            }
         }
         if (this.isIOS) {
             switch (messageName) {
@@ -1650,6 +1841,12 @@ var UtilitiesService = (function () {
                     break;
                 case 'triggerSignal':
                     this.winRef.nativeWindow.webkit.messageHandlers.triggerSignal.postMessage(messageBody);
+                    break;
+                case 'saveToken':
+                    this.winRef.nativeWindow.webkit.messageHandlers.saveToken.postMessage(messageBody);
+                    break;
+                case 'deleteToken':
+                    this.winRef.nativeWindow.webkit.messsageHandlers.deleteToken.postMessage('delete');
                     break;
                 default:
                     break;
@@ -1669,11 +1866,18 @@ var UtilitiesService = (function () {
                 case 'triggerSignal':
                     this.winRef.nativeWindow.MEETeUXAndroidAppRoot.triggerSignal();
                     break;
+                // TODO: Android Implementation
+                case 'saveToken':
+                    break;
+                // TODO: Android Implementation
+                case 'deleteToken':
+                    break;
                 default:
                     break;
             }
         }
     };
+    // sets OS platform
     UtilitiesService.prototype.checkPlatform = function () {
         var userAgent = window.navigator.userAgent;
         var safariCheck = false;

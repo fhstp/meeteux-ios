@@ -13,6 +13,7 @@ import KontaktSDK
 import Darwin
 import AudioToolbox
 import AVFoundation
+import SwiftKeychainWrapper
 
 class WebViewController: UIViewController, WKScriptMessageHandler {
     
@@ -83,6 +84,21 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             name: "print"
         )
         
+        contentController.add(
+            self,
+            name: "saveToken"
+        )
+        
+        contentController.add(
+            self,
+            name: "getToken"
+        )
+        
+        contentController.add(
+            self,
+            name: "deleteToken"
+        )
+        
         
         config.userContentController = contentController
         
@@ -96,7 +112,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     
     //- MARK: Web to native calls
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        //print("Received event \(message.name) \(message.body)")
+        print("Received event \(message.name) \(message.body)")
         
         switch "\(message.name)" {
         case "getDeviceInfos":
@@ -108,6 +124,12 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             triggerSignal()
         case "print":
             print(message.body)
+        case "getToken":
+            getToken()
+        case "saveToken":
+            saveToken(token: message.body)
+        case "deleteToken":
+            deleteToken()
         default:
             print(message.body)
         }
@@ -115,6 +137,30 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     
     
     //- MARK: Helper Functions
+    func saveToken(token: Any)
+    {
+        if let stringToken = token as? String
+        {
+            print(stringToken)
+            KeychainWrapper.standard.set(stringToken, forKey: "token")
+        }
+    }
+    
+    func deleteToken()
+    {
+        KeychainWrapper.standard.removeObject(forKey: "token")
+    }
+    
+    func getToken()
+    {
+        let token: String? = KeychainWrapper.standard.string(forKey: "token")
+        let dict = [
+            "token": token
+        ]
+        // print("Stored Token: \(token)")
+        sendDictToWeb(myDict: dict, functionCall: "send_token")
+    }
+    
     func getDeviceInformation(){
         let mydevice = UIDevice.current
         print("UDID: \(String(describing: mydevice.identifierForVendor?.uuidString)) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
@@ -134,12 +180,12 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     // sends dictionary to webview
     func sendDictToWeb(myDict: Any, functionCall: String){
         let jsonString = getJSONString(myDict: myDict)
-        print(jsonString)
+        print("SendDictToWeb JSON (\(functionCall)): \(jsonString)")
         
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)(\(jsonString))") { result, error in
             guard error == nil else {
-                print(error!)
+                print("SendDictToWeb throw Error: \(error!)")
                 return
             }
         }
