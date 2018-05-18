@@ -13,7 +13,7 @@
         <!--Web View Controller-->
         <scene sceneID="dPq-yU-5rO">
             <objects>
-                <viewController id="ynm-aQ-hxc" customClass="WebViewController" customModule="meeteux" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="webviewcontroller" id="ynm-aQ-hxc" customClass="WebViewController" customModule="meeteux" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HdR-18-9Uh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,6 +42,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="bIa-74-mRe"/>
                     </view>
+                    <connections>
+                        <segue destination="ynm-aQ-hxc" kind="show" identifier="showWebView" id="Fcl-s5-rop"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tb2-mY-afd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

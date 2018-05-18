@@ -33,6 +33,7 @@
 		221B23232028A5BA003F54CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 221B23222028A5BA003F54CC /* Main.storyboard */; };
 		221B23252028A9E2003F54CC /* www in Resources */ = {isa = PBXBuildFile; fileRef = 221B23242028A9E2003F54CC /* www */; };
 		223F44918EC37C9E7C90C820 /* Il2CppCompilerCalculateTypeValues_1Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A55D49F4B98436325B4D559C /* Il2CppCompilerCalculateTypeValues_1Table.cpp */; };
+		226FCE4D20AF39D10064C8A5 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 226FCE4C20AF39D10064C8A5 /* CacheManager.m */; };
 		26DE4D5693FB4039847405B7 /* Il2CppCompilerCalculateTypeValues_6Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A354FE3A118D7475C158B25 /* Il2CppCompilerCalculateTypeValues_6Table.cpp */; };
 		28194F9ABA49C7CBA66B8ABF /* Bulk_UnityEngine.PhysicsModule_0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C248088505BF8C41EEC6E1 /* Bulk_UnityEngine.PhysicsModule_0.cpp */; };
 		2AB14B69A7C4A39108FE915F /* Bulk_Vuforia.UnityExtensions_2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 874B4F75B4CEBB9143C59F69 /* Bulk_Vuforia.UnityExtensions_2.cpp */; };
@@ -235,6 +236,8 @@
 		221B23202028A594003F54CC /* MyAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyAppController.mm; sourceTree = "<group>"; };
 		221B23222028A5BA003F54CC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		221B23242028A9E2003F54CC /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		226FCE4C20AF39D10064C8A5 /* CacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
+		226FCE4E20AF39E70064C8A5 /* CacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		26C74B7F8B9C8717079218D0 /* Bulk_UnityEngine.InputModule_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_UnityEngine.InputModule_0.cpp; path = Classes/Native/Bulk_UnityEngine.InputModule_0.cpp; sourceTree = SOURCE_ROOT; };
 		2A4C475AB2D17ADF52E59547 /* Il2CppCompilerCalculateTypeValues_22Table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Il2CppCompilerCalculateTypeValues_22Table.cpp; path = Classes/Native/Il2CppCompilerCalculateTypeValues_22Table.cpp; sourceTree = SOURCE_ROOT; };
 		33F943408AEB6128C382A756 /* Il2CppCompilerCalculateTypeValues_5Table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Il2CppCompilerCalculateTypeValues_5Table.cpp; path = Classes/Native/Il2CppCompilerCalculateTypeValues_5Table.cpp; sourceTree = SOURCE_ROOT; };
@@ -534,6 +537,8 @@
 				221B231D2028A579003F54CC /* CoolUnitySceneViewController.mm */,
 				221B231A2028A51C003F54CC /* Unity-iPhone-Bridging-Header.h */,
 				221B23222028A5BA003F54CC /* Main.storyboard */,
+				226FCE4E20AF39E70064C8A5 /* CacheManager.h */,
+				226FCE4C20AF39D10064C8A5 /* CacheManager.m */,
 			);
 			path = Stuff;
 			sourceTree = "<group>";
@@ -1162,6 +1167,7 @@
 				8AF7756017997D2700341121 /* AppDelegateListener.mm in Sources */,
 				FC0B20A21B7A4F0B00FDFC55 /* OnDemandResources.mm in Sources */,
 				AAC3E38D1A68945900F6174A /* RegisterFeatures.cpp in Sources */,
+				226FCE4D20AF39D10064C8A5 /* CacheManager.m in Sources */,
 				84DC28F61C5137FE00BC67D7 /* UnityReplayKit.mm in Sources */,
 				8ACB801C177081D4005D0019 /* DeviceSettings.mm in Sources */,
 				03F528631B447098000F4FB8 /* Il2CppOptions.cpp in Sources */,
