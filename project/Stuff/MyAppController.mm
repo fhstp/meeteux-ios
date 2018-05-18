@@ -47,6 +47,20 @@ extern "C" void VuforiaRenderEvent(int marker);
     UnityRegisterRenderingPlugin(&VuforiaSetGraphicsDevice, &VuforiaRenderEvent);
 #endif
 }
+
+extern "C" {
+    // functions called by unity
+    void switchToNative(const char* msg) {
+        
+        // doing stuff
+        printf("switchToNative called\n");
+        printf("%s", msg);
+        
+       /* UIViewController *vc2 = [[WebViewController alloc]init];
+        [self.view addSubview:vc2.view]*/
+    }
+}
+
 @end
 
 

@@ -27,6 +27,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     {
         super.viewDidLoad()
         
+        print("Hallo Welt")
+        
         // Adding webView content
         do {
             guard let filePath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "www")
@@ -98,7 +100,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             self,
             name: "deleteToken"
         )
-        
+    
+        print("contentController add")
         
         config.userContentController = contentController
         
@@ -117,26 +120,58 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         switch "\(message.name)" {
         case "getDeviceInfos":
             getDeviceInformation()
+            break
         case "registerOD":
             // start beacon Scan
             startBeaconScanning()
+            break
         case "triggerSignal":
             triggerSignal()
+            break
         case "print":
-            print(message.body)
+            switch "\(message.body)"
+            {
+                case "showUnityView":
+                    showUnityView()
+                    break
+                default:
+                    print(message.body)
+                    break
+            }
+            break
         case "getToken":
             getToken()
+            break
         case "saveToken":
             saveToken(token: message.body)
+            break
         case "deleteToken":
             deleteToken()
+            break
+        case "observe":
+            switch "\(message.body)"
+            {
+                case "showUnityView":
+                    showUnityView()
+                    break
+                default:
+                    print(message.body)
+                    break
+            }
+            break
         default:
             print(message.body)
+            break
         }
     }
     
     
     //- MARK: Helper Functions
+    func showUnityView()
+    {
+        performSegue(withIdentifier: "showUnity", sender: nil)
+    }
+    
     func saveToken(token: Any)
     {
         if let stringToken = token as? String
@@ -224,6 +259,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         let systemSoundID: SystemSoundID = 1306 // tock
         AudioServicesPlayAlertSound(systemSoundID)
     }
+    
 }
 
 extension WebViewController: KTKBeaconManagerDelegate{

@@ -263,7 +263,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\n  <span>MEETeUX</span>\n\n  <span class=\"example-fill-remaining-space\"></span>\n  <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\" xPosition=\"before\">\n    <button mat-menu-item>\n      <mat-icon>dialpad</mat-icon>\n      <span>Redial</span>\n    </button>\n  </mat-menu>\n</mat-toolbar>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\n  <span>MEETeUX</span>\n\n  <span class=\"example-fill-remaining-space\"></span>\n  <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\" xPosition=\"before\">\n    <button mat-menu-item>\n      <mat-icon>dialpad</mat-icon>\n      <span>Redial</span>\n    </button>\n    <button mat-menu-item (click)=\"showUnityView()\">\n      <mat-icon>whatshot</mat-icon>\n      <span>Unity</span>\n    </button>\n  </mat-menu>\n</mat-toolbar>\n\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -344,6 +344,10 @@ var AppComponent = (function () {
                 }
                 break;
         }
+    };
+    AppComponent.prototype.showUnityView = function () {
+        // this.utilitiesService.sendToNative('AppComponent Show Unity', 'print');
+        this.nativeCommunicationService.transmitShowUnity();
     };
     return AppComponent;
 }());
@@ -1769,10 +1773,15 @@ var NativeCommunicationService = (function () {
     };
     NativeCommunicationService.prototype.autoLogin = function (data) {
         var token = data.token;
-        this.utilitiesService.sendToNative('Autlogin', 'print');
+        this.utilitiesService.sendToNative('Autologin', 'print');
         if (token) {
             this.godService.autoLogin(token);
         }
+    };
+    NativeCommunicationService.prototype.transmitShowUnity = function () {
+        // this.utilitiesService.sendToNative('NativeCommService Show Unity before', 'print');
+        this.utilitiesService.sendToNative('showUnityView', 'showUnityView');
+        // this.utilitiesService.sendToNative('NativeCommService Show Unity after', 'print');
     };
     return NativeCommunicationService;
 }());
@@ -1848,6 +1857,10 @@ var UtilitiesService = (function () {
                 case 'deleteToken':
                     this.winRef.nativeWindow.webkit.messsageHandlers.deleteToken.postMessage('delete');
                     break;
+                case 'showUnityView':
+                    this.winRef.nativeWindow.webkit.messageHandlers.print.postMessage(messageBody);
+                    this.winRef.nativeWindow.webkit.messsageHandlers.observe.postMessage('showUnityView');
+                    break;
                 default:
                     break;
             }
@@ -1871,6 +1884,9 @@ var UtilitiesService = (function () {
                     break;
                 // TODO: Android Implementation
                 case 'deleteToken':
+                    break;
+                case 'showUnityView':
+                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.showUnityView();
                     break;
                 default:
                     break;
