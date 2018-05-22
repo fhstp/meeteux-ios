@@ -65,7 +65,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             self,
             name: "observe"
         )
-        
+        /*
         contentController.add(
             self,
             name: "getDeviceInfos"
@@ -102,7 +102,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         )
     
         print("contentController add")
-        
+        */
         config.userContentController = contentController
         
         self.webView = WKWebView(
@@ -115,8 +115,57 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     
     //- MARK: Web to native calls
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("Received event \(message.name) \(message.body)")
+        //print("Received event \(message.name)")
+        let dict = message.body as? NSDictionary
         
+        if let messageName = dict!["name"] as? String
+        {
+            print("Received message \(messageName)")
+            
+            switch (messageName) {
+            case "getDeviceInfos":
+                getDeviceInformation()
+                break
+            case "registerOD":
+                // start beacon Scan
+                startBeaconScanning()
+                break
+            case "triggerSignal":
+                triggerSignal()
+                break
+            case "showUnityView":
+                showUnityView()
+                break
+            case "getToken":
+                getToken()
+                break
+            case "saveToken":
+                saveToken(token: dict!["data"])
+                break
+            case "deleteToken":
+                deleteToken()
+                break
+            default:
+                print(dict!["data"])
+                break
+            }
+        }
+        
+        
+      /*  let dict = convertToDictionary(text: (message.body as? String)!)
+        print(dict!["data"])*/
+
+        
+        /*
+        let stringToken = message.body as? String
+        print(stringToken)
+        */
+        /*let dict = convertToDictionary(text: stringToken!)
+        print(dict)*/
+        
+        //print(message.body.name)
+        
+        /*
         switch "\(message.name)" {
         case "getDeviceInfos":
             getDeviceInformation()
@@ -162,7 +211,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         default:
             print(message.body)
             break
-        }
+        }*/
     }
     
     
@@ -174,6 +223,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     
     func saveToken(token: Any)
     {
+        print("save");
+        print(token)
         if let stringToken = token as? String
         {
             print(stringToken)
@@ -233,6 +284,19 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         
         return jsonString
     }
+
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
+
     
     func startBeaconScanning(){
         // initialize BeaconManager
@@ -260,6 +324,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         AudioServicesPlayAlertSound(systemSoundID)
     }
     
+    @IBAction func unwindToWebView(segue:UIStoryboardSegue) { }
 }
 
 extension WebViewController: KTKBeaconManagerDelegate{

@@ -263,7 +263,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\n  <span>MEETeUX</span>\n\n  <span class=\"example-fill-remaining-space\"></span>\n  <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\" xPosition=\"before\">\n    <button mat-menu-item>\n      <mat-icon>dialpad</mat-icon>\n      <span>Redial</span>\n    </button>\n    <button mat-menu-item (click)=\"showUnityView()\">\n      <mat-icon>whatshot</mat-icon>\n      <span>Unity</span>\n    </button>\n  </mat-menu>\n</mat-toolbar>\n\n<router-outlet></router-outlet>\n"
+module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\n  <span>MEETeUX</span>\n\n  <span class=\"example-fill-remaining-space\"></span>\n  <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\" xPosition=\"before\">\n    <button mat-menu-item (click)=\"logoutUser()\">\n      <mat-icon>exit_to_app</mat-icon>\n      <span>Logout</span>\n    </button>\n    <button mat-menu-item (click)=\"showUnityView()\">\n      <mat-icon>whatshot</mat-icon>\n      <span>Unity</span>\n    </button>\n  </mat-menu>\n</mat-toolbar>\n\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
@@ -311,6 +311,7 @@ var AppComponent = (function () {
             var token = state.token;
             if (_this.currentToken !== token && token !== undefined) {
                 _this.utilitiesService.sendToNative(token, 'saveToken');
+                _this.currentToken = token;
             }
         });
     }
@@ -329,25 +330,33 @@ var AppComponent = (function () {
     AppComponent.prototype.getTokenForAutoLogin = function () {
         var state = this.appStore.getState();
         var platform = state.platform;
-        switch (platform) {
-            case 'IOS':
+        this.utilitiesService.sendToNative('getToken', 'getToken');
+        /*
+            switch (platform) {
+              
+              case 'IOS':
                 this.winRef.nativeWindow.webkit.messageHandlers.getToken.postMessage('get');
                 break;
-            case 'Android':
+        
+              case 'Android':
                 // TODO: Android Implementation
                 break;
-            default:
-                var data = JSON.parse(localStorage.getItem('token'));
+        
+              default:
+                const data = JSON.parse(localStorage.getItem('token'));
                 // console.log('LOCAL STORAGE: ' + data.token);
                 if (data) {
-                    this.nativeCommunicationService.autoLogin(data);
+                  this.nativeCommunicationService.autoLogin(data);
                 }
                 break;
-        }
+            }*/
     };
     AppComponent.prototype.showUnityView = function () {
         // this.utilitiesService.sendToNative('AppComponent Show Unity', 'print');
         this.nativeCommunicationService.transmitShowUnity();
+    };
+    AppComponent.prototype.logoutUser = function () {
+        this.nativeCommunicationService.logout();
     };
     return AppComponent;
 }());
@@ -463,6 +472,10 @@ var AppModule = (function () {
             }
             case 'send_device_infos': {
                 this.nativeCommunicationService.transmitODRegister(value);
+                break;
+            }
+            case 'logout_success': {
+                this.nativeCommunicationService.logoutSuccess();
                 break;
             }
             case 'send_token': {
@@ -1114,6 +1127,7 @@ module.exports = "<div class=\"wrapper\">\n  <mat-card class=\"registerForm\">\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_native_communication_service__ = __webpack_require__("../../../../../src/app/services/native-communication.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__WindowRef__ = __webpack_require__("../../../../../src/app/WindowRef.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actions_UserActions__ = __webpack_require__("../../../../../src/app/actions/UserActions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_utilities_service__ = __webpack_require__("../../../../../src/app/services/utilities.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1131,32 +1145,38 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
+
 var RegisterComponent = (function () {
-    function RegisterComponent(router, nativeCommunicationService, winRef, appStore, userActions) {
+    function RegisterComponent(router, nativeCommunicationService, winRef, appStore, userActions, utilitiesService) {
         this.router = router;
         this.nativeCommunicationService = nativeCommunicationService;
         this.winRef = winRef;
         this.appStore = appStore;
         this.userActions = userActions;
+        this.utilitiesService = utilitiesService;
     }
     RegisterComponent.prototype.requestDeviceInfos = function (isGuest) {
         this.nativeCommunicationService.registerName = this.name;
         this.nativeCommunicationService.registerIsGuest = isGuest;
         var state = this.appStore.getState();
         var platform = state.platform;
+        this.utilitiesService.sendToNative('getDeviceInfos', 'getDeviceInfos');
+        /*
         switch (platform) {
-            case 'IOS':
-                this.winRef.nativeWindow.webkit.messageHandlers.getDeviceInfos.postMessage('get');
-                break;
-            case 'Android':
-                this.winRef.nativeWindow.MEETeUXAndroidAppRoot.getDeviceInfos();
-                break;
-            default:
-                // INFO: Workaround for trying the application in the browser
-                var data = { deviceAddress: 'deviceAddress', deviceOS: 'deviceOS', deviceVersion: 'deviceVersion', deviceModel: 'deviceModel' };
-                this.nativeCommunicationService.transmitODRegister(data);
-                break;
-        }
+          case 'IOS':
+            this.winRef.nativeWindow.webkit.messageHandlers.getDeviceInfos.postMessage('get');
+          break;
+    
+          case 'Android':
+            this.winRef.nativeWindow.MEETeUXAndroidAppRoot.getDeviceInfos();
+          break;
+    
+          default:
+            // INFO: Workaround for trying the application in the browser
+            const data = {deviceAddress: 'deviceAddress', deviceOS: 'deviceOS', deviceVersion: 'deviceVersion', deviceModel: 'deviceModel'};
+            this.nativeCommunicationService.transmitODRegister(data);
+            break;
+        }*/
     };
     RegisterComponent.prototype.ngOnInit = function () {
         this.name = '';
@@ -1171,10 +1191,10 @@ RegisterComponent = __decorate([
     }),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
     __param(3, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__WindowRef__["a" /* WindowRef */]) === "function" && _c || Object, Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__actions_UserActions__["e" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__actions_UserActions__["e" /* UserActions */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_native_communication_service__["a" /* NativeCommunicationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_native_communication_service__["a" /* NativeCommunicationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__WindowRef__["a" /* WindowRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__WindowRef__["a" /* WindowRef */]) === "function" && _c || Object, Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__actions_UserActions__["e" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__actions_UserActions__["e" /* UserActions */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__services_utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_utilities_service__["a" /* UtilitiesService */]) === "function" && _e || Object])
 ], RegisterComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=register.component.js.map
 
 /***/ }),
@@ -1269,7 +1289,8 @@ var ExhibitService = (function () {
     }
     ExhibitService.prototype.establishExhibitConnection = function (url) {
         var _this = this;
-        var localURL = 'http://localhost:8100/';
+        console.log(url);
+        var localURL = 'http://192.168.8.253:8100/';
         this.socket.openNewExhibitConnection(localURL);
         // this.socket.openNewExhibitConnection(url);
         this.socket.connection.on('connected', function () {
@@ -1445,16 +1466,19 @@ var GodService = (function () {
             _this.router.navigate(['/mainview']).then(function () {
                 // send success to native & start beacon scan
                 _this.utilitiesService.sendToNative('success', 'registerOD');
+                /*
                 switch (platform) {
-                    case 'IOS':
-                        _this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage('success');
-                        break;
-                    case 'Android':
-                        _this.winRef.nativeWindow.MEETeUXAndroidAppRoot.registerOD();
-                        break;
-                    default:
-                        break;
-                }
+                  case 'IOS':
+                    this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage('success');
+                  break;
+      
+                  case 'Android':
+                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.registerOD();
+                  break;
+      
+                  default:
+                    break;
+                }*/
             });
             _this.socket.removeAllListeners('registerODResult');
         });
@@ -1479,16 +1503,20 @@ var GodService = (function () {
             _this.router.navigate(['/mainview']).then(function () {
                 // send success to native & start beacon scan
                 // this.nativeCommunicationService.sendToNative('success', 'registerOD');
+                _this.utilitiesService.sendToNative('success', 'registerOD');
+                /*
                 switch (platform) {
-                    case 'IOS':
-                        _this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage('success');
-                        break;
-                    case 'Android':
-                        _this.winRef.nativeWindow.MEETeUXAndroidAppRoot.registerOD();
-                        break;
-                    default:
-                        break;
-                }
+                  case 'IOS':
+                    this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage('success');
+                    break;
+      
+                  case 'Android':
+                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.registerOD();
+                    break;
+      
+                  default:
+                    break;
+                }*/
             });
             _this.socket.removeAllListeners('registerODResult');
         });
@@ -1512,15 +1540,17 @@ var GodService = (function () {
             var platform = state.platform;
             _this.router.navigate([_this.locationService.currentLocation.contentURL]).then(function () {
                 // send success to native & trigger signal
-                switch (platform) {
-                    case 'IOS':
-                        _this.winRef.nativeWindow.webkit.messageHandlers.triggerSignal.postMessage('success');
-                        break;
-                    case 'Android':
-                        break;
-                    default:
-                        break;
-                }
+                _this.utilitiesService.sendToNative('success', 'triggerSignal');
+                /*switch (platform) {
+                  case 'IOS':
+                    this.winRef.nativeWindow.webkit.messageHandlers.triggerSignal.postMessage('success');
+                    break;
+        
+                  case 'Android':
+                    break;
+                  default:
+                    break;
+                }*/
             });
             _this.socket.removeAllListeners('registerLocationResult');
         });
@@ -1567,8 +1597,8 @@ var GodService = (function () {
         var _this = this;
         this.socket.emit('autoLoginOD', token);
         this.socket.on('autoLoginODResult', function (result) {
-            console.log('---------------------- AutoLoginODResult -----------------------------');
-            console.log(result);
+            // console.log('---------------------- AutoLoginODResult -----------------------------');
+            // console.log(result);
             var data = result.data;
             var message = result.message;
             if (message.code > 299) {
@@ -1579,7 +1609,26 @@ var GodService = (function () {
             _this.store.dispatch(_this.userActions.changeLookupTable(data.locations));
             _this.store.dispatch(_this.userActions.changeToken(data.token));
             _this.locationService.lookuptable = data.locations;
+            var state = _this.store.getState();
+            var platform = state.platform;
             _this.router.navigate(['/mainview']).then(function () {
+                // send success to native & start beacon scan
+                // this.nativeCommunicationService.sendToNative('success', 'registerOD');
+                _this.utilitiesService.sendToNative('success', 'registerOD');
+                /*
+                        switch (platform)
+                        {
+                          case 'IOS':
+                            this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage('success');
+                            break;
+                
+                          case 'Android':
+                            this.winRef.nativeWindow.MEETeUXAndroidAppRoot.registerOD();
+                            break;
+                
+                          default:
+                            break;
+                        }*/
             });
             _this.socket.removeAllListeners('autoLoginODResult');
         });
@@ -1696,6 +1745,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__location_service__ = __webpack_require__("../../../../../src/app/services/location.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__ = __webpack_require__("../../../../../src/app/actions/LocationActions.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utilities_service__ = __webpack_require__("../../../../../src/app/services/utilities.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__ = __webpack_require__("../../../../../src/app/actions/UserActions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1713,13 +1764,17 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 
+
+
 var NativeCommunicationService = (function () {
-    function NativeCommunicationService(godService, locationService, appStore, locationActions, utilitiesService) {
+    function NativeCommunicationService(router, godService, locationService, appStore, locationActions, utilitiesService, userActions) {
+        this.router = router;
         this.godService = godService;
         this.locationService = locationService;
         this.appStore = appStore;
         this.locationActions = locationActions;
         this.utilitiesService = utilitiesService;
+        this.userActions = userActions;
     }
     NativeCommunicationService.prototype.transmitODRegister = function (result) {
         var deviceAddress = result.deviceAddress;
@@ -1783,15 +1838,25 @@ var NativeCommunicationService = (function () {
         this.utilitiesService.sendToNative('showUnityView', 'showUnityView');
         // this.utilitiesService.sendToNative('NativeCommService Show Unity after', 'print');
     };
+    NativeCommunicationService.prototype.logout = function () {
+        this.utilitiesService.sendToNative('clearToken', 'clearToken');
+    };
+    NativeCommunicationService.prototype.logoutSuccess = function () {
+        var _this = this;
+        this.appStore.dispatch(this.userActions.changeToken(undefined));
+        this.router.navigate(['']).then(function () {
+            _this.utilitiesService.sendToNative('User Logged out', 'print');
+        });
+    };
     return NativeCommunicationService;
 }());
 NativeCommunicationService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-    __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__god_service__["a" /* GodService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */]) === "function" && _b || Object, Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["g" /* LocationActions */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__utilities_service__["a" /* UtilitiesService */]) === "function" && _d || Object])
+    __param(3, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('AppStore')),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__god_service__["a" /* GodService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__god_service__["a" /* GodService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__location_service__["a" /* LocationService */]) === "function" && _c || Object, Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["g" /* LocationActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__actions_LocationActions__["g" /* LocationActions */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__utilities_service__["a" /* UtilitiesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__utilities_service__["a" /* UtilitiesService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["e" /* UserActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__actions_UserActions__["e" /* UserActions */]) === "function" && _f || Object])
 ], NativeCommunicationService);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=native-communication.service.js.map
 
 /***/ }),
@@ -1829,41 +1894,59 @@ var UtilitiesService = (function () {
                     // console.log(messageBody);
                     localStorage.setItem('token', JSON.stringify({ token: messageBody }));
                     break;
-                case 'deleteToken':
-                    // localStorage.removeItem('token');
+                case 'clearToken':
+                    localStorage.removeItem('token');
                     break;
                 default:
-                    console.log(messageBody);
                     break;
             }
         }
         if (this.isIOS) {
-            switch (messageName) {
-                case 'print':
-                    this.winRef.nativeWindow.webkit.messageHandlers.print.postMessage(messageBody);
-                    break;
-                case 'getDeviceInfos':
-                    this.winRef.nativeWindow.webkit.messageHandlers.getDeviceInfos.postMessage(messageBody);
-                    break;
-                case 'registerOD':
-                    this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage(messageBody);
-                    break;
-                case 'triggerSignal':
-                    this.winRef.nativeWindow.webkit.messageHandlers.triggerSignal.postMessage(messageBody);
-                    break;
-                case 'saveToken':
-                    this.winRef.nativeWindow.webkit.messageHandlers.saveToken.postMessage(messageBody);
-                    break;
-                case 'deleteToken':
-                    this.winRef.nativeWindow.webkit.messsageHandlers.deleteToken.postMessage('delete');
-                    break;
-                case 'showUnityView':
-                    this.winRef.nativeWindow.webkit.messageHandlers.print.postMessage(messageBody);
-                    this.winRef.nativeWindow.webkit.messsageHandlers.observe.postMessage('showUnityView');
-                    break;
-                default:
-                    break;
-            }
+            var message = {
+                'name': messageName,
+                'data': messageBody
+            };
+            this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(message);
+            /*
+                    switch (messageName) {
+                      case 'print':
+                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
+                        // this.winRef.nativeWindow.webkit.messageHandlers.print.postMessage(messageBody);
+                        break;
+            
+                      case 'getDeviceInfos':
+                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
+                        // this.winRef.nativeWindow.webkit.messageHandlers.getDeviceInfos.postMessage(messageBody);
+                        break;
+            
+                      case 'registerOD':
+                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
+                        // this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage(messageBody);
+                        break;
+            
+                      case 'triggerSignal':
+                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
+                        // this.winRef.nativeWindow.webkit.messageHandlers.triggerSignal.postMessage(messageBody);
+                        break;
+            
+                      case 'saveToken':
+                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
+                        // this.winRef.nativeWindow.webkit.messageHandlers.saveToken.postMessage(messageBody);
+                        break;
+            
+                      case 'clearToken':
+                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
+                        // this.winRef.nativeWindow.webkit.messsageHandlers.clearToken.postMessage(messageBody);
+                        break;
+            
+                      case 'showUnityView':
+                        this.winRef.nativeWindow.webkit.messageHandlers.print.postMessage(messageBody);
+                        this.winRef.nativeWindow.webkit.messsageHandlers.observe.postMessage('showUnityView');
+                        break;
+            
+                      default:
+                        break;
+                    }*/
         }
         if (this.isAndroid) {
             switch (messageName) {
@@ -1881,9 +1964,11 @@ var UtilitiesService = (function () {
                     break;
                 // TODO: Android Implementation
                 case 'saveToken':
+                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.saveToken(messageBody);
                     break;
                 // TODO: Android Implementation
-                case 'deleteToken':
+                case 'clearToken':
+                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.deleteToken();
                     break;
                 case 'showUnityView':
                     this.winRef.nativeWindow.MEETeUXAndroidAppRoot.showUnityView();

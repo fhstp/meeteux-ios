@@ -8,6 +8,7 @@
 
 #import "CoolUnitySceneViewController.h"
 #import "CacheManager.h"
+//#import "meeteux-Swift.h"
 
 @interface CoolUnitySceneViewController ()
 
@@ -62,12 +63,19 @@ static void *CacheManagerDataChangedContext = &CacheManagerDataChangedContext;
         printf("switch to Webview really");
         
         [self performSegueWithIdentifier:@"showWebView" sender:self];
+        //[self performSegueWithIdentifier:@"unwindToWebView" sender:self];
     }
     
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
+/*
+- (IBAction)unwindToWebView:(UIStoryboardSegue *)unwindSegue
+{
+     [self performSegueWithIdentifier:@"unwindToWebView" sender:self];
+
+}*/
 
 + (void)switchToWebView{
     printf("switchToWebView");
