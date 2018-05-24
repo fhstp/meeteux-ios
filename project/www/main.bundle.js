@@ -340,6 +340,7 @@ var AppComponent = (function () {
         
               case 'Android':
                 // TODO: Android Implementation
+                this.winRef.nativeWindow.MEETeUXAndroidAppRoot.getToken();
                 break;
         
               default:
@@ -1541,16 +1542,6 @@ var GodService = (function () {
             _this.router.navigate([_this.locationService.currentLocation.contentURL]).then(function () {
                 // send success to native & trigger signal
                 _this.utilitiesService.sendToNative('success', 'triggerSignal');
-                /*switch (platform) {
-                  case 'IOS':
-                    this.winRef.nativeWindow.webkit.messageHandlers.triggerSignal.postMessage('success');
-                    break;
-        
-                  case 'Android':
-                    break;
-                  default:
-                    break;
-                }*/
             });
             _this.socket.removeAllListeners('registerLocationResult');
         });
@@ -1613,22 +1604,7 @@ var GodService = (function () {
             var platform = state.platform;
             _this.router.navigate(['/mainview']).then(function () {
                 // send success to native & start beacon scan
-                // this.nativeCommunicationService.sendToNative('success', 'registerOD');
                 _this.utilitiesService.sendToNative('success', 'registerOD');
-                /*
-                        switch (platform)
-                        {
-                          case 'IOS':
-                            this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage('success');
-                            break;
-                
-                          case 'Android':
-                            this.winRef.nativeWindow.MEETeUXAndroidAppRoot.registerOD();
-                            break;
-                
-                          default:
-                            break;
-                        }*/
             });
             _this.socket.removeAllListeners('autoLoginODResult');
         });
@@ -1907,46 +1883,6 @@ var UtilitiesService = (function () {
                 'data': messageBody
             };
             this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(message);
-            /*
-                    switch (messageName) {
-                      case 'print':
-                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
-                        // this.winRef.nativeWindow.webkit.messageHandlers.print.postMessage(messageBody);
-                        break;
-            
-                      case 'getDeviceInfos':
-                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
-                        // this.winRef.nativeWindow.webkit.messageHandlers.getDeviceInfos.postMessage(messageBody);
-                        break;
-            
-                      case 'registerOD':
-                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
-                        // this.winRef.nativeWindow.webkit.messageHandlers.registerOD.postMessage(messageBody);
-                        break;
-            
-                      case 'triggerSignal':
-                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
-                        // this.winRef.nativeWindow.webkit.messageHandlers.triggerSignal.postMessage(messageBody);
-                        break;
-            
-                      case 'saveToken':
-                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
-                        // this.winRef.nativeWindow.webkit.messageHandlers.saveToken.postMessage(messageBody);
-                        break;
-            
-                      case 'clearToken':
-                        this.winRef.nativeWindow.webkit.messageHandlers.observe.postMessage(messageBody);
-                        // this.winRef.nativeWindow.webkit.messsageHandlers.clearToken.postMessage(messageBody);
-                        break;
-            
-                      case 'showUnityView':
-                        this.winRef.nativeWindow.webkit.messageHandlers.print.postMessage(messageBody);
-                        this.winRef.nativeWindow.webkit.messsageHandlers.observe.postMessage('showUnityView');
-                        break;
-            
-                      default:
-                        break;
-                    }*/
         }
         if (this.isAndroid) {
             switch (messageName) {
@@ -1962,16 +1898,17 @@ var UtilitiesService = (function () {
                 case 'triggerSignal':
                     this.winRef.nativeWindow.MEETeUXAndroidAppRoot.triggerSignal();
                     break;
-                // TODO: Android Implementation
                 case 'saveToken':
                     this.winRef.nativeWindow.MEETeUXAndroidAppRoot.saveToken(messageBody);
                     break;
-                // TODO: Android Implementation
                 case 'clearToken':
-                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.deleteToken();
+                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.clearToken();
                     break;
                 case 'showUnityView':
                     this.winRef.nativeWindow.MEETeUXAndroidAppRoot.showUnityView();
+                    break;
+                case 'getToken':
+                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.getToken();
                     break;
                 default:
                     break;

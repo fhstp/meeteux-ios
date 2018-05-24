@@ -23,6 +23,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     var beaconManager: KTKBeaconManager!
     var beaconList:[CLBeacon] = []
     
+    var lastBeacon: CLBeacon!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -65,44 +67,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             self,
             name: "observe"
         )
-        /*
-        contentController.add(
-            self,
-            name: "getDeviceInfos"
-        )
-        
-        contentController.add(
-            self,
-            name: "registerOD"
-        )
-        
-        contentController.add(
-            self,
-            name: "triggerSignal"
-        )
-        
-        contentController.add(
-            self,
-            name: "print"
-        )
-        
-        contentController.add(
-            self,
-            name: "saveToken"
-        )
-        
-        contentController.add(
-            self,
-            name: "getToken"
-        )
-        
-        contentController.add(
-            self,
-            name: "deleteToken"
-        )
-    
-        print("contentController add")
-        */
+
         config.userContentController = contentController
         
         self.webView = WKWebView(
@@ -115,7 +80,6 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     
     //- MARK: Web to native calls
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        //print("Received event \(message.name)")
         let dict = message.body as? NSDictionary
         
         if let messageName = dict!["name"] as? String
@@ -140,78 +104,16 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
                 getToken()
                 break
             case "saveToken":
-                saveToken(token: dict!["data"])
+                saveToken(token: dict!["data"] as Any)
                 break
             case "deleteToken":
                 deleteToken()
                 break
             default:
-                print(dict!["data"])
+                print(dict!["data"] as Any)
                 break
             }
         }
-        
-        
-      /*  let dict = convertToDictionary(text: (message.body as? String)!)
-        print(dict!["data"])*/
-
-        
-        /*
-        let stringToken = message.body as? String
-        print(stringToken)
-        */
-        /*let dict = convertToDictionary(text: stringToken!)
-        print(dict)*/
-        
-        //print(message.body.name)
-        
-        /*
-        switch "\(message.name)" {
-        case "getDeviceInfos":
-            getDeviceInformation()
-            break
-        case "registerOD":
-            // start beacon Scan
-            startBeaconScanning()
-            break
-        case "triggerSignal":
-            triggerSignal()
-            break
-        case "print":
-            switch "\(message.body)"
-            {
-                case "showUnityView":
-                    showUnityView()
-                    break
-                default:
-                    print(message.body)
-                    break
-            }
-            break
-        case "getToken":
-            getToken()
-            break
-        case "saveToken":
-            saveToken(token: message.body)
-            break
-        case "deleteToken":
-            deleteToken()
-            break
-        case "observe":
-            switch "\(message.body)"
-            {
-                case "showUnityView":
-                    showUnityView()
-                    break
-                default:
-                    print(message.body)
-                    break
-            }
-            break
-        default:
-            print(message.body)
-            break
-        }*/
     }
     
     
@@ -247,6 +149,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         sendDictToWeb(myDict: dict, functionCall: "send_token")
     }
     
+    // prepars dict for sending device infos to web
     func getDeviceInformation(){
         let mydevice = UIDevice.current
         print("UDID: \(String(describing: mydevice.identifierForVendor?.uuidString)) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
@@ -285,19 +188,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         return jsonString
     }
 
-    
-    func convertToDictionary(text: String) -> [String: Any]? {
-        if let data = text.data(using: .utf8) {
-            do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        return nil
-    }
-
-    
+    // starts scanning for beacons
     func startBeaconScanning(){
         // initialize BeaconManager
         beaconManager = KTKBeaconManager(delegate: self)
@@ -323,23 +214,22 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         let systemSoundID: SystemSoundID = 1306 // tock
         AudioServicesPlayAlertSound(systemSoundID)
     }
-    
-    @IBAction func unwindToWebView(segue:UIStoryboardSegue) { }
 }
 
 extension WebViewController: KTKBeaconManagerDelegate{
+    
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         print("didChangeLocationAuthorizationStatus")
         if status == .authorizedAlways{
             print("authorizedAlways")
+            
             // When status changes to CLAuthorizationStatus.authorizedAlways
             // e.g. after calling beaconManager.requestLocationAlwaysAuthorization()
             // we can start region monitoring from here
             if KTKBeaconManager.isMonitoringAvailable() {
-                print("start scanning")
+                //print("start scanning")
                 startScanning()
             }
-            
         }
     }
     
@@ -352,7 +242,6 @@ extension WebViewController: KTKBeaconManagerDelegate{
         beaconManager.startRangingBeacons(in: region)
         
         print("start scanning")
-        
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didStartMonitoringFor region: KTKBeaconRegion) {
@@ -399,17 +288,29 @@ extension WebViewController: KTKBeaconManagerDelegate{
         
         // sort beacon list and send first item to Webview
         if beaconList.sorted(by: { $0.rssi > $1.rssi }).count>0{
+            
             let myBeacon = beaconList[0]
             
-            // send major, minor to webview
-            let dict = [
-                "major": myBeacon.major,
-                "minor": myBeacon.minor
-            ]
-            
-            sendDictToWeb(myDict: dict, functionCall: "update_location")
+            if lastBeacon != nil{
+                // compare to lastBeacon, if not the same, than sendToWeb
+                if(myBeacon.major != lastBeacon.major || myBeacon.minor != lastBeacon.minor){
+                    sendBeacon(beacon: myBeacon)
+                }
+            } else {
+                sendBeacon(beacon: myBeacon)
+            }
         }
+    }
+    
+    // prepares beacon for sending to web
+    func sendBeacon(beacon: CLBeacon){
+        let dict = [
+            "major": beacon.major,
+            "minor": beacon.minor
+        ]
+        sendDictToWeb(myDict: dict, functionCall: "update_location")
         
+        lastBeacon = beacon
     }
     
     
