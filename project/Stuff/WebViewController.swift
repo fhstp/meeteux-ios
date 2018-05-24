@@ -106,7 +106,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
             case "saveToken":
                 saveToken(token: dict!["data"] as Any)
                 break
-            case "deleteToken":
+            case "clearToken":
                 deleteToken()
                 break
             default:
@@ -137,6 +137,10 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     func deleteToken()
     {
         KeychainWrapper.standard.removeObject(forKey: "token")
+        
+        sendMessageToWeb(functionCall: "logout_success")
+        
+        stopScanning()
     }
     
     func getToken()
@@ -173,6 +177,19 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
         
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)(\(jsonString))") { result, error in
+            guard error == nil else {
+                print("SendDictToWeb throw Error: \(error!)")
+                return
+            }
+        }
+    }
+    
+    // sends dictionary to webview
+    func sendMessageToWeb(functionCall: String){
+        print("SendMessageToWeb (\(functionCall))")
+        
+        // Send the location update to the page
+        self.webView.evaluateJavaScript("\(functionCall)()") { result, error in
             guard error == nil else {
                 print("SendDictToWeb throw Error: \(error!)")
                 return
@@ -242,6 +259,12 @@ extension WebViewController: KTKBeaconManagerDelegate{
         beaconManager.startRangingBeacons(in: region)
         
         print("start scanning")
+    }
+    
+    func stopScanning(){
+        beaconManager.stopMonitoringForAllRegions()
+        
+        print("stop scanning")
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didStartMonitoringFor region: KTKBeaconRegion) {
