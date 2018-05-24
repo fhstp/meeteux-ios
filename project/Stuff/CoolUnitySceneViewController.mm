@@ -62,20 +62,14 @@ static void *CacheManagerDataChangedContext = &CacheManagerDataChangedContext;
     if (context == CacheManagerDataChangedContext) {
         printf("switch to Webview really");
         
-        [self performSegueWithIdentifier:@"showWebView" sender:self];
-        //[self performSegueWithIdentifier:@"unwindToWebView" sender:self];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
     
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
-/*
-- (IBAction)unwindToWebView:(UIStoryboardSegue *)unwindSegue
-{
-     [self performSegueWithIdentifier:@"unwindToWebView" sender:self];
 
-}*/
 
 + (void)switchToWebView{
     printf("switchToWebView");
