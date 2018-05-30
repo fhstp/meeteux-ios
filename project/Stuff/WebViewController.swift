@@ -263,7 +263,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
     
     func stopScanning(){
         beaconManager.stopMonitoringForAllRegions()
-        
+        lastBeacon = nil
         print("stop scanning")
     }
     
