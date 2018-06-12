@@ -14,8 +14,9 @@ import Darwin
 import AudioToolbox
 import AVFoundation
 import SwiftKeychainWrapper
+import UserNotifications
 
-class WebViewController: UIViewController, WKScriptMessageHandler {
+class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotificationCenterDelegate {
     
     @IBOutlet var containerView: UIView!
     var webView: WKWebView!
@@ -28,6 +29,14 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        //UIApplication.shared.applicationIconBadgeNumber = 0 //delet badge count
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in})
+            UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+        } else {
+            // Fallback on earlier versions
+        }
+        
         
         print("Hallo Welt")
         
@@ -96,6 +105,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
                 break
             case "triggerSignal":
                 triggerSignal()
+                triggerNotivication()
                 break
             case "showUnityView":
                 showUnityView()
@@ -228,8 +238,32 @@ class WebViewController: UIViewController, WKScriptMessageHandler {
     }
     
     func triggerSignal(){
-        let systemSoundID: SystemSoundID = 1306 // tock
-        AudioServicesPlayAlertSound(systemSoundID)
+        //let systemSoundID: SystemSoundID = 1306 // tock
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler: @escaping(UNNotificationPresentationOptions) -> Void){
+        withCompletionHandler([.alert, .sound, .badge])
+    }
+    
+    func triggerNotivication(){
+        if #available(iOS 10.0, *) {
+            let content = UNMutableNotificationContent()
+            content.title = "New Bluetoothbeacon found."
+            content.subtitle = lastBeacon.minor.stringValue
+            content.badge = 1
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
+            let request = UNNotificationRequest(identifier: "TimeDone", content: content, trigger: trigger)
+            //UIApplication.shared.applicationIconBadgeNumber += 1
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            print("IOS10")
+        } else {
+            // Fallback on earlier versions
+            print("noIOS 10.0")
+            return
+        }
+        
     }
 }
 
