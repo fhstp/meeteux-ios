@@ -49,6 +49,12 @@
 	<string>We want to detect Bluetooth Beacons nearby.</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>bluetooth-central</string>
+		<string>fetch</string>
+	</array>
 	<key>UILaunchStoryboardName~ipad</key>
 	<string>LaunchScreen-iPad</string>
 	<key>UILaunchStoryboardName~iphone</key>

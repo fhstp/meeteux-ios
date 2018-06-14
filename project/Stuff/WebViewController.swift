@@ -26,6 +26,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     var lastBeacon: CLBeacon!
     
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -52,6 +54,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
             let baseUrl = URL(fileURLWithPath: filePath)
             self.webView!.loadHTMLString(contents as String, baseURL: baseUrl)
+            locationManager.requestAlwaysAuthorization()
             
         }
         catch {
@@ -90,11 +93,15 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     //- MARK: Web to native calls
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let dict = message.body as? NSDictionary
-        
-        if let messageName = dict!["name"] as? String
+        //print("The message is: \(dict!["name"] as? String)")
+        if var messageName = dict!["name"] as? String
         {
             print("Received message \(messageName)")
-            
+            //////////////////when application goes into background messageName becomes print and does not start scanning when restarted for now this is here fixed
+            if(messageName == "print"){
+             messageName = "registerOD"
+            }
+            //////////////////
             switch (messageName) {
             case "getDeviceInfos":
                 getDeviceInformation()
@@ -265,11 +272,16 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         }
         
     }
+    
+    /*@objc func applicationDidEnterBackground(_ notification: Notification){
+        startBeaconScanning()
+    }*/
 }
 
 extension WebViewController: KTKBeaconManagerDelegate{
     
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
+        
         print("didChangeLocationAuthorizationStatus")
         if status == .authorizedAlways{
             print("authorizedAlways")
