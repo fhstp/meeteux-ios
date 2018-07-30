@@ -1,3 +1,6 @@
+//#import <Stuff/WebViewController.swift>
+//#import <Stuff/CoolUnitySceneViewController.h>
+
 #import "UnityAppController.h"
 #import "UnityAppController+ViewHandling.h"
 #import "UnityAppController+Rendering.h"
@@ -12,6 +15,8 @@
 #import <OpenGLES/EAGLDrawable.h>
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
+
+
 
 #include <mach/mach_time.h>
 
@@ -271,10 +276,14 @@ extern "C" void UnityRequestQuit()
     ::printf("-> applicationDidEnterBackground()\n");
 }
 
+@class WebViewController;
+
 - (void)applicationWillEnterForeground:(UIApplication*)application
 {
     ::printf("-> applicationWillEnterForeground()\n");
-
+    //WebViewController *addWebViewContent = [WebViewController init];
+    //[WebViewController addWebViewContent];
+    
     // applicationWillEnterForeground: might sometimes arrive *before* actually initing unity (e.g. locking on startup)
     if (_unityAppReady)
     {

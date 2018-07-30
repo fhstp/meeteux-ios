@@ -16,7 +16,7 @@ import AVFoundation
 import SwiftKeychainWrapper
 import UserNotifications
 
-class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotificationCenterDelegate {
+@objc class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotificationCenterDelegate {
     
     @IBOutlet var containerView: UIView!
     var webView: WKWebView!
@@ -43,6 +43,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         print("Hallo Welt")
         
         // Adding webView content
+        addWebViewContent()
+
+    }
+    
+    @objc func addWebViewContent(){
         do {
             guard let filePath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "www")
                 else {
@@ -60,8 +65,12 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         catch {
             print ("File HTML error")
         }
+        
     }
-    
+ 
+    func application(application: UIApplication, didFinishLaunchingWithOtions launchOptions: NSDictionary?) -> Bool{
+        return true
+    }
     
     override func didReceiveMemoryWarning()
     {
@@ -97,7 +106,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         if var messageName = dict!["name"] as? String
         {
             print("Received message \(messageName)")
-            //////////////////when application goes into background messageName becomes print and does not start scanning when restarted for now this is here fixed
+            //////////////////when application goes into background connection is lost so messageName becomes print and does not start scanning when restarted for now this is here fixed
             if(messageName == "print"){
              messageName = "registerOD"
             }
@@ -112,7 +121,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
                 break
             case "triggerSignal":
                 triggerSignal()
-                triggerNotivication()
+                //triggerNotivication()
                 break
             case "showUnityView":
                 showUnityView()
@@ -273,9 +282,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         
     }
     
-    /*@objc func applicationDidEnterBackground(_ notification: Notification){
-        startBeaconScanning()
-    }*/
+    func applicationWillEnterForeground(application: UIApplication){
+        print("app moved to foreground")
+    }
 }
 
 extension WebViewController: KTKBeaconManagerDelegate{
@@ -335,7 +344,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
-        
+        print("range Beacons")
         beaconList = []
         // Go through beacons, check if it is our and reliable --> push into empty beaconList
         beacons.forEach { beacon in
@@ -363,6 +372,8 @@ extension WebViewController: KTKBeaconManagerDelegate{
             if lastBeacon != nil{
                 // compare to lastBeacon, if not the same, than sendToWeb
                 if(myBeacon.major != lastBeacon.major || myBeacon.minor != lastBeacon.minor){
+                    lastBeacon = myBeacon
+                    triggerNotivication()
                     sendBeacon(beacon: myBeacon)
                 }
             } else {

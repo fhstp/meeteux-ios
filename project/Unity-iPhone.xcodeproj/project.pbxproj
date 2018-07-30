@@ -428,6 +428,7 @@
 		B4934D0DA01F4E3616A90B0C /* LaunchScreen-iPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "LaunchScreen-iPhone.xib"; sourceTree = SOURCE_ROOT; };
 		B51F4383B86F44943C76E601 /* Bulk_UnityEngine.UnityWebRequestModule_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_UnityEngine.UnityWebRequestModule_0.cpp; path = Classes/Native/Bulk_UnityEngine.UnityWebRequestModule_0.cpp; sourceTree = SOURCE_ROOT; };
 		B973449E8C65FBB4286C6219 /* Bulk_System.Core_0.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_System.Core_0.cpp; path = Classes/Native/Bulk_System.Core_0.cpp; sourceTree = SOURCE_ROOT; };
+		B980F54B20D7A2AC003DCBF9 /* meeteux.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = meeteux.entitlements; path = "Unity-iPhone/meeteux.entitlements"; sourceTree = "<group>"; };
 		BA824AB294C50C95A7CCE365 /* Bulk_mscorlib_3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_mscorlib_3.cpp; path = Classes/Native/Bulk_mscorlib_3.cpp; sourceTree = SOURCE_ROOT; };
 		BA9D4D22B9577F758A1624D2 /* Bulk_mscorlib_4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_mscorlib_4.cpp; path = Classes/Native/Bulk_mscorlib_4.cpp; sourceTree = SOURCE_ROOT; };
 		BBDB436A8CB28D7D743FF6A4 /* Bulk_Generics_5.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Bulk_Generics_5.cpp; path = Classes/Native/Bulk_Generics_5.cpp; sourceTree = SOURCE_ROOT; };
@@ -546,6 +547,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				B980F54B20D7A2AC003DCBF9 /* meeteux.entitlements */,
 				221B23242028A9E2003F54CC /* www */,
 				221B23192028A4F4003F54CC /* Stuff */,
 				8C4ECDDC1C5F637A0070D641 /* Vuforia */,
@@ -899,7 +901,6 @@
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 				033966F41B18B03000ECD701 /* ShellScript */,
 				A3DE82E6F97CEC17DB2A1BB9 /* [CP] Embed Pods Frameworks */,
-				538ABC8CC59C32D81DF5E2C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -918,8 +919,6 @@
 				5623C56F17FDCB0800090B9E /* Sources */,
 				5623C57017FDCB0800090B9E /* Frameworks */,
 				5623C57117FDCB0800090B9E /* Resources */,
-				ADB2CD3A49CB0388DCE6958C /* [CP] Embed Pods Frameworks */,
-				82952B298BAF738B80427503 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -944,8 +943,14 @@
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.GameControllers.appletvos = {
 								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
 							};
 						};
 					};
@@ -1037,36 +1042,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		538ABC8CC59C32D81DF5E2C0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		82952B298BAF738B80427503 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone Tests/Pods-Unity-iPhone Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		874A7A88FB58C363D0785B72 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1103,21 +1078,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone/Pods-Unity-iPhone-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ADB2CD3A49CB0388DCE6958C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Unity-iPhone Tests/Pods-Unity-iPhone Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1376,7 +1336,7 @@
 					CoreMotion,
 					"-weak-lSystem",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.fhstp.${PRODUCT_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.meeteux;
 				PRODUCT_NAME = meeteux;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1459,7 +1419,7 @@
 					CoreMotion,
 					"-weak-lSystem",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.fhstp.${PRODUCT_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.meeteux;
 				PRODUCT_NAME = meeteux;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1689,7 +1649,7 @@
 					CoreMotion,
 					"-weak-lSystem",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.fhstp.${PRODUCT_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.meeteux;
 				PRODUCT_NAME = meeteux;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -1863,7 +1823,7 @@
 					CoreMotion,
 					"-weak-lSystem",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.fhstp.${PRODUCT_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.meeteux;
 				PRODUCT_NAME = meeteux;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
