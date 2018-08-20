@@ -31,7 +31,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        //UIApplication.shared.applicationIconBadgeNumber = 0 //delet badge count
+        
+         //UIApplication.shared.applicationIconBadgeNumber = 0 //delet badge count
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in})
             UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
@@ -137,7 +138,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     //- MARK: Helper Functions
     func showUnityView()
     {
-        performSegue(withIdentifier: "showUnity", sender: nil)
+        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func saveToken(token: Any)
