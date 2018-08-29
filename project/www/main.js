@@ -69,7 +69,7 @@ var WindowRef = /** @class */ (function () {
 /*!********************************************!*\
   !*** ./src/app/actions/LocationActions.ts ***!
   \********************************************/
-/*! exports provided: CHANGE_CURRENT_LOCATION, CHANGE_CONNECTED_EXHIBIT, CHANGE_LOCATION_STATUS, CHANGE_LOCATION_SOCKET_STATUS, CHANGE_AT_EXHIBIT_PARENT_ID, CHANGE_ON_EXHIBIT, LocationActions */
+/*! exports provided: CHANGE_CURRENT_LOCATION, CHANGE_CONNECTED_EXHIBIT, CHANGE_LOCATION_STATUS, CHANGE_LOCATION_SOCKET_STATUS, CHANGE_AT_EXHIBIT_PARENT_ID, CHANGE_ON_EXHIBIT, CHANGE_LAST_DISMISSED, LocationActions */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -80,6 +80,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_LOCATION_SOCKET_STATUS", function() { return CHANGE_LOCATION_SOCKET_STATUS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_AT_EXHIBIT_PARENT_ID", function() { return CHANGE_AT_EXHIBIT_PARENT_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_ON_EXHIBIT", function() { return CHANGE_ON_EXHIBIT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_LAST_DISMISSED", function() { return CHANGE_LAST_DISMISSED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LocationActions", function() { return LocationActions; });
 var CHANGE_CURRENT_LOCATION = 'CHANGE_CURRENT_LOCATION';
 var CHANGE_CONNECTED_EXHIBIT = 'CHANGE_CONNECTED_EXHIBIT';
@@ -87,6 +88,7 @@ var CHANGE_LOCATION_STATUS = 'CHANGE_LOCATION_STATUS';
 var CHANGE_LOCATION_SOCKET_STATUS = 'CHANGE_LOCATION_SOCKET_STATUS';
 var CHANGE_AT_EXHIBIT_PARENT_ID = 'CHANGE_AT_EXHIBIT_PARENT_ID';
 var CHANGE_ON_EXHIBIT = 'CHANGE_ON_EXHIBIT';
+var CHANGE_LAST_DISMISSED = 'CHANGE_LAST_DISMISSED';
 var LocationActions = /** @class */ (function () {
     function LocationActions() {
     }
@@ -124,6 +126,12 @@ var LocationActions = /** @class */ (function () {
         return {
             type: CHANGE_ON_EXHIBIT,
             onExhibit: isOnExhibit
+        };
+    };
+    LocationActions.prototype.changeLastDismissed = function (dismissedId) {
+        return {
+            type: CHANGE_LAST_DISMISSED,
+            lastDismissed: dismissedId
         };
     };
     return LocationActions;
@@ -228,7 +236,7 @@ var UserActions = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 matDialogTitle>New Exhibit?</h2>\n<div mat-dialog-content>\n  <p>Do you want to enter the exhibit {{number}}?</p>\n</div>\n<mat-dialog-actions align=\"end\">\n  <button mat-raised-button color=\"primary\" (tap)=\"cancelDialog()\">No</button>\n  <button mat-raised-button color=\"primary\" (tap)=\"confirmDialog()\">Yes</button>\n</mat-dialog-actions>\n\n"
+module.exports = "<h2 matDialogTitle>New Exhibit?</h2>\r\n<div mat-dialog-content>\r\n  <p>Do you want to enter the exhibit {{number}} {{data.number}}?</p>\r\n</div>\r\n<mat-dialog-actions align=\"end\">\r\n  <button mat-raised-button color=\"primary\" (tap)=\"cancelDialog()\">No</button>\r\n  <button mat-raised-button color=\"primary\" (tap)=\"confirmDialog()\">Yes</button>\r\n</mat-dialog-actions>\r\n\r\n"
 
 /***/ }),
 
@@ -264,23 +272,25 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
 
 var AlertDialogComponent = /** @class */ (function () {
-    function AlertDialogComponent(thisDialogRef) {
+    function AlertDialogComponent(thisDialogRef, data) {
         this.thisDialogRef = thisDialogRef;
+        this.data = data;
     }
     AlertDialogComponent.prototype.ngOnInit = function () {
     };
     AlertDialogComponent.prototype.cancelDialog = function () {
-        console.log(this.thisDialogRef);
         this.thisDialogRef.close('cancel');
-        console.log("canceled");
+        // console.log("canceled");
     };
     AlertDialogComponent.prototype.confirmDialog = function () {
-        console.log(this.thisDialogRef);
         this.thisDialogRef.close('confirm');
-        console.log("confirmed");
+        // console.log("confirmed");
     };
     AlertDialogComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -288,7 +298,8 @@ var AlertDialogComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./alert-dialog.component.html */ "./src/app/alert-dialog/alert-dialog.component.html"),
             styles: [__webpack_require__(/*! ./alert-dialog.component.scss */ "./src/app/alert-dialog/alert-dialog.component.scss")]
         }),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"]])
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object])
     ], AlertDialogComponent);
     return AlertDialogComponent;
 }());
@@ -364,7 +375,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-fill-remaining-space\n{\n  flex: 1 1 auto;\n}\n\n::ng-deep snack-bar-container.success-snackbar{\n  background: darkgreen;\n}\n\n::ng-deep snack-bar-container.error-snackbar{\n  background: darkred;\n}\n"
+module.exports = ".example-fill-remaining-space\r\n{\r\n  flex: 1 1 auto;\r\n}\r\n\r\n::ng-deep snack-bar-container.success-snackbar{\r\n  background: darkgreen;\r\n}\r\n\r\n::ng-deep snack-bar-container.error-snackbar{\r\n  background: darkred;\r\n}\r\n\r\n.hiddenbutton{\r\n  display: none;\r\n}\r\n"
 
 /***/ }),
 
@@ -375,7 +386,7 @@ module.exports = ".example-fill-remaining-space\n{\n  flex: 1 1 auto;\n}\n\n::ng
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\n  <span>MEETeUX</span>\n\n  <span class=\"example-fill-remaining-space\"></span>\n  <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\" xPosition=\"before\">\n    <button mat-menu-item (click)=\"logoutUser()\">\n      <mat-icon>exit_to_app</mat-icon>\n      <span>Logout</span>\n    </button>\n    <button mat-menu-item (click)=\"showUnityView()\">\n      <mat-icon>whatshot</mat-icon>\n      <span>Unity</span>\n    </button>\n  </mat-menu>\n</mat-toolbar>\n\n<router-outlet></router-outlet>\n\n <button *ngIf=\"registered\" (click)=\"changeToNearestBeacon()\">Next Beacon</button>"
+module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\r\n  <span>MEETeUX</span>\r\n\r\n  <span class=\"example-fill-remaining-space\"></span>\r\n  <button mat-icon-button [matMenuTriggerFor]=\"menu\">\r\n    <mat-icon>menu</mat-icon>\r\n  </button>\r\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\" xPosition=\"before\">\r\n    <button mat-menu-item (click)=\"logoutUser()\">\r\n      <mat-icon>exit_to_app</mat-icon>\r\n      <span>Logout</span>\r\n    </button>\r\n    <button mat-menu-item (click)=\"showUnityView()\">\r\n      <mat-icon>whatshot</mat-icon>\r\n      <span>Unity</span>\r\n    </button>\r\n  </mat-menu>\r\n</mat-toolbar>\r\n\r\n<router-outlet></router-outlet>\r\n\r\n<button id=\"dismissedButton\" *ngIf=\"dismissedLocation\" (click)=\"openDialogDismissed()\" mat-fab color=\"primary\" [matBadge]=\"dismissedLocation\" matBadgePosition=\"before\" matBadgeColor=\"accent\">\r\n  <mat-icon>room</mat-icon>\r\n</button>\r\n\r\n<button id=\"ghostButton\" class=\"hiddenbutton\" (click)=\"openDialog()\">Ghost</button>\r\n"
 
 /***/ }),
 
@@ -397,8 +408,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _WindowRef__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./WindowRef */ "./src/app/WindowRef.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _alert_dialog_alert_dialog_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./alert-dialog/alert-dialog.component */ "./src/app/alert-dialog/alert-dialog.component.ts");
-/* harmony import */ var rxjs_Subject__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/Subject */ "./node_modules/rxjs-compat/_esm5/Subject.js");
-/* harmony import */ var _services_alert_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./services/alert.service */ "./src/app/services/alert.service.ts");
+/* harmony import */ var _services_alert_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./services/alert.service */ "./src/app/services/alert.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -411,7 +421,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-
 
 
 
@@ -435,12 +444,12 @@ var AppComponent = /** @class */ (function () {
         this.nativeCommunicationService = nativeCommunicationService;
         this.snackBar = snackBar;
         this.title = 'app';
-        this.subject = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_8__["Subject"]();
         this._unsubscribe = this.appStore.subscribe(function () {
             var state = _this.appStore.getState();
             var token = state.token;
             var errorMessage = state.errorMessage;
             var successMessage = state.successMessage;
+            _this.dismissedLocation = state.lastDismissed;
             if (_this.currentToken !== token && token !== undefined) {
                 _this.utilitiesService.sendToNative(token, 'saveToken');
                 _this.currentToken = token;
@@ -449,37 +458,56 @@ var AppComponent = /** @class */ (function () {
                 var config = new _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSnackBarConfig"]();
                 config.duration = 3000;
                 config.panelClass = ['error-snackbar'];
-                var snackBarRef = _this.snackBar.open(errorMessage.message, 'OK', config);
+                _this.snackBar.open(errorMessage.message, 'OK', config);
+                _this.currentError = errorMessage.code;
             }
             if (successMessage && successMessage.code !== _this.currentSuccess) {
                 var config = new _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSnackBarConfig"]();
                 config.duration = 3000;
                 config.panelClass = ['success-snackbar'];
-                var snackBarRef = _this.snackBar.open(successMessage.message, 'OK', config);
+                _this.snackBar.open(successMessage.message, 'OK', config);
+                _this.currentSuccess = successMessage.code;
             }
         });
-        this.subscription = this.alertService.getMessage().subscribe(function (message) {
-            console.log('hi ' + message.location + ' ' + message.resStatus);
-            _this.openDialog(message);
+        // this.subscription = this.alertService.getMessage().subscribe(message => {
+        //   console.log('hi ' + message.location + ' ' + message.resStatus);
+        //   this.openDialog(/*message*/);
+        // });
+        this.subscriptionLocationid = this.alertService.getMessageLocationid().subscribe(function (message) {
+            _this.registerLocationmessage = message;
         });
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.registered = true;
         this.appStore.dispatch(this.locationActions.changeAtExhibitParentId(0));
         this.appStore.dispatch(this.locationActions.changeOnExhibit(false));
         this.requestCheckedPlatform();
         this.getTokenForAutoLogin();
     };
-    AppComponent.prototype.openDialog = function (message) {
+    AppComponent.prototype.openDialog = function () {
         var _this = this;
         var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialogConfig"]();
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = false;
-        var dialogRef = this.dialog.open(_alert_dialog_alert_dialog_component__WEBPACK_IMPORTED_MODULE_7__["AlertDialogComponent"], dialogConfig);
-        dialogRef.componentInstance.number = message.location;
-        console.log(this.dialog.openDialogs);
+        var dialogRef = this.dialog.open(_alert_dialog_alert_dialog_component__WEBPACK_IMPORTED_MODULE_7__["AlertDialogComponent"], { data: { number: this.registerLocationmessage.location },
+            disableClose: true,
+            autoFocus: false
+        });
         this.subscriptionBack = dialogRef.afterClosed().subscribe(function (result) {
-            var data = { result: result, location: message.location, resStatus: message.resStatus };
+            var data = { result: result, location: _this.registerLocationmessage.location, resStatus: _this.registerLocationmessage.resStatus };
+            _this.alertService.sendMessageResponse(data);
+        });
+    };
+    AppComponent.prototype.openDialogDismissed = function () {
+        var _this = this;
+        var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialogConfig"]();
+        dialogConfig.disableClose = true;
+        dialogConfig.autoFocus = false;
+        var dialogRef = this.dialog.open(_alert_dialog_alert_dialog_component__WEBPACK_IMPORTED_MODULE_7__["AlertDialogComponent"], { data: { number: this.dismissedLocation },
+            disableClose: true,
+            autoFocus: false
+        });
+        this.subscriptionBack = dialogRef.afterClosed().subscribe(function (result) {
+            var data = { result: result, location: _this.dismissedLocation, resStatus: _this.registerLocationmessage.resStatus };
             _this.alertService.sendMessageResponse(data);
         });
     };
@@ -509,9 +537,6 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.logoutUser = function () {
         this.nativeCommunicationService.logout();
     };
-    AppComponent.prototype.changeToNearestBeacon = function () {
-        this.nativeCommunicationService.changeBeacon();
-    };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
@@ -525,7 +550,7 @@ var AppComponent = /** @class */ (function () {
             _services_utilities_service__WEBPACK_IMPORTED_MODULE_3__["UtilitiesService"],
             _WindowRef__WEBPACK_IMPORTED_MODULE_5__["WindowRef"],
             _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialog"],
-            _services_alert_service__WEBPACK_IMPORTED_MODULE_9__["AlertService"],
+            _services_alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"],
             _services_native_communication_service__WEBPACK_IMPORTED_MODULE_4__["NativeCommunicationService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatSnackBar"]])
     ], AppComponent);
@@ -637,6 +662,7 @@ var AppModule = /** @class */ (function () {
         this.utilitiesService.sendToNative('calledFromOutside ' + message, 'print');
         switch (message) {
             case 'update_location': {
+                this.utilitiesService.sendToNative('Received Location Register ' + value.minor, 'print');
                 this.nativeCommunicationService.transmitLocationRegister(value);
                 break;
             }
@@ -684,8 +710,9 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatInputModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatProgressSpinnerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatBadgeModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"]
+                _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
             ],
             providers: [
                 _services_god_socket_service__WEBPACK_IMPORTED_MODULE_5__["GodSocketService"],
@@ -793,7 +820,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n  Willkommen bei {{locationName}}\n</h1>\n<p>{{locationId}} - Passives Exibit</p>\n"
+module.exports = "<h1>\r\n  Willkommen bei {{location.description}}\r\n</h1>\r\n<p>{{location.id}} - Passives Exibit</p>\r\n\r\n<button *ngIf=\"location.liked; else notLiked\" id=\"unlike\" mat-raised-button color=\"warn\" (click)=\"registerLocationUnlike()\">\r\n  <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Unlike\r\n</button>\r\n\r\n<ng-template #notLiked>\r\n  <button id=\"like\" mat-stroked-button color=\"warn\" (click)=\"registerLocationLike()\">\r\n    <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Like\r\n  </button>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -809,6 +836,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContentPassiveComponent", function() { return ContentPassiveComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_location_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/location.service */ "./src/app/services/location.service.ts");
+/* harmony import */ var _services_native_communication_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/native-communication.service */ "./src/app/services/native-communication.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -823,14 +851,19 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 };
 
 
+
 var ContentPassiveComponent = /** @class */ (function () {
-    function ContentPassiveComponent(locationService, appStore) {
+    function ContentPassiveComponent(locationService, nativeCommunicationService, appStore) {
         var _this = this;
         this.locationService = locationService;
+        this.nativeCommunicationService = nativeCommunicationService;
         this.appStore = appStore;
         this._unsubscribe = this.appStore.subscribe(function () {
             var state = _this.appStore.getState();
             _this.updateLocationInformation(state.currentLocation);
+        });
+        this._curLocSubscribe = this.locationService.currentLocation.subscribe(function (value) {
+            _this.location = value;
         });
     }
     ContentPassiveComponent.prototype.ngOnInit = function () {
@@ -838,12 +871,17 @@ var ContentPassiveComponent = /** @class */ (function () {
         this.updateLocationInformation(state.currentLocation);
     };
     ContentPassiveComponent.prototype.updateLocationInformation = function (value) {
-        this._location = value;
-        this.locationName = this._location.description;
-        this.locationId = this._location.id;
+        this.location = value;
     };
     ContentPassiveComponent.prototype.ngOnDestroy = function () {
         this._unsubscribe();
+        this._curLocSubscribe.unsubscribe();
+    };
+    ContentPassiveComponent.prototype.registerLocationLike = function () {
+        this.nativeCommunicationService.transmitLocationLike(true);
+    };
+    ContentPassiveComponent.prototype.registerLocationUnlike = function () {
+        this.nativeCommunicationService.transmitLocationLike(false);
     };
     ContentPassiveComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -851,8 +889,9 @@ var ContentPassiveComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./content-passive.component.html */ "./src/app/content-passive/content-passive.component.html"),
             styles: [__webpack_require__(/*! ./content-passive.component.css */ "./src/app/content-passive/content-passive.component.css")]
         }),
-        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])('AppStore')),
-        __metadata("design:paramtypes", [_services_location_service__WEBPACK_IMPORTED_MODULE_1__["LocationService"], Object])
+        __param(2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])('AppStore')),
+        __metadata("design:paramtypes", [_services_location_service__WEBPACK_IMPORTED_MODULE_1__["LocationService"],
+            _services_native_communication_service__WEBPACK_IMPORTED_MODULE_2__["NativeCommunicationService"], Object])
     ], ContentPassiveComponent);
     return ContentPassiveComponent;
 }());
@@ -879,7 +918,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n  Willkommen bei {{locationName}}\n</h1>\n\n\n<div *ngIf=\"locationStatusFree\">\n  <div *ngIf=\"locationType == 3\">\n    <h3>Table ist frei</h3>\n    <button *ngIf=\"joinGame\" mat-raised-button color=\"primary\" (click)=\"startOnTableSearch()\">Mitspielen</button>\n    <p *ngIf=\"!joinGame\">Bitte lege Dein Handy auf ein Beacon am Table</p>\n    <h4 *ngIf=\"locationSocketStatus === 'OCCUPIED'\">Dieses Beacon ist schon belegt!</h4>\n\n    <div class=\"webdevtools\" *ngIf=\"isWeb && !joinGame\" style=\"margin-top:20px\">\n      <button mat-raised-button color=\"primary\" (click)=\"redirectToOnTable()\">Register Location TableOn</button>\n    </div>\n  </div>\n  <div *ngIf=\"locationType == 6\">\n    <h3>Table ist frei</h3>\n    <button *ngIf=\"joinGame\" mat-raised-button color=\"primary\" (click)=\"redirectToOnTableBehavior()\">Mitspielen</button>\n  </div>\n</div>\n\n<div *ngIf=\"locationStatusOccupied\">\n  <h3>Der Table ist gerade nicht frei, probieren Sie es später erneut!</h3>\n</div>\n\n<button id=\"like\" mat-stroked-button color=\"warn\" (click)=\"registerLocationLike()\">\n  <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Like\n</button>\n"
+module.exports = "<h1>\r\n  Willkommen bei {{location.description}}\r\n</h1>\r\n\r\n\r\n<div *ngIf=\"locationStatusFree\">\r\n  <div *ngIf=\"locationType == 3\">\r\n    <h3>Table ist frei</h3>\r\n    <button *ngIf=\"joinGame\" mat-raised-button color=\"primary\" (click)=\"startOnTableSearch()\">Mitspielen</button>\r\n    <p *ngIf=\"!joinGame\">Bitte lege Dein Handy auf ein Beacon am Table</p>\r\n    <h4 *ngIf=\"locationSocketStatus === 'OCCUPIED'\">Dieses Beacon ist schon belegt!</h4>\r\n\r\n    <div class=\"webdevtools\" *ngIf=\"isWeb && !joinGame\" style=\"margin-top:20px\">\r\n      <button mat-raised-button color=\"primary\" (click)=\"redirectToOnTable()\">Register Location TableOn</button>\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"locationType == 6\">\r\n    <h3>Table ist frei</h3>\r\n    <button *ngIf=\"joinGame\" mat-raised-button color=\"primary\" (click)=\"redirectToOnTableBehavior()\">Mitspielen</button>\r\n  </div>\r\n</div>\r\n\r\n<div *ngIf=\"locationStatusOccupied\">\r\n  <h3>Der Table ist gerade nicht frei, probieren Sie es später erneut!</h3>\r\n</div>\r\n\r\n<div *ngIf=\"locationStatusOffline\">\r\n  <h3>Beim Table ist leider ein Problem aufgetreten und steht daher zur Zeit nicht zur Verfügung!</h3>\r\n</div>\r\n\r\n<button *ngIf=\"location.liked; else notLiked\" id=\"unlike\" mat-raised-button color=\"warn\" (click)=\"registerLocationUnlike()\">\r\n  <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Unlike\r\n</button>\r\n\r\n<ng-template #notLiked>\r\n  <button id=\"like\" mat-stroked-button color=\"warn\" (click)=\"registerLocationLike()\">\r\n    <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Like\r\n  </button>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -936,6 +975,9 @@ var ContentTableAtComponent = /** @class */ (function () {
             _this.updateLocationStatus(state.locationStatus);
             _this.locationSocketStatus = state.locationSocketStatus;
         });
+        this._curLocSubscribe = this.locationService.currentLocation.subscribe(function (value) {
+            _this.location = value;
+        });
     }
     ContentTableAtComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -945,6 +987,7 @@ var ContentTableAtComponent = /** @class */ (function () {
         this.locationId = this.location.id;
         this.locationStatusFree = false;
         this.locationStatusOccupied = false;
+        this.locationStatusOffline = false;
         this.locationType = this.location.locationTypeId;
         this.joinGame = true;
         this.isWeb = this.utilitiesService.isWeb;
@@ -958,6 +1001,7 @@ var ContentTableAtComponent = /** @class */ (function () {
         // Stop the timer
         this._statusTimerSubscription.unsubscribe();
         this._unsubscribe();
+        this._curLocSubscribe.unsubscribe();
     };
     ContentTableAtComponent.prototype.redirectToOnTable = function () {
         this.utilitiesService.sendToNative('REDIRECT-TO-TABLE-ON', 'print');
@@ -972,10 +1016,17 @@ var ContentTableAtComponent = /** @class */ (function () {
         if (status === 'FREE') {
             this.locationStatusFree = true;
             this.locationStatusOccupied = false;
+            this.locationStatusOffline = false;
         }
-        if (status === 'OCCUPIED') {
+        else if (status === 'OCCUPIED') {
             this.locationStatusFree = false;
             this.locationStatusOccupied = true;
+            this.locationStatusOffline = false;
+        }
+        else if (status === 'OFFLINE') {
+            this.locationStatusOffline = true;
+            this.locationStatusFree = false;
+            this.locationStatusOccupied = false;
         }
     };
     // saves ID of current exhibit in localstorage
@@ -1017,7 +1068,7 @@ var ContentTableAtComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".wrapper {\n  padding: 50px 40px 0 40px;\n}\n"
+module.exports = ".wrapper {\r\n  padding: 50px 40px 0 40px;\r\n}\r\n"
 
 /***/ }),
 
@@ -1028,7 +1079,7 @@ module.exports = ".wrapper {\n  padding: 50px 40px 0 40px;\n}\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n    <h1>\n      Willkommen bei {{locationName}}\n    </h1>\n    <div *ngIf=\"connectionSuccess; else elseBlock\">\n      <h3>\n        <mat-icon style=\"color:green; width: 80px; font-size: 80px;\">check_circle</mat-icon>\n        Verbindung zum Table erfolgreich aufgebaut.\n        <br />\n        <br />\n        <button mat-raised-button color=\"primary\" (click)=\"sendMessageToExhibit()\">Send Message</button>\n      </h3>\n    </div>\n    <ng-template #elseBlock>\n      <mat-spinner></mat-spinner>\n      <h3>\n        Verbindung zum Table wird aufgebaut.\n      </h3>\n    </ng-template>\n\n    <button mat-raised-button color=\"primary\" (click)=\"disconnectFromExhibit()\">Disconnect Exhibit</button>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\r\n    <h1>\r\n      Willkommen bei {{locationName}}\r\n    </h1>\r\n    <div *ngIf=\"connectionSuccess; else elseBlock\">\r\n      <h3>\r\n        <mat-icon style=\"color:green; width: 80px; font-size: 80px;\">check_circle</mat-icon>\r\n        Verbindung zum Table erfolgreich aufgebaut.\r\n        <br />\r\n        <br />\r\n        <button mat-raised-button color=\"primary\" (click)=\"sendMessageToExhibit()\">Send Message</button>\r\n      </h3>\r\n    </div>\r\n    <ng-template #elseBlock>\r\n      <mat-spinner></mat-spinner>\r\n      <h3>\r\n        Verbindung zum Table wird aufgebaut.\r\n      </h3>\r\n    </ng-template>\r\n\r\n    <button mat-raised-button color=\"primary\" (click)=\"disconnectFromExhibit()\">Disconnect Exhibit</button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1089,7 +1140,6 @@ var ContentTableOnComponent = /** @class */ (function () {
         this.appStore.dispatch(this.locationActions.changeOnExhibit(false));
     };
     ContentTableOnComponent.prototype.ngOnDestroy = function () {
-        this.disconnectFromExhibit();
         this._unsubscribe();
     };
     ContentTableOnComponent.prototype.disconnectFromExhibit = function () {
@@ -1159,7 +1209,7 @@ var ExhibitSocketHelper = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".wrapper {\n  padding: 0 20px 0 20px;\n}\n\nbutton {\n  margin-left: 10px;\n}\n"
+module.exports = ".wrapper {\r\n  padding: 0 20px 0 20px;\r\n}\r\n\r\nbutton {\r\n  margin-left: 10px;\r\n}\r\n"
 
 /***/ }),
 
@@ -1170,7 +1220,7 @@ module.exports = ".wrapper {\n  padding: 0 20px 0 20px;\n}\n\nbutton {\n  margin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <mat-card class=\"registerForm\">\n    <h1>Willkommen {{user.name}}</h1>\n    <br />\n    <div class=\"webdevtools\" *ngIf=\"isWeb\">\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationTableAt()\">Register Location TableAt</button>\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationTableAtBehavior()\">Register Location TableAtBehavior</button>\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationPassive()\">Register Location Passive</button>\n    </div>\n  </mat-card>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\r\n  <mat-card class=\"registerForm\">\r\n    <h1>Willkommen {{user.name}}</h1>\r\n    <br />\r\n    <div class=\"webdevtools\" *ngIf=\"isWeb\">\r\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationTableAt()\">Register Location TableAt</button>\r\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationTableAtBehavior()\">Register Location TableAtBehavior</button>\r\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationPassive()\">Register Location Passive</button>\r\n    </div>\r\n  </mat-card>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1266,7 +1316,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  page-not-found works!\n</p>\n"
+module.exports = "<p>\r\n  page-not-found works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1347,7 +1397,8 @@ var initialState = {
     atExhibitParentId: undefined,
     onExhibit: undefined,
     errorMessage: undefined,
-    successMessage: undefined
+    successMessage: undefined,
+    lastDismissed: undefined
 };
 function rootReducer(state, action) {
     if (state === void 0) { state = initialState; }
@@ -1364,6 +1415,8 @@ function rootReducer(state, action) {
             return __assign({}, state, { atExhibitParentId: action.atExhibitParentId });
         case _actions_LocationActions__WEBPACK_IMPORTED_MODULE_0__["CHANGE_ON_EXHIBIT"]:
             return __assign({}, state, { onExhibit: action.onExhibit });
+        case _actions_LocationActions__WEBPACK_IMPORTED_MODULE_0__["CHANGE_LAST_DISMISSED"]:
+            return __assign({}, state, { lastDismissed: action.lastDismissed });
         case _actions_UserActions__WEBPACK_IMPORTED_MODULE_1__["CHANGE_USER"]:
             return __assign({}, state, { user: action.user });
         case _actions_UserActions__WEBPACK_IMPORTED_MODULE_1__["CHANGE_TOKEN"]:
@@ -1391,7 +1444,7 @@ function rootReducer(state, action) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".registerForm {\n  margin: 50px 0;\n}\n\n.wrapper {\n  padding: 0 20px 0 20px;\n}\n"
+module.exports = ".registerForm {\r\n  margin: 50px 0;\r\n}\r\n\r\n.wrapper {\r\n  padding: 0 20px 0 20px;\r\n}\r\n"
 
 /***/ }),
 
@@ -1402,7 +1455,7 @@ module.exports = ".registerForm {\n  margin: 50px 0;\n}\n\n.wrapper {\n  padding
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\n  <mat-card class=\"registerForm\">\n    <h1>Registration</h1>\n    <h2>Please enter a username</h2>\n    <mat-form-field class=\"example-full-width\">\n      <input matInput placeholder=\"Username\" [(ngModel)]=\"name\">\n    </mat-form-field>\n    <br />\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(false)\">Register</button>\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(true)\">Register As Guest</button>\n  </mat-card>\n</div>\n"
+module.exports = "<div class=\"wrapper\">\r\n  <mat-card class=\"registerForm\">\r\n    <h1>Registration</h1>\r\n    <h2>Please enter a username</h2>\r\n    <mat-form-field class=\"example-full-width\">\r\n      <input matInput placeholder=\"Username\" [(ngModel)]=\"name\">\r\n    </mat-form-field>\r\n    <br />\r\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(false)\">Register</button>\r\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(true)\">Register As Guest</button>\r\n  </mat-card>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1422,7 +1475,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _WindowRef__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../WindowRef */ "./src/app/WindowRef.ts");
 /* harmony import */ var _actions_UserActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/UserActions */ "./src/app/actions/UserActions.ts");
 /* harmony import */ var _services_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/utilities.service */ "./src/app/services/utilities.service.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app.component */ "./src/app/app.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1441,22 +1493,18 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
 var RegisterComponent = /** @class */ (function () {
-    function RegisterComponent(router, nativeCommunicationService, winRef, appStore, userActions, utilitiesService, appComponent) {
+    function RegisterComponent(router, nativeCommunicationService, winRef, appStore, userActions, utilitiesService) {
         this.router = router;
         this.nativeCommunicationService = nativeCommunicationService;
         this.winRef = winRef;
         this.appStore = appStore;
         this.userActions = userActions;
         this.utilitiesService = utilitiesService;
-        this.appComponent = appComponent;
-        this.registered = true;
     }
     RegisterComponent.prototype.requestDeviceInfos = function (isGuest) {
         this.nativeCommunicationService.registerName = this.name;
         this.nativeCommunicationService.registerIsGuest = isGuest;
-        this.appComponent.registered = true;
         var state = this.appStore.getState();
         var platform = state.platform;
         this.utilitiesService.sendToNative('getDeviceInfos', 'getDeviceInfos');
@@ -1479,8 +1527,7 @@ var RegisterComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
             _services_native_communication_service__WEBPACK_IMPORTED_MODULE_2__["NativeCommunicationService"],
             _WindowRef__WEBPACK_IMPORTED_MODULE_3__["WindowRef"], Object, _actions_UserActions__WEBPACK_IMPORTED_MODULE_4__["UserActions"],
-            _services_utilities_service__WEBPACK_IMPORTED_MODULE_5__["UtilitiesService"],
-            _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]])
+            _services_utilities_service__WEBPACK_IMPORTED_MODULE_5__["UtilitiesService"]])
     ], RegisterComponent);
     return RegisterComponent;
 }());
@@ -1513,6 +1560,7 @@ var AlertService = /** @class */ (function () {
     function AlertService() {
         this.subjectAlert = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
         this.subjectResponse = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+        this.subjectLocationId = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
     }
     AlertService.prototype.sendMessage = function (message) {
         this.subjectAlert.next(message);
@@ -1525,6 +1573,12 @@ var AlertService = /** @class */ (function () {
     };
     AlertService.prototype.getMessageResponse = function () {
         return this.subjectResponse.asObservable();
+    };
+    AlertService.prototype.sendMessageLocationid = function (message) {
+        this.subjectLocationId.next(message);
+    };
+    AlertService.prototype.getMessageLocationid = function () {
+        return this.subjectLocationId.asObservable();
     };
     AlertService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])()
@@ -1602,8 +1656,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_UserActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../actions/UserActions */ "./src/app/actions/UserActions.ts");
 /* harmony import */ var _services_utilities_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../services/utilities.service */ "./src/app/services/utilities.service.ts");
 /* harmony import */ var _native_communication_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./native-communication.service */ "./src/app/services/native-communication.service.ts");
-/* harmony import */ var _config_ErrorTypes__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../config/ErrorTypes */ "./src/app/config/ErrorTypes.ts");
-/* harmony import */ var _actions_StatusActions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../actions/StatusActions */ "./src/app/actions/StatusActions.ts");
+/* harmony import */ var _actions_StatusActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../actions/StatusActions */ "./src/app/actions/StatusActions.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1616,7 +1669,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-
 
 
 
@@ -1645,16 +1697,15 @@ var ExhibitService = /** @class */ (function () {
     ExhibitService.prototype.establishExhibitConnection = function (url) {
         var _this = this;
         // console.log(url);
-        var localURL = 'http://localhost:8100/';
-        this.socket.openNewExhibitConnection(localURL);
+        // const localURL = 'http://localhost:8100/';
+        this.socket.openNewExhibitConnection(url);
         // this.socket.openNewExhibitConnection(url);
         this.socket.connection.on('connected', function () {
             _this.appStore.dispatch(_this.locationActions.changeConnectedExhibit(true));
         });
         this.socket.connection.on('disconnect', function () {
-            var error = { code: _config_ErrorTypes__WEBPACK_IMPORTED_MODULE_10__["LOST_CONNECTION_TO_EXHIBIT"], message: 'Lost connection to Exhibit' };
-            _this.appStore.dispatch(_this.statusActions.changeErrorMessage(error));
-            _this.socket.connection.disconnect();
+            // const error: Message = {code: ErrorTypes.LOST_CONNECTION_TO_EXHIBIT, message: 'Lost connection to Exhibit'};
+            // this.appStore.dispatch(this.statusActions.changeErrorMessage(error));
             var currLoc = _this.locationService.currentLocation.value;
             _this.socketGod.disconnectedFromExhibit(currLoc.parentId, currLoc.id);
         });
@@ -1672,7 +1723,7 @@ var ExhibitService = /** @class */ (function () {
             _this.utilitiesService.sendToNative(result, 'print');
             _this.socket.connection.removeAllListeners('connectODResult');
             _this.startAutoResponder();
-            _this.nativeCommunicationService.transmitShowUnity();
+            // this.nativeCommunicationService.transmitShowUnity();
         });
     };
     ExhibitService.prototype.startAutoResponder = function () {
@@ -1696,8 +1747,8 @@ var ExhibitService = /** @class */ (function () {
             if (result === 'SUCCESS') {
                 _this.socket.connection.disconnect();
                 _this.appStore.dispatch(_this.locationActions.changeConnectedExhibit(false));
-                var currLoc = _this.locationService.currentLocation.value;
-                _this.socketGod.disconnectedFromExhibit(currLoc.parentId, currLoc.id);
+                // const currLoc = this.locationService.currentLocation.value;
+                // this.socketGod.disconnectedFromExhibit(currLoc.parentId, currLoc.id);
             }
             _this.socket.connection.removeAllListeners('closeConnectionResult');
             _this.socket.connection.removeAllListeners('exhibitStatusCheck');
@@ -1712,7 +1763,7 @@ var ExhibitService = /** @class */ (function () {
             _exhibit_socket_service__WEBPACK_IMPORTED_MODULE_4__["ExhibitSocketService"],
             _god_service__WEBPACK_IMPORTED_MODULE_5__["GodService"], Object, _actions_LocationActions__WEBPACK_IMPORTED_MODULE_6__["LocationActions"],
             _actions_UserActions__WEBPACK_IMPORTED_MODULE_7__["UserActions"],
-            _actions_StatusActions__WEBPACK_IMPORTED_MODULE_11__["StatusActions"],
+            _actions_StatusActions__WEBPACK_IMPORTED_MODULE_10__["StatusActions"],
             _services_utilities_service__WEBPACK_IMPORTED_MODULE_8__["UtilitiesService"],
             _native_communication_service__WEBPACK_IMPORTED_MODULE_9__["NativeCommunicationService"]])
     ], ExhibitService);
@@ -1760,7 +1811,7 @@ var GodSocketService = /** @class */ (function (_super) {
     __extends(GodSocketService, _super);
     function GodSocketService() {
         return _super.call(this, { url: 'https://god.meeteux.fhstp.ac.at:3000', options: { secure: true } }) || this;
-        //super({ url: 'https://localhost:3000', options: {secure: true} });
+        // super({ url: 'https://localhost:3000', options: {secure: true} });
         // super({ url: 'https://god.meeteux.fhstp.ac.at', options: {secure: true} });
     }
     GodSocketService = __decorate([
@@ -1886,27 +1937,29 @@ var GodService = /** @class */ (function () {
             _this.socket.removeAllListeners('registerODResult');
         });
     };
-    GodService.prototype.registerLocation = function (id) {
+    GodService.prototype.registerLocation = function (id, dismissed) {
         var _this = this;
         var state = this.store.getState();
         var user = state.user;
-        this.socket.emit('registerLocation', { location: id, user: user.id });
+        this.socket.emit('registerLocation', { location: id, user: user.id, dismissed: dismissed });
         this.socket.on('registerLocationResult', function (result) {
-            var res = result.data;
+            var loc = result.data.location;
+            var dis = result.data.dismissed;
             var message = result.message;
-            console.log(result);
             if (message.code > 299) {
                 _this.store.dispatch(_this.statusActions.changeErrorMessage(message));
                 _this.utilitiesService.sendToNative('RegisterLocation: FAILED', 'print');
                 return;
             }
-            _this.locationService.updateCurrentLocation(res);
-            _this.utilitiesService.sendToNative(_this.locationService.currentLocation, 'print');
-            var currLoc = _this.locationService.currentLocation.value;
-            _this.router.navigate([currLoc.contentURL]).then(function () {
-                // send success to native & trigger signal
-                _this.utilitiesService.sendToNative('success', 'triggerSignal');
-            });
+            if (dis === false) {
+                _this.locationService.updateCurrentLocation(loc);
+                _this.utilitiesService.sendToNative('New Location is ' + _this.locationService.currentLocation, 'print');
+                var currLoc = _this.locationService.currentLocation.value;
+                _this.router.navigate([currLoc.contentURL]).then(function () {
+                    // send success to native & trigger signal
+                    _this.utilitiesService.sendToNative('success', 'triggerSignal');
+                });
+            }
             _this.socket.removeAllListeners('registerLocationResult');
         });
     };
@@ -1918,7 +1971,9 @@ var GodService = /** @class */ (function () {
         this.socket.on('registerLocationLikeResult', function (result) {
             var res = result.data;
             var message = result.message;
-            console.log(res);
+            _this.store.dispatch(_this.userActions.changeLookupTable(res.locations));
+            var currLoc = _this.locationService.currentLocation.value;
+            _this.locationService.updateCurrentLocation(currLoc.id);
             if (message.code > 299) {
                 console.log('RegisterLocation: FAILED');
                 _this.store.dispatch(_this.statusActions.changeErrorMessage(message));
@@ -1961,7 +2016,7 @@ var GodService = /** @class */ (function () {
                 return;
             }
             // console.log('Disconnected from Exhibit-' + res.parent + ': ' + res.location);
-            _this.registerLocation(res.parent);
+            _this.registerLocation(res.parent, false);
             _this.socket.removeAllListeners('disconnectedFromExhibitResult');
         });
     };
@@ -2149,8 +2204,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _actions_UserActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/UserActions */ "./src/app/actions/UserActions.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var rxjs_Subject__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/Subject */ "./node_modules/rxjs-compat/_esm5/Subject.js");
-/* harmony import */ var _alert_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./alert.service */ "./src/app/services/alert.service.ts");
+/* harmony import */ var _alert_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./alert.service */ "./src/app/services/alert.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2172,7 +2226,6 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
 var NativeCommunicationService = /** @class */ (function () {
     function NativeCommunicationService(router, godService, locationService, appStore, locationActions, utilitiesService, userActions, dialog, alertService) {
         var _this = this;
@@ -2185,20 +2238,17 @@ var NativeCommunicationService = /** @class */ (function () {
         this.userActions = userActions;
         this.dialog = dialog;
         this.alertService = alertService;
-        this.subject = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_8__["Subject"]();
         this.subscription = this.alertService.getMessageResponse().subscribe(function (message) {
-            console.log('ho ' + message.result + ' ' + message.location + ' ' + message.resStatus);
             if (message.result === 'confirm') {
-                if (message.resStatus === 'FREE') {
-                    _this.godService.registerLocation(message.location);
-                    _this.appStore.dispatch(_this.locationActions.changeLocationSocketStatus(message.resStatus));
-                }
-                else {
-                    _this.godService.registerLocation(message.location);
+                _this.godService.registerLocation(message.location, false);
+                var lastDis = _this.appStore.getState().lastDismissed;
+                if (lastDis === message.location) {
+                    _this.appStore.dispatch(_this.locationActions.changeLastDismissed(undefined));
                 }
             }
             else {
-                console.log("nope");
+                _this.appStore.dispatch(_this.locationActions.changeLastDismissed(message.location));
+                _this.godService.registerLocation(message.location, true);
             }
             _this.utilitiesService.sendToNative('restartScanning', 'restartScanning');
         });
@@ -2221,34 +2271,32 @@ var NativeCommunicationService = /** @class */ (function () {
     };
     NativeCommunicationService.prototype.transmitLocationRegister = function (result) {
         var _this = this;
+        var state = this.appStore.getState();
         var minor = result.minor;
         var location = this.locationService.findLocation(minor);
+        if (state.lastDismissed === result.minor) {
+            return;
+        }
         if (!location) {
             this.utilitiesService.sendToNative('this is not a valid location', 'print');
             return;
         }
         var currLoc = this.locationService.currentLocation.value;
-        console.log(this.locationService.currentLocation);
         // location is not the same as before
         if (!this.locationService.sameAsCurrentLocation(location.id)) {
             if (this.locationService.currentLocation && currLoc.locationTypeId === 2) {
                 this.utilitiesService.sendToNative('this is not a valid location - type 2', 'print');
                 return;
             }
-            var state = this.appStore.getState();
             var exhibitParentId = state.atExhibitParentId;
             var onExhibit = state.onExhibit;
-            this.utilitiesService.sendToNative('new valid location found - check and registerLocation at GoD', 'print');
+            this.utilitiesService.sendToNative('new valid location found - check and registerLocation at GoD - ' + location.id, 'print');
             if ((location.locationTypeId !== 2 && !onExhibit) || (location.locationTypeId === 2 && exhibitParentId === location.parentId)) {
                 if (location.locationTypeId === 2) {
                     this.godService.checkLocationStatus(location.id, function (res) {
                         if (res === 'FREE') {
-                            console.log("I am free");
-                            _this.godService.registerLocation(location.id);
+                            _this.godService.registerLocation(location.id, false);
                             _this.appStore.dispatch(_this.locationActions.changeLocationSocketStatus(res));
-                            //this.utilitiesService.sendToNative('stopScanning','stopScanning');
-                            //const data = {location: location.id, resStatus: res};
-                            //this.alertService.sendMessage(data);
                         }
                         else {
                             _this.appStore.dispatch(_this.locationActions.changeLocationSocketStatus(res));
@@ -2257,9 +2305,10 @@ var NativeCommunicationService = /** @class */ (function () {
                 }
                 else {
                     this.utilitiesService.sendToNative('stopScanning', 'stopScanning');
-                    console.log("I am else");
                     var data = { location: location.id, resStatus: null };
-                    this.alertService.sendMessage(data);
+                    this.alertService.sendMessageLocationid(data);
+                    var elm = document.getElementById('ghostButton');
+                    elm.click();
                 }
             }
         }
@@ -2276,7 +2325,7 @@ var NativeCommunicationService = /** @class */ (function () {
             var exhibitParentId = state.atExhibitParentId;
             this.utilitiesService.sendToNative('new valid location found - check and registerLocation at GoD', 'print');
             if (location.locationTypeId === 7 && exhibitParentId === location.parentId) {
-                this.godService.registerLocation(location.id);
+                this.godService.registerLocation(location.id, false);
             }
         }
     };
@@ -2313,9 +2362,6 @@ var NativeCommunicationService = /** @class */ (function () {
         }
         this.godService.registerLocationLike(currLoc, like);
     };
-    NativeCommunicationService.prototype.changeBeacon = function () {
-        this.utilitiesService.sendToNative('changeBeacon', 'changeBeacon');
-    };
     NativeCommunicationService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])('AppStore')),
@@ -2325,7 +2371,7 @@ var NativeCommunicationService = /** @class */ (function () {
             _utilities_service__WEBPACK_IMPORTED_MODULE_4__["UtilitiesService"],
             _actions_UserActions__WEBPACK_IMPORTED_MODULE_6__["UserActions"],
             _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatDialog"],
-            _alert_service__WEBPACK_IMPORTED_MODULE_9__["AlertService"]])
+            _alert_service__WEBPACK_IMPORTED_MODULE_8__["AlertService"]])
     ], NativeCommunicationService);
     return NativeCommunicationService;
 }());
@@ -2417,9 +2463,6 @@ var UtilitiesService = /** @class */ (function () {
                     break;
                 case 'restartScanning':
                     this.winRef.nativeWindow.MEETeUXAndroidAppRoot.restartScanner();
-                    break;
-                case 'changeBeacon':
-                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.changeBeacon();
                     break;
                 default:
                     break;
@@ -2523,7 +2566,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/julian/meeteux-odwww/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\repositories\meeteux-odwww\src\main.ts */"./src/main.ts");
 
 
 /***/ }),
