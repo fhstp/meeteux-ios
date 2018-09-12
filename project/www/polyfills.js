@@ -5470,7 +5470,7 @@ window.global = window;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\repositories\meeteux-odwww\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /Users/niklas/Code/meeteux-odwww/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })

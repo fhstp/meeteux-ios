@@ -69,7 +69,7 @@ var WindowRef = /** @class */ (function () {
 /*!********************************************!*\
   !*** ./src/app/actions/LocationActions.ts ***!
   \********************************************/
-/*! exports provided: CHANGE_CURRENT_LOCATION, CHANGE_CONNECTED_EXHIBIT, CHANGE_LOCATION_STATUS, CHANGE_LOCATION_SOCKET_STATUS, CHANGE_AT_EXHIBIT_PARENT_ID, CHANGE_ON_EXHIBIT, CHANGE_LAST_DISMISSED, LocationActions */
+/*! exports provided: CHANGE_CURRENT_LOCATION, CHANGE_CONNECTED_EXHIBIT, CHANGE_LOCATION_STATUS, CHANGE_LOCATION_SOCKET_STATUS, CHANGE_AT_EXHIBIT_PARENT_ID, CHANGE_ON_EXHIBIT, CHANGE_LAST_DISMISSED, CHANGE_SHOW_DISMISSED, CHANGE_LOCATION_SCANNING, LocationActions */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -81,6 +81,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_AT_EXHIBIT_PARENT_ID", function() { return CHANGE_AT_EXHIBIT_PARENT_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_ON_EXHIBIT", function() { return CHANGE_ON_EXHIBIT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_LAST_DISMISSED", function() { return CHANGE_LAST_DISMISSED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_SHOW_DISMISSED", function() { return CHANGE_SHOW_DISMISSED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CHANGE_LOCATION_SCANNING", function() { return CHANGE_LOCATION_SCANNING; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LocationActions", function() { return LocationActions; });
 var CHANGE_CURRENT_LOCATION = 'CHANGE_CURRENT_LOCATION';
 var CHANGE_CONNECTED_EXHIBIT = 'CHANGE_CONNECTED_EXHIBIT';
@@ -89,6 +91,8 @@ var CHANGE_LOCATION_SOCKET_STATUS = 'CHANGE_LOCATION_SOCKET_STATUS';
 var CHANGE_AT_EXHIBIT_PARENT_ID = 'CHANGE_AT_EXHIBIT_PARENT_ID';
 var CHANGE_ON_EXHIBIT = 'CHANGE_ON_EXHIBIT';
 var CHANGE_LAST_DISMISSED = 'CHANGE_LAST_DISMISSED';
+var CHANGE_SHOW_DISMISSED = 'CHANGE_SHOW_DISMISSED';
+var CHANGE_LOCATION_SCANNING = 'CHANGE_LOCATION_SCANNING';
 var LocationActions = /** @class */ (function () {
     function LocationActions() {
     }
@@ -132,6 +136,18 @@ var LocationActions = /** @class */ (function () {
         return {
             type: CHANGE_LAST_DISMISSED,
             lastDismissed: dismissedId
+        };
+    };
+    LocationActions.prototype.changeShowDismissed = function (shown) {
+        return {
+            type: CHANGE_SHOW_DISMISSED,
+            showDismissed: shown
+        };
+    };
+    LocationActions.prototype.changeLocationScanning = function (isScanning) {
+        return {
+            type: CHANGE_LOCATION_SCANNING,
+            locationScanning: isScanning
         };
     };
     return LocationActions;
@@ -236,7 +252,7 @@ var UserActions = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 matDialogTitle>New Exhibit?</h2>\r\n<div mat-dialog-content>\r\n  <p>Do you want to enter the exhibit {{number}} {{data.number}}?</p>\r\n</div>\r\n<mat-dialog-actions align=\"end\">\r\n  <button mat-raised-button color=\"primary\" (tap)=\"cancelDialog()\">No</button>\r\n  <button mat-raised-button color=\"primary\" (tap)=\"confirmDialog()\">Yes</button>\r\n</mat-dialog-actions>\r\n\r\n"
+module.exports = "<h2 matDialogTitle>New Exhibit?</h2>\n<div mat-dialog-content>\n  <p>Do you want to enter the exhibit {{number}} {{data.number}}?</p>\n</div>\n<mat-dialog-actions align=\"end\">\n  <button mat-raised-button color=\"primary\" (tap)=\"cancelDialog()\">No</button>\n  <button mat-raised-button color=\"primary\" (tap)=\"confirmDialog()\">Yes</button>\n</mat-dialog-actions>\n\n"
 
 /***/ }),
 
@@ -344,7 +360,7 @@ var routes = [
     { path: '', component: _register_register_component__WEBPACK_IMPORTED_MODULE_2__["RegisterComponent"] },
     { path: 'mainview', component: _main_view_main_view_component__WEBPACK_IMPORTED_MODULE_4__["MainViewComponent"] },
     { path: 'passive', component: _content_passive_content_passive_component__WEBPACK_IMPORTED_MODULE_5__["ContentPassiveComponent"] },
-    { path: 'tableat', component: _content_table_at_content_table_at_component__WEBPACK_IMPORTED_MODULE_6__["ContentTableAtComponent"] },
+    { path: 'tableat', component: _content_table_at_content_table_at_component__WEBPACK_IMPORTED_MODULE_6__["ContentTableAtComponent"], runGuardsAndResolvers: 'always' },
     { path: 'tableon', component: _content_table_on_content_table_on_component__WEBPACK_IMPORTED_MODULE_7__["ContentTableOnComponent"] },
     // additional routes here
     { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_3__["PageNotFoundComponent"] }
@@ -356,7 +372,7 @@ var AppRoutingModule = /** @class */ (function () {
     AppRoutingModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             imports: [
-                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { enableTracing: false }) // <-- debugging purposes only)
+                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { onSameUrlNavigation: 'reload', enableTracing: false }) // <-- debugging purposes only)
             ],
             exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
         })
@@ -375,7 +391,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-fill-remaining-space\r\n{\r\n  flex: 1 1 auto;\r\n}\r\n\r\n::ng-deep snack-bar-container.success-snackbar{\r\n  background: darkgreen;\r\n}\r\n\r\n::ng-deep snack-bar-container.error-snackbar{\r\n  background: darkred;\r\n}\r\n\r\n.hiddenbutton{\r\n  display: none;\r\n}\r\n"
+module.exports = ".example-fill-remaining-space\n{\n  flex: 1 1 auto;\n}\n\n::ng-deep snack-bar-container.success-snackbar{\n  background: darkgreen;\n}\n\n::ng-deep snack-bar-container.error-snackbar{\n  background: darkred;\n}\n\n.hiddenbutton{\n  display: none;\n}\n"
 
 /***/ }),
 
@@ -386,7 +402,7 @@ module.exports = ".example-fill-remaining-space\r\n{\r\n  flex: 1 1 auto;\r\n}\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\r\n  <span>MEETeUX</span>\r\n\r\n  <span class=\"example-fill-remaining-space\"></span>\r\n  <button mat-icon-button [matMenuTriggerFor]=\"menu\">\r\n    <mat-icon>menu</mat-icon>\r\n  </button>\r\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\" xPosition=\"before\">\r\n    <button mat-menu-item (click)=\"logoutUser()\">\r\n      <mat-icon>exit_to_app</mat-icon>\r\n      <span>Logout</span>\r\n    </button>\r\n    <button mat-menu-item (click)=\"showUnityView()\">\r\n      <mat-icon>whatshot</mat-icon>\r\n      <span>Unity</span>\r\n    </button>\r\n  </mat-menu>\r\n</mat-toolbar>\r\n\r\n<router-outlet></router-outlet>\r\n\r\n<button id=\"dismissedButton\" *ngIf=\"dismissedLocation\" (click)=\"openDialogDismissed()\" mat-fab color=\"primary\" [matBadge]=\"dismissedLocation\" matBadgePosition=\"before\" matBadgeColor=\"accent\">\r\n  <mat-icon>room</mat-icon>\r\n</button>\r\n\r\n<button id=\"ghostButton\" class=\"hiddenbutton\" (click)=\"openDialog()\">Ghost</button>\r\n"
+module.exports = "<mat-toolbar id=\"header\" color=\"primary\">\n  <span>MEETeUX</span>\n\n  <span class=\"example-fill-remaining-space\"></span>\n  <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\" xPosition=\"before\">\n    <button mat-menu-item (click)=\"logoutUser()\">\n      <mat-icon>exit_to_app</mat-icon>\n      <span>Logout</span>\n    </button>\n    <button mat-menu-item (click)=\"showUnityView()\">\n      <mat-icon>whatshot</mat-icon>\n      <span>Unity</span>\n    </button>\n  </mat-menu>\n</mat-toolbar>\n\n<router-outlet></router-outlet>\n\n<button id=\"dismissedButton\" *ngIf=\"dismissedLocation && showDismissed\" (click)=\"openDialogDismissed()\" mat-fab color=\"primary\" [matBadge]=\"dismissedLocation\" matBadgePosition=\"before\" matBadgeColor=\"accent\">\n  <mat-icon>room</mat-icon>\n</button>\n\n<button id=\"ghostButton\" class=\"hiddenbutton\" (click)=\"openDialog()\">Ghost</button>\n"
 
 /***/ }),
 
@@ -450,6 +466,7 @@ var AppComponent = /** @class */ (function () {
             var errorMessage = state.errorMessage;
             var successMessage = state.successMessage;
             _this.dismissedLocation = state.lastDismissed;
+            _this.showDismissed = state.showDismissed;
             if (_this.currentToken !== token && token !== undefined) {
                 _this.utilitiesService.sendToNative(token, 'saveToken');
                 _this.currentToken = token;
@@ -820,7 +837,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\r\n  Willkommen bei {{location.description}}\r\n</h1>\r\n<p>{{location.id}} - Passives Exibit</p>\r\n\r\n<button *ngIf=\"location.liked; else notLiked\" id=\"unlike\" mat-raised-button color=\"warn\" (click)=\"registerLocationUnlike()\">\r\n  <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Unlike\r\n</button>\r\n\r\n<ng-template #notLiked>\r\n  <button id=\"like\" mat-stroked-button color=\"warn\" (click)=\"registerLocationLike()\">\r\n    <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Like\r\n  </button>\r\n</ng-template>\r\n"
+module.exports = "<h1>\n  Willkommen bei {{location.description}}\n</h1>\n<p>{{location.id}} - Passives Exibit</p>\n\n<button *ngIf=\"location.liked; else notLiked\" id=\"unlike\" mat-raised-button color=\"warn\" (click)=\"registerLocationUnlike()\">\n  <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Unlike\n</button>\n\n<ng-template #notLiked>\n  <button id=\"like\" mat-stroked-button color=\"warn\" (click)=\"registerLocationLike()\">\n    <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Like\n  </button>\n</ng-template>\n"
 
 /***/ }),
 
@@ -918,7 +935,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\r\n  Willkommen bei {{location.description}}\r\n</h1>\r\n\r\n\r\n<div *ngIf=\"locationStatusFree\">\r\n  <div *ngIf=\"locationType == 3\">\r\n    <h3>Table ist frei</h3>\r\n    <button *ngIf=\"joinGame\" mat-raised-button color=\"primary\" (click)=\"startOnTableSearch()\">Mitspielen</button>\r\n    <p *ngIf=\"!joinGame\">Bitte lege Dein Handy auf ein Beacon am Table</p>\r\n    <h4 *ngIf=\"locationSocketStatus === 'OCCUPIED'\">Dieses Beacon ist schon belegt!</h4>\r\n\r\n    <div class=\"webdevtools\" *ngIf=\"isWeb && !joinGame\" style=\"margin-top:20px\">\r\n      <button mat-raised-button color=\"primary\" (click)=\"redirectToOnTable()\">Register Location TableOn</button>\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"locationType == 6\">\r\n    <h3>Table ist frei</h3>\r\n    <button *ngIf=\"joinGame\" mat-raised-button color=\"primary\" (click)=\"redirectToOnTableBehavior()\">Mitspielen</button>\r\n  </div>\r\n</div>\r\n\r\n<div *ngIf=\"locationStatusOccupied\">\r\n  <h3>Der Table ist gerade nicht frei, probieren Sie es später erneut!</h3>\r\n</div>\r\n\r\n<div *ngIf=\"locationStatusOffline\">\r\n  <h3>Beim Table ist leider ein Problem aufgetreten und steht daher zur Zeit nicht zur Verfügung!</h3>\r\n</div>\r\n\r\n<button *ngIf=\"location.liked; else notLiked\" id=\"unlike\" mat-raised-button color=\"warn\" (click)=\"registerLocationUnlike()\">\r\n  <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Unlike\r\n</button>\r\n\r\n<ng-template #notLiked>\r\n  <button id=\"like\" mat-stroked-button color=\"warn\" (click)=\"registerLocationLike()\">\r\n    <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Like\r\n  </button>\r\n</ng-template>\r\n"
+module.exports = "<h1>\n  Willkommen bei {{location.description}}\n</h1>\n\n\n<div *ngIf=\"locationStatusFree\">\n  <div *ngIf=\"locationType == 3\">\n    <h3>Table ist frei</h3>\n    <button *ngIf=\"joinGame\" mat-raised-button color=\"primary\" (click)=\"startOnTableSearch()\">Mitspielen</button>\n    <p *ngIf=\"!joinGame\">Bitte lege Dein Handy auf ein Beacon am Table</p>\n    <h4 *ngIf=\"locationSocketStatus === 'OCCUPIED'\">Dieses Beacon ist schon belegt!</h4>\n\n    <div class=\"webdevtools\" *ngIf=\"isWeb && !joinGame\" style=\"margin-top:20px\">\n      <button mat-raised-button color=\"primary\" (click)=\"redirectToOnTable()\">Register Location TableOn</button>\n      <button mat-raised-button color=\"primary\" (click)=\"redirectToPassiveExhibit()\">Register Location Passive 1009</button>\n    </div>\n  </div>\n  <div *ngIf=\"locationType == 6\">\n    <h3>Table ist frei</h3>\n    <button *ngIf=\"joinGame\" mat-raised-button color=\"primary\" (click)=\"redirectToOnTableBehavior()\">Mitspielen</button>\n  </div>\n</div>\n\n<div *ngIf=\"locationStatusOccupied\">\n  <h3>Der Table ist gerade nicht frei, probieren Sie es später erneut!</h3>\n</div>\n\n<div *ngIf=\"locationStatusOffline\">\n  <h3>Beim Table ist leider ein Problem aufgetreten und steht daher zur Zeit nicht zur Verfügung!</h3>\n</div>\n\n<button *ngIf=\"location.liked; else notLiked\" id=\"unlike\" mat-raised-button color=\"warn\" (click)=\"registerLocationUnlike()\">\n  <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Unlike\n</button>\n\n<ng-template #notLiked>\n  <button id=\"like\" mat-stroked-button color=\"warn\" (click)=\"registerLocationLike()\">\n    <mat-icon aria-label=\"Example icon-button with a heart icon\">favorite</mat-icon>&nbsp;Like\n  </button>\n</ng-template>\n"
 
 /***/ }),
 
@@ -978,8 +995,17 @@ var ContentTableAtComponent = /** @class */ (function () {
         this._curLocSubscribe = this.locationService.currentLocation.subscribe(function (value) {
             _this.location = value;
         });
+        this.navigationSubscription = this.router.events.subscribe(function (e) {
+            // If it is a NavigationEnd event re-initalise the component
+            if (e instanceof _angular_router__WEBPACK_IMPORTED_MODULE_3__["NavigationEnd"]) {
+                _this.initialiseInvites();
+            }
+        });
     }
     ContentTableAtComponent.prototype.ngOnInit = function () {
+        this.initialiseInvites();
+    };
+    ContentTableAtComponent.prototype.initialiseInvites = function () {
         var _this = this;
         this.utilitiesService.sendToNative('TABLE-AT', 'print');
         this.location = this.locationService.currentLocation.value;
@@ -1007,6 +1033,9 @@ var ContentTableAtComponent = /** @class */ (function () {
         this.utilitiesService.sendToNative('REDIRECT-TO-TABLE-ON', 'print');
         this.nativeCommunicationService.transmitLocationRegister({ minor: 1000, major: 100 });
     };
+    ContentTableAtComponent.prototype.redirectToPassiveExhibit = function () {
+        this.nativeCommunicationService.transmitLocationRegister({ minor: 1009, major: 10 });
+    };
     ContentTableAtComponent.prototype.redirectToOnTableBehavior = function () {
         this.utilitiesService.sendToNative('REDIRECT-TO-TABLE-ON-Behavior', 'print');
         this.appStore.dispatch(this.locationActions.changeAtExhibitParentId(this.locationId));
@@ -1032,6 +1061,7 @@ var ContentTableAtComponent = /** @class */ (function () {
     // saves ID of current exhibit in localstorage
     ContentTableAtComponent.prototype.startOnTableSearch = function () {
         this.joinGame = false;
+        this.locationService.stopLocationScanning();
         this.appStore.dispatch(this.locationActions.changeAtExhibitParentId(this.locationId));
         // localStorage.setItem('atExhibitParent', JSON.stringify(this.locationId));
     };
@@ -1068,7 +1098,7 @@ var ContentTableAtComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".wrapper {\r\n  padding: 50px 40px 0 40px;\r\n}\r\n"
+module.exports = ".wrapper {\n  padding: 50px 40px 0 40px;\n}\n"
 
 /***/ }),
 
@@ -1079,7 +1109,7 @@ module.exports = ".wrapper {\r\n  padding: 50px 40px 0 40px;\r\n}\r\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\r\n    <h1>\r\n      Willkommen bei {{locationName}}\r\n    </h1>\r\n    <div *ngIf=\"connectionSuccess; else elseBlock\">\r\n      <h3>\r\n        <mat-icon style=\"color:green; width: 80px; font-size: 80px;\">check_circle</mat-icon>\r\n        Verbindung zum Table erfolgreich aufgebaut.\r\n        <br />\r\n        <br />\r\n        <button mat-raised-button color=\"primary\" (click)=\"sendMessageToExhibit()\">Send Message</button>\r\n      </h3>\r\n    </div>\r\n    <ng-template #elseBlock>\r\n      <mat-spinner></mat-spinner>\r\n      <h3>\r\n        Verbindung zum Table wird aufgebaut.\r\n      </h3>\r\n    </ng-template>\r\n\r\n    <button mat-raised-button color=\"primary\" (click)=\"disconnectFromExhibit()\">Disconnect Exhibit</button>\r\n</div>\r\n"
+module.exports = "<div class=\"wrapper\">\n    <h1>\n      Willkommen bei {{locationName}}\n    </h1>\n    <div *ngIf=\"connectionSuccess; else elseBlock\">\n      <h3>\n        <mat-icon style=\"color:green; width: 80px; font-size: 80px;\">check_circle</mat-icon>\n        Verbindung zum Table erfolgreich aufgebaut.\n        <br />\n        <br />\n        <button mat-raised-button color=\"primary\" (click)=\"sendMessageToExhibit()\">Send Message</button>\n      </h3>\n    </div>\n    <ng-template #elseBlock>\n      <mat-spinner></mat-spinner>\n      <h3>\n        Verbindung zum Table wird aufgebaut.\n      </h3>\n    </ng-template>\n\n    <button mat-raised-button color=\"primary\" (click)=\"disconnectFromExhibit()\">Disconnect Exhibit</button>\n</div>\n"
 
 /***/ }),
 
@@ -1098,6 +1128,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_location_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/location.service */ "./src/app/services/location.service.ts");
 /* harmony import */ var _services_exhibit_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/exhibit.service */ "./src/app/services/exhibit.service.ts");
 /* harmony import */ var _actions_LocationActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/LocationActions */ "./src/app/actions/LocationActions.ts");
+/* harmony import */ var _services_utilities_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/utilities.service */ "./src/app/services/utilities.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1115,12 +1146,14 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var ContentTableOnComponent = /** @class */ (function () {
-    function ContentTableOnComponent(godService, exhibitService, locationService, appStore, locationActions) {
+    function ContentTableOnComponent(godService, exhibitService, locationService, utilitiesService, appStore, locationActions) {
         var _this = this;
         this.godService = godService;
         this.exhibitService = exhibitService;
         this.locationService = locationService;
+        this.utilitiesService = utilitiesService;
         this.appStore = appStore;
         this.locationActions = locationActions;
         this._unsubscribe = this.appStore.subscribe(function () {
@@ -1138,14 +1171,17 @@ var ContentTableOnComponent = /** @class */ (function () {
         this.exhibitService.connectOD();
         // localStorage.setItem('onExhibit', JSON.stringify(true));
         this.appStore.dispatch(this.locationActions.changeOnExhibit(false));
+        this.appStore.dispatch(this.locationActions.changeShowDismissed(false));
+        this.locationService.stopLocationScanning();
     };
     ContentTableOnComponent.prototype.ngOnDestroy = function () {
+        this.exhibitService.disconnect();
         this._unsubscribe();
+        this.appStore.dispatch(this.locationActions.changeShowDismissed(true));
+        this.locationService.startLocationScanning();
     };
     ContentTableOnComponent.prototype.disconnectFromExhibit = function () {
         this.exhibitService.disconnect();
-        this.appStore.dispatch(this.locationActions.changeAtExhibitParentId(0));
-        this.appStore.dispatch(this.locationActions.changeOnExhibit(false));
     };
     ContentTableOnComponent.prototype.sendMessageToExhibit = function () {
         this.exhibitService.sendMessage();
@@ -1156,10 +1192,11 @@ var ContentTableOnComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./content-table-on.component.html */ "./src/app/content-table-on/content-table-on.component.html"),
             styles: [__webpack_require__(/*! ./content-table-on.component.css */ "./src/app/content-table-on/content-table-on.component.css")]
         }),
-        __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])('AppStore')),
+        __param(4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])('AppStore')),
         __metadata("design:paramtypes", [_services_god_service__WEBPACK_IMPORTED_MODULE_1__["GodService"],
             _services_exhibit_service__WEBPACK_IMPORTED_MODULE_3__["ExhibitService"],
-            _services_location_service__WEBPACK_IMPORTED_MODULE_2__["LocationService"], Object, _actions_LocationActions__WEBPACK_IMPORTED_MODULE_4__["LocationActions"]])
+            _services_location_service__WEBPACK_IMPORTED_MODULE_2__["LocationService"],
+            _services_utilities_service__WEBPACK_IMPORTED_MODULE_5__["UtilitiesService"], Object, _actions_LocationActions__WEBPACK_IMPORTED_MODULE_4__["LocationActions"]])
     ], ContentTableOnComponent);
     return ContentTableOnComponent;
 }());
@@ -1209,7 +1246,7 @@ var ExhibitSocketHelper = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".wrapper {\r\n  padding: 0 20px 0 20px;\r\n}\r\n\r\nbutton {\r\n  margin-left: 10px;\r\n}\r\n"
+module.exports = ".wrapper {\n  padding: 0 20px 0 20px;\n}\n\nbutton {\n  margin-left: 10px;\n}\n"
 
 /***/ }),
 
@@ -1220,7 +1257,7 @@ module.exports = ".wrapper {\r\n  padding: 0 20px 0 20px;\r\n}\r\n\r\nbutton {\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\r\n  <mat-card class=\"registerForm\">\r\n    <h1>Willkommen {{user.name}}</h1>\r\n    <br />\r\n    <div class=\"webdevtools\" *ngIf=\"isWeb\">\r\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationTableAt()\">Register Location TableAt</button>\r\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationTableAtBehavior()\">Register Location TableAtBehavior</button>\r\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationPassive()\">Register Location Passive</button>\r\n    </div>\r\n  </mat-card>\r\n</div>\r\n"
+module.exports = "<div class=\"wrapper\">\n  <mat-card class=\"registerForm\">\n    <h1>Willkommen {{user.name}}</h1>\n    <br />\n    <div class=\"webdevtools\" *ngIf=\"isWeb\">\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationTableAt()\">Register Location TableAt</button>\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationTableAtBehavior()\">Register Location TableAtBehavior</button>\n      <button mat-raised-button color=\"primary\" (click)=\"requestRegisterLocationPassive()\">Register Location Passive</button>\n    </div>\n  </mat-card>\n</div>\n"
 
 /***/ }),
 
@@ -1316,7 +1353,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  page-not-found works!\r\n</p>\r\n"
+module.exports = "<p>\n  page-not-found works!\n</p>\n"
 
 /***/ }),
 
@@ -1398,7 +1435,9 @@ var initialState = {
     onExhibit: undefined,
     errorMessage: undefined,
     successMessage: undefined,
-    lastDismissed: undefined
+    lastDismissed: undefined,
+    showDismissed: true,
+    locationScanning: true
 };
 function rootReducer(state, action) {
     if (state === void 0) { state = initialState; }
@@ -1417,6 +1456,10 @@ function rootReducer(state, action) {
             return __assign({}, state, { onExhibit: action.onExhibit });
         case _actions_LocationActions__WEBPACK_IMPORTED_MODULE_0__["CHANGE_LAST_DISMISSED"]:
             return __assign({}, state, { lastDismissed: action.lastDismissed });
+        case _actions_LocationActions__WEBPACK_IMPORTED_MODULE_0__["CHANGE_SHOW_DISMISSED"]:
+            return __assign({}, state, { showDismissed: action.showDismissed });
+        case _actions_LocationActions__WEBPACK_IMPORTED_MODULE_0__["CHANGE_LOCATION_SCANNING"]:
+            return __assign({}, state, { locationScanning: action.locationScanning });
         case _actions_UserActions__WEBPACK_IMPORTED_MODULE_1__["CHANGE_USER"]:
             return __assign({}, state, { user: action.user });
         case _actions_UserActions__WEBPACK_IMPORTED_MODULE_1__["CHANGE_TOKEN"]:
@@ -1444,7 +1487,7 @@ function rootReducer(state, action) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".registerForm {\r\n  margin: 50px 0;\r\n}\r\n\r\n.wrapper {\r\n  padding: 0 20px 0 20px;\r\n}\r\n"
+module.exports = ".registerForm {\n  margin: 50px 0;\n}\n\n.wrapper {\n  padding: 0 20px 0 20px;\n}\n"
 
 /***/ }),
 
@@ -1455,7 +1498,7 @@ module.exports = ".registerForm {\r\n  margin: 50px 0;\r\n}\r\n\r\n.wrapper {\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"wrapper\">\r\n  <mat-card class=\"registerForm\">\r\n    <h1>Registration</h1>\r\n    <h2>Please enter a username</h2>\r\n    <mat-form-field class=\"example-full-width\">\r\n      <input matInput placeholder=\"Username\" [(ngModel)]=\"name\">\r\n    </mat-form-field>\r\n    <br />\r\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(false)\">Register</button>\r\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(true)\">Register As Guest</button>\r\n  </mat-card>\r\n</div>\r\n"
+module.exports = "<div class=\"wrapper\">\n  <mat-card class=\"registerForm\">\n    <h1>Registration</h1>\n    <h2>Please enter a username</h2>\n    <mat-form-field class=\"example-full-width\">\n      <input matInput placeholder=\"Username\" [(ngModel)]=\"name\">\n    </mat-form-field>\n    <br />\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(false)\">Register</button>\n    <button mat-raised-button color=\"primary\" (click)=\"requestDeviceInfos(true)\">Register As Guest</button>\n  </mat-card>\n</div>\n"
 
 /***/ }),
 
@@ -1655,8 +1698,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_LocationActions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions/LocationActions */ "./src/app/actions/LocationActions.ts");
 /* harmony import */ var _actions_UserActions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../actions/UserActions */ "./src/app/actions/UserActions.ts");
 /* harmony import */ var _services_utilities_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../services/utilities.service */ "./src/app/services/utilities.service.ts");
-/* harmony import */ var _native_communication_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./native-communication.service */ "./src/app/services/native-communication.service.ts");
-/* harmony import */ var _actions_StatusActions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../actions/StatusActions */ "./src/app/actions/StatusActions.ts");
+/* harmony import */ var _actions_StatusActions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../actions/StatusActions */ "./src/app/actions/StatusActions.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1679,9 +1721,8 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
-
 var ExhibitService = /** @class */ (function () {
-    function ExhibitService(router, winRef, locationService, socket, socketGod, appStore, locationActions, userActions, statusActions, utilitiesService, nativeCommunicationService) {
+    function ExhibitService(router, winRef, locationService, socket, socketGod, appStore, locationActions, userActions, statusActions, utilitiesService) {
         this.router = router;
         this.winRef = winRef;
         this.locationService = locationService;
@@ -1692,7 +1733,6 @@ var ExhibitService = /** @class */ (function () {
         this.userActions = userActions;
         this.statusActions = statusActions;
         this.utilitiesService = utilitiesService;
-        this.nativeCommunicationService = nativeCommunicationService;
     }
     ExhibitService.prototype.establishExhibitConnection = function (url) {
         var _this = this;
@@ -1708,6 +1748,9 @@ var ExhibitService = /** @class */ (function () {
             // this.appStore.dispatch(this.statusActions.changeErrorMessage(error));
             var currLoc = _this.locationService.currentLocation.value;
             _this.socketGod.disconnectedFromExhibit(currLoc.parentId, currLoc.id);
+            _this.appStore.dispatch(_this.locationActions.changeConnectedExhibit(false));
+            _this.appStore.dispatch(_this.locationActions.changeAtExhibitParentId(0));
+            _this.appStore.dispatch(_this.locationActions.changeOnExhibit(false));
         });
     };
     ExhibitService.prototype.connectOD = function () {
@@ -1729,7 +1772,7 @@ var ExhibitService = /** @class */ (function () {
     ExhibitService.prototype.startAutoResponder = function () {
         var _this = this;
         this.socket.connection.on('exhibitStatusCheck', function () {
-            console.log('Auto Responder Check');
+            _this.utilitiesService.sendToNative('Auto Responder Check', 'print');
             var user = _this.appStore.getState().user;
             _this.socket.connection.emit('exhibitStatusCheckResult', user);
         });
@@ -1763,9 +1806,8 @@ var ExhibitService = /** @class */ (function () {
             _exhibit_socket_service__WEBPACK_IMPORTED_MODULE_4__["ExhibitSocketService"],
             _god_service__WEBPACK_IMPORTED_MODULE_5__["GodService"], Object, _actions_LocationActions__WEBPACK_IMPORTED_MODULE_6__["LocationActions"],
             _actions_UserActions__WEBPACK_IMPORTED_MODULE_7__["UserActions"],
-            _actions_StatusActions__WEBPACK_IMPORTED_MODULE_10__["StatusActions"],
-            _services_utilities_service__WEBPACK_IMPORTED_MODULE_8__["UtilitiesService"],
-            _native_communication_service__WEBPACK_IMPORTED_MODULE_9__["NativeCommunicationService"]])
+            _actions_StatusActions__WEBPACK_IMPORTED_MODULE_9__["StatusActions"],
+            _services_utilities_service__WEBPACK_IMPORTED_MODULE_8__["UtilitiesService"]])
     ], ExhibitService);
     return ExhibitService;
 }());
@@ -2157,6 +2199,12 @@ var LocationService = /** @class */ (function () {
         }
         return isSame;
     };
+    LocationService.prototype.stopLocationScanning = function () {
+        this.appStore.dispatch(this.locationActions.changeLocationScanning(false));
+    };
+    LocationService.prototype.startLocationScanning = function () {
+        this.appStore.dispatch(this.locationActions.changeLocationScanning(true));
+    };
     Object.defineProperty(LocationService.prototype, "lookuptable", {
         get: function () {
             return this._lookuptable;
@@ -2250,7 +2298,7 @@ var NativeCommunicationService = /** @class */ (function () {
                 _this.appStore.dispatch(_this.locationActions.changeLastDismissed(message.location));
                 _this.godService.registerLocation(message.location, true);
             }
-            _this.utilitiesService.sendToNative('restartScanning', 'restartScanning');
+            _this.locationService.startLocationScanning();
         });
     }
     NativeCommunicationService.prototype.ngOnInit = function () {
@@ -2277,13 +2325,17 @@ var NativeCommunicationService = /** @class */ (function () {
         if (state.lastDismissed === result.minor) {
             return;
         }
+        if (state.locationScanning === false && location.locationTypeId !== 2) {
+            return;
+        }
         if (!location) {
             this.utilitiesService.sendToNative('this is not a valid location', 'print');
             return;
         }
         var currLoc = this.locationService.currentLocation.value;
-        // location is not the same as before
+        // if the location is not the same as before
         if (!this.locationService.sameAsCurrentLocation(location.id)) {
+            // If the current location is from type activeExhibitOn the redirection should be disabled
             if (this.locationService.currentLocation && currLoc.locationTypeId === 2) {
                 this.utilitiesService.sendToNative('this is not a valid location - type 2', 'print');
                 return;
@@ -2304,7 +2356,7 @@ var NativeCommunicationService = /** @class */ (function () {
                     });
                 }
                 else {
-                    this.utilitiesService.sendToNative('stopScanning', 'stopScanning');
+                    this.locationService.stopLocationScanning();
                     var data = { location: location.id, resStatus: null };
                     this.alertService.sendMessageLocationid(data);
                     var elm = document.getElementById('ghostButton');
@@ -2347,7 +2399,13 @@ var NativeCommunicationService = /** @class */ (function () {
     NativeCommunicationService.prototype.logoutSuccess = function () {
         var _this = this;
         this.appStore.dispatch(this.userActions.changeToken(undefined));
-        this.appStore.dispatch(this.locationActions);
+        this.appStore.dispatch(this.locationActions.changeCurrentLocation(undefined));
+        this.appStore.dispatch(this.locationActions.changeLocationStatus(undefined));
+        this.appStore.dispatch(this.locationActions.changeLocationSocketStatus(undefined));
+        this.appStore.dispatch(this.locationActions.changeConnectedExhibit(undefined));
+        this.appStore.dispatch(this.locationActions.changeAtExhibitParentId(undefined));
+        this.appStore.dispatch(this.locationActions.changeOnExhibit(undefined));
+        this.appStore.dispatch(this.locationActions.changeLastDismissed(undefined));
         this.router.navigate(['']).then(function () {
             _this.utilitiesService.sendToNative('User Logged out', 'print');
         });
@@ -2458,12 +2516,6 @@ var UtilitiesService = /** @class */ (function () {
                 case 'getToken':
                     this.winRef.nativeWindow.MEETeUXAndroidAppRoot.getToken();
                     break;
-                case 'stopScanning':
-                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.stopScanner();
-                    break;
-                case 'restartScanning':
-                    this.winRef.nativeWindow.MEETeUXAndroidAppRoot.restartScanner();
-                    break;
                 default:
                     break;
             }
@@ -2566,7 +2618,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\repositories\meeteux-odwww\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/niklas/Code/meeteux-odwww/src/main.ts */"./src/main.ts");
 
 
 /***/ }),

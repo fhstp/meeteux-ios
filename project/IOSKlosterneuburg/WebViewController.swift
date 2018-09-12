@@ -42,9 +42,6 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             print("Fallback on earlier versions")
         }
         
-        
-        print("Hallo Welt")
-        
         // Adding webView content
         do {
             guard let filePath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "www")
@@ -118,7 +115,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
                 break
             case "triggerSignal":
                 triggerSignal()
-                triggerNotivication()
+                //TODO: implement trigger Notivication only when in background
+                //triggerNotivication()
                 break
             case "getToken":
                 getToken()
@@ -359,6 +357,8 @@ extension WebViewController: KTKBeaconManagerDelegate{
             
             let myBeacon = beaconList[0]
             
+            // Beacon check will now be done in the web app
+            /*
             if lastBeacon != nil{
                 // compare to lastBeacon, if not the same, than sendToWeb
                 if(myBeacon.major != lastBeacon.major || myBeacon.minor != lastBeacon.minor){
@@ -366,7 +366,9 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 }
             } else {
                 sendBeacon(beacon: myBeacon)
-            }
+            }*/
+            
+            sendBeacon(beacon: myBeacon)
             
             //print("range Beacon")
         }
