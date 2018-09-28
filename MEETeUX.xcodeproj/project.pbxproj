@@ -52,7 +52,7 @@
 		B9785A86212A9640005ECFE3 /* MEETeUXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MEETeUXUITests.swift; sourceTree = "<group>"; };
 		B9785A88212A9640005ECFE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9785A94212A97BA005ECFE3 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
-		B9785A96212A9901005ECFE3 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		B9785A96212A9901005ECFE3 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B9785A9A212AB359005ECFE3 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		B9C02F53212ABEE400812A85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9C02F58212AC36700812A85 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
