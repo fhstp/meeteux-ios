@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_IOSKlosterneuburgVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_IOSKlosterneuburgVersionString[];
+FOUNDATION_EXPORT double Pods_MEETeUXVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_MEETeUXVersionString[];
 

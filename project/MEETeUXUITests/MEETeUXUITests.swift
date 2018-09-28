@@ -8,7 +8,7 @@
 
 import XCTest
 
-class IOSKlosterneuburgUITests: XCTestCase {
+class MEETeUXUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

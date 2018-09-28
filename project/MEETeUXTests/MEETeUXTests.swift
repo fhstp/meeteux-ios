@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import IOSKlosterneuburg
+@testable import MEETeUX
 
 class IOSKlosterneuburgTests: XCTestCase {
     
