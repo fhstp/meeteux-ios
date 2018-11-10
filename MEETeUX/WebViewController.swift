@@ -20,7 +20,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     @IBOutlet var containerView: UIView!
     var webView: WKWebView!
-    
+
     var beaconManager: KTKBeaconManager!
     var beaconList:[CLBeacon] = []
     
@@ -317,6 +317,34 @@ extension WebViewController: KTKBeaconManagerDelegate{
     
     func beaconManager(_ manager: KTKBeaconManager, monitoringDidFailFor region: KTKBeaconRegion?, withError error: Error?) {
         // Handle monitoring failing to start for your region
+    }
+    
+    func beaconManager(_ manager: KTKBeaconManager, rangingBeaconsDidFailFor region: KTKBeaconRegion?, withError error: Error?)
+    {
+        if let clErr = error as? CLError
+        {
+            if clErr.code == CLError.rangingUnavailable
+            {
+                let alert = UIAlertController(title: "Bluetooth is off", message: "Please turn on your bluetooth", preferredStyle: UIAlertControllerStyle.alert);
+                
+                alert.addAction(UIAlertAction(title: "Go to settings", style: UIAlertActionStyle.default, handler: { (action) in
+                    switch action.style
+                    {
+                    case .default:
+                        let url = URL(string: "App-Prefs:root=General")
+                        let app = UIApplication.shared
+                        app.openURL(url!)
+                        print("default")
+                    case .cancel:
+                        print("cancel")
+                    case .destructive:
+                        print("destrucive")
+                    }
+                }))
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didEnter region: KTKBeaconRegion) {
