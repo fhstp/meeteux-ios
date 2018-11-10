@@ -15,6 +15,7 @@ import AudioToolbox
 import AVFoundation
 import SwiftKeychainWrapper
 import UserNotifications
+import SystemConfiguration.CaptiveNetwork
 
 class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotificationCenterDelegate {
     
@@ -127,11 +128,34 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             case "clearToken":
                 deleteToken()
                 break
+            case "getWifiStatusResult":
+                sendWifiSSIDToWeb()
+                break
             default:
                 print(dict!["data"] as Any)
                 break
             }
         }
+    }
+    
+    func sendWifiSSIDToWeb()
+    {
+        let ssid = getWiFiSSID()
+        sendDictToWeb(myDict: ["ssid": ssid], functionCall: "send_wifi_ssid")
+    }
+    
+    func getWiFiSSID() -> String?
+    {
+        var ssid: String?
+        if let interfaces = CNCopySupportedInterfaces() as NSArray? {
+            for interface in interfaces {
+                if let interfaceInfo = CNCopyCurrentNetworkInfo(interface as! CFString) as NSDictionary? {
+                    ssid = interfaceInfo[kCNNetworkInfoKeySSID as String] as? String
+                    break
+                }
+            }
+        }
+        return ssid
     }
     
     
