@@ -35,8 +35,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         
         //UIApplication.shared.applicationIconBadgeNumber = 0 //delet badge count
         if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: {didAllow, error in})
-            UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (granted, error) in
+                // Handle Error
+            })
         } else {
             
             print("Fallback on earlier versions")
@@ -115,8 +116,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
                 break
             case "triggerSignal":
                 triggerSignal()
-                //TODO: implement trigger Notivication only when in background
-                //triggerNotivication()
+                triggerNotivication()
                 break
             case "getToken":
                 getToken()
@@ -246,33 +246,21 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler: @escaping(UNNotificationPresentationOptions) -> Void){
-        withCompletionHandler([.alert, .sound, .badge])
-    }
-    
     func triggerNotivication(){
         if #available(iOS 10.0, *) {
             let content = UNMutableNotificationContent()
-            content.title = "New Bluetoothbeacon found."
-            content.subtitle = lastBeacon.minor.stringValue
+            content.title = "Your Timeline was updated."
+            content.subtitle = "A new location was unlocked in your timeline"
             content.badge = 1
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
-            let request = UNNotificationRequest(identifier: "TimeDone", content: content, trigger: trigger)
-            //UIApplication.shared.applicationIconBadgeNumber += 1
+            let request = UNNotificationRequest(identifier: "LocationUpdate", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            print("IOS10")
         } else {
             // Fallback on earlier versions
             print("noIOS 10.0")
             return
         }
-        
     }
-    
-    /*@objc func applicationDidEnterBackground(_ notification: Notification){
-     startBeaconScanning()
-     }*/
 }
 
 extension WebViewController: KTKBeaconManagerDelegate{
