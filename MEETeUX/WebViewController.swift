@@ -26,6 +26,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     var beaconList:[CLBeacon] = []
     
     var lastBeacon: CLBeacon!
+    var beaconDict: [NSNumber: CircularBuffer] = [:]
     
     let locationManager = CLLocationManager()
     
@@ -52,6 +53,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
                     print ("File reading error")
                     return
             }
+            
+            webView.configuration.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs");
             
             let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
             let baseUrl = URL(fileURLWithPath: filePath)
@@ -117,10 +120,10 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
                 break
             case "triggerSignal":
                 triggerSignal()
-                triggerNotivication()
                 break
             case "getToken":
                 getToken()
+                sendWifiSSIDToWeb()
                 break
             case "saveToken":
                 saveToken(token: dict!["data"] as Any)
@@ -128,8 +131,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             case "clearToken":
                 deleteToken()
                 break
-            case "getWifiStatusResult":
-                sendWifiSSIDToWeb()
+            case "showBackgroundNotification":
+                triggerNotivication()
                 break
             default:
                 print(dict!["data"] as Any)
@@ -272,6 +275,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     func triggerNotivication(){
         if #available(iOS 10.0, *) {
+            print("Trigger Notification for Timeline Update")
             let content = UNMutableNotificationContent()
             content.title = "Your Timeline was updated."
             content.subtitle = "A new location was unlocked in your timeline"
@@ -395,7 +399,61 @@ extension WebViewController: KTKBeaconManagerDelegate{
         // sort beacon list and send first item to Webview
         if beaconList.sorted(by: { $0.rssi > $1.rssi }).count>0{
             
-            let myBeacon = beaconList[0]
+            for beacon in beaconList
+            {
+                if let buffer = self.beaconDict[beacon.minor]
+                {
+                    buffer.add(value: beacon.rssi);
+                }
+                else {
+                    self.beaconDict[beacon.minor] = CircularBuffer();
+                    let newBuffer = self.beaconDict[beacon.minor];
+                    newBuffer?.add(value: beacon.rssi);
+                }
+            }
+            
+            for (minor, buffer) in self.beaconDict
+            {
+                var contains = false;
+                for beacon in beaconList
+                {
+                    if(beacon.minor.isEqual(to: minor))
+                    {
+                        contains = true;
+                    }
+                }
+                
+                if(!contains)
+                {
+                    buffer.add(value: -200)
+                }
+            }
+            
+            var nearestRssi: Float = -999;
+            var nearest: NSNumber = 0;
+            
+            for (minor, buffer) in self.beaconDict
+            {
+                let median = buffer.median();
+                // print("Beacon:", minor, "Median:", median);
+                
+                if(median > nearestRssi)
+                {
+                    nearest = minor;
+                    nearestRssi = median;
+                }
+            }
+            
+            var nearestBeacon: CLBeacon = beaconList[0];
+            for beacon in beaconList
+            {
+                if(beacon.minor.isEqual(to: nearest))
+                {
+                    nearestBeacon = beacon;
+                }
+            }
+            
+            // print("Nearest Beacon: ", nearestBeacon.minor);
             
             // Beacon check will now be done in the web app
             /*
@@ -408,7 +466,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 sendBeacon(beacon: myBeacon)
             }*/
             
-            sendBeacon(beacon: myBeacon)
+            sendBeacon(beacon: nearestBeacon)
             
             //print("range Beacon")
         }

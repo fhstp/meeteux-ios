@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29C6CE5F601178B67C3D82E8 /* Pods_MEETeUX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8246C5CCB4F14407ECCDD2C4 /* Pods_MEETeUX.framework */; };
+		8507C0F321C8EB8700DD5CFA /* CircularBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8507C0F221C8EB8700DD5CFA /* CircularBuffer.swift */; };
 		B9785A67212A963D005ECFE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9785A66212A963D005ECFE3 /* AppDelegate.swift */; };
 		B9785A69212A963D005ECFE3 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9785A68212A963D005ECFE3 /* WebViewController.swift */; };
 		B9785A6C212A963D005ECFE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9785A6A212A963D005ECFE3 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		328B2720480DF9B4C93C5AF0 /* Pods-MEETeUX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEETeUX.release.xcconfig"; path = "Pods/Target Support Files/Pods-MEETeUX/Pods-MEETeUX.release.xcconfig"; sourceTree = "<group>"; };
 		8246C5CCB4F14407ECCDD2C4 /* Pods_MEETeUX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MEETeUX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8507C0F221C8EB8700DD5CFA /* CircularBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularBuffer.swift; sourceTree = "<group>"; };
 		859E9B922195EB6000F1FEE1 /* MEETeUX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MEETeUX.entitlements; sourceTree = "<group>"; };
 		B9785A63212A963D005ECFE3 /* MEETeUX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MEETeUX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9785A66212A963D005ECFE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				B9C02F53212ABEE400812A85 /* Info.plist */,
 				B9785A66212A963D005ECFE3 /* AppDelegate.swift */,
 				B9785A68212A963D005ECFE3 /* WebViewController.swift */,
+				8507C0F221C8EB8700DD5CFA /* CircularBuffer.swift */,
 				B9C02F5B212AD3A900812A85 /* CacheManager.h */,
 				B9C02F5C212AD3A900812A85 /* CacheManager.m */,
 				B9785A6A212A963D005ECFE3 /* Main.storyboard */,
@@ -352,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9785A69212A963D005ECFE3 /* WebViewController.swift in Sources */,
+				8507C0F321C8EB8700DD5CFA /* CircularBuffer.swift in Sources */,
 				B9C02F5D212AD3A900812A85 /* CacheManager.m in Sources */,
 				B9785A67212A963D005ECFE3 /* AppDelegate.swift in Sources */,
 			);
