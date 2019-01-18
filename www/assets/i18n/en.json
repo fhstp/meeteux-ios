@@ -9,6 +9,9 @@
     "registerGuestButton": "Register as guest",
     "registerButton": "Register"
   },
+  "languageStart": {
+    "helpmessage": "Please choose a language!"
+  },
   "main": {
     "welcomeText": "Welcome",
     "goToExhibitButton": "Go to Exhibit"
@@ -24,5 +27,11 @@
   },
   "passiveExhibit": {
     "welcomeText": "Welcome at"
+  },
+  "alertDialog": {
+    "title": "Exhibit",
+    "description": "Do you want to go to exhibit:",
+    "yesOption": "Yes",
+    "noOption": "No"
   }
 }
