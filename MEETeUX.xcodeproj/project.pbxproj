@@ -523,6 +523,7 @@
 			baseConfigurationReference = BCF1C3C798E7A4C0E0D4F744 /* Pods-MEETeUX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MEETeUX/MEETeUX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -538,7 +539,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "MEETeUX/MEETeUX-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
@@ -548,6 +549,7 @@
 			baseConfigurationReference = 328B2720480DF9B4C93C5AF0 /* Pods-MEETeUX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = MEETeUX/MEETeUX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -562,7 +564,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MEETeUX/MEETeUX-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;
