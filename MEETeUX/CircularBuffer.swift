@@ -10,7 +10,7 @@ import Foundation
 
 class CircularBuffer {
     
-    private var values: [Int] = [-200, -200, -200, -200, -200]
+    private var values: [Int] = [-100, -100, -100, -100, -100]
     private var index = 0
     
     func add(value: Int)

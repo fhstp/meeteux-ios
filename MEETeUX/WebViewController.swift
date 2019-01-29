@@ -381,6 +381,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
         // Go through beacons, check if it is our and reliable --> push into empty beaconList
         beacons.forEach { beacon in
             if(isOurBeaconReliable(myBeacon: beacon)){
+                //beaconList.append(beacon)
                 
                 // get number of digits --> == 3 immediate (on), == 2 near (at)
                 let digits = String(describing: beacon.major).count
@@ -425,7 +426,9 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 
                 if(!contains)
                 {
-                    buffer.add(value: -200)
+                    buffer.add(value: -100)
+                    // maybe delete buffer
+                    
                 }
             }
             
