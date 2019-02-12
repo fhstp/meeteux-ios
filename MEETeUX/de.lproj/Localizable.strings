@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  MEETeUX
+
+  Created by Kerstin Blumenstein on 12.02.19.
+  Copyright © 2019 FH St. Poelten. All rights reserved.
+*/
+"Your Timeline was updated." = "Deine Timeline wurde aktualisiert";
+"A new location was unlocked in your timeline" = "Du hast ein neues Ausstellungsobjekt passiert.";
+"Bluetooth is off" = "Bluetooth ist ausgeschalten";
+"Please turn on your bluetooth" = "Bitte schalte Bluetooth ein.";
+"Go to settings" = "Öffne Einstellungen";

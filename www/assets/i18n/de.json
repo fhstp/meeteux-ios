@@ -1,16 +1,33 @@
 {
   "app": {
-    "backButton": "zurück"
+    "backButton": "zurück",
+    "menuSettings": "EINSTELLUNGEN",
+    "menuSignup": "ANMELDEN",
+    "menuAbout": "ÜBER",
+    "menuLogout": "AUSLOGGEN"
   },
   "start": {
     "welcomeMessage": "Willkommen bei der Ausstellung",
     "name": "The Emperor's New Saint",
     "loginButton": "Login",
-    "registerGuestButton": "Als Gast registrieren",
-    "registerGuestButton": "Registrieren"
+    "registerGuestButton": "Als Gast login",
+    "registerButton": "Registrieren"
   },
   "languageStart": {
     "helpmessage": "Bitte wählen Sie eine Sprache aus!"
+  },
+  "login": {
+    "username": "Nutzername",
+    "password": "Passwort",
+    "btnSave": "Weiter"
+  },
+  "register": {
+    "title": "Bitte wählen Sie einen Benutzernamen und ein Passwort.",
+    "username": "Nutzername",
+    "email": "Email",
+    "password": "Passwort",
+    "passwordConfirm": "Passwort Bestätigen",
+    "btnSave": "Weiter"
   },
   "main": {
     "welcomeText": "Willkommen",
@@ -18,6 +35,7 @@
   },
   "tableAt": {
     "welcomeText": "Willkommen bei",
+    "interactiveExhibitMsg": "Dies ist eine interaktive Ausstellung. Klicken Sie auf die Schaltfläche unten, um zu beginnen!",
     "tableOfflineText": "Beim Table ist leider ein Problem aufgetreten und steht daher zur Zeit nicht zur Verfügung!",
     "tableFreeText": "Der Table ist frei",
     "tableOccupiedText": "Der Table ist gerade nicht frei, probieren Sie es später erneut!",
@@ -27,6 +45,62 @@
   },
   "passiveExhibit": {
     "welcomeText": "Willkommen bei"
+  },
+  "interactiveExhibit": {
+    "interactiveExhibitMsg": "Dies ist eine interaktive Ausstellung. Klicken Sie auf die Schaltfläche unten, um zu beginnen!",
+    "startButton": "Starten",
+    "notAtLocation": "Gehen Sie zur Ausstellung, um den interaktiven Inhalt zu starten!",
+    "quizQuestion": "Wie heißt der hier aufscheinende Student mit Vornamen?",
+    "quizRight": "Korrekte Antwort!",
+    "quizWrong": "Falsche Antwort."
+  },
+  "notifiyExhibit": {
+    "interactiveExhibitMsg": "Dies ist eine interaktive Ausstellung. Klicken Sie auf die Schaltfläche unten, um zu beginnen!",
+    "tableOfflineText": "Die interaktive Ausstellung steht zur Zeit nicht zur Verfügung!",
+    "tableOccupiedText": "Der interaktive Ausstellung ist gerade nicht frei, probieren Sie es später erneut!",
+    "tableJoinButton": "Mitspielen",
+    "beaconPutText": "Bitte lege Dein Handy auf ein Beacon am Table",
+    "beaconOccupiedText": "Dieser Platz ist aktuell nicht frei!"
+  },
+  "notifiyExhibitOn": {
+    "disconnectButton": "Zum Beenden drücken",
+    "connectedMsg": "Verbunden",
+    "connectionMsg": "Nutzen Sie nun das Tablets um mit dem Ausstellungsstück zu interagieren.",
+    "disconnectInfo": "Um die interaktive Exploration zu beenden drücken sie unten den Button."
+  },
+  "coa": {
+    "title": "Wappen von",
+    "helpTitle": "Dein Wappen",
+    "helpText": "Sie können hier Ihr persönliches Wappen erstellen, indem Sie aus den folgenden Teilen auswählen. Sie können weitere Teile freischalten, indem Sie Aufgaben in der Ausstellung lösen!",
+    "shield": "Schild",
+    "charge": "Gemeinen Figur",
+    "helmet": "Helm",
+    "mantle": "Helmdecke",
+    "colors": "Farben",
+    "primColor": "Primärfarbe",
+    "secColor": "Sekundärfarbe"
+  },
+  "changeCredentials": {
+    "title": "Profileinstellungen",
+    "username": "Nutzername",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "passwordOld": "Altes Passwort",
+    "passwordNew": "Neues Passwort",
+    "passwordConfirm": "Passwort Bestätigen",
+    "language": "Sprache",
+    "btnUsername": "Ändern Nutzername",
+    "btnEmail": "Ändern E-Mail",
+    "btnPassword": "Ändern Passwort",
+    "btnLanguage": "Ändern Sprache",
+    "btnDelete": "Konto löschen",
+    "btnSave": "Speichern",
+    "btnCancel": "Abbrechen"
+  },
+  "deleteDialog": {
+    "title": "Konto Löschen",
+    "text": "Wenn Sie Ihr Konto löschen, können Sie es nicht erneut aktivieren, und alle Ihre Daten gehen verloren. Möchten Sie wirklich fortfahren,",
+    "yesOption": "Konto Löschen"
   },
   "alertDialog": {
     "title": "Ausstellungsstück",

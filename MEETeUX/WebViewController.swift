@@ -277,8 +277,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         if #available(iOS 10.0, *) {
             print("Trigger Notification for Timeline Update")
             let content = UNMutableNotificationContent()
-            content.title = "Your Timeline was updated."
-            content.subtitle = "A new location was unlocked in your timeline"
+            
+            content.title = NSLocalizedString("Your Timeline was updated.", comment: "")
+            content.subtitle = NSLocalizedString("A new location was unlocked in your timeline", comment: "")
             content.badge = 1
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
             let request = UNNotificationRequest(identifier: "LocationUpdate", content: content, trigger: trigger)
@@ -341,9 +342,10 @@ extension WebViewController: KTKBeaconManagerDelegate{
         {
             if clErr.code == CLError.rangingUnavailable
             {
-                let alert = UIAlertController(title: "Bluetooth is off", message: "Please turn on your bluetooth", preferredStyle: UIAlertControllerStyle.alert);
                 
-                alert.addAction(UIAlertAction(title: "Go to settings", style: UIAlertActionStyle.default, handler: { (action) in
+                let alert = UIAlertController(title: NSLocalizedString("Bluetooth is off", comment: ""), message: NSLocalizedString("Please turn on your bluetooth", comment: ""), preferredStyle: UIAlertControllerStyle.alert);
+                
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Go to settings", comment: ""), style: UIAlertActionStyle.default, handler: { (action) in
                     switch action.style
                     {
                     case .default:

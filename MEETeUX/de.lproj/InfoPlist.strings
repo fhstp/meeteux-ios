@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  MEETeUX
+
+  Created by Kerstin Blumenstein on 12.02.19.
+  Copyright © 2019 FH St. Poelten. All rights reserved.
+*/
+"CFBundleDisplayName" = "Des Kaisers App";
+"NSBluetoothPeripheralUsageDescription" = "Deutscher Text zu Bluetooth Beacons";
+"NSCameraUsageDescription" = "Kamera Zugriff ist notwendig, um Bilder zu erkennen und zu tracken.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Deutscher Text zu Bluetooth Beacons";
+"NSLocationAlwaysUsageDescription" = "Deutscher Text zu Bluetooth Beacons";
+"NSLocationWhenInUseUsageDescription" = "Deutscher Text zu Bluetooth Beacons";

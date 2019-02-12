@@ -1,32 +1,106 @@
 {
   "app": {
-    "backButton": "back"
+    "backButton": "back",
+    "menuSettings": "PROFILE SETTINGS",
+    "menuSignup": "SIGN UP",
+    "menuAbout": "ABOUT",
+    "menuLogout": "LOGOUT"
   },
   "start": {
     "welcomeMessage": "Welcome to the exhibition",
     "name": "The Emperor's New Saint",
     "loginButton": "Login",
-    "registerGuestButton": "Register as guest",
+    "registerGuestButton": "Login as guest",
     "registerButton": "Register"
   },
   "languageStart": {
     "helpmessage": "Please choose a language!"
   },
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "btnSave": "Continue"
+  },
+  "register": {
+    "title": "Please choose a username and a password.",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "passwordConfirm": "Password Confirmation",
+    "btnSave": "Continue"
+  },
   "main": {
-    "welcomeText": "Welcome",
+    "welcomeText": "Welcome at",
     "goToExhibitButton": "Go to Exhibit"
   },
   "tableAt": {
     "welcomeText": "Welcome at",
+    "interactiveExhibitMsg": "This is an interactive exhibit. Click the button below to start!",
     "tableOfflineText": "Sorry an error occurred. Therefore, the table is currently not available!",
     "tableFreeText": "The table is free",
-    "tableOccupiedText": "Sorry the table is occupied. Please try again later.",
-    "tableJoinButton": "Join",
-    "beaconPutText": "Please put your phone at the beacon.",
-    "beaconOccupiedText": "This place is currently occupied"
+    "tableOccupiedText": "Sorry the table is occupied. Please try again later",
+    "tableJoinButton": "Join interactive exhibit",
+    "beaconPutText": "Please, put your phone at the indicated position",
+    "beaconOccupiedText": "Sorry, but this place is currently occupied by other player"
   },
   "passiveExhibit": {
     "welcomeText": "Welcome at"
+  },
+  "interactiveExhibit": {
+    "interactiveExhibitMsg": "This is an interactive exhibit. Click the button below to start!",
+    "startButton": "Start interactive exhibit",
+    "notAtLocation": "Walk to the exhibit to start the interactive content!",
+    "quizQuestion": "What is the name of the student appearing here?",
+    "quizRight": "Correct Answer!",
+    "quizWrong": "Wrong Answer."
+  },
+  "notifiyExhibit": {
+    "interactiveExhibitMsg": "This is an interactive exhibit. Click the button below to start!",
+    "tableOfflineText": "Sorry an error occurred. Therefore, the table is currently not available!",
+    "tableOccupiedText": "Sorry the table is occupied. Please try again later",
+    "tableJoinButton": "Join interactive exhibit",
+    "beaconPutText": "Please, put your phone at the indicated position",
+    "beaconOccupiedText": "Sorry, but this place is currently occupied by other player"
+  },
+  "notifiyExhibitOn": {
+    "disconnectButton": "Press to disconnect",
+    "connectedMsg": "Connected",
+    "connectionMsg": "Now use the tablets to explore the exhibit.",
+    "disconnectInfo": "Press the button below to close the connection to the exhibit and go back to the previous screen."
+  },
+  "coa": {
+    "title": "Coat of Arms of",
+    "helpTitle": "Your Coat of Arms",
+    "helpText": "You can create your personal coat of arms here by selecting from the parts below. You can unlock more parts by solving tasks in the exhibition!",
+    "shield": "Shield",
+    "charge": "Charge",
+    "helmet": "Helmet",
+    "mantle": "Mantling",
+    "colors": "Colors",
+    "primColor": "Primary Color",
+    "secColor": "Secondary Color"
+  },
+  "changeCredentials": {
+    "title": "Profile Settings",
+    "username": "Username",
+    "email": "E-Mail",
+    "password": "Password",
+    "passwordOld": "Old Password",
+    "passwordNew": "New Password",
+    "passwordConfirm": "Confirm Password",
+    "language": "Language",
+    "btnUsername": "Change Username",
+    "btnEmail": "Change E-Mail",
+    "btnPassword": "Change Password",
+    "btnLanguage": "Change Language",
+    "btnDelete": "Delete Account",
+    "btnSave": "Save Credentials",
+    "btnCancel": "Cancel"
+  },
+  "deleteDialog": {
+    "title": "Delete Account",
+    "text": "If you delete your account, you will not be able to reactivate it, and all your data will be lost. Do you really want to proceed",
+    "yesOption": "Delete Account"
   },
   "alertDialog": {
     "title": "Exhibit",

@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  MEETeUX
+
+  Created by Kerstin Blumenstein on 12.02.19.
+  Copyright © 2019 FH St. Poelten. All rights reserved.
+*/
+"CFBundleDisplayName" = "The Emperor's App";
+"NSBluetoothPeripheralUsageDescription" = "We want to detect Bluetooth Beacons nearby.";
+"NSCameraUsageDescription" = "Camera access required for target detection and tracking.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "We want to detect Bluetooth Beacons nearby.";
+"NSLocationAlwaysUsageDescription" = "We want to detect Bluetooth Beacons nearby.";
+"NSLocationWhenInUseUsageDescription" = "We want to detect Bluetooth Beacons nearby.";
