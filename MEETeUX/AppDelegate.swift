@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // clear notification badge
         UIApplication.shared.applicationIconBadgeNumber = 0
+        // disable idle timer to prevent lock screen
+        UIApplication.shared.isIdleTimerDisabled = true
         return true
     }
 
