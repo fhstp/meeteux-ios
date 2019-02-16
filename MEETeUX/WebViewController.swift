@@ -76,8 +76,6 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     override func loadView() {
         super.loadView()
         
-        
-        
         let contentController = WKUserContentController()
         let config = WKWebViewConfiguration()
         
@@ -290,6 +288,14 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             return
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .default
+    }
 }
 
 extension WebViewController: KTKBeaconManagerDelegate{
@@ -378,16 +384,17 @@ extension WebViewController: KTKBeaconManagerDelegate{
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
-        
+        print("beaconManager called")
+        print(beacons)
         beaconList = []
         // Go through beacons, check if it is our and reliable --> push into empty beaconList
         beacons.forEach { beacon in
             if(isOurBeaconReliable(myBeacon: beacon)){
-                //beaconList.append(beacon)
+                // beaconList.append(beacon)
                 
                 // get number of digits --> == 3 immediate (on), == 2 near (at)
                 let digits = String(describing: beacon.major).count
-                //print("\(beacon.major) = Digits of Major: \(digits)")
+                // print("\(beacon.major) = Digits of Major: \(digits)")
                 
                 if(digits == 3 && beacon.proximity == .immediate){
                     //print("immediate")
@@ -440,7 +447,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
             for (minor, buffer) in self.beaconDict
             {
                 let median = buffer.median();
-                // print("Beacon:", minor, "Median:", median);
+                print("Beacon:", minor, "Median:", median);
                 
                 if(median > nearestRssi)
                 {
@@ -458,7 +465,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 }
             }
             
-            // print("Nearest Beacon: ", nearestBeacon.minor);
+            print("Nearest Beacon: ", nearestBeacon.minor);
             
             // Beacon check will now be done in the web app
             /*
@@ -492,7 +499,6 @@ extension WebViewController: KTKBeaconManagerDelegate{
     // Check if Beacon is reliable (rssi < 0) and if it is in our range compared to exhibits (later LUT)
     func isOurBeaconReliable(myBeacon: CLBeacon) -> Bool{
         var beaconResult:Bool = false
-        
         if(myBeacon.rssi < 0){
             beaconResult = true
         }
