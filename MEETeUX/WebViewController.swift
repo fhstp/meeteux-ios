@@ -102,7 +102,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         //print("The message is: \(dict!["name"] as? String)")
         if var messageName = dict!["name"] as? String
         {
-            print("Received message \(messageName)")
+            // print("Received message \(messageName)")
             //////////////////when application goes into background messageName becomes print and does not start scanning when restarted for now this is here fixed
             if(messageName == "print"){
                 messageName = "registerOD"
@@ -164,11 +164,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
 
     func saveToken(token: Any)
     {
-        print("save");
-        print(token)
+        // print("save");
+        // print(token)
         if let stringToken = token as? String
         {
-            print(stringToken)
+            // print(stringToken)
             KeychainWrapper.standard.set(stringToken, forKey: "token")
         }
     }
@@ -195,7 +195,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     // prepars dict for sending device infos to web
     func getDeviceInformation(){
         let mydevice = UIDevice.current
-        print("UDID: \(String(describing: mydevice.identifierForVendor?.uuidString)) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
+        // print("UDID: \(String(describing: mydevice.identifierForVendor?.uuidString)) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
         
         let dict = [
             "deviceAddress": mydevice.identifierForVendor?.uuidString,
@@ -212,7 +212,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     // sends dictionary to webview
     func sendDictToWeb(myDict: Any, functionCall: String){
         let jsonString = getJSONString(myDict: myDict)
-        print("SendDictToWeb JSON (\(functionCall)): \(jsonString)")
+        // print("SendDictToWeb JSON (\(functionCall)): \(jsonString)")
         
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)(\(jsonString))") { result, error in
@@ -225,7 +225,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     // sends dictionary to webview
     func sendMessageToWeb(functionCall: String){
-        print("SendMessageToWeb (\(functionCall))")
+        // print("SendMessageToWeb (\(functionCall))")
         
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)()") { result, error in
@@ -248,12 +248,12 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     func startBeaconScanning(){
         // initialize BeaconManager
         beaconManager = KTKBeaconManager(delegate: self)
-        print("bluetooth ready")
+        // print("bluetooth ready")
         
         switch KTKBeaconManager.locationAuthorizationStatus() {
         case .notDetermined:
             beaconManager.requestLocationAlwaysAuthorization()
-            print("access ok")
+            // print("access ok")
         case .denied, .restricted:
             // No access to Location Service
             print("access denied")
@@ -262,7 +262,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             // permission is not adequate
             print("access only when in use")
         case .authorizedAlways:
-            print("tbd")
+            print("authorizedAlways")
         }
     }
     
@@ -273,7 +273,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     func triggerNotivication(){
         if #available(iOS 10.0, *) {
-            print("Trigger Notification for Timeline Update")
+            // print("Trigger Notification for Timeline Update")
             let content = UNMutableNotificationContent()
             
             content.title = NSLocalizedString("Your Timeline was updated.", comment: "")
@@ -302,9 +302,9 @@ extension WebViewController: KTKBeaconManagerDelegate{
     
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         
-        print("didChangeLocationAuthorizationStatus")
+        // print("didChangeLocationAuthorizationStatus")
         if status == .authorizedAlways{
-            print("authorizedAlways")
+            // print("authorizedAlways")
             
             // When status changes to CLAuthorizationStatus.authorizedAlways
             // e.g. after calling beaconManager.requestLocationAlwaysAuthorization()
@@ -324,13 +324,13 @@ extension WebViewController: KTKBeaconManagerDelegate{
         beaconManager.startMonitoring(for: region)
         beaconManager.startRangingBeacons(in: region)
         
-        print("start scanning")
+        // print("start scanning")
     }
     
     func stopScanning(){
         beaconManager.stopMonitoringForAllRegions()
         lastBeacon = nil
-        print("stop scanning")
+        // print("stop scanning")
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didStartMonitoringFor region: KTKBeaconRegion) {
@@ -358,7 +358,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                         let url = URL(string: "App-Prefs:root=General")
                         let app = UIApplication.shared
                         app.openURL(url!)
-                        print("default")
+                        // print("default")
                     case .cancel:
                         print("cancel")
                     case .destructive:
@@ -384,8 +384,8 @@ extension WebViewController: KTKBeaconManagerDelegate{
     }
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
-        print("beaconManager called")
-        print(beacons)
+        // print("beaconManager called")
+        // print(beacons)
         beaconList = []
         // Go through beacons, check if it is our and reliable --> push into empty beaconList
         beacons.forEach { beacon in
@@ -447,7 +447,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
             for (minor, buffer) in self.beaconDict
             {
                 let median = buffer.median();
-                print("Beacon:", minor, "Median:", median);
+                // print("Beacon:", minor, "Median:", median);
                 
                 if(median > nearestRssi)
                 {
@@ -465,7 +465,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 }
             }
             
-            print("Nearest Beacon: ", nearestBeacon.minor);
+            // print("Nearest Beacon: ", nearestBeacon.minor);
             
             // Beacon check will now be done in the web app
             /*
