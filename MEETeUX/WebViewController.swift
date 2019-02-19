@@ -348,25 +348,25 @@ extension WebViewController: KTKBeaconManagerDelegate{
         {
             if clErr.code == CLError.rangingUnavailable
             {
+                let alertController = UIAlertController (title: NSLocalizedString("Bluetooth is off", comment: ""), message: NSLocalizedString("Please turn on your bluetooth", comment: ""), preferredStyle: .alert)
                 
-                let alert = UIAlertController(title: NSLocalizedString("Bluetooth is off", comment: ""), message: NSLocalizedString("Please turn on your bluetooth", comment: ""), preferredStyle: UIAlertControllerStyle.alert);
-                
-                alert.addAction(UIAlertAction(title: NSLocalizedString("Go to settings", comment: ""), style: UIAlertActionStyle.default, handler: { (action) in
-                    switch action.style
-                    {
-                    case .default:
-                        let url = URL(string: "App-Prefs:root=General")
-                        let app = UIApplication.shared
-                        app.openURL(url!)
-                        // print("default")
-                    case .cancel:
-                        print("cancel")
-                    case .destructive:
-                        print("destrucive")
+                let settingsAction = UIAlertAction(title: NSLocalizedString("Go to settings", comment: ""), style: .default) { (_) -> Void in
+                    
+                    guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                        return
                     }
-                }))
+                    
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)") // Prints true
+                        })
+                    }
+                }
+                alertController.addAction(settingsAction)
+                let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
+                alertController.addAction(cancelAction)
                 
-                self.present(alert, animated: true, completion: nil)
+                present(alertController, animated: true, completion: nil)
             }
         }
     }
