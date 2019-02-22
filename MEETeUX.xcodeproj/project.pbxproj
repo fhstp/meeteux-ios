@@ -21,7 +21,6 @@
 		B9785A9B212AB359005ECFE3 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B9785A9A212AB359005ECFE3 /* Data */; };
 		B9C02F59212AC36700812A85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C02F58212AC36700812A85 /* Images.xcassets */; };
 		B9C02F5A212AD2C200812A85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C02F58212AC36700812A85 /* Images.xcassets */; };
-		B9C02F5D212AD3A900812A85 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C02F5C212AD3A900812A85 /* CacheManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +46,7 @@
 		2277F69D2212E51E003A723E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2277F6A12212F28F003A723E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2277F6A32212F291003A723E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		22FFC08E221D39640093F0BF /* MEETeUX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MEETeUX-Bridging-Header.h"; sourceTree = "<group>"; };
 		328B2720480DF9B4C93C5AF0 /* Pods-MEETeUX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEETeUX.release.xcconfig"; path = "Pods/Target Support Files/Pods-MEETeUX/Pods-MEETeUX.release.xcconfig"; sourceTree = "<group>"; };
 		8246C5CCB4F14407ECCDD2C4 /* Pods_MEETeUX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MEETeUX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8507C0F221C8EB8700DD5CFA /* CircularBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularBuffer.swift; sourceTree = "<group>"; };
@@ -66,9 +66,6 @@
 		B9785A9A212AB359005ECFE3 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		B9C02F53212ABEE400812A85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9C02F58212AC36700812A85 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B9C02F5B212AD3A900812A85 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
-		B9C02F5C212AD3A900812A85 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
-		B9C02F5E212AD43500812A85 /* MEETeUX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MEETeUX-Bridging-Header.h"; sourceTree = "<group>"; };
 		BCF1C3C798E7A4C0E0D4F744 /* Pods-MEETeUX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEETeUX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MEETeUX/Pods-MEETeUX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,16 +142,14 @@
 		B9785A65212A963D005ECFE3 /* MEETeUX */ = {
 			isa = PBXGroup;
 			children = (
+				22FFC08E221D39640093F0BF /* MEETeUX-Bridging-Header.h */,
 				859E9B922195EB6000F1FEE1 /* MEETeUX.entitlements */,
 				B9C02F53212ABEE400812A85 /* Info.plist */,
 				B9785A66212A963D005ECFE3 /* AppDelegate.swift */,
 				B9785A68212A963D005ECFE3 /* WebViewController.swift */,
 				2277F6A22212F28F003A723E /* Localizable.strings */,
 				8507C0F221C8EB8700DD5CFA /* CircularBuffer.swift */,
-				B9C02F5B212AD3A900812A85 /* CacheManager.h */,
-				B9C02F5C212AD3A900812A85 /* CacheManager.m */,
 				B9785A6A212A963D005ECFE3 /* Main.storyboard */,
-				B9C02F5E212AD43500812A85 /* MEETeUX-Bridging-Header.h */,
 			);
 			path = MEETeUX;
 			sourceTree = "<group>";
@@ -368,7 +363,6 @@
 			files = (
 				B9785A69212A963D005ECFE3 /* WebViewController.swift in Sources */,
 				8507C0F321C8EB8700DD5CFA /* CircularBuffer.swift in Sources */,
-				B9C02F5D212AD3A900812A85 /* CacheManager.m in Sources */,
 				B9785A67212A963D005ECFE3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

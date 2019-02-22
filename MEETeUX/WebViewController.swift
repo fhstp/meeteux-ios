@@ -60,7 +60,6 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             let baseUrl = URL(fileURLWithPath: filePath)
             self.webView!.loadHTMLString(contents as String, baseURL: baseUrl)
             locationManager.requestAlwaysAuthorization()
-            
         }
         catch {
             print ("File HTML error")
@@ -132,6 +131,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             case "showBackgroundNotification":
                 triggerNotivication()
                 break
+            case "getLanguage":
+                sendLanguageToWeb()
+                break
             default:
                 print(dict!["data"] as Any)
                 break
@@ -159,6 +161,12 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         return ssid
     }
     
+    
+    func sendLanguageToWeb()
+    {
+        let langStr = Locale.current.languageCode ?? ""
+        sendDictToWeb(myDict: ["language": langStr], functionCall: "send_language")
+    }
     
     //- MARK: Helper Functions
 
