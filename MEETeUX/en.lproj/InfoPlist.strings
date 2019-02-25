@@ -7,7 +7,7 @@
 */
 "CFBundleDisplayName" = "Emperor's App";
 "NSBluetoothPeripheralUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
-"NSCameraUsageDescription" = "Camera access required for target detection and tracking.";
+"NSCameraUsageDescription" = "Camera access is required for detection and tracking exhibits.";
 "NSLocationAlwaysAndWhenInUseUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
 "NSLocationAlwaysUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
 "NSLocationWhenInUseUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";

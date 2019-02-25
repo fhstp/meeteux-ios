@@ -7,7 +7,7 @@
 */
 "CFBundleDisplayName" = "Kaisers App";
 "NSBluetoothPeripheralUsageDescription" = "Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";
-"NSCameraUsageDescription" = "Der Kamera-Zugriff ist notwendig, um Bilder zu erkennen und zu tracken.";
+"NSCameraUsageDescription" = "Der Kamera-Zugriff ist notwendig, um Ausstellungsobjekte zu erkennen und zu tracken.";
 "NSLocationAlwaysAndWhenInUseUsageDescription" = "Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";
 "NSLocationAlwaysUsageDescription" = "Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";
 "NSLocationWhenInUseUsageDescription" = "Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";
