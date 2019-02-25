@@ -6,8 +6,8 @@
   Copyright © 2019 FH St. Poelten. All rights reserved.
 */
 "CFBundleDisplayName" = "Emperor's App";
-"NSBluetoothPeripheralUsageDescription" = "We want to detect Bluetooth Beacons nearby.";
+"NSBluetoothPeripheralUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
 "NSCameraUsageDescription" = "Camera access required for target detection and tracking.";
-"NSLocationAlwaysAndWhenInUseUsageDescription" = "We want to detect Bluetooth Beacons nearby.";
-"NSLocationAlwaysUsageDescription" = "We want to detect Bluetooth Beacons nearby.";
-"NSLocationWhenInUseUsageDescription" = "We want to detect Bluetooth Beacons nearby.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
+"NSLocationAlwaysUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
+"NSLocationWhenInUseUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
