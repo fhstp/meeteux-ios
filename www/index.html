@@ -40,12 +40,6 @@
        window.angularComponentRef.componentFn("update_location",beacon);
      };
 
-     // call from native
-     // gets native language, sets language
-     window.send_language = function(language){
-       console.log("call from native: send_language" + language);
-       window.angularComponentRef.componentFn("send_language",language);
-     };
 
      // call from native
      // gets deviceInfos, calls registerOD
@@ -71,6 +65,13 @@
     window.send_closest_exhibit = function(message){
       //console.log("call from native: send_device_infos" + deviceinfos);
       window.angularComponentRef.componentFn("send_closest_exhibit",message);
+    };
+
+    // call from native
+    // gets OS language, calls
+    window.send_language = function(message)
+    {
+      window.angularComponentRef.componentFn("send_language",message);
     };
 
     // call from native
