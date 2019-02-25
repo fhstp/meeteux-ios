@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2277F69A2212E519003A723E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2277F69C2212E519003A723E /* InfoPlist.strings */; };
+		2277F6A02212F28F003A723E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2277F6A22212F28F003A723E /* Localizable.strings */; };
 		29C6CE5F601178B67C3D82E8 /* Pods_MEETeUX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8246C5CCB4F14407ECCDD2C4 /* Pods_MEETeUX.framework */; };
+		8507C0F321C8EB8700DD5CFA /* CircularBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8507C0F221C8EB8700DD5CFA /* CircularBuffer.swift */; };
 		B9785A67212A963D005ECFE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9785A66212A963D005ECFE3 /* AppDelegate.swift */; };
 		B9785A69212A963D005ECFE3 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9785A68212A963D005ECFE3 /* WebViewController.swift */; };
 		B9785A6C212A963D005ECFE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9785A6A212A963D005ECFE3 /* Main.storyboard */; };
@@ -18,7 +21,6 @@
 		B9785A9B212AB359005ECFE3 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = B9785A9A212AB359005ECFE3 /* Data */; };
 		B9C02F59212AC36700812A85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C02F58212AC36700812A85 /* Images.xcassets */; };
 		B9C02F5A212AD2C200812A85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9C02F58212AC36700812A85 /* Images.xcassets */; };
-		B9C02F5D212AD3A900812A85 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B9C02F5C212AD3A900812A85 /* CacheManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +41,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2277F6992212E4B5003A723E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		2277F69B2212E519003A723E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2277F69D2212E51E003A723E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2277F6A12212F28F003A723E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2277F6A32212F291003A723E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		22FFC08E221D39640093F0BF /* MEETeUX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MEETeUX-Bridging-Header.h"; sourceTree = "<group>"; };
 		328B2720480DF9B4C93C5AF0 /* Pods-MEETeUX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEETeUX.release.xcconfig"; path = "Pods/Target Support Files/Pods-MEETeUX/Pods-MEETeUX.release.xcconfig"; sourceTree = "<group>"; };
 		8246C5CCB4F14407ECCDD2C4 /* Pods_MEETeUX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MEETeUX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8507C0F221C8EB8700DD5CFA /* CircularBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularBuffer.swift; sourceTree = "<group>"; };
+		859E9B922195EB6000F1FEE1 /* MEETeUX.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MEETeUX.entitlements; sourceTree = "<group>"; };
 		B9785A63212A963D005ECFE3 /* MEETeUX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MEETeUX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9785A66212A963D005ECFE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9785A68212A963D005ECFE3 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -56,9 +66,6 @@
 		B9785A9A212AB359005ECFE3 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		B9C02F53212ABEE400812A85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9C02F58212AC36700812A85 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B9C02F5B212AD3A900812A85 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
-		B9C02F5C212AD3A900812A85 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
-		B9C02F5E212AD43500812A85 /* MEETeUX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MEETeUX-Bridging-Header.h"; sourceTree = "<group>"; };
 		BCF1C3C798E7A4C0E0D4F744 /* Pods-MEETeUX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MEETeUX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MEETeUX/Pods-MEETeUX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +115,7 @@
 		B9785A5A212A963D005ECFE3 = {
 			isa = PBXGroup;
 			children = (
+				2277F69C2212E519003A723E /* InfoPlist.strings */,
 				B9C02F58212AC36700812A85 /* Images.xcassets */,
 				B9785A9A212AB359005ECFE3 /* Data */,
 				B9785A94212A97BA005ECFE3 /* www */,
@@ -134,13 +142,14 @@
 		B9785A65212A963D005ECFE3 /* MEETeUX */ = {
 			isa = PBXGroup;
 			children = (
+				22FFC08E221D39640093F0BF /* MEETeUX-Bridging-Header.h */,
+				859E9B922195EB6000F1FEE1 /* MEETeUX.entitlements */,
 				B9C02F53212ABEE400812A85 /* Info.plist */,
 				B9785A66212A963D005ECFE3 /* AppDelegate.swift */,
 				B9785A68212A963D005ECFE3 /* WebViewController.swift */,
-				B9C02F5B212AD3A900812A85 /* CacheManager.h */,
-				B9C02F5C212AD3A900812A85 /* CacheManager.m */,
+				2277F6A22212F28F003A723E /* Localizable.strings */,
+				8507C0F221C8EB8700DD5CFA /* CircularBuffer.swift */,
 				B9785A6A212A963D005ECFE3 /* Main.storyboard */,
-				B9C02F5E212AD43500812A85 /* MEETeUX-Bridging-Header.h */,
 			);
 			path = MEETeUX;
 			sourceTree = "<group>";
@@ -235,6 +244,9 @@
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
 						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -257,6 +269,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = B9785A5A212A963D005ECFE3;
 			productRefGroup = B9785A64212A963D005ECFE3 /* Products */;
@@ -276,7 +289,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9785A97212A9901005ECFE3 /* Podfile in Resources */,
+				2277F69A2212E519003A723E /* InfoPlist.strings in Resources */,
 				B9785A95212A97BA005ECFE3 /* www in Resources */,
+				2277F6A02212F28F003A723E /* Localizable.strings in Resources */,
 				B9785A9B212AB359005ECFE3 /* Data in Resources */,
 				B9C02F59212AC36700812A85 /* Images.xcassets in Resources */,
 				B9785A6C212A963D005ECFE3 /* Main.storyboard in Resources */,
@@ -347,7 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9785A69212A963D005ECFE3 /* WebViewController.swift in Sources */,
-				B9C02F5D212AD3A900812A85 /* CacheManager.m in Sources */,
+				8507C0F321C8EB8700DD5CFA /* CircularBuffer.swift in Sources */,
 				B9785A67212A963D005ECFE3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,10 +399,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2277F69C2212E519003A723E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2277F69B2212E519003A723E /* en */,
+				2277F69D2212E51E003A723E /* de */,
+			);
+			name = InfoPlist.strings;
+			path = MEETeUX;
+			sourceTree = "<group>";
+		};
+		2277F6A22212F28F003A723E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2277F6A12212F28F003A723E /* en */,
+				2277F6A32212F291003A723E /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B9785A6A212A963D005ECFE3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B9785A6B212A963D005ECFE3 /* Base */,
+				2277F6992212E4B5003A723E /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -399,6 +434,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -459,6 +495,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -514,21 +551,23 @@
 			baseConfigurationReference = BCF1C3C798E7A4C0E0D4F744 /* Pods-MEETeUX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MEETeUX/MEETeUX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZCQ554RK9U;
+				DEVELOPMENT_TEAM = 5364SKJKXU;
 				INFOPLIST_FILE = MEETeUX/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.MEETeUX;
+				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.kaiser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MEETeUX/MEETeUX-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
@@ -538,20 +577,22 @@
 			baseConfigurationReference = 328B2720480DF9B4C93C5AF0 /* Pods-MEETeUX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MEETeUX/MEETeUX.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZCQ554RK9U;
+				DEVELOPMENT_TEAM = 5364SKJKXU;
 				INFOPLIST_FILE = MEETeUX/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.MEETeUX;
+				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.kaiser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MEETeUX/MEETeUX-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;

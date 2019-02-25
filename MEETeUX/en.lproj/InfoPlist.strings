@@ -1,0 +1,13 @@
+/* 
+  InfoPlist.strings
+  MEETeUX
+
+  Created by Kerstin Blumenstein on 12.02.19.
+  Copyright © 2019 FH St. Poelten. All rights reserved.
+*/
+"CFBundleDisplayName" = "Emperor's App";
+"NSBluetoothPeripheralUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
+"NSCameraUsageDescription" = "Camera access is required for detection and tracking exhibits.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
+"NSLocationAlwaysUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
+"NSLocationWhenInUseUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
