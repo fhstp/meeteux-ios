@@ -5,8 +5,9 @@
   Created by Kerstin Blumenstein on 12.02.19.
   Copyright © 2019 FH St. Poelten. All rights reserved.
 */
-"Your Timeline was updated." = "Your Timeline was updated";
-"A new location was unlocked in your timeline" = "A new exhibit was unlocked in your timeline.";
+"notification-title" = "Loyal subject, ";
+"notification-subtitle" = "you are proceeding in my exhibition.";
+"notification-body" = "Open the app to get to know more about me and my exhibits.";
 "Bluetooth is off" = "Bluetooth is off";
 "Please turn on your bluetooth" = "Please turn on your bluetooth.";
 "Go to settings" = "Go to settings";

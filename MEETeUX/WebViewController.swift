@@ -28,7 +28,13 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     var lastBeacon: CLBeacon!
     var beaconDict: [NSNumber: CircularBuffer] = [:]
     
-    let locationManager = CLLocationManager()
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestAlwaysAuthorization()
+        manager.allowsBackgroundLocationUpdates = true
+        return manager
+    }()
     
     override func viewDidLoad()
     {
@@ -98,14 +104,14 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     //- MARK: Web to native calls
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let dict = message.body as? NSDictionary
-        //print("The message is: \(dict!["name"] as? String)")
+        print("The message is: \(dict!["name"] as? String)")
+        print(dict!["data"])
         if var messageName = dict!["name"] as? String
         {
-            // print("Received message \(messageName)")
             //////////////////when application goes into background messageName becomes print and does not start scanning when restarted for now this is here fixed
-            if(messageName == "print"){
+          /*  if(messageName == "print"){
                 messageName = "registerOD"
-            }
+            }*/
             //////////////////
             switch (messageName) {
             case "getDeviceInfos":
@@ -129,7 +135,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
                 deleteToken()
                 break
             case "showBackgroundNotification":
-                triggerNotivication()
+                triggerNotification()
                 break
             case "getLanguage":
                 sendLanguageToWeb()
@@ -220,7 +226,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     // sends dictionary to webview
     func sendDictToWeb(myDict: Any, functionCall: String){
         let jsonString = getJSONString(myDict: myDict)
-        // print("SendDictToWeb JSON (\(functionCall)): \(jsonString)")
+        print("SendDictToWeb JSON (\(functionCall)): \(jsonString)")
         
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)(\(jsonString))") { result, error in
@@ -272,6 +278,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         case .authorizedAlways:
             print("authorizedAlways")
         }
+        
+       locationManager.startUpdatingLocation()
     }
     
     func triggerSignal(){
@@ -279,14 +287,15 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
-    func triggerNotivication(){
+    func triggerNotification(){
         if #available(iOS 10.0, *) {
-            // print("Trigger Notification for Timeline Update")
+            print("Trigger Notification for Timeline Update")
             let content = UNMutableNotificationContent()
             
-            content.title = NSLocalizedString("Your Timeline was updated.", comment: "")
-            content.subtitle = NSLocalizedString("A new location was unlocked in your timeline", comment: "")
-            content.badge = 1
+            content.title = NSLocalizedString("notification-title", comment: "")
+            content.subtitle = NSLocalizedString("notification-subtitle", comment: "")
+            content.body = NSLocalizedString("notification-body", comment: "")
+            // content.badge = 1
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
             let request = UNNotificationRequest(identifier: "LocationUpdate", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
@@ -473,20 +482,26 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 }
             }
             
-            // print("Nearest Beacon: ", nearestBeacon.minor);
+            print("Nearest Beacon: ", nearestBeacon.minor);
             
-            // Beacon check will now be done in the web app
-            /*
+            
+            // Beacon check only for sending notification in background mode
+            
             if lastBeacon != nil{
-                // compare to lastBeacon, if not the same, than sendToWeb
-                if(myBeacon.major != lastBeacon.major || myBeacon.minor != lastBeacon.minor){
-                    sendBeacon(beacon: myBeacon)
+                print("Last Beacon: ", lastBeacon.minor);
+                // compare to lastBeacon, if not the same, than notify in background mode
+            
+                let digits = String(describing: nearestBeacon.major).count
+                
+                if(digits == 2 && nearestBeacon.minor != lastBeacon.minor){
+                    triggerNotification()
                 }
-            } else {
-                sendBeacon(beacon: myBeacon)
-            }*/
+                lastBeacon = nearestBeacon
+                
+            }
             
             sendBeacon(beacon: nearestBeacon)
+            
             
             //print("range Beacon")
         }
