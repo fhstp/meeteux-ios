@@ -106,7 +106,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         let dict = message.body as? NSDictionary
         print("The message is: \(dict!["name"] as? String)")
         print(dict!["data"])
-        if var messageName = dict!["name"] as? String
+        if let messageName = dict!["name"] as? String
         {
             //////////////////when application goes into background messageName becomes print and does not start scanning when restarted for now this is here fixed
           /*  if(messageName == "print"){
@@ -139,6 +139,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
                 break
             case "getLanguage":
                 sendLanguageToWeb()
+                break
+            case "openWifiDialogNative":
+                openWifiDialog()
                 break
             default:
                 print(dict!["data"] as Any)
@@ -256,6 +259,16 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
         
         return jsonString
+    }
+    
+    // show dialog when in wrong wifi
+    func openWifiDialog(){
+        let alertController = UIAlertController (title: NSLocalizedString("wifi-title", comment: ""), message: NSLocalizedString("wifi-message", comment: ""), preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     // starts scanning for beacons
