@@ -170,7 +170,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     func sendLanguageToWeb()
     {
-        let langStr = Locale.current.languageCode ?? ""
+        let langStr = String(Locale.preferredLanguages[0].prefix(2))
         sendDictToWeb(myDict: ["language": langStr], functionCall: "send_language")
     }
     
