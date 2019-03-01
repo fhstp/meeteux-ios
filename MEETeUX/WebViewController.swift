@@ -104,8 +104,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     //- MARK: Web to native calls
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let dict = message.body as? NSDictionary
-        print("The message is: \(dict!["name"] as? String)")
-        print(dict!["data"])
+        // print("The message is: \(dict!["name"] as? String)")
         if let messageName = dict!["name"] as? String
         {
             //////////////////when application goes into background messageName becomes print and does not start scanning when restarted for now this is here fixed
@@ -140,8 +139,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             case "getLanguage":
                 sendLanguageToWeb()
                 break
-            case "openWifiDialogNative":
-                openWifiDialog()
+            case "receiveWifiData":
+                openWifiDialog(wifiData: dict!["data"] as! Dictionary<String, String>)
                 break
             default:
                 print(dict!["data"] as Any)
@@ -152,8 +151,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     func sendWifiSSIDToWeb()
     {
-        let ssid = getWiFiSSID()
-        sendDictToWeb(myDict: ["ssid": ssid], functionCall: "send_wifi_ssid")
+        sendDictToWeb(myDict: [], functionCall: "send_wifi_ssid")
     }
     
     func getWiFiSSID() -> String?
@@ -262,13 +260,24 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     // show dialog when in wrong wifi
-    func openWifiDialog(){
-        let alertController = UIAlertController (title: NSLocalizedString("wifi-title", comment: ""), message: NSLocalizedString("wifi-message", comment: ""), preferredStyle: .alert)
+    func openWifiDialog(wifiData: Dictionary<String, String>)
+    {
+        let ssid = getWiFiSSID()
+
+        let correctSSID = wifiData["ssid"];
+        _ = wifiData["password"];
         
-        let okAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: nil)
-        alertController.addAction(okAction)
+        // TODO: implement SSID and Passwort in Text
         
-        present(alertController, animated: true, completion: nil)
+        if(ssid != correctSSID)
+        {
+            let alertController = UIAlertController (title: NSLocalizedString("wifi-title", comment: ""), message: NSLocalizedString("wifi-message", comment: ""), preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
     }
     
     // starts scanning for beacons

@@ -653,7 +653,7 @@ var AppModule = /** @class */ (function () {
                 break;
             }
             case 'send_wifi_ssid': {
-                this.nativeResponseService.checkWifi(value);
+                this.nativeResponseService.getWifiDataFromGoD();
                 break;
             }
             case 'send_bluetooth_check': {
@@ -2009,7 +2009,7 @@ var ContentTableNotifyAtComponent = /** @class */ (function () {
     ------------------------------------------------------------
     */
     ContentTableNotifyAtComponent.prototype.redirectToOnTable = function () {
-        this.responseService.timelineUpdate({ minor: 5021, major: 502 });
+        this.responseService.timelineUpdate({ minor: this.locationId * 10 + 1, major: this.locationId });
     };
     ContentTableNotifyAtComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2040,7 +2040,7 @@ var ContentTableNotifyAtComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@font-face {\n  font-family: 'OpenSans';\n  src: url('OpenSans-Regular.ttf');\n}\n\n@font-face {\n  font-family: 'Vollkorn';\n  src: url('Vollkorn-Bold.ttf');\n}\n\nh1{\n  font-family: 'Vollkorn', Times, serif;\n  margin: 20px 0;\n  font-size: 1.6em;\n}\n\n.btnJoin button,\np{\n  font-family: 'OpenSans', Helvetica, Arial, Sans-Serif;\n  margin: 10px 0;\n  font-size: 1em;\n}\n\n.wrapperContent p{\n  line-height: 1.5em;\n}\n\na{\n  color: #0057a3;\n  text-decoration: underline;\n}\n\n.wrapper {\n  padding: 0;\n  margin: 0;\n  position: absolute;\n  width: 100%;\n  top: 90px;\n  min-height: -webkit-fill-available;\n}\n\n.wrapperContent{\n  width: 70%;\n  margin: 20px auto;\n  margin-bottom: 100px;\n}\n\n.btnJoin{\n  position: fixed;\n  bottom: 0;\n  z-index: 5;\n  width: 100%;\n  height: 80px;\n  margin: 0;\n  padding: 0;\n  border-top: 15px solid #494949;\n  color: #ffffff;\n}\n\n.btnJoin .ico{\n  height: 50px;\n  width: 50px;\n  float:left;\n  background-image: url('WappenIcons.png');\n  background-position: -10px 50px;\n  background-size: 1000%;\n  margin: 15px;\n}\n\n.btnJoin .msg{\n  margin: 15px 15px 0px 0px;\n}\n\n.btnJoin button{\n  outline: none;\n  border: none;\n  position: absolute;\n  height: 80px;\n  width: 100%;\n  top:0px;\n  left: 80px;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  color: #ffffff;\n  background: transparent;\n  font-size: 1.3em;\n}\n\n.btnBack{\n  position:absolute;\n  border: none;\n  outline: none;\n  height: 50px;\n  background-color: #494949;\n  margin: 20px 20px 0px 20px;\n  background-size: 50px;\n  width: 100px;\n  background-position: 10%;\n  background-repeat: no-repeat;\n  z-index: -1;\n}\n\n.btnBack img{\n  -webkit-filter: invert(99%) sepia(7%) saturate(90%) hue-rotate(226deg) brightness(120%) contrast(100%);\n          filter: invert(99%) sepia(7%) saturate(90%) hue-rotate(226deg) brightness(120%) contrast(100%);\n  height: 36px;\n  margin: 7px 0px 0px 50px;\n}\n\n.btnJoinDisabled{\n  position: fixed;\n  bottom: 0;\n  z-index: 6;\n  height: 95px;\n  width: 100%;\n  background: #666666;\n  opacity: 0.5;\n}\n\n.Sec_502 .btnJoin{ background-color: #5c416a; }\n\n.Sec_502 .note{ text-align: center; color: #5c416a; }\n\n@media (max-width: 370px) {\n  .btnJoin button{\n    font-size: 1em;\n  }\n\n  .btnJoin p{\n    font-size: 0.8em;\n  }\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jb250ZW50LXRhYmxlLW5vdGlmeS1vbi9jb250ZW50LXRhYmxlLW5vdGlmeS1vbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsdUJBQXVCO0VBQ3ZCLGdDQUFnRTtBQUNsRTs7QUFFQTtFQUNFLHVCQUF1QjtFQUN2Qiw2QkFBNEQ7QUFDOUQ7O0FBRUE7RUFDRSxxQ0FBcUM7RUFDckMsY0FBYztFQUNkLGdCQUFnQjtBQUNsQjs7QUFFQTs7RUFFRSxxREFBcUQ7RUFDckQsY0FBYztFQUNkLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxjQUFjO0VBQ2QsMEJBQTBCO0FBQzVCOztBQUVBO0VBQ0UsVUFBVTtFQUNWLFNBQVM7RUFDVCxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFNBQVM7RUFDVCxrQ0FBa0M7QUFDcEM7O0FBRUE7RUFDRSxVQUFVO0VBQ1YsaUJBQWlCO0VBQ2pCLG9CQUFvQjtBQUN0Qjs7QUFFQTtFQUNFLGVBQWU7RUFDZixTQUFTO0VBQ1QsVUFBVTtFQUNWLFdBQVc7RUFDWCxZQUFZO0VBQ1osU0FBUztFQUNULFVBQVU7RUFDViw4QkFBOEI7RUFDOUIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixXQUFXO0VBQ1gsVUFBVTtFQUNWLHdDQUE0RDtFQUM1RCwrQkFBK0I7RUFDL0Isc0JBQXNCO0VBQ3RCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLGFBQWE7RUFDYixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixXQUFXO0VBQ1gsT0FBTztFQUNQLFVBQVU7RUFDVixnQkFBZ0I7RUFDaEIsU0FBUztFQUNULFVBQVU7RUFDVixjQUFjO0VBQ2QsdUJBQXVCO0VBQ3ZCLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixZQUFZO0VBQ1osYUFBYTtFQUNiLFlBQVk7RUFDWix5QkFBeUI7RUFDekIsMEJBQTBCO0VBQzFCLHFCQUFxQjtFQUNyQixZQUFZO0VBQ1osd0JBQXdCO0VBQ3hCLDRCQUE0QjtFQUM1QixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxzR0FBOEY7VUFBOUYsOEZBQThGO0VBQzlGLFlBQVk7RUFDWix3QkFBd0I7QUFDMUI7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsU0FBUztFQUNULFVBQVU7RUFDVixZQUFZO0VBQ1osV0FBVztFQUNYLG1CQUFtQjtFQUNuQixZQUFZO0FBQ2Q7O0FBR0EsbUJBQW1CLHlCQUF5QixFQUFFOztBQUM5QyxnQkFBZ0Isa0JBQWtCLEVBQUUsY0FBYyxFQUFFOztBQUlwRDtFQUNFO0lBQ0UsY0FBYztFQUNoQjs7RUFFQTtJQUNFLGdCQUFnQjtFQUNsQjtBQUNGIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9jb250ZW50LXRhYmxlLW5vdGlmeS1vbi9jb250ZW50LXRhYmxlLW5vdGlmeS1vbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiAnT3BlblNhbnMnO1xuICBzcmM6IHVybChcIi4uLy4uLy4uL2Fzc2V0cy9mb250cy9PcGVuX1NhbnMvT3BlblNhbnMtUmVndWxhci50dGZcIik7XG59XG5cbkBmb250LWZhY2Uge1xuICBmb250LWZhbWlseTogJ1ZvbGxrb3JuJztcbiAgc3JjOiB1cmwoXCIuLi8uLi8uLi9hc3NldHMvZm9udHMvVm9sbGtvcm4vVm9sbGtvcm4tQm9sZC50dGZcIik7XG59XG5cbmgxe1xuICBmb250LWZhbWlseTogJ1ZvbGxrb3JuJywgVGltZXMsIHNlcmlmO1xuICBtYXJnaW46IDIwcHggMDtcbiAgZm9udC1zaXplOiAxLjZlbTtcbn1cblxuLmJ0bkpvaW4gYnV0dG9uLFxucHtcbiAgZm9udC1mYW1pbHk6ICdPcGVuU2FucycsIEhlbHZldGljYSwgQXJpYWwsIFNhbnMtU2VyaWY7XG4gIG1hcmdpbjogMTBweCAwO1xuICBmb250LXNpemU6IDFlbTtcbn1cblxuLndyYXBwZXJDb250ZW50IHB7XG4gIGxpbmUtaGVpZ2h0OiAxLjVlbTtcbn1cblxuYXtcbiAgY29sb3I6ICMwMDU3YTM7XG4gIHRleHQtZGVjb3JhdGlvbjogdW5kZXJsaW5lO1xufVxuXG4ud3JhcHBlciB7XG4gIHBhZGRpbmc6IDA7XG4gIG1hcmdpbjogMDtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMTAwJTtcbiAgdG9wOiA5MHB4O1xuICBtaW4taGVpZ2h0OiAtd2Via2l0LWZpbGwtYXZhaWxhYmxlO1xufVxuXG4ud3JhcHBlckNvbnRlbnR7XG4gIHdpZHRoOiA3MCU7XG4gIG1hcmdpbjogMjBweCBhdXRvO1xuICBtYXJnaW4tYm90dG9tOiAxMDBweDtcbn1cblxuLmJ0bkpvaW57XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgYm90dG9tOiAwO1xuICB6LWluZGV4OiA1O1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiA4MHB4O1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmc6IDA7XG4gIGJvcmRlci10b3A6IDE1cHggc29saWQgIzQ5NDk0OTtcbiAgY29sb3I6ICNmZmZmZmY7XG59XG5cbi5idG5Kb2luIC5pY297XG4gIGhlaWdodDogNTBweDtcbiAgd2lkdGg6IDUwcHg7XG4gIGZsb2F0OmxlZnQ7XG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybChcIi4uLy4uLy4uL2Fzc2V0cy9jc3MvV2FwcGVuSWNvbnMucG5nXCIpO1xuICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiAtMTBweCA1MHB4O1xuICBiYWNrZ3JvdW5kLXNpemU6IDEwMDAlO1xuICBtYXJnaW46IDE1cHg7XG59XG5cbi5idG5Kb2luIC5tc2d7XG4gIG1hcmdpbjogMTVweCAxNXB4IDBweCAwcHg7XG59XG5cbi5idG5Kb2luIGJ1dHRvbntcbiAgb3V0bGluZTogbm9uZTtcbiAgYm9yZGVyOiBub25lO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGhlaWdodDogODBweDtcbiAgd2lkdGg6IDEwMCU7XG4gIHRvcDowcHg7XG4gIGxlZnQ6IDgwcHg7XG4gIHRleHQtYWxpZ246IGxlZnQ7XG4gIG1hcmdpbjogMDtcbiAgcGFkZGluZzogMDtcbiAgY29sb3I6ICNmZmZmZmY7XG4gIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50O1xuICBmb250LXNpemU6IDEuM2VtO1xufVxuXG4uYnRuQmFja3tcbiAgcG9zaXRpb246YWJzb2x1dGU7XG4gIGJvcmRlcjogbm9uZTtcbiAgb3V0bGluZTogbm9uZTtcbiAgaGVpZ2h0OiA1MHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNDk0OTQ5O1xuICBtYXJnaW46IDIwcHggMjBweCAwcHggMjBweDtcbiAgYmFja2dyb3VuZC1zaXplOiA1MHB4O1xuICB3aWR0aDogMTAwcHg7XG4gIGJhY2tncm91bmQtcG9zaXRpb246IDEwJTtcbiAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgei1pbmRleDogLTE7XG59XG5cbi5idG5CYWNrIGltZ3tcbiAgZmlsdGVyOiBpbnZlcnQoOTklKSBzZXBpYSg3JSkgc2F0dXJhdGUoOTAlKSBodWUtcm90YXRlKDIyNmRlZykgYnJpZ2h0bmVzcygxMjAlKSBjb250cmFzdCgxMDAlKTtcbiAgaGVpZ2h0OiAzNnB4O1xuICBtYXJnaW46IDdweCAwcHggMHB4IDUwcHg7XG59XG5cbi5idG5Kb2luRGlzYWJsZWR7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgYm90dG9tOiAwO1xuICB6LWluZGV4OiA2O1xuICBoZWlnaHQ6IDk1cHg7XG4gIHdpZHRoOiAxMDAlO1xuICBiYWNrZ3JvdW5kOiAjNjY2NjY2O1xuICBvcGFjaXR5OiAwLjU7XG59XG5cblxuLlNlY181MDIgLmJ0bkpvaW57IGJhY2tncm91bmQtY29sb3I6ICM1YzQxNmE7IH1cbi5TZWNfNTAyIC5ub3RleyB0ZXh0LWFsaWduOiBjZW50ZXI7IGNvbG9yOiAjNWM0MTZhOyB9XG5cblxuXG5AbWVkaWEgKG1heC13aWR0aDogMzcwcHgpIHtcbiAgLmJ0bkpvaW4gYnV0dG9ue1xuICAgIGZvbnQtc2l6ZTogMWVtO1xuICB9XG5cbiAgLmJ0bkpvaW4gcHtcbiAgICBmb250LXNpemU6IDAuOGVtO1xuICB9XG59XG4iXX0= */"
+module.exports = "@font-face {\n  font-family: 'OpenSans';\n  src: url('OpenSans-Regular.ttf');\n}\n\n@font-face {\n  font-family: 'Vollkorn';\n  src: url('Vollkorn-Bold.ttf');\n}\n\nh1{\n  font-family: 'Vollkorn', Times, serif;\n  margin: 20px 0;\n  font-size: 1.6em;\n}\n\n.btnJoin button,\np{\n  font-family: 'OpenSans', Helvetica, Arial, Sans-Serif;\n  margin: 10px 0;\n  font-size: 1em;\n}\n\n.wrapperContent p{\n  line-height: 1.5em;\n}\n\na{\n  color: #0057a3;\n  text-decoration: underline;\n}\n\n.wrapper {\n  padding: 0;\n  margin: 0;\n  position: absolute;\n  width: 100%;\n  top: 90px;\n  min-height: -webkit-fill-available;\n}\n\n.wrapperContent{\n  width: 70%;\n  margin: 20px auto;\n  margin-bottom: 100px;\n}\n\n.btnJoin{\n  position: fixed;\n  bottom: 0;\n  z-index: 5;\n  width: 100%;\n  height: 80px;\n  margin: 0;\n  padding: 0;\n  border-top: 15px solid #494949;\n  color: #ffffff;\n}\n\n.btnJoin .ico{\n  height: 50px;\n  width: 50px;\n  float:left;\n  background-image: url('WappenIcons.png');\n  background-position: -10px 50px;\n  background-size: 1000%;\n  margin: 15px;\n}\n\n.btnJoin .msg{\n  margin: 15px 15px 0px 0px;\n}\n\n.btnJoin button{\n  outline: none;\n  border: none;\n  position: absolute;\n  height: 80px;\n  width: 100%;\n  top:0px;\n  left: 80px;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  color: #ffffff;\n  background: transparent;\n  font-size: 1.3em;\n}\n\n.btnBack{\n  position:absolute;\n  border: none;\n  outline: none;\n  height: 50px;\n  background-color: #494949;\n  margin: 20px 20px 0px 20px;\n  background-size: 50px;\n  width: 100px;\n  background-position: 10%;\n  background-repeat: no-repeat;\n  z-index: -1;\n}\n\n.btnBack img{\n  -webkit-filter: invert(99%) sepia(7%) saturate(90%) hue-rotate(226deg) brightness(120%) contrast(100%);\n          filter: invert(99%) sepia(7%) saturate(90%) hue-rotate(226deg) brightness(120%) contrast(100%);\n  height: 36px;\n  margin: 7px 0px 0px 50px;\n}\n\n.btnJoinDisabled{\n  position: fixed;\n  bottom: 0;\n  z-index: 6;\n  height: 95px;\n  width: 100%;\n  background: #666666;\n  opacity: 0.5;\n}\n\n.Sec_502 .btnJoin{ background-color: #5c416a; }\n\n.Sec_502 .note{ text-align: center; color: #5c416a; }\n\n.Sec_403 .btnJoin{ background-color: #1d635d; }\n\n.Sec_403 .note{ text-align: center; color: #1d635d; }\n\n@media (max-width: 370px) {\n  .btnJoin button{\n    font-size: 1em;\n  }\n\n  .btnJoin p{\n    font-size: 0.8em;\n  }\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jb250ZW50LXRhYmxlLW5vdGlmeS1vbi9jb250ZW50LXRhYmxlLW5vdGlmeS1vbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsdUJBQXVCO0VBQ3ZCLGdDQUFnRTtBQUNsRTs7QUFFQTtFQUNFLHVCQUF1QjtFQUN2Qiw2QkFBNEQ7QUFDOUQ7O0FBRUE7RUFDRSxxQ0FBcUM7RUFDckMsY0FBYztFQUNkLGdCQUFnQjtBQUNsQjs7QUFFQTs7RUFFRSxxREFBcUQ7RUFDckQsY0FBYztFQUNkLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxjQUFjO0VBQ2QsMEJBQTBCO0FBQzVCOztBQUVBO0VBQ0UsVUFBVTtFQUNWLFNBQVM7RUFDVCxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFNBQVM7RUFDVCxrQ0FBa0M7QUFDcEM7O0FBRUE7RUFDRSxVQUFVO0VBQ1YsaUJBQWlCO0VBQ2pCLG9CQUFvQjtBQUN0Qjs7QUFFQTtFQUNFLGVBQWU7RUFDZixTQUFTO0VBQ1QsVUFBVTtFQUNWLFdBQVc7RUFDWCxZQUFZO0VBQ1osU0FBUztFQUNULFVBQVU7RUFDViw4QkFBOEI7RUFDOUIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixXQUFXO0VBQ1gsVUFBVTtFQUNWLHdDQUE0RDtFQUM1RCwrQkFBK0I7RUFDL0Isc0JBQXNCO0VBQ3RCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLGFBQWE7RUFDYixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixXQUFXO0VBQ1gsT0FBTztFQUNQLFVBQVU7RUFDVixnQkFBZ0I7RUFDaEIsU0FBUztFQUNULFVBQVU7RUFDVixjQUFjO0VBQ2QsdUJBQXVCO0VBQ3ZCLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixZQUFZO0VBQ1osYUFBYTtFQUNiLFlBQVk7RUFDWix5QkFBeUI7RUFDekIsMEJBQTBCO0VBQzFCLHFCQUFxQjtFQUNyQixZQUFZO0VBQ1osd0JBQXdCO0VBQ3hCLDRCQUE0QjtFQUM1QixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxzR0FBOEY7VUFBOUYsOEZBQThGO0VBQzlGLFlBQVk7RUFDWix3QkFBd0I7QUFDMUI7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsU0FBUztFQUNULFVBQVU7RUFDVixZQUFZO0VBQ1osV0FBVztFQUNYLG1CQUFtQjtFQUNuQixZQUFZO0FBQ2Q7O0FBR0EsbUJBQW1CLHlCQUF5QixFQUFFOztBQUM5QyxnQkFBZ0Isa0JBQWtCLEVBQUUsY0FBYyxFQUFFOztBQUVwRCxtQkFBbUIseUJBQXlCLEVBQUU7O0FBQzlDLGdCQUFnQixrQkFBa0IsRUFBRSxjQUFjLEVBQUU7O0FBR3BEO0VBQ0U7SUFDRSxjQUFjO0VBQ2hCOztFQUVBO0lBQ0UsZ0JBQWdCO0VBQ2xCO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2NvbnRlbnQtdGFibGUtbm90aWZ5LW9uL2NvbnRlbnQtdGFibGUtbm90aWZ5LW9uLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAZm9udC1mYWNlIHtcbiAgZm9udC1mYW1pbHk6ICdPcGVuU2Fucyc7XG4gIHNyYzogdXJsKFwiLi4vLi4vLi4vYXNzZXRzL2ZvbnRzL09wZW5fU2Fucy9PcGVuU2Fucy1SZWd1bGFyLnR0ZlwiKTtcbn1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiAnVm9sbGtvcm4nO1xuICBzcmM6IHVybChcIi4uLy4uLy4uL2Fzc2V0cy9mb250cy9Wb2xsa29ybi9Wb2xsa29ybi1Cb2xkLnR0ZlwiKTtcbn1cblxuaDF7XG4gIGZvbnQtZmFtaWx5OiAnVm9sbGtvcm4nLCBUaW1lcywgc2VyaWY7XG4gIG1hcmdpbjogMjBweCAwO1xuICBmb250LXNpemU6IDEuNmVtO1xufVxuXG4uYnRuSm9pbiBidXR0b24sXG5we1xuICBmb250LWZhbWlseTogJ09wZW5TYW5zJywgSGVsdmV0aWNhLCBBcmlhbCwgU2Fucy1TZXJpZjtcbiAgbWFyZ2luOiAxMHB4IDA7XG4gIGZvbnQtc2l6ZTogMWVtO1xufVxuXG4ud3JhcHBlckNvbnRlbnQgcHtcbiAgbGluZS1oZWlnaHQ6IDEuNWVtO1xufVxuXG5he1xuICBjb2xvcjogIzAwNTdhMztcbiAgdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7XG59XG5cbi53cmFwcGVyIHtcbiAgcGFkZGluZzogMDtcbiAgbWFyZ2luOiAwO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAxMDAlO1xuICB0b3A6IDkwcHg7XG4gIG1pbi1oZWlnaHQ6IC13ZWJraXQtZmlsbC1hdmFpbGFibGU7XG59XG5cbi53cmFwcGVyQ29udGVudHtcbiAgd2lkdGg6IDcwJTtcbiAgbWFyZ2luOiAyMHB4IGF1dG87XG4gIG1hcmdpbi1ib3R0b206IDEwMHB4O1xufVxuXG4uYnRuSm9pbntcbiAgcG9zaXRpb246IGZpeGVkO1xuICBib3R0b206IDA7XG4gIHotaW5kZXg6IDU7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDgwcHg7XG4gIG1hcmdpbjogMDtcbiAgcGFkZGluZzogMDtcbiAgYm9yZGVyLXRvcDogMTVweCBzb2xpZCAjNDk0OTQ5O1xuICBjb2xvcjogI2ZmZmZmZjtcbn1cblxuLmJ0bkpvaW4gLmljb3tcbiAgaGVpZ2h0OiA1MHB4O1xuICB3aWR0aDogNTBweDtcbiAgZmxvYXQ6bGVmdDtcbiAgYmFja2dyb3VuZC1pbWFnZTogdXJsKFwiLi4vLi4vLi4vYXNzZXRzL2Nzcy9XYXBwZW5JY29ucy5wbmdcIik7XG4gIGJhY2tncm91bmQtcG9zaXRpb246IC0xMHB4IDUwcHg7XG4gIGJhY2tncm91bmQtc2l6ZTogMTAwMCU7XG4gIG1hcmdpbjogMTVweDtcbn1cblxuLmJ0bkpvaW4gLm1zZ3tcbiAgbWFyZ2luOiAxNXB4IDE1cHggMHB4IDBweDtcbn1cblxuLmJ0bkpvaW4gYnV0dG9ue1xuICBvdXRsaW5lOiBub25lO1xuICBib3JkZXI6IG5vbmU7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgaGVpZ2h0OiA4MHB4O1xuICB3aWR0aDogMTAwJTtcbiAgdG9wOjBweDtcbiAgbGVmdDogODBweDtcbiAgdGV4dC1hbGlnbjogbGVmdDtcbiAgbWFyZ2luOiAwO1xuICBwYWRkaW5nOiAwO1xuICBjb2xvcjogI2ZmZmZmZjtcbiAgYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7XG4gIGZvbnQtc2l6ZTogMS4zZW07XG59XG5cbi5idG5CYWNre1xuICBwb3NpdGlvbjphYnNvbHV0ZTtcbiAgYm9yZGVyOiBub25lO1xuICBvdXRsaW5lOiBub25lO1xuICBoZWlnaHQ6IDUwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICM0OTQ5NDk7XG4gIG1hcmdpbjogMjBweCAyMHB4IDBweCAyMHB4O1xuICBiYWNrZ3JvdW5kLXNpemU6IDUwcHg7XG4gIHdpZHRoOiAxMDBweDtcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogMTAlO1xuICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICB6LWluZGV4OiAtMTtcbn1cblxuLmJ0bkJhY2sgaW1ne1xuICBmaWx0ZXI6IGludmVydCg5OSUpIHNlcGlhKDclKSBzYXR1cmF0ZSg5MCUpIGh1ZS1yb3RhdGUoMjI2ZGVnKSBicmlnaHRuZXNzKDEyMCUpIGNvbnRyYXN0KDEwMCUpO1xuICBoZWlnaHQ6IDM2cHg7XG4gIG1hcmdpbjogN3B4IDBweCAwcHggNTBweDtcbn1cblxuLmJ0bkpvaW5EaXNhYmxlZHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBib3R0b206IDA7XG4gIHotaW5kZXg6IDY7XG4gIGhlaWdodDogOTVweDtcbiAgd2lkdGg6IDEwMCU7XG4gIGJhY2tncm91bmQ6ICM2NjY2NjY7XG4gIG9wYWNpdHk6IDAuNTtcbn1cblxuXG4uU2VjXzUwMiAuYnRuSm9pbnsgYmFja2dyb3VuZC1jb2xvcjogIzVjNDE2YTsgfVxuLlNlY181MDIgLm5vdGV7IHRleHQtYWxpZ246IGNlbnRlcjsgY29sb3I6ICM1YzQxNmE7IH1cblxuLlNlY180MDMgLmJ0bkpvaW57IGJhY2tncm91bmQtY29sb3I6ICMxZDYzNWQ7IH1cbi5TZWNfNDAzIC5ub3RleyB0ZXh0LWFsaWduOiBjZW50ZXI7IGNvbG9yOiAjMWQ2MzVkOyB9XG5cblxuQG1lZGlhIChtYXgtd2lkdGg6IDM3MHB4KSB7XG4gIC5idG5Kb2luIGJ1dHRvbntcbiAgICBmb250LXNpemU6IDFlbTtcbiAgfVxuXG4gIC5idG5Kb2luIHB7XG4gICAgZm9udC1zaXplOiAwLjhlbTtcbiAgfVxufVxuIl19 */"
 
 /***/ }),
 
@@ -3249,7 +3249,7 @@ var MainViewComponent = /** @class */ (function () {
         this.nativeResponseService.timelineUpdate({ minor: id, major: parentId });
     };
     MainViewComponent.prototype.checkWifiForWeb = function () {
-        this.nativeResponseService.checkWifi({ ssid: 'FH_STP_WLAN' });
+        this.nativeResponseService.getWifiDataFromGoD();
     };
     MainViewComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -5774,21 +5774,14 @@ var GodService = /** @class */ (function () {
             return result;
         });
     };
-    GodService.prototype.checkWifi = function (wifiSSID) {
+    GodService.prototype.getWifi = function () {
         var _this = this;
-        this.socket.emit('checkWifiSSID', wifiSSID);
-        this.nativeCommunicationService.sendToNative('check wifi sent', wifiSSID);
-        this.socket.on('checkWifiSSIDResult', function (result) {
-            var isCorrect = result.data.check;
-            _this.nativeCommunicationService.sendToNative('check wifi back', 'check wifi back');
-            if (isCorrect) {
-                _this.nativeCommunicationService.sendToNative('correctWifi', 'getWifiStatusResult');
-                _this.nativeCommunicationService.sendToNative('bluetoothCheck', 'activateBluetoothCheck');
-            }
-            else {
-                _this.nativeCommunicationService.sendToNative('openWifiDialogNative', 'openWifiDialogNative');
-            }
-            _this.socket.removeAllListeners('checkWifiSSIDResult');
+        this.socket.emit('getWifiSSID');
+        this.socket.on('getWifiSSIDResult', function (result) {
+            var ssid = result.data.ssid;
+            var password = result.data.password;
+            _this.nativeCommunicationService.sendToNative({ ssid: ssid, password: password }, 'receiveWifiData');
+            _this.socket.removeAllListeners('getWifiSSIDResult');
         });
     };
     GodService.prototype.updateUserCredentials = function (data) {
@@ -6416,12 +6409,8 @@ var NativeResponseService = /** @class */ (function () {
             this.nativeCommunicationService.sendToNative('getLanguage', 'getLanguage');
         }
     };
-    NativeResponseService.prototype.checkWifi = function (data) {
-        var wifiSSSID = data.ssid;
-        this.nativeCommunicationService.sendToNative('Received SSID: ' + wifiSSSID, 'print');
-        if (wifiSSSID !== undefined && wifiSSSID !== null && wifiSSSID !== '') {
-            this.godService.checkWifi(wifiSSSID);
-        }
+    NativeResponseService.prototype.getWifiDataFromGoD = function () {
+        this.godService.getWifi();
     };
     NativeResponseService.prototype.checkBluetooth = function () {
         var nativeSettingType = 'Bluetooth';
@@ -7191,8 +7180,8 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: false,
     // godURL: 'https://god.meeteux.fhstp.ac.at:3000'
-    // godURL: 'http://localhost:3000'
-    godURL: 'https://god.meeteux.fhstp.ac.at:8080'
+    godURL: 'http://192.168.178.48:3000'
+    // godURL: 'https://god.meeteux.fhstp.ac.at:8080'
 };
 
 
@@ -7234,7 +7223,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/kblumenstein/Development/meeteux/max-odwww/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/niklas/Code/max-odwww/src/main.ts */"./src/main.ts");
 
 
 /***/ }),
