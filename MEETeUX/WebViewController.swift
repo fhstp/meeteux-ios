@@ -502,7 +502,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                     nearestBeacon = beacon;
                 }
             }
-            
+            /*
             print("Nearest Beacon: ", nearestBeacon.minor);
             
             
@@ -518,7 +518,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 }
                 lastBeacon = nearestBeacon
                 
-            }
+            }*/
             
             sendBeacon(beacon: nearestBeacon)
             
