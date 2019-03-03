@@ -13,5 +13,5 @@
 "Go to settings" = "Öffne Einstellungen";
 "Cancel" = "Abbrechen";
 "wifi-title" = "Überprüfe die Wifi-Settings";
-"wifi-message" = "Die Inhalte in dieser App können nur in der Ausstellung 'Des Kaisers neuer Heiliger' freigeschalten werden. Sofern Du nicht schon im Stift Klosterneuburg bist, mach Dich auf den Weg täglich vom 9. März bis 17. November.\nUm alle Funktionen dieser App nutzen zu können, wechsle bitte in das Wifi 'DesKaisersNeuerHeiliger' (Passwort 'maximilian').";
+"wifi-message" = "Die Inhalte in dieser App können nur in der Ausstellung 'Des Kaisers neuer Heiliger' freigeschalten werden. Sofern Du nicht schon im Stift Klosterneuburg bist, mach Dich auf den Weg täglich vom 9. März bis 17. November.\n\nUm alle Funktionen dieser App nutzen zu können, wechsle bitte in das Wifi %@ (Passwort %@).";
 

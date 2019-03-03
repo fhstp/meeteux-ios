@@ -13,5 +13,5 @@
 "Go to settings" = "Go to settings";
 "Cancel" = "Cancel";
 "wifi-title" = "Please Check Wifi Settings";
-"wifi-message" = "The contents in this app can only be unlocked in the exhibition 'The Emperor's New Saint'. Unless you are already in Stift Klosterneuburg, get on the road from 9th of March to 17th of November.\nIn order to use all functions of this app, please switch to the wifi 'DesKaisersNeuerHeiliger' (password 'maximilian').";
+"wifi-message" = "The contents in this app can only be unlocked in the exhibition 'The Emperor's New Saint'. Unless you are already in Stift Klosterneuburg, get on the road from 9th of March to 17th of November.\n\nIn order to use all functions of this app, please switch to the wifi %@ (password %@).";
 

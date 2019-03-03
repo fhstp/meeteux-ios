@@ -264,14 +264,13 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     {
         let ssid = getWiFiSSID()
 
-        let correctSSID = wifiData["ssid"];
-        _ = wifiData["password"];
-        
-        // TODO: implement SSID and Passwort in Text
+        let correctSSID = wifiData["ssid"]
+        let wifiPassword = wifiData["password"]
         
         if(ssid != correctSSID)
         {
-            let alertController = UIAlertController (title: NSLocalizedString("wifi-title", comment: ""), message: NSLocalizedString("wifi-message", comment: ""), preferredStyle: .alert)
+            let localizedString = NSLocalizedString("wifi-message", comment: "")
+            let alertController = UIAlertController (title: NSLocalizedString("wifi-title", comment: ""), message: String(format: localizedString, correctSSID ?? "", wifiPassword ?? ""), preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: nil)
             alertController.addAction(okAction)
@@ -512,11 +511,10 @@ extension WebViewController: KTKBeaconManagerDelegate{
             if lastBeacon != nil{
                 print("Last Beacon: ", lastBeacon.minor);
                 // compare to lastBeacon, if not the same, than notify in background mode
-            
                 let digits = String(describing: nearestBeacon.major).count
                 
                 if(digits == 2 && nearestBeacon.minor != lastBeacon.minor){
-                    triggerNotification()
+                    // triggerNotification()
                 }
                 lastBeacon = nearestBeacon
                 

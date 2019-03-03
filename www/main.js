@@ -7180,8 +7180,8 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: false,
     // godURL: 'https://god.meeteux.fhstp.ac.at:3000'
-    godURL: 'http://192.168.178.48:3000'
-    // godURL: 'https://god.meeteux.fhstp.ac.at:8080'
+    // godURL: 'http://localhost:3000'
+    godURL: 'https://god.meeteux.fhstp.ac.at:8080'
 };
 
 
@@ -7223,7 +7223,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/niklas/Code/max-odwww/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/kblumenstein/Development/meeteux/max-odwww/src/main.ts */"./src/main.ts");
 
 
 /***/ }),
