@@ -30,9 +30,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
-        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         manager.requestAlwaysAuthorization()
-        manager.allowsBackgroundLocationUpdates = true
+        // manager.allowsBackgroundLocationUpdates = true
         return manager
     }()
     
@@ -309,7 +309,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     func triggerNotification(){
-        if #available(iOS 10.0, *) {
+       /* if #available(iOS 10.0, *) {
             print("Trigger Notification for Timeline Update")
             let content = UNMutableNotificationContent()
             
@@ -324,7 +324,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             // Fallback on earlier versions
             print("noIOS 10.0")
             return
-        }
+        }*/
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -429,21 +429,22 @@ extension WebViewController: KTKBeaconManagerDelegate{
         beacons.forEach { beacon in
             if(isOurBeaconReliable(myBeacon: beacon)){
                 // beaconList.append(beacon)
-                
                 // get number of digits --> == 3 immediate (on), == 2 near (at)
                 let digits = String(describing: beacon.major).count
                 // print("\(beacon.major) = Digits of Major: \(digits)")
-                
+                /*
                 if(digits == 3 && beacon.proximity == .immediate){
                     //print("immediate")
                     beaconList.append(beacon)
                 }else if(digits == 2 && (beacon.proximity == .near || beacon.proximity == .immediate)){
                     //print("near")
                     beaconList.append(beacon)
-                }
+                }*/
+                // else Check ob 10 bis 60 in major ->
+                beaconList.append(beacon)
             }
         }
-        
+        print(beaconList)
         // sort beacon list and send first item to Webview
         if beaconList.sorted(by: { $0.rssi > $1.rssi }).count>0{
             
@@ -459,7 +460,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                     newBuffer?.add(value: beacon.rssi);
                 }
             }
-            
+            // print(self.beaconDict)
             for (minor, buffer) in self.beaconDict
             {
                 var contains = false;
@@ -502,10 +503,10 @@ extension WebViewController: KTKBeaconManagerDelegate{
                     nearestBeacon = beacon;
                 }
             }
-            /*
+            
             print("Nearest Beacon: ", nearestBeacon.minor);
             
-            
+            /*
             // Beacon check only for sending notification in background mode
             
             if lastBeacon != nil{
@@ -545,7 +546,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
         if(myBeacon.rssi < 0){
             beaconResult = true
         }
-        
+        // print(beaconResult)
         return beaconResult
     }
 }
