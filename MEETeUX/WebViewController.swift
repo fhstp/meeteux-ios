@@ -194,7 +194,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         
         sendMessageToWeb(functionCall: "logout_success")
         
-        stopScanning()
+        // stopScanning()
     }
     
     func getToken()
