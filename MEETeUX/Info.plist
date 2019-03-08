@@ -39,6 +39,10 @@
 	<string>We want to detect Bluetooth Beacons nearby.</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiresPersistentWiFi</key>

@@ -6,12 +6,14 @@
   Copyright © 2019 FH St. Poelten. All rights reserved.
 */
 "notification-title" = "Loyal subject, ";
-"notification-subtitle" = "you are proceeding in my exhibition.";
+"notification-subtitle" = "you are proceeding.";
 "notification-body" = "Open the app to get to know more about me and my exhibits.";
 "Bluetooth is off" = "Bluetooth is off";
-"Please turn on your bluetooth" = "Please turn on your bluetooth.";
+"Please turn on your bluetooth" = "Please turn on your Bluetooth! With Bluetooth, we want to detect which exhibit is the closest to your position.";
 "Go to settings" = "Go to settings";
 "Cancel" = "Cancel";
 "wifi-title" = "Please Check Wifi Settings";
 "wifi-message" = "The contents in this app can only be unlocked in the exhibition 'The Emperor's New Saint'. Unless you are already in Stift Klosterneuburg, get on the road from 9th of March to 17th of November.\n\nIn order to use all functions of this app, please switch to the wifi %@ (password %@).";
+"iphone-title" = "Faulty Bluetooth Detection";
+"iphone-message" = "We currently have a problem detecting Bluetooth Beacon with your device. A reboot may possibly help.";
 

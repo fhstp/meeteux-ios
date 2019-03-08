@@ -28,11 +28,17 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     var lastBeacon: CLBeacon!
     var beaconDict: [NSNumber: CircularBuffer] = [:]
     
+    var lastNoficationID: NSNumber!
+    var emptyBeaconArrayCount: Int = 0
+    var emptyBeaconDialogShown: Bool = false
+    var correctSSID: String = ""
+    
+    
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         manager.requestAlwaysAuthorization()
-        // manager.allowsBackgroundLocationUpdates = true
+        manager.allowsBackgroundLocationUpdates = true
         return manager
     }()
     
@@ -113,38 +119,38 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             }*/
             //////////////////
             switch (messageName) {
-            case "getDeviceInfos":
-                getDeviceInformation()
-                break
-            case "registerOD":
-                // start beacon Scan
-                startBeaconScanning()
-                break
-            case "triggerSignal":
-                triggerSignal()
-                break
-            case "getToken":
-                getToken()
-                sendWifiSSIDToWeb()
-                break
-            case "saveToken":
-                saveToken(token: dict!["data"] as Any)
-                break
-            case "clearToken":
-                deleteToken()
-                break
-            case "showBackgroundNotification":
-                triggerNotification()
-                break
-            case "getLanguage":
-                sendLanguageToWeb()
-                break
-            case "receiveWifiData":
-                openWifiDialog(wifiData: dict!["data"] as! Dictionary<String, String>)
-                break
-            default:
-                print(dict!["data"] as Any)
-                break
+                case "getDeviceInfos":
+                    getDeviceInformation()
+                    break
+                case "registerOD":
+                    // start beacon Scan
+                    startBeaconScanning()
+                    break
+                case "triggerSignal":
+                    triggerSignal()
+                    break
+                case "getToken":
+                    getToken()
+                    sendWifiSSIDToWeb()
+                    break
+                case "saveToken":
+                    saveToken(token: dict!["data"] as Any)
+                    break
+                case "clearToken":
+                    deleteToken()
+                    break
+                case "showBackgroundNotification":
+                    triggerNotification(locationId: dict!["data"] as! NSNumber)
+                    break
+                case "getLanguage":
+                    sendLanguageToWeb()
+                    break
+                case "receiveWifiData":
+                    openWifiDialog(wifiData: dict!["data"] as! Dictionary<String, String>)
+                    break
+                default:
+                    print(dict!["data"] as Any)
+                    break
             }
         }
     }
@@ -172,7 +178,10 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     func sendLanguageToWeb()
     {
         let langStr = String(Locale.preferredLanguages[0].prefix(2))
+        print(langStr)
+
         sendDictToWeb(myDict: ["language": langStr], functionCall: "send_language")
+        
     }
     
     //- MARK: Helper Functions
@@ -216,7 +225,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             "deviceAddress": mydevice.identifierForVendor?.uuidString,
             "deviceOS": mydevice.systemName,
             "deviceVersion": mydevice.systemVersion,
-            "deviceModel": mydevice.model
+            "deviceModel": UIDevice.modelName
         ]
         
         sendDictToWeb(myDict: dict, functionCall: "send_device_infos")
@@ -264,13 +273,13 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     {
         let ssid = getWiFiSSID()
 
-        let correctSSID = wifiData["ssid"]
+        correctSSID = wifiData["ssid"] ?? ""
         let wifiPassword = wifiData["password"]
         
         if(ssid != correctSSID)
         {
             let localizedString = NSLocalizedString("wifi-message", comment: "")
-            let alertController = UIAlertController (title: NSLocalizedString("wifi-title", comment: ""), message: String(format: localizedString, correctSSID ?? "", wifiPassword ?? ""), preferredStyle: .alert)
+            let alertController = UIAlertController (title: NSLocalizedString("wifi-title", comment: ""), message: String(format: localizedString, correctSSID, wifiPassword ?? ""), preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: nil)
             alertController.addAction(okAction)
@@ -308,23 +317,26 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
-    func triggerNotification(){
-       /* if #available(iOS 10.0, *) {
-            print("Trigger Notification for Timeline Update")
-            let content = UNMutableNotificationContent()
-            
-            content.title = NSLocalizedString("notification-title", comment: "")
-            content.subtitle = NSLocalizedString("notification-subtitle", comment: "")
-            content.body = NSLocalizedString("notification-body", comment: "")
-            // content.badge = 1
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
-            let request = UNNotificationRequest(identifier: "LocationUpdate", content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        } else {
-            // Fallback on earlier versions
-            print("noIOS 10.0")
-            return
-        }*/
+    func triggerNotification(locationId: NSNumber){
+        if(lastNoficationID != locationId){
+            if #available(iOS 10.0, *) {
+                 print("Trigger Notification for Timeline Update for location \(locationId)")
+                 let content = UNMutableNotificationContent()
+                
+                 content.title = NSLocalizedString("notification-title", comment: "")
+                 content.subtitle = NSLocalizedString("notification-subtitle", comment: "")
+                 content.body = NSLocalizedString("notification-body", comment: "")
+                 // content.badge = 1
+                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.01, repeats: false)
+                 let request = UNNotificationRequest(identifier: "LocationUpdate", content: content, trigger: trigger)
+                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            } else {
+                 // Fallback on earlier versions
+                 print("noIOS 10.0")
+                 return
+            }
+        }
+        lastNoficationID = locationId
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -423,8 +435,40 @@ extension WebViewController: KTKBeaconManagerDelegate{
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
         // print("beaconManager called")
-        // print(beacons)
+        print(beacons)
         beaconList = []
+        
+        // check ob 5x nacheinander leeres Array
+        // wenn ja, dann Check ob falsches Wifi und 5S
+        // dann trigger alert mit Bluetooth Problemen
+        // check if empty array is comming - problem with iPhone 5S
+        if(beacons.count == 0){
+            emptyBeaconArrayCount += 1
+        }else{
+            emptyBeaconArrayCount = 0
+        }
+        
+        print("emptyBeaconArray Count \(emptyBeaconArrayCount)")
+        let modelName = UIDevice.modelName
+        print(modelName)
+        if(emptyBeaconArrayCount == 5){
+            let wifi = getWiFiSSID()
+            if(modelName == "iPhone 5s"){
+                if(wifi == correctSSID){
+                    print("Show Dialog")
+                    let alertController = UIAlertController (title: NSLocalizedString("iphone-title", comment: ""), message: NSLocalizedString("iphone-message", comment: ""), preferredStyle: .alert)
+                    
+                    let okAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    
+                    // TODO: Add option to unlock everything
+                    present(alertController, animated: true, completion: nil)
+                    emptyBeaconDialogShown = true
+                }
+            }
+            
+        }
+        
         // Go through beacons, check if it is our and reliable --> push into empty beaconList
         beacons.forEach { beacon in
             if(isOurBeaconReliable(myBeacon: beacon)){
@@ -432,6 +476,10 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 // get number of digits --> == 3 immediate (on), == 2 near (at)
                 let digits = String(describing: beacon.major).count
                 // print("\(beacon.major) = Digits of Major: \(digits)")
+                
+                if(digits == 3 || digits == 2){
+                    beaconList.append(beacon)
+                }
                 /*
                 if(digits == 3 && beacon.proximity == .immediate){
                     //print("immediate")
@@ -440,11 +488,12 @@ extension WebViewController: KTKBeaconManagerDelegate{
                     //print("near")
                     beaconList.append(beacon)
                 }*/
-                // else Check ob 10 bis 60 in major ->
-                beaconList.append(beacon)
+                
+               
+                
             }
         }
-        print(beaconList)
+        // print(beaconList)
         // sort beacon list and send first item to Webview
         if beaconList.sorted(by: { $0.rssi > $1.rssi }).count>0{
             
@@ -510,6 +559,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
             // Beacon check only for sending notification in background mode
             
             if lastBeacon != nil{
+             
                 print("Last Beacon: ", lastBeacon.minor);
                 // compare to lastBeacon, if not the same, than notify in background mode
                 let digits = String(describing: nearestBeacon.major).count
@@ -549,5 +599,6 @@ extension WebViewController: KTKBeaconManagerDelegate{
         // print(beaconResult)
         return beaconResult
     }
+    
 }
 
