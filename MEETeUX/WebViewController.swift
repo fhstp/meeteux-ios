@@ -385,7 +385,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
         if let clErr = error as? CLError
         {
             if clErr.code == CLError.rangingUnavailable
-            {
+            {/*
                 let alertController = UIAlertController (title: NSLocalizedString("Bluetooth is off", comment: ""), message: NSLocalizedString("Please turn on your bluetooth", comment: ""), preferredStyle: .alert)
                 
                 let settingsAction = UIAlertAction(title: NSLocalizedString("Go to settings", comment: ""), style: .default) { (_) -> Void in
@@ -404,7 +404,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
                 alertController.addAction(cancelAction)
                 
-                present(alertController, animated: true, completion: nil)
+                present(alertController, animated: true, completion: nil)*/
             }
         }
     }

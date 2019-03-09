@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // clear notification badge
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        // UIApplication.shared.applicationIconBadgeNumber = 0
         // disable idle timer to prevent lock screen
-        UIApplication.shared.isIdleTimerDisabled = true
+        // UIApplication.shared.isIdleTimerDisabled = true
         return true
     }
 
