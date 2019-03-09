@@ -476,18 +476,18 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 // get number of digits --> == 3 immediate (on), == 2 near (at)
                 let digits = String(describing: beacon.major).count
                 // print("\(beacon.major) = Digits of Major: \(digits)")
-                
+                /*
                 if(digits == 3 || digits == 2){
                     beaconList.append(beacon)
-                }
-                /*
+                }*/
+                
                 if(digits == 3 && beacon.proximity == .immediate){
                     //print("immediate")
                     beaconList.append(beacon)
                 }else if(digits == 2 && (beacon.proximity == .near || beacon.proximity == .immediate)){
                     //print("near")
                     beaconList.append(beacon)
-                }*/
+                }
                 
                
                 
