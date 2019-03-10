@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		22B3D29A22354B46005D413E /* Vuforia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29922354B46005D413E /* Vuforia.framework */; };
-		22B3D29C22354B53005D413E /* VuforiaDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29B22354B53005D413E /* VuforiaDL.framework */; };
-		22B3D29E22354B65005D413E /* Vuforia.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29D22354B65005D413E /* Vuforia.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		22B3D2A022354B72005D413E /* VuforiaDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29F22354B72005D413E /* VuforiaDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		22FA1B7E22354E5C00706118 /* Vuforia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29D22354B65005D413E /* Vuforia.framework */; };
+		22FA1B7F22354E6800706118 /* VuforiaDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29F22354B72005D413E /* VuforiaDL.framework */; };
+		22FA1B8022354E7600706118 /* VuforiaDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29F22354B72005D413E /* VuforiaDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		22FA1B8122354E7A00706118 /* Vuforia.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29D22354B65005D413E /* Vuforia.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		926096D41D4163B600510C24 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 926096D31D4163B600510C24 /* SpriteKit.framework */; };
 		9275279C1FC2CE5200CE7DCE /* Background.fragsh in Resources */ = {isa = PBXBuildFile; fileRef = 9275279A1FC2CE5200CE7DCE /* Background.fragsh */; };
 		9275279D1FC2CE5200CE7DCE /* Background.vertsh in Resources */ = {isa = PBXBuildFile; fileRef = 9275279B1FC2CE5200CE7DCE /* Background.vertsh */; };
@@ -56,8 +56,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				22B3D2A022354B72005D413E /* VuforiaDL.framework in Embed Frameworks */,
-				22B3D29E22354B65005D413E /* Vuforia.framework in Embed Frameworks */,
+				22FA1B8122354E7A00706118 /* Vuforia.framework in Embed Frameworks */,
+				22FA1B8022354E7600706118 /* VuforiaDL.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,8 +67,8 @@
 /* Begin PBXFileReference section */
 		22B3D29922354B46005D413E /* Vuforia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vuforia.framework; path = "VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build/Vuforia.framework"; sourceTree = "<group>"; };
 		22B3D29B22354B53005D413E /* VuforiaDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VuforiaDL.framework; path = "VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build/VuforiaDL.framework"; sourceTree = "<group>"; };
-		22B3D29D22354B65005D413E /* Vuforia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vuforia.framework; path = "VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build/Vuforia.framework"; sourceTree = "<group>"; };
-		22B3D29F22354B72005D413E /* VuforiaDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VuforiaDL.framework; path = "VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build/VuforiaDL.framework"; sourceTree = "<group>"; };
+		22B3D29D22354B65005D413E /* Vuforia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vuforia.framework; path = "meeteux/vuforia-sdk-ios-8-0-10/build/Vuforia.framework"; sourceTree = "<group>"; };
+		22B3D29F22354B72005D413E /* VuforiaDL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VuforiaDL.framework; path = "meeteux/vuforia-sdk-ios-8-0-10/build/VuforiaDL.framework"; sourceTree = "<group>"; };
 		3703D8F721B6F88900C13C84 /* Vuforia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vuforia.framework; path = "VuforiaSampleSwift/vuforia-sdk-ios-7-5-20/build/Vuforia.framework"; sourceTree = "<group>"; };
 		926096D31D4163B600510C24 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		9275279A1FC2CE5200CE7DCE /* Background.fragsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Background.fragsh; sourceTree = "<group>"; };
@@ -98,14 +98,14 @@
 		928C342D1EAF69EB00BC07DE /* Vuforia.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vuforia.dat; sourceTree = "<group>"; };
 		928C342E1EAF69EB00BC07DE /* Vuforia.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Vuforia.xml; sourceTree = "<group>"; };
 		928C342F1EAF69EB00BC07DE /* vumark_texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vumark_texture.png; sourceTree = "<group>"; };
-		92AA11051D27A5EB00E56CBE /* VuforiaSampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VuforiaSampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92AA11051D27A5EB00E56CBE /* meeteux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meeteux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92AA11081D27A5EB00E56CBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92AA110A1D27A5EB00E56CBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		92AA110D1D27A5EB00E56CBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92AA110F1D27A5EB00E56CBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92AA11121D27A5EB00E56CBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92AA11141D27A5EB00E56CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		92AA11801D27A6CD00E56CBE /* VuforiaSampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VuforiaSampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		92AA11801D27A6CD00E56CBE /* meeteux-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "meeteux-Bridging-Header.h"; sourceTree = "<group>"; };
 		92AA11841D27B96300E56CBE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		92DCE9B51E37CEA400E0DE1C /* IT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IT.png; sourceTree = "<group>"; };
 		92DCE9B61E37CEA400E0DE1C /* IT_about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = IT_about.html; sourceTree = "<group>"; };
@@ -120,8 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22B3D29C22354B53005D413E /* VuforiaDL.framework in Frameworks */,
-				22B3D29A22354B46005D413E /* Vuforia.framework in Frameworks */,
+				22FA1B7F22354E6800706118 /* VuforiaDL.framework in Frameworks */,
+				22FA1B7E22354E5C00706118 /* Vuforia.framework in Frameworks */,
 				926096D41D4163B600510C24 /* SpriteKit.framework in Frameworks */,
 				927B770B1D282E0A00C4F5CC /* MediaPlayer.framework in Frameworks */,
 				927B77091D282DF100C4F5CC /* AudioToolbox.framework in Frameworks */,
@@ -219,7 +219,7 @@
 			children = (
 				22B3D29F22354B72005D413E /* VuforiaDL.framework */,
 				22B3D29D22354B65005D413E /* Vuforia.framework */,
-				92AA11071D27A5EB00E56CBE /* VuforiaSampleSwift */,
+				92AA11071D27A5EB00E56CBE /* meeteux */,
 				92AA11061D27A5EB00E56CBE /* Products */,
 				927527971FC2BE0400CE7DCE /* Frameworks */,
 			);
@@ -228,15 +228,15 @@
 		92AA11061D27A5EB00E56CBE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				92AA11051D27A5EB00E56CBE /* VuforiaSampleSwift.app */,
+				92AA11051D27A5EB00E56CBE /* meeteux.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		92AA11071D27A5EB00E56CBE /* VuforiaSampleSwift */ = {
+		92AA11071D27A5EB00E56CBE /* meeteux */ = {
 			isa = PBXGroup;
 			children = (
-				92AA11801D27A6CD00E56CBE /* VuforiaSampleSwift-Bridging-Header.h */,
+				92AA11801D27A6CD00E56CBE /* meeteux-Bridging-Header.h */,
 				927B76E31D27FF2300C4F5CC /* VuforiaManager */,
 				927B76ED1D28070D00C4F5CC /* VuforiaAssets */,
 				92AA11081D27A5EB00E56CBE /* AppDelegate.swift */,
@@ -248,7 +248,7 @@
 				92AA11841D27B96300E56CBE /* Localizable.strings */,
 				927B76DF1D27FE5900C4F5CC /* Frameworks */,
 			);
-			path = VuforiaSampleSwift;
+			path = meeteux;
 			sourceTree = "<group>";
 		};
 		92DCE9B41E37CEA400E0DE1C /* ImageTargets */ = {
@@ -282,7 +282,7 @@
 			);
 			name = VuforiaSampleSwift;
 			productName = VuforiaSampleSwift;
-			productReference = 92AA11051D27A5EB00E56CBE /* VuforiaSampleSwift.app */;
+			productReference = 92AA11051D27A5EB00E56CBE /* meeteux.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -293,7 +293,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = "Yoshihiro Kato";
+				ORGANIZATIONNAME = FHSTP;
 				TargetAttributes = {
 					92AA11041D27A5EB00E56CBE = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -303,7 +303,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 92AA11001D27A5EB00E56CBE /* Build configuration list for PBXProject "VuforiaSampleSwift" */;
+			buildConfigurationList = 92AA11001D27A5EB00E56CBE /* Build configuration list for PBXProject "meeteux" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -506,20 +506,19 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/VuforiaSampleSwift/vuforia-sdk-ios-7-5-20/build",
-					"$(PROJECT_DIR)/VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build",
+					"$(PROJECT_DIR)/meeteux/vuforia-sdk-ios-8-0-10/build",
 				);
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build/include\"";
-				INFOPLIST_FILE = VuforiaSampleSwift/Info.plist;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/meeteux/vuforia-sdk-ios-8-0-10/build/include\"";
+				INFOPLIST_FILE = meeteux/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build/lib/arm",
+					"$(PROJECT_DIR)/meeteux/vuforia-sdk-ios-8-0-10/build/lib/arm",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.kaiser;
-				PRODUCT_NAME = VuforiaSampleSwift;
+				PRODUCT_NAME = meeteux;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "VuforiaSampleSwift/VuforiaSampleSwift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "meeteux/meeteux-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -539,20 +538,19 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/VuforiaSampleSwift/vuforia-sdk-ios-7-5-20/build",
-					"$(PROJECT_DIR)/VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build",
+					"$(PROJECT_DIR)/meeteux/vuforia-sdk-ios-8-0-10/build",
 				);
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build/include\"";
-				INFOPLIST_FILE = VuforiaSampleSwift/Info.plist;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/meeteux/vuforia-sdk-ios-8-0-10/build/include\"";
+				INFOPLIST_FILE = meeteux/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/VuforiaSampleSwift/vuforia-sdk-ios-8-0-10/build/lib/arm",
+					"$(PROJECT_DIR)/meeteux/vuforia-sdk-ios-8-0-10/build/lib/arm",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = at.ac.fhstp.kaiser;
-				PRODUCT_NAME = VuforiaSampleSwift;
+				PRODUCT_NAME = meeteux;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "VuforiaSampleSwift/VuforiaSampleSwift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "meeteux/meeteux-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -562,7 +560,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		92AA11001D27A5EB00E56CBE /* Build configuration list for PBXProject "VuforiaSampleSwift" */ = {
+		92AA11001D27A5EB00E56CBE /* Build configuration list for PBXProject "meeteux" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92AA11151D27A5EB00E56CBE /* Debug */,
