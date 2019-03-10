@@ -45,7 +45,6 @@
 		92AA110B1D27A5EB00E56CBE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AA110A1D27A5EB00E56CBE /* ViewController.swift */; };
 		92AA110E1D27A5EB00E56CBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92AA110C1D27A5EB00E56CBE /* Main.storyboard */; };
 		92AA11101D27A5EB00E56CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92AA110F1D27A5EB00E56CBE /* Assets.xcassets */; };
-		92AA11131D27A5EB00E56CBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92AA11111D27A5EB00E56CBE /* LaunchScreen.storyboard */; };
 		92DCE9BB1E37CEA400E0DE1C /* IT.png in Resources */ = {isa = PBXBuildFile; fileRef = 92DCE9B51E37CEA400E0DE1C /* IT.png */; };
 		92DCE9BC1E37CEA400E0DE1C /* IT_about.html in Resources */ = {isa = PBXBuildFile; fileRef = 92DCE9B61E37CEA400E0DE1C /* IT_about.html */; };
 		92DCE9BD1E37CEA400E0DE1C /* StonesAndChips.dat in Resources */ = {isa = PBXBuildFile; fileRef = 92DCE9B71E37CEA400E0DE1C /* StonesAndChips.dat */; };
@@ -78,7 +77,6 @@
 		228EF492223558A7008742AC /* meeteux.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = meeteux.entitlements; sourceTree = "<group>"; };
 		228EF4A122355B1F008742AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		228EF4A322355B33008742AC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		228EF4A422355B33008742AC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		228EF4A522355B33008742AC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		228EF4A922355B82008742AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		228EF4AB22355B83008742AC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 		92AA110A1D27A5EB00E56CBE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		92AA110D1D27A5EB00E56CBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92AA110F1D27A5EB00E56CBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		92AA11121D27A5EB00E56CBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92AA11141D27A5EB00E56CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92AA11801D27A6CD00E56CBE /* meeteux-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "meeteux-Bridging-Header.h"; sourceTree = "<group>"; };
 		92DCE9B51E37CEA400E0DE1C /* IT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IT.png; sourceTree = "<group>"; };
@@ -268,7 +265,6 @@
 				92AA110A1D27A5EB00E56CBE /* ViewController.swift */,
 				92AA110C1D27A5EB00E56CBE /* Main.storyboard */,
 				92AA110F1D27A5EB00E56CBE /* Assets.xcassets */,
-				92AA11111D27A5EB00E56CBE /* LaunchScreen.storyboard */,
 				92AA11141D27A5EB00E56CBE /* Info.plist */,
 				228EF4A222355B1F008742AC /* Localizable.strings */,
 				927B76DF1D27FE5900C4F5CC /* Frameworks */,
@@ -379,7 +375,6 @@
 				928C34361EAF69EB00BC07DE /* Vuforia.dat in Resources */,
 				9275279C1FC2CE5200CE7DCE /* Background.fragsh in Resources */,
 				9275279D1FC2CE5200CE7DCE /* Background.vertsh in Resources */,
-				92AA11131D27A5EB00E56CBE /* LaunchScreen.storyboard in Resources */,
 				928C34321EAF69EB00BC07DE /* reticle@2x.png in Resources */,
 				92AA11101D27A5EB00E56CBE /* Assets.xcassets in Resources */,
 				92DCE9BD1E37CEA400E0DE1C /* StonesAndChips.dat in Resources */,
@@ -498,15 +493,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		92AA11111D27A5EB00E56CBE /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				92AA11121D27A5EB00E56CBE /* Base */,
-				228EF4A422355B33008742AC /* de */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -623,6 +609,7 @@
 			baseConfigurationReference = 3F7E2D70AA37F57437B545C5 /* Pods-VuforiaSampleSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = meeteux.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -658,6 +645,7 @@
 			baseConfigurationReference = D13C34A5AC365167DF677FD9 /* Pods-VuforiaSampleSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = meeteux.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
