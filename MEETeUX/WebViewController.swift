@@ -178,10 +178,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     func sendLanguageToWeb()
     {
         let langStr = String(Locale.preferredLanguages[0].prefix(2))
-        print(langStr)
-
         sendDictToWeb(myDict: ["language": langStr], functionCall: "send_language")
-        
     }
     
     //- MARK: Helper Functions
@@ -236,10 +233,21 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     // sends dictionary to webview
     func sendDictToWeb(myDict: Any, functionCall: String){
         let jsonString = getJSONString(myDict: myDict)
-        print("SendDictToWeb JSON (\(functionCall)): \(jsonString)")
+        // print("SendDictToWeb JSON (\(functionCall)): \(jsonString)")
         
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)(\(jsonString))") { result, error in
+            guard error == nil else {
+                print("SendDictToWeb throw Error: \(error!)")
+                return
+            }
+        }
+    }
+    
+    // sends message to webview
+    func sendFunctionCallToWeb(functionCall: String){
+        // Send the location update to the page
+        self.webView.evaluateJavaScript("\(functionCall)()") { result, error in
             guard error == nil else {
                 print("SendDictToWeb throw Error: \(error!)")
                 return
@@ -435,39 +443,8 @@ extension WebViewController: KTKBeaconManagerDelegate{
     
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
         // print("beaconManager called")
-        print(beacons)
+        // print(beacons)
         beaconList = []
-        
-        // check ob 5x nacheinander leeres Array
-        // wenn ja, dann Check ob falsches Wifi und 5S
-        // dann trigger alert mit Bluetooth Problemen
-        // check if empty array is comming - problem with iPhone 5S
-        if(beacons.count == 0){
-            emptyBeaconArrayCount += 1
-        }else{
-            emptyBeaconArrayCount = 0
-        }
-        
-        print("emptyBeaconArray Count \(emptyBeaconArrayCount)")
-        let modelName = UIDevice.modelName
-        print(modelName)
-        if(emptyBeaconArrayCount == 5){
-            let wifi = getWiFiSSID()
-            if(modelName == "iPhone 5s"){
-                if(wifi == correctSSID){
-                    print("Show Dialog")
-                    let alertController = UIAlertController (title: NSLocalizedString("iphone-title", comment: ""), message: NSLocalizedString("iphone-message", comment: ""), preferredStyle: .alert)
-                    
-                    let okAction = UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: nil)
-                    alertController.addAction(okAction)
-                    
-                    // TODO: Add option to unlock everything
-                    present(alertController, animated: true, completion: nil)
-                    emptyBeaconDialogShown = true
-                }
-            }
-            
-        }
         
         // Go through beacons, check if it is our and reliable --> push into empty beaconList
         beacons.forEach { beacon in
@@ -493,6 +470,36 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 
             }
         }
+        
+        // check ob 5x nacheinander leeres Array
+        // wenn ja, dann Check ob falsches Wifi und 5S
+        // dann trigger alert mit Bluetooth Problemen
+        // check if empty array is comming - problem with iPhone 5S
+        if(beaconList.count == 0){
+            emptyBeaconArrayCount += 1
+        }else{
+            emptyBeaconArrayCount = 0
+        }
+        
+        if(emptyBeaconArrayCount == 5){
+            let wifi = getWiFiSSID()
+            if(wifi == correctSSID && !emptyBeaconDialogShown){ // TODO change
+                let alertController = UIAlertController (title: NSLocalizedString("iphone-title", comment: ""), message: NSLocalizedString("iphone-message", comment: ""), preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: NSLocalizedString("unlock-timeline-locations", comment: ""), style: .default) { (_) -> Void in
+                    print("send unlock_all_timeline_locations to web")
+                    self.sendFunctionCallToWeb(functionCall: "unlock_all_timeline_locations")
+                }
+                alertController.addAction(okAction)
+                
+                let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
+                alertController.addAction(cancelAction)
+                
+                present(alertController, animated: true, completion: nil)
+                emptyBeaconDialogShown = true
+            }
+        }
+        
         // print(beaconList)
         // sort beacon list and send first item to Webview
         if beaconList.sorted(by: { $0.rssi > $1.rssi }).count>0{
@@ -553,23 +560,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 }
             }
             
-            print("Nearest Beacon: ", nearestBeacon.minor);
-            
-            /*
-            // Beacon check only for sending notification in background mode
-            
-            if lastBeacon != nil{
-             
-                print("Last Beacon: ", lastBeacon.minor);
-                // compare to lastBeacon, if not the same, than notify in background mode
-                let digits = String(describing: nearestBeacon.major).count
-                
-                if(digits == 2 && nearestBeacon.minor != lastBeacon.minor){
-                    // triggerNotification()
-                }
-                lastBeacon = nearestBeacon
-                
-            }*/
+            // print("Nearest Beacon: ", nearestBeacon.minor);
             
             sendBeacon(beacon: nearestBeacon)
             

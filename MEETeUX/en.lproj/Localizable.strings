@@ -15,5 +15,6 @@
 "wifi-title" = "Please Check Wifi Settings";
 "wifi-message" = "The contents in this app can only be unlocked in the exhibition 'The Emperor's New Saint'. Unless you are already in Stift Klosterneuburg, get on the road from 9th of March to 17th of November.\n\nIn order to use all functions of this app, please switch to the wifi %@ (password %@).";
 "iphone-title" = "Faulty Bluetooth Detection";
-"iphone-message" = "We currently have a problem detecting Bluetooth Beacon with your device. A reboot may possibly help.";
+"iphone-message" = "We currently have a problem detecting Bluetooth Beacon with your device to know where you are in the exhibition. A reboot of your mobile phone may possibly help.\n\nChoose 'Unlock' to unlock all exhibits within the app without being there. Thus, you can read the contents. However, you can not connect to interactive exhibits.";
+"unlock-timeline-locations" = "Unlock";
 
