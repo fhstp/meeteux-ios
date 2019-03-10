@@ -1,0 +1,28 @@
+/*
+ Localizable.strings
+ MEETeUX
+ 
+ Created by Kerstin Blumenstein on 12.02.19.
+ Copyright © 2019 FH St. Poelten. All rights reserved.
+ */
+"notification-title" = "Loyal subject, ";
+"notification-subtitle" = "you are proceeding.";
+"notification-body" = "Open the app to get to know more about me and my exhibits.";
+"Bluetooth is off" = "Bluetooth is off";
+"Please turn on your bluetooth" = "Please turn on your Bluetooth! With Bluetooth, we want to detect which exhibit is the closest to your position.";
+"Go to settings" = "Go to settings";
+"Cancel" = "Cancel";
+"wifi-title" = "Please Check Wifi Settings";
+"wifi-message" = "The contents in this app can only be unlocked in the exhibition 'The Emperor's New Saint'. Unless you are already in Stift Klosterneuburg, get on the road from 9th of March to 17th of November.\n\nIn order to use all functions of this app, please switch to the wifi %@ (password %@).";
+"iphone-title" = "Faulty Bluetooth Detection";
+"iphone-message" = "We currently have a problem detecting Bluetooth Beacon with your device to know where you are in the exhibition. A reboot of your mobile phone may possibly help.\n\nChoose 'Unlock' to unlock all exhibits within the app without being there. Thus, you can read the contents. However, you can not connect to interactive exhibits.";
+"unlock-timeline-locations" = "Unlock";
+
+
+"VUFORIA_ERROR_NO_NETWORK_TRANSIENT" = "Unable to contact server. Please try again later.";
+"VUFORIA_ERROR_NO_NETWORK_PERMANENT" = "No network available. Please make sure you are connected to the Internet.";
+"VUFORIA_ERROR_INVALID_KEY" = "Invalid Key used. Please make sure you are using a valid Vuforia App Key.";
+"VUFORIA_ERROR_CANCELED_KEY" = "This app license key has been canceled and may no longer be used. Please get a new license key.";
+"VUFORIA_ERROR_MISSING_KEY" = "Vuforia App key is missing. Please get a valid key, by logging into your account at developer.vuforia.com and creating a new project.";
+"VUFORIA_ERROR_PRODUCT_TYPE_MISMATCH" = "Vuforia App key is not valid for this product. Please get a valid key, by logging into your account at developer.vuforia.com and choosing the right product type during project creation.";
+"VUFORIA_ERROR_UNKNOWN" = "Initialization error";

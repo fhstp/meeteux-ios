@@ -1,0 +1,28 @@
+/*
+ Localizable.strings
+ MEETeUX
+ 
+ Created by Kerstin Blumenstein on 12.02.19.
+ Copyright © 2019 FH St. Poelten. All rights reserved.
+ */
+"notification-title" = "Getreuer Untertan, ";
+"notification-subtitle" = "Du bewegst Dich fort.";
+"notification-body" = "Öffne die App, um mehr über mich und meine Ausstellungsstücke zu erfahren.";
+"Bluetooth is off" = "Bluetooth ist ausgeschalten";
+"Please turn on your bluetooth" = "Bitte schalte Bluetooth ein! Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";
+"Go to settings" = "Öffne Einstellungen";
+"Cancel" = "Abbrechen";
+"wifi-title" = "Überprüfe die Wifi-Settings";
+"wifi-message" = "Die Inhalte in dieser App können nur in der Ausstellung 'Des Kaisers neuer Heiliger' freigeschalten werden. Sofern Du nicht schon im Stift Klosterneuburg bist, mach Dich auf den Weg täglich vom 9. März bis 17. November.\n\nUm alle Funktionen dieser App nutzen zu können, wechsle bitte in das Wifi %@ (Passwort %@).";
+"iphone-title" = "Bluetooth Erkennung fehlerhaft";
+"iphone-message" = "Wir haben derzeit Probleme, mit Deinem Gerät Bluetooth Beacons zu erkennen, um zu wissen, bei welchem Ausstellungsstück Du Dich befindest. Ein Neustart Deines Handys kann möglicherweise helfen.\n\nWähle 'Freischalten', um alle Ausstellungsstücke in der App freizuschalten, ohne dass Du bei diesen gewesen sein musst. Du kannst so die Inhalte konsumieren, Dich jedoch nicht mit den interaktiven Ausstellungsstücken verbinden.";
+"unlock-timeline-locations" = "Freischalten";
+
+
+"VUFORIA_ERROR_NO_NETWORK_TRANSIENT" = "Unable to contact server. Please try again later.";
+"VUFORIA_ERROR_NO_NETWORK_PERMANENT" = "No network available. Please make sure you are connected to the Internet.";
+"VUFORIA_ERROR_INVALID_KEY" = "Invalid Key used. Please make sure you are using a valid Vuforia App Key.";
+"VUFORIA_ERROR_CANCELED_KEY" = "This app license key has been canceled and may no longer be used. Please get a new license key.";
+"VUFORIA_ERROR_MISSING_KEY" = "Vuforia App key is missing. Please get a valid key, by logging into your account at developer.vuforia.com and creating a new project.";
+"VUFORIA_ERROR_PRODUCT_TYPE_MISMATCH" = "Vuforia App key is not valid for this product. Please get a valid key, by logging into your account at developer.vuforia.com and choosing the right product type during project creation.";
+"VUFORIA_ERROR_UNKNOWN" = "Initialization error";
