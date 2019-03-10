@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "92AA11041D27A5EB00E56CBE"
-               BuildableName = "VuforiaSampleSwift.app"
+               BuildableName = "meeteux.app"
                BlueprintName = "VuforiaSampleSwift"
                ReferencedContainer = "container:meeteux.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "92AA11041D27A5EB00E56CBE"
-            BuildableName = "VuforiaSampleSwift.app"
+            BuildableName = "meeteux.app"
             BlueprintName = "VuforiaSampleSwift"
             ReferencedContainer = "container:meeteux.xcodeproj">
          </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "92AA11041D27A5EB00E56CBE"
-            BuildableName = "VuforiaSampleSwift.app"
+            BuildableName = "meeteux.app"
             BlueprintName = "VuforiaSampleSwift"
             ReferencedContainer = "container:meeteux.xcodeproj">
          </BuildableReference>
@@ -75,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "92AA11041D27A5EB00E56CBE"
-            BuildableName = "VuforiaSampleSwift.app"
+            BuildableName = "meeteux.app"
             BlueprintName = "VuforiaSampleSwift"
             ReferencedContainer = "container:meeteux.xcodeproj">
          </BuildableReference>
