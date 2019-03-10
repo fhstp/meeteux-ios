@@ -20,18 +20,18 @@ import SystemConfiguration.CaptiveNetwork
 class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotificationCenterDelegate {
     
     @IBOutlet var containerView: UIView!
-    var webView: WKWebView!
+    @objc var webView: WKWebView!
     
-    var beaconManager: KTKBeaconManager!
-    var beaconList:[CLBeacon] = []
+    @objc var beaconManager: KTKBeaconManager!
+    @objc var beaconList:[CLBeacon] = []
     
-    var lastBeacon: CLBeacon!
+    @objc var lastBeacon: CLBeacon!
     var beaconDict: [NSNumber: CircularBuffer] = [:]
     
-    var lastNoficationID: NSNumber!
-    var emptyBeaconArrayCount: Int = 0
-    var emptyBeaconDialogShown: Bool = false
-    var correctSSID: String = ""
+    @objc var lastNoficationID: NSNumber!
+    @objc var emptyBeaconArrayCount: Int = 0
+    @objc var emptyBeaconDialogShown: Bool = false
+    @objc var correctSSID: String = ""
     
     
     private lazy var locationManager: CLLocationManager = {
@@ -155,12 +155,12 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         }
     }
     
-    func sendWifiSSIDToWeb()
+    @objc func sendWifiSSIDToWeb()
     {
         sendDictToWeb(myDict: [], functionCall: "send_wifi_ssid")
     }
     
-    func getWiFiSSID() -> String?
+    @objc func getWiFiSSID() -> String?
     {
         var ssid: String?
         if let interfaces = CNCopySupportedInterfaces() as NSArray? {
@@ -175,7 +175,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     
-    func sendLanguageToWeb()
+    @objc func sendLanguageToWeb()
     {
         let langStr = String(Locale.preferredLanguages[0].prefix(2))
         sendDictToWeb(myDict: ["language": langStr], functionCall: "send_language")
@@ -183,7 +183,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     //- MARK: Helper Functions
     
-    func saveToken(token: Any)
+    @objc func saveToken(token: Any)
     {
         // print("save");
         // print(token)
@@ -194,7 +194,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         }
     }
     
-    func deleteToken()
+    @objc func deleteToken()
     {
         KeychainWrapper.standard.removeObject(forKey: "token")
         
@@ -203,7 +203,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         stopScanning()
     }
     
-    func getToken()
+    @objc func getToken()
     {
         let token: String? = KeychainWrapper.standard.string(forKey: "token")
         let dict = [
@@ -214,7 +214,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     // prepars dict for sending device infos to web
-    func getDeviceInformation(){
+    @objc func getDeviceInformation(){
         let mydevice = UIDevice.current
         // print("UDID: \(String(describing: mydevice.identifierForVendor?.uuidString)) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
         
@@ -231,7 +231,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     // sends dictionary to webview
-    func sendDictToWeb(myDict: Any, functionCall: String){
+    @objc func sendDictToWeb(myDict: Any, functionCall: String){
         let jsonString = getJSONString(myDict: myDict)
         // print("SendDictToWeb JSON (\(functionCall)): \(jsonString)")
         
@@ -245,7 +245,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     // sends message to webview
-    func sendFunctionCallToWeb(functionCall: String){
+    @objc func sendFunctionCallToWeb(functionCall: String){
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)()") { result, error in
             guard error == nil else {
@@ -256,7 +256,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     // sends dictionary to webview
-    func sendMessageToWeb(functionCall: String){
+    @objc func sendMessageToWeb(functionCall: String){
         // print("SendMessageToWeb (\(functionCall))")
         
         // Send the location update to the page
@@ -269,7 +269,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     // generate a JSON String from a Dictionary
-    func getJSONString(myDict: Any) -> String{
+    @objc func getJSONString(myDict: Any) -> String{
         let jsonData = try! JSONSerialization.data(withJSONObject: myDict, options: [])
         let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)!
         
@@ -277,7 +277,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     // show dialog when in wrong wifi
-    func openWifiDialog(wifiData: Dictionary<String, String>)
+    @objc func openWifiDialog(wifiData: Dictionary<String, String>)
     {
         let ssid = getWiFiSSID()
         
@@ -297,7 +297,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     // starts scanning for beacons
-    func startBeaconScanning(){
+    @objc func startBeaconScanning(){
         // initialize BeaconManager
         beaconManager = KTKBeaconManager(delegate: self)
         // print("bluetooth ready")
@@ -320,12 +320,12 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         locationManager.startUpdatingLocation()
     }
     
-    func triggerSignal(){
+    @objc func triggerSignal(){
         //let systemSoundID: SystemSoundID = 1306 // tock
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
-    func triggerNotification(locationId: NSNumber){
+    @objc func triggerNotification(locationId: NSNumber){
         if(lastNoficationID != locationId){
             if #available(iOS 10.0, *) {
                 print("Trigger Notification for Timeline Update for location \(locationId)")
@@ -374,7 +374,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
         }
     }
     
-    func startScanning(){
+    @objc func startScanning(){
         let myProximityUuid = UUID(uuidString: "f7826da6-4fa2-4e98-8024-bc5b71e0893e")
         let region = KTKBeaconRegion(proximityUUID: myProximityUuid!, identifier: "Beacon region 1")
         
@@ -385,7 +385,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
         // print("start scanning")
     }
     
-    func stopScanning(){
+    @objc func stopScanning(){
         beaconManager.stopMonitoringForAllRegions()
         lastBeacon = nil
         // print("stop scanning")
@@ -410,7 +410,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 
                 let settingsAction = UIAlertAction(title: NSLocalizedString("Go to settings", comment: ""), style: .default) { (_) -> Void in
                     
-                    guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                    guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                         return
                     }
                     
@@ -570,7 +570,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
     }
     
     // prepares beacon for sending to web
-    func sendBeacon(beacon: CLBeacon){
+    @objc func sendBeacon(beacon: CLBeacon){
         let dict = [
             "major": beacon.major,
             "minor": beacon.minor
@@ -582,7 +582,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
     
     
     // Check if Beacon is reliable (rssi < 0) and if it is in our range compared to exhibits (later LUT)
-    func isOurBeaconReliable(myBeacon: CLBeacon) -> Bool{
+    @objc func isOurBeaconReliable(myBeacon: CLBeacon) -> Bool{
         var beaconResult:Bool = false
         if(myBeacon.rssi < 0){
             beaconResult = true

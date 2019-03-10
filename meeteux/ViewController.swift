@@ -10,12 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let vuforiaLicenseKey = "AYsYrdX/////AAAACIoVAWiG4keZjev8bbFmlFN/2KIncjmco1ZxK21r/tNMhX41T44wuKsKxhAkqTJ+O8EFT6l2LK+tRn0KrPbh9yw2mW1nlNt6uiZxLjgrk7TFzHCVlsS6s57NYcl84vzqR0tBkbVXP3Nrz8EJ0CfTvl0oVm6RsBoS8Yqk7w9ypbXDTlpsyDMejEaPNpcUGhNtdsMdznoTbccG18UTqwwFZSNHqwtKjPKQ1XxY7eIAVmkWkD1g19VhnGd8nwK5MSBmo5DjTPS7iDW4wbq6xzysM7lHp76qBuUR5mmyPH3w87aFzXPaMwJi1yTyhJN7IoKwDhJtqC9KHQ1jIg/yo9IZ49jw/DCqsBDrxtOjneLdZtLB"
-    let vuforiaDataSetFile = "StonesAndChips.xml"
+    @objc let vuforiaLicenseKey = "AYsYrdX/////AAAACIoVAWiG4keZjev8bbFmlFN/2KIncjmco1ZxK21r/tNMhX41T44wuKsKxhAkqTJ+O8EFT6l2LK+tRn0KrPbh9yw2mW1nlNt6uiZxLjgrk7TFzHCVlsS6s57NYcl84vzqR0tBkbVXP3Nrz8EJ0CfTvl0oVm6RsBoS8Yqk7w9ypbXDTlpsyDMejEaPNpcUGhNtdsMdznoTbccG18UTqwwFZSNHqwtKjPKQ1XxY7eIAVmkWkD1g19VhnGd8nwK5MSBmo5DjTPS7iDW4wbq6xzysM7lHp76qBuUR5mmyPH3w87aFzXPaMwJi1yTyhJN7IoKwDhJtqC9KHQ1jIg/yo9IZ49jw/DCqsBDrxtOjneLdZtLB"
+    @objc let vuforiaDataSetFile = "StonesAndChips.xml"
     
-    var vuforiaManager: VuforiaManager? = nil
+    @objc var vuforiaManager: VuforiaManager? = nil
     
-    let boxMaterial = SCNMaterial()
+    @objc let boxMaterial = SCNMaterial()
     fileprivate var lastSceneName: String? = nil
     
     deinit {
@@ -61,10 +61,10 @@ private extension ViewController {
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(didRecieveWillResignActiveNotification),
-                                       name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+                                       name: UIApplication.willResignActiveNotification, object: nil)
         
         notificationCenter.addObserver(self, selector: #selector(didRecieveDidBecomeActiveNotification),
-                                       name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+                                       name: UIApplication.didBecomeActiveNotification, object: nil)
         
         vuforiaManager?.prepare(with: .portrait)
     }
@@ -87,11 +87,11 @@ private extension ViewController {
 }
 
 extension ViewController {
-    func didRecieveWillResignActiveNotification(_ notification: Notification) {
+    @objc func didRecieveWillResignActiveNotification(_ notification: Notification) {
         pause()
     }
     
-    func didRecieveDidBecomeActiveNotification(_ notification: Notification) {
+    @objc func didRecieveDidBecomeActiveNotification(_ notification: Notification) {
         resume()
     }
 }
@@ -109,7 +109,7 @@ extension ViewController: VuforiaManagerDelegate {
     }
     
     func vuforiaManager(_ manager: VuforiaManager!, didFailToPreparingWithError error: Error!) {
-        print("did faid to preparing \(error)\n")
+        print("did faid to preparing \(String(describing: error))\n")
     }
     
     func vuforiaManager(_ manager: VuforiaManager!, didUpdateWith state: VuforiaState!) {
