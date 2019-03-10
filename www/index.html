@@ -9,7 +9,7 @@
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
+<link rel="stylesheet" href="styles.6000bdf6176ef79666ee.css"></head>
 <body>
   <app-root></app-root>
   <script type="text/javascript">
@@ -36,7 +36,6 @@
      // gets major and minor of beacon in an array
      // sets new location
      window.update_location = function(beacon){
-       //console.log("call from native: update_location" + beacon);
        window.angularComponentRef.componentFn("update_location",beacon);
      };
 
@@ -44,33 +43,34 @@
      // call from native
      // gets deviceInfos, calls registerOD
      window.send_device_infos = function(deviceinfos){
-       //console.log("call from native: send_device_infos" + deviceinfos);
        window.angularComponentRef.componentFn("send_device_infos",deviceinfos);
+     };
+
+     // call from native
+     // gets info about unlocking all items, calls unlockAllTimelineLocations
+     window.unlock_all_timeline_locations = function(deviceinfos){
+       window.angularComponentRef.componentFn("unlock_all_timeline_locations");
      };
 
     // call from native
     // gets deviceInfos, calls registerOD
     window.send_token = function(token){
-      //console.log("call from native: send_device_infos" + deviceinfos);
       window.angularComponentRef.componentFn("send_token",token);
     };
 
     // call from native
     // gets deviceInfos, calls registerOD
     window.logout_success = function(message){
-      //console.log("call from native: send_device_infos" + deviceinfos);
       window.angularComponentRef.componentFn("logout_success",message);
     };
 
     window.send_closest_exhibit = function(message){
-      //console.log("call from native: send_device_infos" + deviceinfos);
       window.angularComponentRef.componentFn("send_closest_exhibit",message);
     };
 
     // call from native
     // gets OS language, calls
-    window.send_language = function(message)
-    {
+    window.send_language = function(message){
       window.angularComponentRef.componentFn("send_language",message);
     };
 
@@ -96,5 +96,5 @@
     };
 
   </script>
-<script type="text/javascript" src="runtime.js"></script><script type="text/javascript" src="polyfills.js"></script><script type="text/javascript" src="styles.js"></script><script type="text/javascript" src="vendor.js"></script><script type="text/javascript" src="main.js"></script></body>
+<script type="text/javascript" src="runtime.a5dd35324ddfd942bef1.js"></script><script type="text/javascript" src="polyfills.5eb9ae8846653f4bd659.js"></script><script type="text/javascript" src="main.bd294319a1085e74bfb8.js"></script></body>
 </html>
