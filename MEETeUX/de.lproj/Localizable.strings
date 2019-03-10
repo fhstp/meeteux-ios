@@ -6,12 +6,15 @@
   Copyright © 2019 FH St. Poelten. All rights reserved.
 */
 "notification-title" = "Getreuer Untertan, ";
-"notification-subtitle" = "Du hast Dich in meiner Ausstellung fortbewegt.";
-"notification-body" = "Öffne die App, um mehr über mich und die Ausstellungsstücke zu erfahren.";
+"notification-subtitle" = "Du bewegst Dich fort.";
+"notification-body" = "Öffne die App, um mehr über mich und meine Ausstellungsstücke zu erfahren.";
 "Bluetooth is off" = "Bluetooth ist ausgeschalten";
-"Please turn on your bluetooth" = "Bitte schalte Bluetooth ein.";
+"Please turn on your bluetooth" = "Bitte schalte Bluetooth ein! Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";
 "Go to settings" = "Öffne Einstellungen";
 "Cancel" = "Abbrechen";
 "wifi-title" = "Überprüfe die Wifi-Settings";
 "wifi-message" = "Die Inhalte in dieser App können nur in der Ausstellung 'Des Kaisers neuer Heiliger' freigeschalten werden. Sofern Du nicht schon im Stift Klosterneuburg bist, mach Dich auf den Weg täglich vom 9. März bis 17. November.\n\nUm alle Funktionen dieser App nutzen zu können, wechsle bitte in das Wifi %@ (Passwort %@).";
+"iphone-title" = "Bluetooth Erkennung fehlerhaft";
+"iphone-message" = "Wir haben derzeit Probleme, mit Deinem Gerät Bluetooth Beacons zu erkennen, um zu wissen, bei welchem Ausstellungsstück Du Dich befindest. Ein Neustart Deines Handys kann möglicherweise helfen.\n\nWähle 'Freischalten', um alle Ausstellungsstücke in der App freizuschalten, ohne dass Du bei diesen gewesen sein musst. Du kannst so die Inhalte konsumieren, Dich jedoch nicht mit den interaktiven Ausstellungsstücken verbinden.";
+"unlock-timeline-locations" = "Freischalten";
 

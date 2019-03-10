@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		227061BC22330072000DBE77 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227061BB22330072000DBE77 /* UIDevice.swift */; };
 		2277F69A2212E519003A723E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2277F69C2212E519003A723E /* InfoPlist.strings */; };
 		2277F6A02212F28F003A723E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2277F6A22212F28F003A723E /* Localizable.strings */; };
 		29C6CE5F601178B67C3D82E8 /* Pods_MEETeUX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8246C5CCB4F14407ECCDD2C4 /* Pods_MEETeUX.framework */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		227061BB22330072000DBE77 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		2277F6992212E4B5003A723E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2277F69B2212E519003A723E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2277F69D2212E51E003A723E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				2277F6A22212F28F003A723E /* Localizable.strings */,
 				8507C0F221C8EB8700DD5CFA /* CircularBuffer.swift */,
 				B9785A6A212A963D005ECFE3 /* Main.storyboard */,
+				227061BB22330072000DBE77 /* UIDevice.swift */,
 			);
 			path = MEETeUX;
 			sourceTree = "<group>";
@@ -248,7 +251,7 @@
 								enabled = 1;
 							};
 							com.apple.BackgroundModes = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -364,6 +367,7 @@
 				B9785A69212A963D005ECFE3 /* WebViewController.swift in Sources */,
 				8507C0F321C8EB8700DD5CFA /* CircularBuffer.swift in Sources */,
 				B9785A67212A963D005ECFE3 /* AppDelegate.swift in Sources */,
+				227061BC22330072000DBE77 /* UIDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
