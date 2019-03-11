@@ -17,6 +17,9 @@
 "iphone-title" = "Faulty Bluetooth Detection";
 "iphone-message" = "We currently have a problem detecting Bluetooth Beacon with your device to know where you are in the exhibition. A reboot of your mobile phone may possibly help.\n\nChoose 'Unlock' to unlock all exhibits within the app without being there. Thus, you can read the contents. However, you can not connect to interactive exhibits.";
 "unlock-timeline-locations" = "Unlock";
+"update-title" = "New Version Available";
+"update-text" = "A new version is available for 'The Emperor's App'. Please update!";
+"update-ok" = "Go to AppStore";
 
 
 "VUFORIA_ERROR_NO_NETWORK_TRANSIENT" = "Unable to contact server. Please try again later.";

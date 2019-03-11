@@ -12,13 +12,51 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    enum VersionError: Error {
+        case invalidResponse, invalidBundleInfo
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         // disable idle timer to prevent lock screen
         UIApplication.shared.isIdleTimerDisabled = true
+        
+        // check is update available
+        DispatchQueue.global().async {
+            do {
+                let update = try self.isUpdateAvailable()
+                DispatchQueue.main.async {
+                    // show alert
+                    if(update){
+                        print("update availabe")
+                        let alertController = UIAlertController (title: NSLocalizedString("update-title", comment: ""), message: NSLocalizedString("update-text", comment: ""), preferredStyle: .alert)
+                        
+                        let settingsAction = UIAlertAction(title: NSLocalizedString("update-ok", comment: ""), style: .default) { (_) -> Void in
+                            
+                            if let url = URL(string: "itms-apps://itunes.apple.com/app/id1449839348"),
+                                UIApplication.shared.canOpenURL(url)
+                            {
+                                if #available(iOS 10.0, *) {
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                } else {
+                                    UIApplication.shared.openURL(url)
+                                }
+                            }
+                        }
+                        alertController.addAction(settingsAction)
+                        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
+                        alertController.addAction(cancelAction)
+                        
+                        self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+                    }else{
+                        print("no update available")
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
         return true
     }
 
@@ -44,6 +82,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func isUpdateAvailable() throws -> Bool {
+        guard let info = Bundle.main.infoDictionary,
+            let currentVersion = info["CFBundleShortVersionString"] as? String,
+            let identifier = info["CFBundleIdentifier"] as? String,
+            let url = URL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)") else {
+                throw VersionError.invalidBundleInfo
+        }
+        
+        let data = try Data(contentsOf: url)
+        guard let json = try JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any] else {
+            throw VersionError.invalidResponse
+        }
+        
+        if let result = (json["results"] as? [Any])?.first as? [String: Any], let version = result["version"] as? String {
+            return version != currentVersion
+        }
+        throw VersionError.invalidResponse
+    }
 }
 
