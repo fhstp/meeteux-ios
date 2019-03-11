@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var cameraView: UIView!
+    
     @objc let vuforiaLicenseKey = "AYsYrdX/////AAAACIoVAWiG4keZjev8bbFmlFN/2KIncjmco1ZxK21r/tNMhX41T44wuKsKxhAkqTJ+O8EFT6l2LK+tRn0KrPbh9yw2mW1nlNt6uiZxLjgrk7TFzHCVlsS6s57NYcl84vzqR0tBkbVXP3Nrz8EJ0CfTvl0oVm6RsBoS8Yqk7w9ypbXDTlpsyDMejEaPNpcUGhNtdsMdznoTbccG18UTqwwFZSNHqwtKjPKQ1XxY7eIAVmkWkD1g19VhnGd8nwK5MSBmo5DjTPS7iDW4wbq6xzysM7lHp76qBuUR5mmyPH3w87aFzXPaMwJi1yTyhJN7IoKwDhJtqC9KHQ1jIg/yo9IZ49jw/DCqsBDrxtOjneLdZtLB"
     @objc let vuforiaDataSetFile = "StonesAndChips.xml"
     
@@ -57,6 +61,12 @@ private extension ViewController {
             manager.eaglView.delegate = self
             manager.eaglView.setupRenderer()
             self.view = manager.eaglView
+            
+            self.view.addSubview(backButton)
+            self.view.bringSubviewToFront(backButton)
+            let margins = self.view.layoutMarginsGuide
+            backButton.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20).isActive = true
+            backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20).isActive = true
         }
         
         let notificationCenter = NotificationCenter.default
@@ -160,34 +170,14 @@ extension ViewController: VuforiaEAGLViewSceneSource, VuforiaEAGLViewDelegate {
         
         boxMaterial.diffuse.contents = UIColor.lightGray
         
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light?.type = .omni
-        lightNode.light?.color = UIColor.lightGray
-        lightNode.position = SCNVector3(x:0, y:10, z:10)
-        scene.rootNode.addChildNode(lightNode)
-        
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light?.type = .ambient
-        ambientLightNode.light?.color = UIColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
-        
-        let planeNode = SCNNode()
-        planeNode.name = "plane"
-        planeNode.geometry = SCNPlane(width: 247.0*view.objectScale, height: 173.0*view.objectScale)
-        planeNode.position = SCNVector3Make(0, 0, -1)
-        let planeMaterial = SCNMaterial()
-        planeMaterial.diffuse.contents = UIColor.green
-        planeMaterial.transparency = 0.6
-        planeNode.geometry?.firstMaterial = planeMaterial
-        scene.rootNode.addChildNode(planeNode)
-        
-        let boxNode = SCNNode()
-        boxNode.name = "box"
-        boxNode.geometry = SCNBox(width:1, height:1, length:1, chamferRadius:0.0)
-        boxNode.geometry?.firstMaterial = boxMaterial
-        scene.rootNode.addChildNode(boxNode)
+        let imageNode = SCNNode()
+        imageNode.name = "image"
+        imageNode.geometry = SCNPlane(width: 247.0*view.objectScale, height: 173.0*view.objectScale)
+        imageNode.position = SCNVector3Make(0, 0, -1)
+        let imageMaterial = SCNMaterial()
+        imageMaterial.diffuse.contents = UIImage(named: "doggo.png")
+        imageNode.geometry?.firstMaterial = imageMaterial
+        scene.rootNode.addChildNode(imageNode)
         
         return scene
     }
@@ -195,37 +185,17 @@ extension ViewController: VuforiaEAGLViewSceneSource, VuforiaEAGLViewDelegate {
     fileprivate func createChipsScene(with view: VuforiaEAGLView) -> SCNScene {
         let scene = SCNScene()
         
-        boxMaterial.diffuse.contents = UIColor.lightGray
         
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light?.type = .omni
-        lightNode.light?.color = UIColor.lightGray
-        lightNode.position = SCNVector3(x:0, y:10, z:10)
-        scene.rootNode.addChildNode(lightNode)
+        let imageNode = SCNNode()
+        imageNode.name = "image"
+        imageNode.geometry = SCNPlane(width: 247.0*view.objectScale, height: 173.0*view.objectScale)
+        imageNode.position = SCNVector3Make(0, 0, -1)
+        let imageMaterial = SCNMaterial()
+        imageMaterial.diffuse.contents = UIImage(named: "doggo.png")
+        imageNode.geometry?.firstMaterial = imageMaterial
+        scene.rootNode.addChildNode(imageNode)
         
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light?.type = .ambient
-        ambientLightNode.light?.color = UIColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
-        
-        let planeNode = SCNNode()
-        planeNode.name = "plane"
-        planeNode.geometry = SCNPlane(width: 247.0*view.objectScale, height: 173.0*view.objectScale)
-        planeNode.position = SCNVector3Make(0, 0, -1)
-        let planeMaterial = SCNMaterial()
-        planeMaterial.diffuse.contents = UIColor.red
-        planeMaterial.transparency = 0.6
-        planeNode.geometry?.firstMaterial = planeMaterial
-        scene.rootNode.addChildNode(planeNode)
-        
-        let boxNode = SCNNode()
-        boxNode.name = "box"
-        boxNode.geometry = SCNBox(width:1, height:1, length:1, chamferRadius:0.0)
-        boxNode.geometry?.firstMaterial = boxMaterial
-        scene.rootNode.addChildNode(boxNode)
-        
+
         return scene
     }
     
