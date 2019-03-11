@@ -17,6 +17,8 @@
 		22FA1B7F22354E6800706118 /* VuforiaDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29F22354B72005D413E /* VuforiaDL.framework */; };
 		22FA1B8022354E7600706118 /* VuforiaDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29F22354B72005D413E /* VuforiaDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22FA1B8122354E7A00706118 /* Vuforia.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22B3D29D22354B65005D413E /* Vuforia.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		836F17DE2236CCDB001B037D /* stiftklosterneuburg.xml in Resources */ = {isa = PBXBuildFile; fileRef = 836F17DC2236CCDB001B037D /* stiftklosterneuburg.xml */; };
+		836F17DF2236CCDB001B037D /* stiftklosterneuburg.dat in Resources */ = {isa = PBXBuildFile; fileRef = 836F17DD2236CCDB001B037D /* stiftklosterneuburg.dat */; };
 		926096D41D4163B600510C24 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 926096D31D4163B600510C24 /* SpriteKit.framework */; };
 		9275279C1FC2CE5200CE7DCE /* Background.fragsh in Resources */ = {isa = PBXBuildFile; fileRef = 9275279A1FC2CE5200CE7DCE /* Background.fragsh */; };
 		9275279D1FC2CE5200CE7DCE /* Background.vertsh in Resources */ = {isa = PBXBuildFile; fileRef = 9275279B1FC2CE5200CE7DCE /* Background.vertsh */; };
@@ -87,6 +89,8 @@
 		3703D8F721B6F88900C13C84 /* Vuforia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vuforia.framework; path = "VuforiaSampleSwift/vuforia-sdk-ios-7-5-20/build/Vuforia.framework"; sourceTree = "<group>"; };
 		3F7E2D70AA37F57437B545C5 /* Pods-VuforiaSampleSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VuforiaSampleSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VuforiaSampleSwift/Pods-VuforiaSampleSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		5FCFDB4F536244D87E87FDF9 /* Pods_VuforiaSampleSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VuforiaSampleSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		836F17DC2236CCDB001B037D /* stiftklosterneuburg.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = stiftklosterneuburg.xml; sourceTree = "<group>"; };
+		836F17DD2236CCDB001B037D /* stiftklosterneuburg.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = stiftklosterneuburg.dat; sourceTree = "<group>"; };
 		926096D31D4163B600510C24 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		9275279A1FC2CE5200CE7DCE /* Background.fragsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Background.fragsh; sourceTree = "<group>"; };
 		9275279B1FC2CE5200CE7DCE /* Background.vertsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Background.vertsh; sourceTree = "<group>"; };
@@ -278,6 +282,8 @@
 		92DCE9B41E37CEA400E0DE1C /* ImageTargets */ = {
 			isa = PBXGroup;
 			children = (
+				836F17DD2236CCDB001B037D /* stiftklosterneuburg.dat */,
+				836F17DC2236CCDB001B037D /* stiftklosterneuburg.xml */,
 				92DCE9B51E37CEA400E0DE1C /* IT.png */,
 				92DCE9B61E37CEA400E0DE1C /* IT_about.html */,
 				92DCE9B71E37CEA400E0DE1C /* StonesAndChips.dat */,
@@ -372,6 +378,7 @@
 			files = (
 				228EF49122355833008742AC /* www in Resources */,
 				92DCE9BF1E37CEA400E0DE1C /* Tarmac.dat in Resources */,
+				836F17DE2236CCDB001B037D /* stiftklosterneuburg.xml in Resources */,
 				928C34361EAF69EB00BC07DE /* Vuforia.dat in Resources */,
 				9275279C1FC2CE5200CE7DCE /* Background.fragsh in Resources */,
 				9275279D1FC2CE5200CE7DCE /* Background.vertsh in Resources */,
@@ -381,6 +388,7 @@
 				228EF4A822355B82008742AC /* InfoPlist.strings in Resources */,
 				228EF4A022355B1F008742AC /* Localizable.strings in Resources */,
 				928C34331EAF69EB00BC07DE /* reticle@3x.png in Resources */,
+				836F17DF2236CCDB001B037D /* stiftklosterneuburg.dat in Resources */,
 				928C34381EAF69EB00BC07DE /* vumark_texture.png in Resources */,
 				92DCE9C01E37CEA400E0DE1C /* Tarmac.xml in Resources */,
 				928C34351EAF69EB00BC07DE /* VM_about.html in Resources */,
