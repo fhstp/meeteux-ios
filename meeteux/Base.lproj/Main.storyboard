@@ -10,39 +10,6 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="8I6-T9-kKY">
-            <objects>
-                <viewController id="x4p-RS-HCJ" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zpX-bI-JNK"/>
-                        <viewControllerLayoutGuide type="bottom" id="tZT-R0-4wT"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KDo-ap-qvN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feC-q7-11H">
-                                <rect key="frame" x="166.5" y="315.5" width="42" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Start"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="pg6-2G-SXt"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="feC-q7-11H" firstAttribute="centerY" secondItem="KDo-ap-qvN" secondAttribute="centerY" id="QHY-gg-4Dh"/>
-                            <constraint firstItem="feC-q7-11H" firstAttribute="centerX" secondItem="KDo-ap-qvN" secondAttribute="centerX" id="ZUa-wR-ijG"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="bgL-2b-rv7"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yuu-Ne-p9V" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-537" y="20"/>
-        </scene>
-        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="meeteux" customModuleProvider="target" sceneMemberID="viewController">
@@ -59,9 +26,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anE-3j-mLe">
-                                <rect key="frame" x="85" y="268" width="205" height="30"/>
-                                <state key="normal" title="Back"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anE-3j-mLe">
+                                <rect key="frame" x="85" y="268" width="50" height="50"/>
+                                <state key="normal" image="close-white-button"/>
                                 <connections>
                                     <action selector="dismissARView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mKB-iS-BZd"/>
                                 </connections>
@@ -105,7 +72,7 @@
             <point key="canvasLocation" x="1844" y="20"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="pg6-2G-SXt"/>
-    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="close-white-button" width="50" height="50"/>
+    </resources>
 </document>

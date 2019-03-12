@@ -68,8 +68,8 @@ private extension ViewController {
             self.view.addSubview(backButton)
             self.view.bringSubviewToFront(backButton)
             let margins = self.view.layoutMarginsGuide
-            backButton.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: -20).isActive = true
-            backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 20).isActive = true
+            backButton.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0).isActive = true
+            backButton.topAnchor.constraint(equalTo: margins.topAnchor, constant: 10).isActive = true
         }
         
         let notificationCenter = NotificationCenter.default
