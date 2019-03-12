@@ -50,6 +50,9 @@ class ViewController: UIViewController {
             print("\(error)")
         }
     }
+    @IBAction func dismissARView(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 private extension ViewController {

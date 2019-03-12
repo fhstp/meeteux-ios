@@ -33,7 +33,6 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     @objc var emptyBeaconDialogShown: Bool = false
     @objc var correctSSID: String = ""
     
-    
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
@@ -59,19 +58,19 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         
         // Adding webView content
         do {
-            guard let filePath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "www")
-                else {
-                    // File Error
-                    print ("File reading error")
-                    return
-            }
-            
-            webView.configuration.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs");
-            
-            let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
-            let baseUrl = URL(fileURLWithPath: filePath)
-            self.webView!.loadHTMLString(contents as String, baseURL: baseUrl)
-            locationManager.requestAlwaysAuthorization()
+                guard let filePath = Bundle.main.path(forResource: "index", ofType: "html", inDirectory: "www")
+                    else {
+                        // File Error
+                        print ("File reading error")
+                        return
+                }
+                
+                webView.configuration.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs");
+                
+                let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
+                let baseUrl = URL(fileURLWithPath: filePath)
+                self.webView!.loadHTMLString(contents as String, baseURL: baseUrl)
+                locationManager.requestAlwaysAuthorization()
         }
         catch {
             print ("File HTML error")
@@ -148,6 +147,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             case "receiveWifiData":
                 openWifiDialog(wifiData: dict!["data"] as! Dictionary<String, String>)
                 break
+            case "triggerAR":
+                openARView()
+                break;
             default:
                 print(dict!["data"] as Any)
                 break
@@ -347,12 +349,32 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         lastNoficationID = locationId
     }
     
+    func openARView() {
+        print("open AR")
+        performSegue(withIdentifier: "showARView", sender: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setNeedsStatusBarAppearanceUpdate()
+        print("viewWillAppear")
     }
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .default
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("viewWillDisappear")
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidDisappear")
     }
 }
 
@@ -500,7 +522,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
             }
         }
         
-        // print(beaconList)
+        print(beaconList)
         // sort beacon list and send first item to Webview
         if beaconList.sorted(by: { $0.rssi > $1.rssi }).count>0{
             
