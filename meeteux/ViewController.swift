@@ -126,20 +126,30 @@ extension ViewController: VuforiaManagerDelegate {
         for index in 0 ..< state.numberOfTrackableResults {
             let result = state.trackableResult(at: index)
             let trackerableName = result?.trackable.name
-            //print("\(trackerableName)")
-            if trackerableName == "stones" {
-                boxMaterial.diffuse.contents = UIColor.red
+    
+            if trackerableName == "Sunthaym1" {
                 
-                if lastSceneName != "stones" {
-                    manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "stones"])
-                    lastSceneName = "stones"
+                if lastSceneName != "Sunthaym1" {
+                    manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "Sunthaym1"])
+                    lastSceneName = "Sunthaym1"
                 }
-            }else {
-                boxMaterial.diffuse.contents = UIColor.blue
+            }else if trackerableName == "Sunthaym2"{
                 
-                if lastSceneName != "chips" {
-                    manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "chips"])
-                    lastSceneName = "chips"
+                if lastSceneName != "Sunthaym2" {
+                    manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "Sunthaym2"])
+                    lastSceneName = "Sunthaym2"
+                }
+            }else if trackerableName == "Shrine"{
+                
+                if lastSceneName != "Shrine" {
+                    manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "Shrine"])
+                    lastSceneName = "Shrine"
+                }
+            }else if trackerableName == "Accounting"{
+                
+                if lastSceneName != "Accounting" {
+                    manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "Accounting"])
+                    lastSceneName = "Accounting"
                 }
             }
             
@@ -152,52 +162,70 @@ extension ViewController: VuforiaEAGLViewSceneSource, VuforiaEAGLViewDelegate {
     func scene(for view: VuforiaEAGLView!, userInfo: [String : Any]?) -> SCNScene! {
         guard let userInfo = userInfo else {
             print("default scene")
-            return createStonesScene(with: view)
+            return createSunthaymOne(with: view)
         }
         
-        if let sceneName = userInfo["scene"] as? String , sceneName == "stones" {
-            print("stones scene")
-            return createStonesScene(with: view)
-        }else {
-            print("chips scene")
-            return createChipsScene(with: view)
+        let sceneName = userInfo["scene"] as? String
+        if sceneName == "Sunthaym1" {
+            print("Sunthaym1 scene")
+            return createSunthaymOne(with: view)
+        }else if sceneName == "Sunthaym2" {
+            print("Sunthaym2 scene")
+            return createSunthaymTwo(with: view)
+        }else if sceneName == "Shrine" {
+            print("Shrine scene")
+            return createShrine(with: view)
+        }else if sceneName == "Accounting" {
+            print("accounting scene")
+            return createAccountingBook(with: view)
+        }
+        else {
+            return createSunthaymTwo(with: view)
         }
         
     }
     
-    fileprivate func createStonesScene(with view: VuforiaEAGLView) -> SCNScene {
+    func setupScene(with view: VuforiaEAGLView, x: CGFloat, y: CGFloat, image: String) -> SCNScene{
+        
         let scene = SCNScene()
-        
-        boxMaterial.diffuse.contents = UIColor.lightGray
-        
+    
         let imageNode = SCNNode()
         imageNode.name = "image"
-        imageNode.geometry = SCNPlane(width: 247.0*view.objectScale, height: 173.0*view.objectScale)
-        imageNode.position = SCNVector3Make(0, 0, -1)
         let imageMaterial = SCNMaterial()
-        imageMaterial.diffuse.contents = UIImage(named: "doggo.png")
+        imageNode.geometry = SCNPlane(width: x*view.objectScale, height: y*view.objectScale)
+        imageNode.position = SCNVector3Make(0, 0, -1)
+        imageMaterial.diffuse.contents = UIImage(named: image)
         imageNode.geometry?.firstMaterial = imageMaterial
         scene.rootNode.addChildNode(imageNode)
         
+        return scene
+        
+    }
+    
+    
+    fileprivate func createSunthaymOne(with view: VuforiaEAGLView) -> SCNScene {
+      
+        let scene = setupScene(with: view, x: 1060.0,y: 808.0,image: "sunthaymDe1" )
         return scene
     }
     
-    fileprivate func createChipsScene(with view: VuforiaEAGLView) -> SCNScene {
-        let scene = SCNScene()
+    fileprivate func createSunthaymTwo(with view: VuforiaEAGLView) -> SCNScene {
         
-        
-        let imageNode = SCNNode()
-        imageNode.name = "image"
-        imageNode.geometry = SCNPlane(width: 247.0*view.objectScale, height: 173.0*view.objectScale)
-        imageNode.position = SCNVector3Make(0, 0, -1)
-        let imageMaterial = SCNMaterial()
-        imageMaterial.diffuse.contents = UIImage(named: "doggo.png")
-        imageNode.geometry?.firstMaterial = imageMaterial
-        scene.rootNode.addChildNode(imageNode)
-        
-
+        let scene = setupScene(with: view, x: 1122.0,y: 699.0,image: "sunthaymDe2" )
         return scene
     }
+    
+    fileprivate func createShrine(with view: VuforiaEAGLView) -> SCNScene {
+        
+        let scene = setupScene(with: view, x: 1559.0,y: 870.0,image: "shrine" )
+        return scene
+    }
+    
+    fileprivate func createAccountingBook(with view: VuforiaEAGLView) -> SCNScene {
+        let scene = setupScene(with: view, x: 982.0,y: 1372.0,image: "acountingBook" )
+        return scene
+    }
+    
     
     func vuforiaEAGLView(_ view: VuforiaEAGLView!, didTouchDownNode node: SCNNode!) {
         print("touch down \(node.name ?? "")\n")
