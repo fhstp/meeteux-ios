@@ -350,14 +350,13 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     func openARView() {
-        print("open AR")
+        // print("open AR")
         performSegue(withIdentifier: "showARView", sender: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setNeedsStatusBarAppearanceUpdate()
-        print("viewWillAppear")
     }
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .default
@@ -365,16 +364,13 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidAppear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("viewWillDisappear")
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidDisappear")
     }
 }
 
@@ -523,7 +519,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
             }
         }
         
-        print(beaconList)
+        // print(beaconList)
         // sort beacon list and send first item to Webview
         if beaconList.sorted(by: { $0.rssi > $1.rssi }).count>0{
             
