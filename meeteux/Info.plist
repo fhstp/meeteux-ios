@@ -23,15 +23,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>With Bluetooth, we want to detect which exhibit is the closest to your position.</string>
+	<string>text</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera access is required for detection and tracking exhibits.</string>
+	<string></string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>With Bluetooth, we want to detect which exhibit is the closest to your position.</string>
+	<string>text</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>With Bluetooth, we want to detect which exhibit is the closest to your position.</string>
+	<string>text</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>With Bluetooth, we want to detect which exhibit is the closest to your position.</string>
+	<string>text</string>
 	<key>PrefersOpenGL</key>
 	<true/>
 	<key>UIApplicationExitsOnSuspend</key>
