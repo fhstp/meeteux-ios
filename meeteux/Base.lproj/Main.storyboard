@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="h8B-tq-1Tb">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,7 +18,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uJR-Vh-NSE">
@@ -26,8 +26,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anE-3j-mLe">
-                                <rect key="frame" x="85" y="268" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anE-3j-mLe">
+                                <rect key="frame" x="344" y="30" width="50" height="50"/>
                                 <state key="normal" image="close-white-button"/>
                                 <connections>
                                     <action selector="dismissARView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mKB-iS-BZd"/>
@@ -36,9 +36,8 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="anE-3j-mLe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="69" id="CYM-pY-hrL"/>
-                            <constraint firstItem="anE-3j-mLe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="248" id="Ue0-Xq-LSc"/>
-                            <constraint firstItem="anE-3j-mLe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="enW-oB-ML8"/>
+                            <constraint firstItem="anE-3j-mLe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Ue0-Xq-LSc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="anE-3j-mLe" secondAttribute="trailing" id="YAS-dE-chn"/>
                         </constraints>
                     </view>
                     <connections>
@@ -59,7 +58,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Ayf-mG-wtB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XIP-NA-WWj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>

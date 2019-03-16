@@ -134,7 +134,7 @@
     "OK": "OK",
     "enterValue": "Gib bitte einen Wert ein!",
     "infoPassword1": "Verwende bitte mindestens 6 Zeichen mit mindestens 1 Kleinbuchstaben und ",
-    "infoPassword2": "1 Ziffer oder 1 Sonderzeichen! Beispiel: ! $ § % & / ( ) = ?",
+    "infoPassword2": "1 Ziffer.",
     "notSamePassword": "Das Passwort ist nicht dasselbe.",
     "credentialsNotChanged": "Die Anmeldeinformationen wurden nicht korrekt geändert.",
     "credentialsTaken": "Diese Anmeldeinformationen sind bereits vergeben.",
@@ -146,7 +146,7 @@
     "yesOption": "Konto löschen"
   },
   "unlockDialog": {
-    "title": "Inhalt Freischalten",
+    "title": "Inhalt freischalten",
     "text": "Wähle 'Freischalten', um alle Ausstellungsstücke in der App freizuschalten, ohne dass Du bei diesen gewesen sein musst. Du kannst so die Inhalte konsumieren, Dich jedoch nicht mit den interaktiven Ausstellungsstücken verbinden.",
     "yesOption": "Freischalten"
   },

@@ -306,9 +306,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		92AA11041D27A5EB00E56CBE /* VuforiaSampleSwift */ = {
+		92AA11041D27A5EB00E56CBE /* meeteux */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92AA11171D27A5EB00E56CBE /* Build configuration list for PBXNativeTarget "VuforiaSampleSwift" */;
+			buildConfigurationList = 92AA11171D27A5EB00E56CBE /* Build configuration list for PBXNativeTarget "meeteux" */;
 			buildPhases = (
 				72844A36761E1C7CEE2C6712 /* [CP] Check Pods Manifest.lock */,
 				92AA11011D27A5EB00E56CBE /* Sources */,
@@ -321,7 +321,7 @@
 			);
 			dependencies = (
 			);
-			name = VuforiaSampleSwift;
+			name = meeteux;
 			productName = VuforiaSampleSwift;
 			productReference = 92AA11051D27A5EB00E56CBE /* meeteux.app */;
 			productType = "com.apple.product-type.application";
@@ -366,7 +366,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				92AA11041D27A5EB00E56CBE /* VuforiaSampleSwift */,
+				92AA11041D27A5EB00E56CBE /* meeteux */,
 			);
 		};
 /* End PBXProject section */
@@ -695,7 +695,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92AA11171D27A5EB00E56CBE /* Build configuration list for PBXNativeTarget "VuforiaSampleSwift" */ = {
+		92AA11171D27A5EB00E56CBE /* Build configuration list for PBXNativeTarget "meeteux" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92AA11181D27A5EB00E56CBE /* Debug */,

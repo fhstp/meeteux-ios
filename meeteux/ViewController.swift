@@ -220,7 +220,7 @@ extension ViewController: VuforiaEAGLViewSceneSource, VuforiaEAGLViewDelegate {
     
     fileprivate func createShrine(with view: VuforiaEAGLView) -> SCNScene {
         
-        let scene = setupScene(with: view, x: 1559.0,y: 870.0,image: "shrine" )
+        let scene = setupScene(with: view, x: 1190.5,y: 870.0,image: "shrine" ) //1559.0
         return scene
     }
     
