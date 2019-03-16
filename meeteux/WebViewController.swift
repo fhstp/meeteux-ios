@@ -466,6 +466,36 @@ extension WebViewController: KTKBeaconManagerDelegate{
     func beaconManager(_ manager: KTKBeaconManager, didRangeBeacons beacons: [CLBeacon], in region: KTKBeaconRegion) {
         // print("beaconManager called")
         // print(beacons)
+        
+        // check ob 5x nacheinander leeres Array
+        // wenn ja, dann Check ob falsches Wifi und 5S
+        // dann trigger alert mit Bluetooth Problemen
+        // check if empty array is comming - problem with iPhone 5S
+        if(beacons.count == 0){
+            emptyBeaconArrayCount += 1
+        }else{
+            emptyBeaconArrayCount = 0
+        }
+        
+        if(emptyBeaconArrayCount == 10){
+            let wifi = getWiFiSSID()
+            if(wifi == correctSSID && !emptyBeaconDialogShown){ // TODO change
+                let alertController = UIAlertController (title: NSLocalizedString("iphone-title", comment: ""), message: NSLocalizedString("iphone-message", comment: ""), preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: NSLocalizedString("unlock-timeline-locations", comment: ""), style: .default) { (_) -> Void in
+                    print("send unlock_all_timeline_locations to web")
+                    self.sendFunctionCallToWeb(functionCall: "unlock_all_timeline_locations")
+                }
+                alertController.addAction(okAction)
+                
+                let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
+                alertController.addAction(cancelAction)
+                
+                present(alertController, animated: true, completion: nil)
+                emptyBeaconDialogShown = true
+            }
+        }
+        
         beaconList = []
         
         // Go through beacons, check if it is our and reliable --> push into empty beaconList
@@ -490,35 +520,6 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 
                 
                 
-            }
-        }
-        
-        // check ob 5x nacheinander leeres Array
-        // wenn ja, dann Check ob falsches Wifi und 5S
-        // dann trigger alert mit Bluetooth Problemen
-        // check if empty array is comming - problem with iPhone 5S
-        if(beaconList.count == 0){
-            emptyBeaconArrayCount += 1
-        }else{
-            emptyBeaconArrayCount = 0
-        }
-        
-        if(emptyBeaconArrayCount == 5){
-            let wifi = getWiFiSSID()
-            if(wifi == correctSSID && !emptyBeaconDialogShown){ // TODO change
-                let alertController = UIAlertController (title: NSLocalizedString("iphone-title", comment: ""), message: NSLocalizedString("iphone-message", comment: ""), preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: NSLocalizedString("unlock-timeline-locations", comment: ""), style: .default) { (_) -> Void in
-                    print("send unlock_all_timeline_locations to web")
-                    self.sendFunctionCallToWeb(functionCall: "unlock_all_timeline_locations")
-                }
-                alertController.addAction(okAction)
-                
-                let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .default, handler: nil)
-                alertController.addAction(cancelAction)
-                
-                present(alertController, animated: true, completion: nil)
-                emptyBeaconDialogShown = true
             }
         }
         
