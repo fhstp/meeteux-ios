@@ -1,0 +1,6 @@
+framework module Pods_meeteux {
+  umbrella header "Pods-meeteux-umbrella.h"
+
+  export *
+  module * { export * }
+}

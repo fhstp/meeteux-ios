@@ -232,6 +232,17 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         // for all possbile device attributes and actions: https://developer.apple.com/documentation/uikit/uidevice
     }
     
+    // sends string to webview
+    @objc func sendStringToWeb(myString: String, functionCall: String){
+        // Send the location update to the page
+        self.webView.evaluateJavaScript("\(functionCall)(\(myString))") { result, error in
+            guard error == nil else {
+                print("SendStringToWeb throw Error: \(error!)")
+                return
+            }
+        }
+    }
+    
     // sends dictionary to webview
     @objc func sendDictToWeb(myDict: Any, functionCall: String){
         let jsonString = getJSONString(myDict: myDict)
@@ -251,7 +262,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)()") { result, error in
             guard error == nil else {
-                print("SendDictToWeb throw Error: \(error!)")
+                print("SendFunctionCallToWeb throw Error: \(error!)")
                 return
             }
         }
@@ -286,6 +297,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         correctSSID = wifiData["ssid"] ?? ""
         let wifiPassword = wifiData["password"]
         
+        var isInWifi = false;
+        
         if(ssid != correctSSID)
         {
             let localizedString = NSLocalizedString("wifi-message", comment: "")
@@ -295,7 +308,13 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             alertController.addAction(okAction)
             
             present(alertController, animated: true, completion: nil)
+            isInWifi = false
+            
+        }else{
+            isInWifi = true
         }
+
+        sendStringToWeb(myString: "\(isInWifi)", functionCall: "send_correct_wifi")
     }
     
     // starts scanning for beacons
@@ -383,7 +402,8 @@ extension WebViewController: KTKBeaconManagerDelegate{
     func beaconManager(_ manager: KTKBeaconManager, didChangeLocationAuthorizationStatus status: CLAuthorizationStatus) {
         
         // print("didChangeLocationAuthorizationStatus")
-        if status == .authorizedAlways{
+        
+        if status == .authorizedAlways || status == .authorizedWhenInUse{
             // print("authorizedAlways")
             
             // When status changes to CLAuthorizationStatus.authorizedAlways
