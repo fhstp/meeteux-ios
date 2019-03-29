@@ -46,6 +46,15 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         webView.isMultipleTouchEnabled = false
         super.viewDidLoad()
         
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
+        
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
+        
+        view.addGestureRecognizer(leftSwipe)
+        view.addGestureRecognizer(rightSwipe)
+        
         //UIApplication.shared.applicationIconBadgeNumber = 0 //delet badge count
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (granted, error) in
@@ -183,6 +192,24 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         sendDictToWeb(myDict: ["language": langStr], functionCall: "send_language")
     }
     
+    @objc func sendSwipesToWeb(_ sender:UISwipeGestureRecognizer) {
+        
+        var directStr = ""
+        
+        if (sender.direction == .left) {
+            directStr = "left"
+            
+        }
+        
+        if (sender.direction == .right) {
+            directStr = "right"
+            
+        }
+        
+        sendDictToWeb(myDict: ["swipe": directStr], functionCall: "send_swipedirection")
+        
+    }
+    
     //- MARK: Helper Functions
     
     @objc func saveToken(token: Any)
@@ -256,6 +283,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             }
         }
     }
+    
+    
     
     // sends message to webview
     @objc func sendFunctionCallToWeb(functionCall: String){
