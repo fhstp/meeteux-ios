@@ -3177,14 +3177,14 @@ var MainViewComponent = /** @class */ (function () {
     /* ------------- Navbar and Toolbar buttons ------------- */
     MainViewComponent.prototype.handleSwipe = function (direction) {
         var section = this.currentSection;
-        if (direction["swipe"] == "right") {
+        if (direction['swipe'] === 'right') {
             if (section >= 20) {
                 section -= 10;
                 this.displaySection(section, true);
                 this.nativeCommunicationService.sendToNative(section, 'print');
             }
         }
-        else if (direction["swipe"] == "left") {
+        else if (direction['swipe'] === 'left') {
             if (section <= 50) {
                 section += 10;
                 this.displaySection(section, true);

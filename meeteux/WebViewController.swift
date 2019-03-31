@@ -45,6 +45,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     {
         webView.isMultipleTouchEnabled = false
         super.viewDidLoad()
+        deleteDoubleTap(web: webView)
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
@@ -84,6 +85,20 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         catch {
             print ("File HTML error")
         }
+    }
+    
+    //Disable Scroll on double Tap
+    private func deleteDoubleTap(web: WKWebView) {
+        for subview in web.scrollView.subviews {
+            let recognizers = subview.gestureRecognizers?.filter{$0 is UITapGestureRecognizer}
+            recognizers?.forEach{recognizer in
+                let tapRecognizer = recognizer as! UITapGestureRecognizer
+                if tapRecognizer.numberOfTapsRequired == 2 && tapRecognizer.numberOfTouchesRequired == 1 {
+                    subview.removeGestureRecognizer(recognizer)
+                }
+            }
+        }
+        
     }
     
     
