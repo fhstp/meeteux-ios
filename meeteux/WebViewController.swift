@@ -45,6 +45,16 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     {
         webView.isMultipleTouchEnabled = false
         super.viewDidLoad()
+        deleteDoubleTap(web: webView)
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
+        
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
+        
+        view.addGestureRecognizer(leftSwipe)
+        view.addGestureRecognizer(rightSwipe)
         
         //UIApplication.shared.applicationIconBadgeNumber = 0 //delet badge count
         if #available(iOS 10.0, *) {
@@ -75,6 +85,20 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         catch {
             print ("File HTML error")
         }
+    }
+    
+    //Disable Scroll on double Tap
+    private func deleteDoubleTap(web: WKWebView) {
+        for subview in web.scrollView.subviews {
+            let recognizers = subview.gestureRecognizers?.filter{$0 is UITapGestureRecognizer}
+            recognizers?.forEach{recognizer in
+                let tapRecognizer = recognizer as! UITapGestureRecognizer
+                if tapRecognizer.numberOfTapsRequired == 2 && tapRecognizer.numberOfTouchesRequired == 1 {
+                    subview.removeGestureRecognizer(recognizer)
+                }
+            }
+        }
+        
     }
     
     
@@ -183,6 +207,24 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         sendDictToWeb(myDict: ["language": langStr], functionCall: "send_language")
     }
     
+    @objc func sendSwipesToWeb(_ sender:UISwipeGestureRecognizer) {
+        
+        var directStr = ""
+        
+        if (sender.direction == .left) {
+            directStr = "left"
+            
+        }
+        
+        if (sender.direction == .right) {
+            directStr = "right"
+            
+        }
+        
+        sendDictToWeb(myDict: ["swipe": directStr], functionCall: "send_swipedirection")
+        
+    }
+    
     //- MARK: Helper Functions
     
     @objc func saveToken(token: Any)
@@ -256,6 +298,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             }
         }
     }
+    
+    
     
     // sends message to webview
     @objc func sendFunctionCallToWeb(functionCall: String){
