@@ -704,8 +704,12 @@ var AppModule = /** @class */ (function () {
                 break;
             }
             case 'send_swipedirection': {
-                //this.nativeCommunicationService.sendToNative(value, 'print');
+                // this.nativeCommunicationService.sendToNative(value, 'print');
                 this.nativeResponseService.swipeNavigation(value);
+                break;
+            }
+            case 'ar_object_found': {
+                this.nativeResponseService.arObjectFound();
                 break;
             }
             default: {
@@ -6579,6 +6583,9 @@ var GodService = /** @class */ (function () {
             return;
         });
     };
+    GodService.prototype.addUserLogEntry = function (data) {
+        this.socket.emit('addUserLogEntry', data);
+    };
     GodService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __param(4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])('AppStore')),
@@ -7185,6 +7192,9 @@ var NativeResponseService = /** @class */ (function () {
     NativeResponseService.prototype.swipeNavigation = function (swipe) {
         this.alertService.sendSwipeNavigation(swipe);
     };
+    NativeResponseService.prototype.arObjectFound = function () {
+        this.transmissionService.arObjectFound();
+    };
     NativeResponseService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
         __param(3, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])('AppStore')),
@@ -7544,6 +7554,15 @@ var TransmissionService = /** @class */ (function () {
     };
     TransmissionService.prototype.getCoaParts = function () {
         this.godService.getCoaParts();
+    };
+    TransmissionService.prototype.arObjectFound = function () {
+        this.nativeCommunicationService.sendToNative('arObjectFound in GodService', 'print');
+        var state = this.appStore.getState();
+        var currLoc = this.locationService.currentLocation.value;
+        var data = { userId: state.user.id, logType: 1, location: currLoc.id, comment: 'Found AR stuff' };
+        this.godService.addUserLogEntry(data);
+        this.nativeCommunicationService.sendToNative(JSON.stringify(data), 'print');
+        // socket.emit(‘addUserLogEntry’, {user: user.id, logType: 1, location: 301, comment: “Found AR stuff xD”});
     };
     TransmissionService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

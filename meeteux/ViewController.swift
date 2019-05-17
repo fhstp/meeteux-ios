@@ -32,8 +32,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         prepare()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         objectFound = false
     }
 
@@ -57,8 +60,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func dismissARView(_ sender: Any) {
-        print("dismissed tapped")
-        print(objectFound)
         performSegue(withIdentifier: "unwindToWebView", sender: self)
         
     }
@@ -67,10 +68,9 @@ class ViewController: UIViewController {
     {
         if (segue.identifier == "unwindToWebView")
         {
-            print("viewcontroller is set")
             let vc = segue.destination as! WebViewController
             vc.arViewController = self
-            vc.arObjectFound = true
+            vc.arObjectFound = objectFound
         }
     }
 
