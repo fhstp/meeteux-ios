@@ -88,12 +88,28 @@
       window.angularComponentRef.componentFn("send_correct_wifi",message);
     };
 
+    window.send_app_version = function(message){
+      window.angularComponentRef.componentFn("send_app_version",message);
+    };
+
     window.send_bluetooth_check = function(message){
       window.angularComponentRef.componentFn("send_bluetooth_check",message);
     };
 
     window.back_button_pressed = function(message){
       window.angularComponentRef.componentFn("back_button_pressed",message);
+    };
+
+    window.ar_object_found = function(message){
+      window.angularComponentRef.componentFn("ar_object_found",message);
+    };
+
+    window.permissionresult = function(message){
+      window.angularComponentRef.componentFn("permissionresult",message);
+    };
+
+    window.permissions_granted = function(message){
+      window.angularComponentRef.componentFn("permissions_granted",message);
     };
 
     window.callfromnative = function(theParameter){
@@ -104,5 +120,5 @@
     };
 
   </script>
-<script type="text/javascript" src="runtime.a5dd35324ddfd942bef1.js"></script><script type="text/javascript" src="polyfills.5eb9ae8846653f4bd659.js"></script><script type="text/javascript" src="main.45eb45aeed9251598d2a.js"></script></body>
+<script type="text/javascript" src="runtime.a5dd35324ddfd942bef1.js"></script><script type="text/javascript" src="polyfills.5eb9ae8846653f4bd659.js"></script><script type="text/javascript" src="main.f4b050075669d806c042.js"></script></body>
 </html>
