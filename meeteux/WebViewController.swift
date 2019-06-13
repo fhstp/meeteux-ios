@@ -192,6 +192,13 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             case "statusWifi":
                 statusWifi()
                 break;
+            case "activateLocationCheck":
+                // do something
+                activateLocationCheck()
+                break;
+            case "activateBluetoothCheck":
+                // do something
+                break;
             default:
                 print(dict!["data"] as Any)
                 break
@@ -390,6 +397,23 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         
         updateLocationStatus()
         sendStringToWeb(myString: "\(isActivatedLocation)", functionCall: "send_correct_location")
+        
+    }
+    
+    func activateLocationCheck(){
+        // go to app settings
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)") // Prints true
+            })
+        }
+    }
+    
+    func activateBluetoothCheck(){
         
     }
     
