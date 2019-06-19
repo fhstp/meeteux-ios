@@ -38,6 +38,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     @objc var isActivatedLocation: String = ""
     
     var BTmanager:CBCentralManager!
+    var isInWifi:Bool = false
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -366,7 +367,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         correctSSID = wifiData["ssid"] ?? ""
         let wifiPassword = wifiData["password"]
         
-        var isInWifi = false;
+        isInWifi = false
         
         if(ssid != correctSSID)
         {
@@ -378,7 +379,6 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             
             present(alertController, animated: true, completion: nil)
             isInWifi = false
-            
         }else{
             isInWifi = true
         }
@@ -418,8 +418,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     @objc func statusWifi() {
-        updateWifiStatus()
-        sendStringToWeb(myString: "\(isActivatedWifi)", functionCall: "send_correct_wifi")
+        //updateWifiStatus()
+        sendStringToWeb(myString: "\(isInWifi)", functionCall: "send_correct_wifi")
     }
     
    

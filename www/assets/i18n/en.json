@@ -6,11 +6,14 @@
     "menuAbout": "ABOUT",
     "menuLogout": "LOGOUT",
     "cancel": "cancel",
+    "help": "HELP",
     "confirm": "confirm",
     "connectionLostHeader": "Connection lost!",
     "connectionLostBody": "Please wait until the app reconnects to the server!",
+    "noPermissionHeader": "No permissions!",
+    "noPermissionBody": "Please restart the app and allow the requested permissions!",
     "unlock": "UNLOCK CONTENT",
-    "menuTroubleshooting": "APP SETTINGS"
+    "menuTroubleshooting": "TROUBLESHOOT"
   },
   "start": {
     "welcomeMessage": "Welcome to the exhibition",
@@ -181,5 +184,49 @@
     "description": "Do you want to go to exhibit:",
     "yesOption": "Yes",
     "noOption": "No"
+  },
+  "helpScreen": {
+    "title": "Help",
+    "mainScreen": "Main Screen",
+    "unlock": "Unlock Contents",
+    "contents": "Content Types",
+    "coa": "Coat of Arms",
+    "userData": "User and Guest Data",
+    "wifi": "Wifi Settings",
+    "troubleshoot": "Troubleshoot"
+  },
+  "guide": {
+    "close": "CLOSE",
+    "s1": "Each exhibit is represented by one of these boxes. Walk through the museum to unlock them. Then, tap on it to get more information!",
+    "s2": "The exhibition consists of multiple chapters. You can switch between the chapters here.",
+    "s3": "You can tap on this symbol to jump to your current position.",
+    "s4": "Here you can have access to the app menu and your own coat of arms."
+  },
+  "ariaLabels": {
+    "ariaSec1": "Section 1",
+    "ariaSec2": "Section 2",
+    "ariaSec3": "Section 3",
+    "ariaSec4": "Section 4",
+    "ariaSec5": "Section 5",
+    "ariaSec6": "Section 6",
+    "ariaCoaBtn": "coat of arms",
+    "ariaQstBtn": "questionnaire",
+    "ariaLocBtn": "current location",
+    "ariaGuidePrevBtn": "previous",
+    "ariaGuideNextBtn": "next",
+    "ariaBackBtn": "back",
+    "ariaHelpBtn": "help",
+    "ariaMenuBtn": "menu",
+    "ariaShieldBtn": "shield",
+    "ariaEmblemBtn": "charge",
+    "ariaHelmetBtn": "helmet",
+    "ariaWeaponBtn": "mantling",
+    "ariaColorBtn": "color",
+    "ariaClr1Btn": "red",
+    "ariaClr2Btn": "blue",
+    "ariaClr3Btn": "green",
+    "ariaClr4Btn": "yellow",
+    "ariaClr5Btn": "gray",
+    "ariaCloseBtn": "close"
   }
 }
