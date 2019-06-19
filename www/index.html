@@ -88,12 +88,37 @@
       window.angularComponentRef.componentFn("send_correct_wifi",message);
     };
 
+    window.send_app_version = function(message){
+      window.angularComponentRef.componentFn("send_app_version",message);
+    };
+
+    window.send_correct_location = function(message){
+      window.angularComponentRef.componentFn("send_correct_location",message);
+    };
+
+    window.send_correct_bluetooth = function(message){
+      window.angularComponentRef.componentFn("send_correct_bluetooth",message);
+    };
+
     window.send_bluetooth_check = function(message){
+      // still in use?
       window.angularComponentRef.componentFn("send_bluetooth_check",message);
     };
 
     window.back_button_pressed = function(message){
       window.angularComponentRef.componentFn("back_button_pressed",message);
+    };
+
+    window.ar_object_found = function(message){
+      window.angularComponentRef.componentFn("ar_object_found",message);
+    };
+
+    window.permissionresult = function(message){
+      window.angularComponentRef.componentFn("permissionresult",message);
+    };
+
+    window.permissions_granted = function(message){
+      window.angularComponentRef.componentFn("permissions_granted",message);
     };
 
     window.callfromnative = function(theParameter){
