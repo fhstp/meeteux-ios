@@ -1,0 +1,169 @@
+{
+  "app": {
+    "backButton": "back",
+    "menuSettings": "PROFILE SETTINGS",
+    "menuSignup": "SIGN UP",
+    "menuAbout": "ABOUT",
+    "menuLogout": "LOGOUT",
+    "cancel": "cancel",
+    "confirm": "confirm",
+    "connectionLostHeader": "Connection lost!",
+    "connectionLostBody": "Please wait until the app reconnects to the server!",
+    "noPermissionHeader": "No permissions!",
+    "noPermissionBody": "Please restart the app and allow the requested permissions!",
+    "unlock": "UNLOCK CONTENT"
+  },
+  "start": {
+    "welcomeMessage": "Welcome to the exhibition",
+    "name": "The Emperor's New Saint",
+    "loginButton": "Login",
+    "registerGuestButton": "Login as guest",
+    "registerButton": "Register"
+  },
+  "languageStart": {
+    "helpmessage": "Please choose a language!"
+  },
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "btnSave": "Continue",
+    "enterValue": "You must enter a value.",
+    "credentialsNotMatch": "These credentials do not match.",
+    "oder": "or"
+  },
+  "register": {
+    "title": "Please choose a username and a password!",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "passwordConfirm": "Password Confirmation",
+    "btnSave": "Continue",
+    "userEmailAlreadyExists": "These username and email already exists.",
+    "userAlreadyExists": "This username already exists.",
+    "emailAlreadyExists": "This email already exists.",
+    "credentialsNotMatch": "These credentials do not match."
+  },
+  "main": {
+    "welcomeText": "Welcome at",
+    "goToExhibitButton": "Go to Exhibit"
+  },
+  "tableAt": {
+    "welcomeText": "Welcome at",
+    "interactiveExhibitMsg": "This is an interactive exhibit. Click the button below to start!",
+    "tableOfflineText": "The display is currently not available.",
+    "tableFreeText": "The display is free.",
+    "tableOccupiedText": "Sorry, the display is occupied. Please try again later!",
+    "tableJoinButton": "Join interactive exhibit",
+    "beaconPutText": "Please, put your phone at the indicated position!",
+    "beaconOccupiedText": "Sorry, but this place is currently occupied by an other player.",
+    "notAtWifi": "Please switch to the wifi: DesKaisersNeuerHeiliger."
+  },
+  "quiz": {
+    "pleaseWait" : "Please wait until the question is resolved!",
+    "waitNext" : "Please wait for the next question!",
+    "none": "None",
+    "rightAnswer": "Right Answer ",
+    "progress": "Progress: ",
+    "points": "Points",
+    "beggars": "Beggars",
+    "bourgeoisie": "Bourgeoisie",
+    "noble": "Noble",
+    "yourAnswer": "Your Answer: "
+  },
+  "tableOn": {
+    "connecting" : "Connecting to the display.",
+    "connected" : "Connection to the display successfully established."
+  },
+  "passiveExhibit": {
+    "welcomeText": "Welcome at",
+    "buttonCoa": "Your Coat of Arms",
+    "emperor": "Emperor"
+  },
+  "interactiveExhibit": {
+    "interactiveExhibitMsg": "This is an interactive exhibit. Click the button below to start!",
+    "startButton": "Start interactive exhibit",
+    "notAtLocation": "Walk to the exhibit to start the interactive content!",
+    "quizQuestion": "What is the name of the student appearing here?",
+    "quizRight": "Correct Answer!",
+    "quizWrong": "Wrong Answer.",
+    "exhibitNotAvailable": "Interactive content is not available yet."
+  },
+  "notifiyExhibit": {
+    "interactiveExhibitMsg": "This is an interactive exhibit. Click the button below to start!",
+    "tableOfflineText": "Sorry, an error occurred. Therefore, the display is currently not available!",
+    "tableOccupiedText": "Sorry, the display is occupied. Please try again later!",
+    "tableJoinButton": "Join interactive exhibit",
+    "beaconPutText": "Please, put your phone at the beacon near the display.",
+    "beaconOccupiedText": "Sorry, but this place is currently occupied by an other player."
+  },
+  "notifiyExhibitOn": {
+    "disconnectButton": "Press to disconnect",
+    "connectedMsg": "Connected",
+    "connectionMsg": "Now use the displays to explore the exhibit.",
+    "disconnectInfo": "Press the button below to close the connection to the exhibit and go back to the previous screen."
+  },
+  "coa": {
+    "title": "Coat of Arms of",
+    "helpTitle": "Your Coat of Arms",
+    "helpText": "Here you can create your personal coat of arms by selecting from the parts below. You can unlock more parts by solving tasks in the exhibition!",
+    "shield": "Shield",
+    "charge": "Charge",
+    "helmet": "Helmet",
+    "mantle": "Mantling",
+    "colors": "Colors",
+    "save": "SAVE CHANGES",
+    "primColor": "Primary Color",
+    "secColor": "Secondary Color",
+    "unlocked": "Unlocked from beginning"
+  },
+  "changeCredentials": {
+    "title": "Profile Settings",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "passwordOld": "Old Password",
+    "passwordNew": "New Password",
+    "passwordConfirm": "Confirm Password",
+    "language": "Language",
+    "btnUsername": "Change Username",
+    "btnEmail": "Change Email",
+    "btnPassword": "Change Password",
+    "btnLanguage": "Change Language",
+    "btnDelete": "Delete Account",
+    "btnSave": "Save Credentials",
+    "btnCancel": "Cancel",
+    "credentialsChanged": "You changed your credentials successfully.",
+    "OK": "OK",
+    "enterValue": "You must enter a value.",
+    "infoPassword1": "Please use at least 6 characters with at least 1 lower case and ",
+    "infoPassword2": "1 number.",
+    "notSamePassword": "The password is not the same.",
+    "credentialsNotChanged": "The credentials were not changed correctly.",
+    "credentialsTaken": "These credentials are already taken.",
+    "btnUnlock": "UNLOCK CONTENT"
+  },
+  "deleteDialog": {
+    "title": "Delete Account",
+    "text": "If you delete your account, you will not be able to reactivate it, and all your data will be lost. Do you really want to proceed?",
+    "yesOption": "Delete Account"
+  },
+  "unlockDialog": {
+    "title": "Unlock Content",
+    "text": "Choose 'Unlock' to unlock all exhibits within the app without being there. Thus, you can read the contents. However, you can not connect to interactive exhibits.",
+    "yesOption": "Unlock"
+  },
+  "questionnaireDialog": {
+    "title": "Questionnaire",
+    "text": "You have reached the end of the exhibition, could you please answer some questions.",
+    "text2": "Your participation allows us to carry out extensive evaluations in the field of user experience.",
+    "doneOption": "Already answered",
+    "laterOption": "Remind me later",
+    "yesOption": "Answer now"
+  },
+  "alertDialog": {
+    "title": "Exhibit",
+    "description": "Do you want to go to exhibit:",
+    "yesOption": "Yes",
+    "noOption": "No"
+  }
+}

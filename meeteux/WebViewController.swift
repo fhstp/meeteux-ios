@@ -19,6 +19,7 @@ import SystemConfiguration.CaptiveNetwork
 
 class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotificationCenterDelegate {
     
+    var arViewController:ViewController?
     @IBOutlet var containerView: UIView!
     @objc var webView: WKWebView!
     
@@ -32,6 +33,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     @objc var emptyBeaconArrayCount: Int = 0
     @objc var emptyBeaconDialogShown: Bool = false
     @objc var correctSSID: String = ""
+    var arObjectFound: Bool = false
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -45,6 +47,17 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     {
         webView.isMultipleTouchEnabled = false
         super.viewDidLoad()
+    
+        deleteDoubleTap(web: webView)
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
+        
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
+        
+        view.addGestureRecognizer(leftSwipe)
+        view.addGestureRecognizer(rightSwipe)
         
         //UIApplication.shared.applicationIconBadgeNumber = 0 //delet badge count
         if #available(iOS 10.0, *) {
@@ -75,6 +88,21 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         catch {
             print ("File HTML error")
         }
+        print("didload")
+    }
+    
+    //Disable Scroll on double Tap
+    private func deleteDoubleTap(web: WKWebView) {
+        for subview in web.scrollView.subviews {
+            let recognizers = subview.gestureRecognizers?.filter{$0 is UITapGestureRecognizer}
+            recognizers?.forEach{recognizer in
+                let tapRecognizer = recognizer as! UITapGestureRecognizer
+                if tapRecognizer.numberOfTapsRequired == 2 && tapRecognizer.numberOfTouchesRequired == 1 {
+                    subview.removeGestureRecognizer(recognizer)
+                }
+            }
+        }
+        
     }
     
     
@@ -183,6 +211,40 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         sendDictToWeb(myDict: ["language": langStr], functionCall: "send_language")
     }
     
+    @objc func sendSwipesToWeb(_ sender:UISwipeGestureRecognizer) {
+        
+        var directStr = ""
+        
+        if (sender.direction == .left) {
+            directStr = "left"
+            
+        }
+        
+        if (sender.direction == .right) {
+            directStr = "right"
+            
+        }
+        
+        sendDictToWeb(myDict: ["swipe": directStr], functionCall: "send_swipedirection")
+        
+    }
+    
+    //- MARK: AR View
+    func openARView() {
+        // print("open AR")
+        performSegue(withIdentifier: "showARView", sender: self)
+    }
+    
+    func onArDismiss(data: Bool){
+        print("ardismiss data")
+        print("Object Found: \(data)")
+        arObjectFound = data
+    }
+    
+    @IBAction func unwindToWebView(segue:UIStoryboardSegue){
+        
+    }
+    
     //- MARK: Helper Functions
     
     @objc func saveToken(token: Any)
@@ -256,6 +318,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             }
         }
     }
+    
+    
     
     // sends message to webview
     @objc func sendFunctionCallToWeb(functionCall: String){
@@ -368,11 +432,6 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         lastNoficationID = locationId
     }
     
-    func openARView() {
-        // print("open AR")
-        performSegue(withIdentifier: "showARView", sender: nil)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setNeedsStatusBarAppearanceUpdate()
@@ -383,6 +442,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if(arObjectFound){
+            print("ar object found")
+            sendFunctionCallToWeb(functionCall: "ar_object_found")
+        }
+        arObjectFound = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -529,7 +593,7 @@ extension WebViewController: KTKBeaconManagerDelegate{
                 if(digits == 3 && beacon.proximity == .immediate){
                     //print("immediate")
                     beaconList.append(beacon)
-                }else if(digits == 2 && (beacon.proximity == .near || beacon.proximity == .immediate)){
+                }else if((digits == 2 || digits == 1) && (beacon.proximity == .near || beacon.proximity == .immediate)){
                     //print("near")
                     beaconList.append(beacon)
                 }

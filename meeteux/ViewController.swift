@@ -10,9 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var mainViewController:WebViewController?
+    
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var cameraView: UIView!
+    
+    var objectFound = false
     
     @objc let vuforiaLicenseKey = "AYsYrdX/////AAAACIoVAWiG4keZjev8bbFmlFN/2KIncjmco1ZxK21r/tNMhX41T44wuKsKxhAkqTJ+O8EFT6l2LK+tRn0KrPbh9yw2mW1nlNt6uiZxLjgrk7TFzHCVlsS6s57NYcl84vzqR0tBkbVXP3Nrz8EJ0CfTvl0oVm6RsBoS8Yqk7w9ypbXDTlpsyDMejEaPNpcUGhNtdsMdznoTbccG18UTqwwFZSNHqwtKjPKQ1XxY7eIAVmkWkD1g19VhnGd8nwK5MSBmo5DjTPS7iDW4wbq6xzysM7lHp76qBuUR5mmyPH3w87aFzXPaMwJi1yTyhJN7IoKwDhJtqC9KHQ1jIg/yo9IZ49jw/DCqsBDrxtOjneLdZtLB"
     @objc let vuforiaDataSetFile = "stiftklosterneuburg.xml"
@@ -28,8 +32,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         prepare()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        objectFound = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,9 +58,22 @@ class ViewController: UIViewController {
             print("\(error)")
         }
     }
+    
     @IBAction func dismissARView(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "unwindToWebView", sender: self)
+        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if (segue.identifier == "unwindToWebView")
+        {
+            let vc = segue.destination as! WebViewController
+            vc.arViewController = self
+            vc.arObjectFound = objectFound
+        }
+    }
+
 }
 
 private extension ViewController {
@@ -131,25 +152,21 @@ extension ViewController: VuforiaManagerDelegate {
             let trackerableName = result?.trackable.name
     
             if trackerableName == "Sunthaym1" {
-                
                 if lastSceneName != "Sunthaym1" {
                     manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "Sunthaym1"])
                     lastSceneName = "Sunthaym1"
                 }
             }else if trackerableName == "Sunthaym2"{
-                
                 if lastSceneName != "Sunthaym2" {
                     manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "Sunthaym2"])
                     lastSceneName = "Sunthaym2"
                 }
             }else if trackerableName == "Shrine"{
-                
                 if lastSceneName != "Shrine" {
                     manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "Shrine"])
                     lastSceneName = "Shrine"
                 }
             }else if trackerableName == "Accounting"{
-                
                 if lastSceneName != "Accounting" {
                     manager.eaglView.setNeedsChangeSceneWithUserInfo(["scene" : "Accounting"])
                     lastSceneName = "Accounting"
@@ -167,6 +184,7 @@ extension ViewController: VuforiaEAGLViewSceneSource, VuforiaEAGLViewDelegate {
             print("default scene")
             return createSunthaymOne(with: view)
         }
+        objectFound = true
         
         let sceneName = userInfo["scene"] as? String
         if sceneName == "Sunthaym1" {

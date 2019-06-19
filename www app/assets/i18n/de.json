@@ -1,0 +1,170 @@
+{
+  "app": {
+    "backButton": "zurück",
+    "menuSettings": "EINSTELLUNGEN",
+    "menuSignup": "ANMELDEN",
+    "menuAbout": "ÜBER",
+    "menuLogout": "AUSLOGGEN",
+    "cancel": "abbrechen",
+    "confirm": "bestätigen",
+    "connectionLostHeader": "Verbindung verloren!",
+    "connectionLostBody": "Warte bitte bis die Verbindung wieder hergestellt werden konnte!",
+    "noPermissionHeader": "Keine Berechtigungen!",
+    "noPermissionBody": "Starte bitte die App neu und erteile die benötigten Berechtigungen!",
+    "unlock": "INHALT FREISCHALTEN"
+  },
+  "start": {
+    "welcomeMessage": "Willkommen in der Ausstellung",
+    "name": "Des Kaisers neuer Heiliger",
+    "loginButton": "Einloggen",
+    "registerGuestButton": "Als Gast einloggen",
+    "registerButton": "Registrieren"
+  },
+  "languageStart": {
+    "helpmessage": "Wähle bitte eine Sprache aus!"
+  },
+  "login": {
+    "username": "Nutzername",
+    "password": "Passwort",
+    "btnSave": "Weiter",
+    "enterValue": "Gib bitte einen Wert ein!",
+    "credentialsNotMatch": "Diese Zugangsdaten stimmen nicht überein.",
+    "oder": "oder"
+  },
+  "register": {
+    "title": "Wähle bitte einen Benutzernamen und ein Passwort!",
+    "username": "Nutzername",
+    "email": "Email",
+    "password": "Passwort",
+    "passwordConfirm": "Passwort bestätigen",
+    "btnSave": "Weiter",
+    "userEmailAlreadyExists": "Dieser Benutzername und diese Email werden bereits verwendet.",
+    "userAlreadyExists": "Dieser Benutzername wird bereits verwendet.",
+    "emailAlreadyExists": "Diese Email wird bereits verwendet.",
+    "credentialsNotMatch": "Diese Zugangsdaten stimmen nicht überein."
+  },
+  "main": {
+    "welcomeText": "Willkommen",
+    "goToExhibitButton": "Öffnen"
+  },
+  "tableAt": {
+    "welcomeText": "Willkommen bei",
+    "interactiveExhibitMsg": "Dies ist ein interaktives Ausstellungsstück. Klicke auf die Schaltfläche unten, um zu beginnen!",
+    "tableOfflineText": "Das Display steht zur Zeit nicht zur Verfügung.",
+    "tableFreeText": "Das Display ist frei.",
+    "tableOccupiedText": "Das Display ist gerade nicht frei, probiere es später erneut!",
+    "tableJoinButton": "Mitspielen",
+    "beaconPutText": "Lege bitte Dein Handy auf ein Beacon am Display!",
+    "beaconOccupiedText": "Dieser Platz ist aktuell nicht frei.",
+    "notAtWifi": "Wechsle bitte in das Wifi: DesKaisersNeuerHeiliger."
+  },
+  "quiz": {
+    "pleaseWait" : "Warte bitte, bis die Frage aufgelöst wird!",
+    "waitNext" : "Warte bitte auf die nächste Frage!",
+    "none": "keine",
+    "rightAnswer": "Richtige Antwort ",
+    "progress": "Fortschritt: ",
+    "points": "Punkte",
+    "beggars": "Bettelvolk",
+    "bourgeoisie": "Bürgertum",
+    "noble": "Adel",
+    "yourAnswer": "Deine Antwort: "
+
+  },
+  "tableOn": {
+    "connecting" : "Verbindung zum Display wird aufgebaut.",
+    "connected" : "Verbindung zum Display erfolgreich aufgebaut."
+  },
+  "passiveExhibit": {
+    "welcomeText": "Willkommen bei",
+    "buttonCoa": "Dein Wappen",
+    "emperor": "Kaiser"
+  },
+  "interactiveExhibit": {
+    "interactiveExhibitMsg": "Dies ist ein interaktives Ausstellungsstück. Klicke auf die Schaltfläche unten, um zu beginnen!",
+    "startButton": "Starten",
+    "notAtLocation": "Gehe zum Ausstellungsstück, um die interaktiven Inhalt zu starten!",
+    "quizQuestion": "Wie heißt der hier aufscheinende Student mit Vornamen?",
+    "quizRight": "Korrekte Antwort!",
+    "quizWrong": "Falsche Antwort.",
+    "exhibitNotAvailable": "Der interaktive Inhalt ist noch nicht verfügbar."
+  },
+  "notifiyExhibit": {
+    "interactiveExhibitMsg": "Dies ist ein interaktives Ausstellungsstück. Klicke auf die Schaltfläche unten, um zu beginnen!",
+    "tableOfflineText": "Das interaktive Ausstellungsstück steht zur Zeit nicht zur Verfügung!",
+    "tableOccupiedText": "Das interaktive Ausstellungsstück ist gerade nicht frei, probiere es später erneut!",
+    "tableJoinButton": "Mitspielen",
+    "beaconPutText": "Lege bitte Dein Handy auf ein Beacon am Display!",
+    "beaconOccupiedText": "Dieser Platz ist aktuell nicht frei!"
+  },
+  "notifiyExhibitOn": {
+    "disconnectButton": "Zum Beenden drücken",
+    "connectedMsg": "Verbunden",
+    "connectionMsg": "Nutze nun das Tablet, um mit dem Ausstellungsstück zu interagieren.",
+    "disconnectInfo": "Um die interaktive Exploration zu beenden, drücke den Button unten."
+  },
+  "coa": {
+    "title": "Wappen von",
+    "helpTitle": "Dein Wappen",
+    "helpText": "Du kannst hier Dein persönliches Wappen erstellen, indem Du aus den folgenden Teilen auswählst. Du kannst weitere Teile freischalten, indem Du Aufgaben in der Ausstellung löst!",
+    "shield": "Schild",
+    "charge": "Wappenfigur",
+    "helmet": "Helm",
+    "mantle": "Helmdecke",
+    "colors": "Farben",
+    "save": "ÄNDERUNGEN SPEICHERN",
+    "primColor": "Primärfarbe",
+    "secColor": "Sekundärfarbe",
+    "unlocked": "Von Anfang an freigeschaltet"
+  },
+  "changeCredentials": {
+    "title": "Profileinstellungen",
+    "username": "Nutzername",
+    "email": "Email",
+    "password": "Passwort",
+    "passwordOld": "Altes Passwort",
+    "passwordNew": "Neues Passwort",
+    "passwordConfirm": "Passwort bestätigen",
+    "language": "Sprache",
+    "btnUsername": "Nutzername ändern",
+    "btnEmail": "Email ändern",
+    "btnPassword": "Passwort ändern",
+    "btnLanguage": "Sprache ändern",
+    "btnDelete": "Konto löschen",
+    "btnSave": "Speichern",
+    "btnCancel": "Abbrechen",
+    "credentialsChanged": "Du hast Deine Anmeldeinformationen erfolgreich geändert.",
+    "OK": "OK",
+    "enterValue": "Gib bitte einen Wert ein!",
+    "infoPassword1": "Verwende bitte mindestens 6 Zeichen mit mindestens 1 Kleinbuchstaben und ",
+    "infoPassword2": "1 Ziffer.",
+    "notSamePassword": "Das Passwort ist nicht dasselbe.",
+    "credentialsNotChanged": "Die Anmeldeinformationen wurden nicht korrekt geändert.",
+    "credentialsTaken": "Diese Anmeldeinformationen sind bereits vergeben.",
+    "btnUnlock": "INHALT FREISCHALTEN"
+  },
+  "deleteDialog": {
+    "title": "Konto löschen",
+    "text": "Wenn Du das Konto löscht, kannst Du es nicht erneut aktivieren, alle Daten gehen verloren. Möchtest Du wirklich fortfahren?",
+    "yesOption": "Konto löschen"
+  },
+  "unlockDialog": {
+    "title": "Inhalt freischalten",
+    "text": "Wähle 'Freischalten', um alle Ausstellungsstücke in der App freizuschalten, ohne dass Du bei diesen gewesen sein musst. Du kannst so die Inhalte konsumieren, Dich jedoch nicht mit den interaktiven Ausstellungsstücken verbinden.",
+    "yesOption": "Freischalten"
+  },
+  "questionnaireDialog": {
+    "title": "Fragebogen",
+    "text": "Du hast das Ende der Ausstellung erreicht, würdest Du bitte diese Fragen beantworten.",
+    "text2": "Durch Deine Beteiligung können wir umfangreiche Evaluierungen im Bereich der User Experience durchführen.",
+    "doneOption": "Bereits beantwortet",
+    "laterOption": "Erinnere mich später",
+    "yesOption": "Antworte jetzt"
+  },
+  "alertDialog": {
+    "title": "Ausstellungsstück",
+    "description": "Willst Du zum Austellungsstück wechseln:",
+    "yesOption": "Ja",
+    "noOption": "Nein"
+  }
+}
