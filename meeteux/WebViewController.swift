@@ -17,7 +17,7 @@ import SwiftKeychainWrapper
 import UserNotifications
 import SystemConfiguration.CaptiveNetwork
 
-class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotificationCenterDelegate {
+class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotificationCenterDelegate, CBCentralManagerDelegate {
     
     var arViewController:ViewController?
     @IBOutlet var containerView: UIView!
@@ -35,6 +35,13 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     @objc var correctSSID: String = ""
     var arObjectFound: Bool = false
     
+    @objc var isActivatedBluetooth: String = ""
+    @objc var isActivatedWifi: String = ""
+    @objc var isActivatedLocation: String = ""
+    
+    var BTmanager:CBCentralManager!
+    var isInWifi:Bool = false
+    
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
@@ -49,6 +56,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         super.viewDidLoad()
     
         deleteDoubleTap(web: webView)
+        
+        BTmanager = CBCentralManager()
+        BTmanager.delegate = self as? CBCentralManagerDelegate
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(sendSwipesToWeb(_:)))
@@ -177,6 +187,22 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
                 break
             case "triggerAR":
                 openARView()
+                break;
+            case "statusLocation":
+                statusLocation()
+                break;
+            case "statusBluetooth":
+                statusBluetooth()
+                break;
+            case "statusWifi":
+                statusWifi()
+                break;
+            case "activateLocationCheck":
+                // do something
+                activateLocationCheck()
+                break;
+            case "activateBluetoothCheck":
+                // do something
                 break;
             default:
                 print(dict!["data"] as Any)
@@ -361,7 +387,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         correctSSID = wifiData["ssid"] ?? ""
         let wifiPassword = wifiData["password"]
         
-        var isInWifi = false;
+        isInWifi = false
         
         if(ssid != correctSSID)
         {
@@ -373,13 +399,87 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             
             present(alertController, animated: true, completion: nil)
             isInWifi = false
-            
         }else{
             isInWifi = true
         }
 
         sendStringToWeb(myString: "\(isInWifi)", functionCall: "send_correct_wifi")
     }
+    
+    
+    @objc func statusBluetooth() {
+        
+        sendStringToWeb(myString: "\(isActivatedBluetooth)", functionCall: "send_correct_bluetooth")
+        
+    }
+    
+    @objc func statusLocation() {
+        
+        updateLocationStatus()
+        sendStringToWeb(myString: "\(isActivatedLocation)", functionCall: "send_correct_location")
+        
+    }
+    
+    func activateLocationCheck(){
+        // go to app settings
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)") // Prints true
+            })
+        }
+    }
+    
+    func activateBluetoothCheck(){
+        
+    }
+    
+    @objc func statusWifi() {
+        //updateWifiStatus()
+        sendStringToWeb(myString: "\(isInWifi)", functionCall: "send_correct_wifi")
+    }
+    
+   
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+        case .poweredOn:
+            isActivatedBluetooth = "true"
+            break
+        case .poweredOff, .unknown, .resetting, .unsupported , .unauthorized:
+            isActivatedBluetooth = "false"
+            break
+        }
+    }
+    
+    func updateLocationStatus() {
+        
+        switch KTKBeaconManager.locationAuthorizationStatus() {
+        case .notDetermined:
+            beaconManager.requestLocationAlwaysAuthorization()
+        // print("access ok")
+        case .denied, .restricted:
+            isActivatedLocation = "false"
+            break
+        case .authorizedWhenInUse, .authorizedAlways:
+            isActivatedLocation = "true"
+            break
+        }
+        
+    }
+    
+    func updateWifiStatus() {
+        let wifi = getWiFiSSID()
+        if wifi == nil {
+            isActivatedWifi = "false"
+        } else {
+            isActivatedWifi = "true"
+        }
+    }
+    
     
     // starts scanning for beacons
     @objc func startBeaconScanning(){
