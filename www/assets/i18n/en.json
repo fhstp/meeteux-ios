@@ -142,7 +142,8 @@
     "notSamePassword": "The password is not the same.",
     "credentialsNotChanged": "The credentials were not changed correctly.",
     "credentialsTaken": "These credentials are already taken.",
-    "btnUnlock": "UNLOCK CONTENT"
+    "btnUnlock": "UNLOCK CONTENT",
+    "alreadyLoggedIn": "You are already logged in on another device!"
   },
   "appSettings":{
     "title": "App Settings",
@@ -183,7 +184,7 @@
   },
   "alertDialog": {
     "title": "Exhibit",
-    "description": "Do you want to go to the exhibit:",
+    "description": "Do you want to go to exhibit:",
     "yesOption": "Yes",
     "noOption": "No"
   },

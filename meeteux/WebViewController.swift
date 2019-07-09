@@ -157,7 +157,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             //////////////////
             switch (messageName) {
             case "getDeviceInfos":
-                getDeviceInformation()
+                getDeviceInformation(message: dict!["data"] as! Any)
                 break
             case "registerOD":
                 // start beacon Scan
@@ -304,9 +304,10 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     }
     
     // prepars dict for sending device infos to web
-    @objc func getDeviceInformation(){
+    @objc func getDeviceInformation(message: Any){
         let mydevice = UIDevice.current
         // print("UDID: \(String(describing: mydevice.identifierForVendor?.uuidString)) systemName: \(mydevice.systemName) systemVersion: \(mydevice.systemVersion) model: \(mydevice.model)")
+        // for all possbile device attributes and actions: https://developer.apple.com/documentation/uikit/uidevice
         
         let dict = [
             "deviceAddress": mydevice.identifierForVendor?.uuidString,
@@ -315,9 +316,25 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             "deviceModel": UIDevice.modelName
         ]
         
-        sendDictToWeb(myDict: dict, functionCall: "send_device_infos")
+        var funcCall = "send_device_infos"
         
-        // for all possbile device attributes and actions: https://developer.apple.com/documentation/uikit/uidevice
+        if let stringMessage = message as? String
+        {
+            switch stringMessage {
+                case "login":
+                    funcCall = "send_device_infos_login"
+                case "loginGuest":
+                    funcCall = "send_device_infos_login_guest"
+                case "register":
+                    funcCall = "send_device_infos_register"
+                case "credentialChange":
+                    funcCall = "send_device_infos_credential_change"
+                default:
+                    funcCall = "send_device_infos"
+            }
+        }
+        
+        sendDictToWeb(myDict: dict, functionCall: funcCall)
     }
     
     // sends string to webview
