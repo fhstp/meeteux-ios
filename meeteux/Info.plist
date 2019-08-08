@@ -59,5 +59,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>With Bluetooth, we want to detect which exhibit is the closest to your position.</string>
 </dict>
 </plist>

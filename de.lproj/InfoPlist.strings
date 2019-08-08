@@ -11,3 +11,4 @@
 "NSLocationAlwaysAndWhenInUseUsageDescription" = "Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";
 "NSLocationAlwaysUsageDescription" = "Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";
 "NSLocationWhenInUseUsageDescription" = "Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";
+"NSBluetoothAlwaysUsageDescription" = "Der Bluetooth-Zugriff ist notwendig, um zu wissen, wo Du Dich in der Ausstellung befindest.";

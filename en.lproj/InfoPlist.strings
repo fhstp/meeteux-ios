@@ -11,3 +11,4 @@
 "NSLocationAlwaysAndWhenInUseUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
 "NSLocationAlwaysUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
 "NSLocationWhenInUseUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
+"NSBluetoothAlwaysUsageDescription" = "With Bluetooth, we want to detect which exhibit is the closest to your position.";
