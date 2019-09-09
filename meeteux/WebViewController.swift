@@ -38,6 +38,7 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
     @objc var isActivatedBluetooth: String = ""
     @objc var isActivatedWifi: String = ""
     @objc var isActivatedLocation: String = ""
+    @objc var isCorrectWifi: String = ""
     
     var BTmanager:CBCentralManager!
     var isInWifi:Bool = false
@@ -204,10 +205,48 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
             case "activateBluetoothCheck":
                 // do something
                 break;
+            case "receiveAppSettingsData":
+                receiveAppSettingsData(wifiData: dict!["data"] as! Dictionary<String, String>)
+                break;
             default:
                 print(dict!["data"] as Any)
                 break
             }
+        }
+    }
+    
+    
+    // Function called by odwww receiving true or false according to the status of all settings
+    @objc func receiveAppSettingsData(wifiData: Dictionary<String, String>){
+        checkAppSettings(wifiData: wifiData);
+        let isCorrectW : String = isCorrectWifi
+        let isCorrectB : String = isActivatedBluetooth
+        let isCorrectL : String = isActivatedLocation
+        var isCorrect : String = "false"
+        
+        if(isCorrectW.caseInsensitiveCompare("true") == .orderedSame && isCorrectB.caseInsensitiveCompare("true") == .orderedSame && isCorrectL.caseInsensitiveCompare("true") == .orderedSame){
+            isCorrect = "true"
+        }
+        // send to Web true or false
+        sendFuncWithMessageToWeb(myMsg: isCorrect, functionCall: "send_correct_appSettings")
+    }
+    
+    // Function to update variables for BT, loc, and wifi
+    @objc func checkAppSettings(wifiData: Dictionary<String, String>){
+        
+        let ssid = getWiFiSSID()
+        
+        correctSSID = wifiData["ssid"] ?? ""
+        
+        isInWifi = false
+        
+        if(ssid != correctSSID)
+        {
+            isInWifi = false
+            isCorrectWifi = "false";
+        }else{
+            isInWifi = true
+            isCorrectWifi = "true";
         }
     }
     
@@ -338,6 +377,17 @@ class WebViewController: UIViewController, WKScriptMessageHandler, UNUserNotific
         
         // Send the location update to the page
         self.webView.evaluateJavaScript("\(functionCall)(\(jsonString))") { result, error in
+            guard error == nil else {
+                print("SendDictToWeb throw Error: \(error!)")
+                return
+            }
+        }
+    }
+    
+    // sends dictionary to webview
+    @objc func sendFuncWithMessageToWeb(myMsg: String, functionCall: String){
+        // Send the location update to the page
+        self.webView.evaluateJavaScript("\(functionCall)(\(myMsg))") { result, error in
             guard error == nil else {
                 print("SendDictToWeb throw Error: \(error!)")
                 return
